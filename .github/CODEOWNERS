@@ -1,0 +1,6 @@
+# The gates, and who owns them. Agents may not change these files; the project
+# guard fails any pull request from anyone else that touches them.
+
+/.github/workflows/  @Chamaya00
+/.github/CODEOWNERS  @Chamaya00
+/CLAUDE.md           @Chamaya00
