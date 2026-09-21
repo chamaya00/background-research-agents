@@ -33,8 +33,13 @@ export function buildInstruction(item: FetchedItem, knowledge: Knowledge): Instr
   return { itemId: item.id, directives };
 }
 
-/** Injected dependency: production and tests each supply their own. */
-export type Writer = (item: FetchedItem, instruction: Instruction) => string;
+/**
+ * Injected dependency: production and tests each supply their own. Returns a
+ * plain string for a synchronous writer (`templateWriter`, the deterministic
+ * test stub) or a promise for one that calls out, like the model-backed
+ * writer in `modelWriter.ts` - `generateBrief` awaits either.
+ */
+export type Writer = (item: FetchedItem, instruction: Instruction) => string | Promise<string>;
 
 /**
  * Production writer. #3's design doc commits to a model-generated writer, but
