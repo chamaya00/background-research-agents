@@ -1,0 +1,13 @@
+sources:
+  - id: gartner-blog
+    kind: fixture
+    url: https://www.gartner.com/en/newsroom/rss
+    enabled: true
+  - id: a16z-enterprise-ai
+    kind: fixture
+    url: https://a16z.com/tag/enterprise-ai/feed/
+    enabled: true
+  - id: random-newsletter
+    kind: fixture
+    url: https://example.com/newsletter/feed
+    enabled: false

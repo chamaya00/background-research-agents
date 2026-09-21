@@ -1,0 +1,13 @@
+subjects:
+  - id: usage-based-pricing
+    label: "Usage-based pricing for AI features"
+    status: active
+    weight: 3
+  - id: agentic-bi-tools
+    label: "Agentic interfaces to BI/analytics tools"
+    status: active
+    weight: 5
+  - id: data-residency
+    label: "Data residency requirements for enterprise AI"
+    status: muted
+    weight: 1

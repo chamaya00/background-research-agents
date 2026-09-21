@@ -1,0 +1,11 @@
+depth: deep
+formats:
+  - report
+  - article
+  - video
+recency:
+  min_recency_days: 30
+  prefer_recent: true
+sources:
+  gartner-blog: 5
+  random-newsletter: 1
