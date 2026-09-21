@@ -12,7 +12,7 @@
     "lint": "eslint src tests",
     "test": "vitest run",
     "build": "tsc -p tsconfig.build.json",
-    "verify-network": "node scripts/verify-network.mjs"
+    "verify-network": "npm run build && node scripts/verify-network.mjs"
   },
   "dependencies": {
     "@octokit/rest": "^22.0.1",
