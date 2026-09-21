@@ -53,19 +53,21 @@ export async function generateBrief(config: GenerateBriefConfig): Promise<Brief>
   });
   const ranked = selectAndRank(fetched, interest, preference, { asOf: config.asOf ?? new Date() });
 
-  const items: BriefItem[] = ranked.map(({ item, reason }) => {
-    const instruction = buildInstruction(item, knowledge);
-    return {
-      id: item.id,
-      sourceId: item.sourceId,
-      url: item.url,
-      publishedAt: item.publishedAt,
-      subjects: item.subjects,
-      concepts: item.concepts,
-      reason,
-      text: config.writer(item, instruction),
-    };
-  });
+  const items: BriefItem[] = await Promise.all(
+    ranked.map(async ({ item, reason }) => {
+      const instruction = buildInstruction(item, knowledge);
+      return {
+        id: item.id,
+        sourceId: item.sourceId,
+        url: item.url,
+        publishedAt: item.publishedAt,
+        subjects: item.subjects,
+        concepts: item.concepts,
+        reason,
+        text: await config.writer(item, instruction),
+      };
+    }),
+  );
 
   return { items, skipped };
 }

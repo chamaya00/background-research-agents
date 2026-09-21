@@ -12,9 +12,11 @@
     "lint": "eslint src tests",
     "test": "vitest run",
     "build": "tsc -p tsconfig.build.json",
-    "verify-network": "npm run build && node scripts/verify-network.mjs"
+    "verify-network": "npm run build && node scripts/verify-network.mjs",
+    "verify-model-writer": "npm run build && node scripts/model-writer-manual-run.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.127.0",
     "@octokit/rest": "^22.0.1",
     "fast-xml-parser": "^5.11.1",
     "yaml": "^2.5.1",

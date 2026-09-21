@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Octokit } from "@octokit/rest";
 import { generateBrief } from "./brief.js";
-import { templateWriter } from "./writer.js";
+import { createAnthropicClient, createModelWriter } from "./modelWriter.js";
 import { postBrief } from "./post.js";
 import { createOctokitIssueClient } from "./github.js";
 
@@ -49,9 +49,10 @@ function parseArgs(argv: string[]): ParsedArgs | undefined {
 
 /**
  * Prints the generated brief as JSON on stdout by default. With `--post`,
- * posts it as a GitHub issue instead (#5) - fetching, model-backed writing
- * are still the template writer; see #9 for swapping it, at the single
- * `writer: templateWriter` line below.
+ * posts it as a GitHub issue instead (#5). Item text comes from the
+ * model-backed writer (#9, ADR 0003) - `ANTHROPIC_API_KEY` must be set in the
+ * environment for either mode, since the writer runs before `--post` is
+ * even checked.
  */
 async function main(argv: string[]): Promise<void> {
   const args = parseArgs(argv);
@@ -66,13 +67,15 @@ async function main(argv: string[]): Promise<void> {
     return;
   }
 
+  const writer = createModelWriter(createAnthropicClient());
+
   const brief = await generateBrief({
     sourcesPath: args.sourcesPath,
     itemsPath: args.itemsPath,
     interestPath: args.interestPath,
     preferencePath: args.preferencePath,
     knowledgePath: args.knowledgePath,
-    writer: templateWriter,
+    writer,
   });
 
   for (const skip of brief.skipped) {
