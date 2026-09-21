@@ -34,8 +34,11 @@ describe("acceptance criterion 1: every item names a source link, a date, and a 
       // Reason names an actual key present in interest or preference state,
       // not a generic constant like "selected" or "matched".
       const match = /matches interest subject '([^']+)'/.exec(item.reason);
-      expect(match, `reason "${item.reason}" does not name a subject key`).not.toBeNull();
-      const namedKey = match![1];
+      // `?? ""` rather than a non-null assertion: noUncheckedIndexedAccess types
+      // a capture group as possibly undefined, and an empty key fails the same
+      // assertion a missing match would, with the same message.
+      const namedKey = match?.[1] ?? "";
+      expect(namedKey, `reason "${item.reason}" does not name a subject key`).not.toBe("");
       const namedKeyIsReal = interestSubjectIds.has(namedKey) || preferenceSourceIds.has(namedKey);
       expect(namedKeyIsReal, `"${namedKey}" is not a real key in interest.yaml or preference.yaml`).toBe(
         true,
