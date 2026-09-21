@@ -8,23 +8,27 @@ person.
 
 ## Stack
 
-Not chosen yet. This repository was provisioned before any product code
-landed, and the stack is the first decision an objective here should record -
-as an ADR in `docs/decisions/`, once picked.
+TypeScript on Node 20, chosen in `docs/decisions/0001-stack-typescript-node.md`
+over Python and Go because `ci.yml`'s gate has a documented Node path and
+anything else meant hand-writing it. State files are YAML, validated with
+`zod` at load so a hand-edit that breaks the shape fails loudly. `@octokit/rest`
+for GitHub, `fast-xml-parser` for feeds.
+
+`docs/decisions/0002-fetched-item-format-field.md` records the one data-shape
+change since.
 
 ## Commands
 
-- Install: not applicable yet - no stack chosen.
-- Dev: not applicable yet - no stack chosen.
-- Checks CI runs: none yet. `.github/workflows/ci.yml` ships the placeholder
-  scaffolding gate described below, not a real check.
+- Install: `npm ci`. `node_modules` is not pre-installed, and skipping this
+  makes `tsc` and `eslint` report dozens of unrelated-looking errors.
+- Dev: `npm run build`, then the CLI entry points under `dist/`.
+- Checks CI runs: `typecheck`, `lint`, `test`, `build` - the four npm scripts,
+  named in `.github/workflows/ci.yml` as `checks: 'typecheck,lint,test,build'`.
 
-The checks above are what CI runs once the gate is real. Until then it is
-not: `.github/workflows/ci.yml` ships a placeholder that checks the scaffolding
-is intact and fails the moment product code lands, because a project gets its
-gate before it gets its stack and a gate that goes green on untested code is
-worse than no gate. Replacing it is a step in building this project, not a
-chore to do later - the comment at the top of that file says how.
+The placeholder scaffolding gate this repository shipped with is gone. It did
+its job: it failed the moment product code landed in #4, which is what it was
+for, and was replaced in that same pull request rather than left to go green
+on untested code.
 
 Whatever the gate runs, the rule is the same. If a check is renamed here,
 rename it in `.github/workflows/ci.yml` in the same commit, or the gate
@@ -159,3 +163,28 @@ session reads by it, and the section above names them rather than leaving them
 to be discovered.
 
 <!-- agent-factory:end -->
+
+## Lessons
+
+Repository-specific lessons for the **driving session** - the interactive
+session in front of a person, which is not an agent role and so has no
+`docs/memory/<role>.md`. Role lessons live there; these live here because
+there is nowhere else for them.
+
+Same rules as a memory file: one line, stated as a rule with the reason
+attached, proposed in a pull request, capped at 40 lines, and deleted once a
+check enforces it.
+
+<!-- Add lessons below this line, newest last. -->
+
+- Re-read an issue's labels immediately before writing them: the write
+  replaces the whole set rather than merging, and the orchestrator moves them
+  between turns, so a set built from an earlier read silently reinstates what
+  it has since cleared. A stale `agent:running` written back onto #2 this way
+  made the wake-on-merge decline to queue the objective, and the chain sat
+  still until somebody noticed.
+- Address a comment to `@claude` when you need supervision to act on it: a
+  bare comment on the parent is only read on a wake something else caused, so
+  it records a finding without scheduling one. The same finding sat unread
+  until a child happened to finish, then produced a new child within minutes
+  once addressed.
