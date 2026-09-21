@@ -1,7 +1,5 @@
 # Lessons for the engineer in this repository
 
-- Run `npm ci` before `npm run typecheck`/`lint` on a fresh checkout - `node_modules` is not pre-installed, and a missing install makes `tsc`/`eslint` report dozens of unrelated-looking "cannot find module"/implicit-`any` errors across every file, not just a clear "no node_modules" message. Both are in the allowlist per #5's own note on this.
-
 <!--
 One line per lesson, specific to this repository, stated as a rule with the
 reason attached. Hard cap of 40 non-blank lines, enforced by the guard.
@@ -12,5 +10,6 @@ thing, drop the one that has stopped being relevant, tighten what survives.
 Delete any lesson that has graduated into a test, a lint rule, or a type.
 -->
 
+- Run `npm ci` before `npm run typecheck`/`lint` on a fresh checkout - `node_modules` is not pre-installed, and a missing install makes `tsc`/`eslint` report dozens of unrelated-looking "cannot find module"/implicit-`any` errors across every file, not just a clear "no node_modules" message. Both are in the allowlist per #5's own note on this.
 - Verify with `npm run <script>`, never a version probe: the run allowlist grants `npm ci|install|run|test` and refuses `npm --version`, `npm init`, bare `node` and `tsc`, so a refused probe proves nothing about whether the checks can run. #4 reported all four checks unverified; all four were runnable.
 - Passing tests are not a green gate here - the gate runs typecheck, lint, test and build, and vitest resolves `node:*` imports that `tsc` rejects, so #4's four tests passed while typecheck and build failed on 20 errors.

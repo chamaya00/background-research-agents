@@ -11,3 +11,4 @@ Delete any lesson that has graduated into a test, a lint rule, or a type.
 -->
 
 - When a merged ADR or design doc commits to a capability, name the child that implements it: #2's split left the model writer that ADR 0001 and #3's design doc both assume unwired, so the objective would have finished with templated briefs and every criterion green.
+- The objective issue itself keeps acquiring a stale `agent:review` label between supervision runs - seen on seven consecutive wakes of #2. Clear it while replacing the status picture and never read it as a child's state; the mechanism is unidentified, so this is a symptom to handle rather than a cause to fix here.
