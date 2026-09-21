@@ -159,3 +159,27 @@ session reads by it, and the section above names them rather than leaving them
 to be discovered.
 
 <!-- agent-factory:end -->
+
+## Reading a brief
+
+The product here is one habit: read a brief, react to it in a sentence, have
+the reaction change the next brief. `docs/reader/loop.md` is the mechanic and
+`docs/reader/profile.md` is the state it writes - what subjects are worth
+fetching, what is already known, and what shape the result should take.
+
+Three rules, and they are the reason this is written in the half of the file
+a factory release does not touch:
+
+1. **Every research run reads `docs/reader/profile.md`** and treats it as a
+   constraint on what it selects and on how it words what it selected. The
+   session forming the objective inlines that file into the issue body, which
+   is the only injection point a release cannot revert.
+2. **A reaction is not applied until it is a committed line in that file.**
+   Agreeing with someone in a session is not memory; the session ends.
+3. **The driver shows the diff before committing it.** A reaction is
+   translated by a reader, not obeyed literally, and the translation is the
+   step the person has to be able to veto.
+
+Knowledge changes wording only. A reaction that says something is already
+understood must never narrow what gets fetched - that conflation is what
+`docs/research/3-state-and-source-schema.md` was written to prevent.
