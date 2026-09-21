@@ -233,17 +233,72 @@ Recorded because an absence nobody can reconstruct reads as a gap in effort.
   agent.** None found for OpenAI, Snowflake, Databricks or Microsoft. Every
   figure in this brief is vendor-run.
 
+### What the network reached, and what refused it
+
+Recorded because whether a research run can read a primary source at all - as
+opposed to reading a search engine's summary of one - sets the ceiling on
+everything this loop can produce, and until now that was only recoverable by
+inferring it from a citation list. Every row below was re-fetched during this
+revision round, so the statuses are observed rather than remembered.
+
+**Read** (HTTP 200, content quoted above came from the page itself):
+
+| Host | What it carries here |
+|---|---|
+| `unite.ai` | Item 1, the Data agent write-up |
+| `mc.merill.net` | Item 2, message centre RM571195 |
+| `gethynellis.com` | Item 3's secondary, the weekly roundup |
+| `pointfive.co` | The "vendor-run on undisclosed question sets" caveat in item 1 |
+| `prnewswire.com` | The Harness FinOps figures in item 2 |
+| `kucoin.com` | Item 1's second corroboration, the no-published-benchmark point |
+
+**Refused:**
+
+| Host | Status | Consequence |
+|---|---|---|
+| `community.fabric.microsoft.com` | HTTP 403, both rounds | Item 3's **primary** source. Its description is assembled from that page's search excerpt plus the `gethynellis.com` roundup, as item 3 already says. |
+| `hpcwire.com` (BigDATAwire) | HTTP 403 | Cited in item 1 as corroboration and **not read** - that corroboration is a search-index summary. The same host refused the session that wrote [#20](https://github.com/chamaya00/background-research-agents/issues/20), so this is the host, not the run. |
+
+Two readings of that, and they point opposite ways. Six of eight fetches
+returning usable primary text is a materially better result than the round-0
+session, which reached none - so the ceiling is higher than "what search
+summaries say". But both refusals are on the two most load-bearing links in the
+brief: the only vendor release note here, and the only trade-press corroboration
+of item 1. The hosts that block are not a random sample of the hosts worth
+reading, which is an argument for the curated list the Format line already asks
+for - a list can be checked for reachability once, rather than discovered to be
+unreachable per brief.
+
 ---
 
 ## The two renderings the issue asked for
 
-These exist to demonstrate that the two axes in
-[`docs/reader/profile.md`](../reader/profile.md) do different things - Knowledge
+These render the two axes in
+[`docs/reader/profile.md`](../reader/profile.md) side by side - Knowledge
 changes wording only, Interests gates selection - because conflating them is the
 failure [`docs/research/3-state-and-source-schema.md`](3-state-and-source-schema.md)
 was written to prevent, and the failure
 [#6](https://github.com/chamaya00/background-research-agents/issues/6) was sent
 back for.
+
+**What these comparisons establish, and what they do not.** Both sides of both
+comparisons were written by this run, in this document, by a role that had been
+told in advance what each comparison was supposed to show. No code ran and no
+behaviour was observed. So what is below is evidence that **this run understood
+the axis split and applied it**, and it is not evidence that any mechanism
+enforces it - a run that had internalised the distinction and a run that wrote
+two paragraphs to the specification in #21 would produce an identical artifact,
+and nothing in this section can tell you which one you are reading. Read it as
+a worked example, not as a test result.
+
+What would establish the stronger claim: a selection-and-rendering step that
+takes the profile as input, run twice against a pool fixed outside the run,
+with the two outputs diffed by something other than the thing that wrote them -
+identical but for one item's text on the Knowledge axis, and differing in
+membership on the Interests axis. That is a mechanism's job, and this loop has
+no such mechanism today - see [this brief's relationship to
+`src/`](#this-briefs-relationship-to-src) for why the one in the repository was
+not used.
 
 ### A. Knowledge changes one item's wording and nothing else
 
@@ -346,9 +401,10 @@ single most load-bearing date in this brief and is outside its window.
 ## Verified, inferred, assumed
 
 - **Verified** (read in the source, quotable): every date, product name, number
-  and status attributed to a link above, with the one exception noted in item 3,
-  where the primary page 403'd and the content came from that page's search
-  excerpt plus a secondary.
+  and status attributed to a link above, except where the host refused the
+  fetcher - the two exceptions are tabled under [What the network reached, and
+  what refused it](#what-the-network-reached-and-what-refused-it), and both
+  resolve to a search-index summary rather than a read page.
 - **Inferred**: that item 2's cost line will shrink eval suites rather than
   budgets - reasoned from the Harness finding that 73% have policies and 13% have
   visibility, not observed anywhere.
