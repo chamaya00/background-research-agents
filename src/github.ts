@@ -1,5 +1,6 @@
 import type { Octokit } from "@octokit/rest";
 import type { IssueClient } from "./post.js";
+import type { CommentClient } from "./apply-feedback.js";
 
 /**
  * Production `IssueClient`: an already-authenticated `Octokit` instance, the
@@ -18,6 +19,20 @@ export function createOctokitIssueClient(octokit: Octokit, owner: string, repo: 
     async createIssue(title, body) {
       const response = await octokit.issues.create({ owner, repo, title, body });
       return { number: response.data.number };
+    },
+  };
+}
+
+/**
+ * Production `CommentClient`: reuses the same already-authenticated
+ * `Octokit` instance `createOctokitIssueClient` does, so reading comments for
+ * #6 introduces no new credential beyond the token every role already gets.
+ */
+export function createOctokitCommentClient(octokit: Octokit, owner: string, repo: string): CommentClient {
+  return {
+    async listComments(issueNumber) {
+      const response = await octokit.issues.listComments({ owner, repo, issue_number: issueNumber, per_page: 100 });
+      return response.data.map((comment) => ({ id: comment.id, body: comment.body ?? "" }));
     },
   };
 }
