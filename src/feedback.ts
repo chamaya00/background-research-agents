@@ -50,13 +50,36 @@ function mentionsEntity(commentBody: string, id: string, label: string): boolean
   return lower.includes(id.toLowerCase()) || lower.includes(idAsWords) || lower.includes(label.toLowerCase());
 }
 
+/**
+ * Splits a comment into clauses at sentence boundaries and at commas
+ * introducing a contrasting or additional clause ("but", "while", ...), so a
+ * pattern like "stop explaining" can be scoped to the entity it was written
+ * next to rather than matched against the whole comment. See #6 review on
+ * PR #16: without this, "I know X, but keep explaining Y" marked both X and
+ * Y familiar.
+ */
+function splitClauses(commentBody: string): string[] {
+  return commentBody
+    .split(/[.!?;\n]+|,\s*(?:but|however|while|whereas|though|yet|and)\b/i)
+    .map((clause) => clause.trim())
+    .filter(Boolean);
+}
+
+/** The clauses mentioning this entity, joined - the text a per-entity pattern test is scoped to. */
+function entityScopedText(clauses: string[], id: string, label: string): string | undefined {
+  const relevant = clauses.filter((clause) => mentionsEntity(clause, id, label));
+  return relevant.length > 0 ? relevant.join(" ") : undefined;
+}
+
 function knowledgeSignals(commentBody: string, concepts: KnowledgeConcept[]): Signal[] {
+  const clauses = splitClauses(commentBody);
   const signals: Signal[] = [];
   for (const concept of concepts) {
-    if (!mentionsEntity(commentBody, concept.id, concept.label)) continue;
-    if (matchesAny(KNOWLEDGE_EXPERT_PATTERNS, commentBody)) {
+    const scoped = entityScopedText(clauses, concept.id, concept.label);
+    if (scoped === undefined) continue;
+    if (matchesAny(KNOWLEDGE_EXPERT_PATTERNS, scoped)) {
       signals.push({ kind: "knowledge-familiarity", conceptId: concept.id, familiarity: "expert" });
-    } else if (matchesAny(KNOWLEDGE_FAMILIAR_PATTERNS, commentBody)) {
+    } else if (matchesAny(KNOWLEDGE_FAMILIAR_PATTERNS, scoped)) {
       signals.push({ kind: "knowledge-familiarity", conceptId: concept.id, familiarity: "familiar" });
     }
   }
@@ -64,12 +87,14 @@ function knowledgeSignals(commentBody: string, concepts: KnowledgeConcept[]): Si
 }
 
 function interestSignals(commentBody: string, subjects: InterestSubject[]): Signal[] {
+  const clauses = splitClauses(commentBody);
   const signals: Signal[] = [];
   for (const subject of subjects) {
-    if (!mentionsEntity(commentBody, subject.id, subject.label)) continue;
-    if (matchesAny(INTEREST_MUTE_PATTERNS, commentBody)) {
+    const scoped = entityScopedText(clauses, subject.id, subject.label);
+    if (scoped === undefined) continue;
+    if (matchesAny(INTEREST_MUTE_PATTERNS, scoped)) {
       signals.push({ kind: "interest-status", subjectId: subject.id, status: "muted" });
-    } else if (matchesAny(INTEREST_BOOST_PATTERNS, commentBody)) {
+    } else if (matchesAny(INTEREST_BOOST_PATTERNS, scoped)) {
       signals.push({ kind: "interest-boost", subjectId: subject.id });
     }
   }
