@@ -9,3 +9,5 @@ thing, drop the one that has stopped being relevant, tighten what survives.
 
 Delete any lesson that has graduated into a test, a lint rule, or a type.
 -->
+
+- When a merged ADR or design doc commits to a capability, name the child that implements it: #2's split left the model writer that ADR 0001 and #3's design doc both assume unwired, so the objective would have finished with templated briefs and every criterion green.
