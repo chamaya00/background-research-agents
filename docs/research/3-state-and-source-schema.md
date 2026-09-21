@@ -87,10 +87,14 @@ formats:                    # ordered, first is most preferred
 recency:
   min_recency_days: 30      # hard cutoff: items older than this are excluded, not just ranked lower
   prefer_recent: true       # among eligible items, more recent ranks higher
-sources:                    # per-source-id weight, overrides sources.yaml's default weight
+sources:                    # per-source-id weight; the only source-level weighting there is
   gartner-blog: 5
   random-newsletter: 1
 ```
+
+`sources` here is the only place a source carries a weight - `sources.yaml`
+below describes *how* to fetch a source and whether it is enabled, and has no
+weight field for this to override. A source id absent from this map weighs 1.
 
 `depth`, `formats`, and `sources` re-rank; `recency.min_recency_days` filters.
 Both kinds live in one file because they answer the same question ("what kind
@@ -170,6 +174,37 @@ preference filters, the next brief contains at least one item sourced from
 it that no prior run could have produced - the observable change #2's
 criterion 6 names.
 
+## How an item's narrative text is produced
+
+Scope item 5. Stated here rather than left implicit, because the fixture
+comparison below is only meaningful once this is settled, and #4's criterion 2
+inherits whatever this says.
+
+**Item text is model-generated.** ADR 0001 names a model API and this design
+keeps that decision. The writing step hands the model the item's fields, the
+concepts it touches, and the familiarity level of each of those concepts;
+familiarity selects which instruction the writer is given - `unfamiliar` asks
+for a full inline explanation, `familiar` for a one-clause reminder, `expert`
+for none at all.
+
+**Model output is not byte-reproducible, and this design does not pretend it
+is.** Two production runs against identical state and identical items will
+differ in wording. The byte comparison below is therefore a property of the
+*test harness*, not of production, and saying so is what keeps it honest.
+
+**Under test, the writer is a deterministic stub.** The pipeline takes its
+writer as an injected dependency. The determinism test injects a stub that
+renders a fixed string from the instruction it is handed, so two runs differing
+only in knowledge state produce byte-identical output everywhere the instruction
+did not change. What is held fixed is the writer itself - not a temperature, a
+seed, or a cache, because none of those makes a model byte-stable in a way a
+test should be allowed to depend on.
+
+This makes the boundary the test guards explicit: everything from reading state
+through choosing the instruction is covered, and the model's compliance with
+that instruction is not. Assertion 4 below is what stops the uncovered half
+being invisible.
+
 ## Fixture format for the determinism test (criterion 5)
 
 #2's criterion 5 needs a test that proves a negative: a concept's explanation
@@ -227,7 +262,7 @@ criterion 3 asks for.
 **The comparison a test makes.** Run the pipeline twice against the identical
 fixture set, `sources.fixture.yaml`, `interest.fixture.yaml`, and
 `preference.fixture.yaml`, swapping only the knowledge fixture, producing
-`brief.a.json` and `brief.b.json`. The test then asserts three things, in
+`brief.a.json` and `brief.b.json`. The test then asserts four things, in
 order:
 
 1. **Selection is unchanged.** The ordered list of `id`s (and every other
@@ -248,12 +283,30 @@ order:
    contain that substring. This is the assertion that turns "it looks
    different" into "the explanation specifically stopped appearing," which is
    what criterion 5 actually claims.
+4. **The instruction is right, not just the stub's output.** The stub records
+   every instruction it was handed. For `item-1`, the instruction produced
+   under `knowledge.a` (unfamiliar) contains the explain directive and the one
+   produced under `knowledge.b` (familiar) does not. This is the assertion that
+   survives swapping the stub for the real model: 1-3 prove the pipeline is
+   internally consistent, and this one proves the thing the live system
+   actually depends on - that familiarity reaches the writer and changes what
+   it is asked for.
 
 A test built this way fails if: selection logic starts reading `familiarity`
 (check 1 catches it), the writing step re-explains a concept regardless of
 familiarity (check 3 catches it), or an unrelated rendering path is
-accidentally sensitive to knowledge state (check 2 catches it). All three
-failure modes are ones a looser "diff the two briefs" test would miss.
+accidentally sensitive to knowledge state (check 2 catches it), or the explain
+directive survives into the `familiar` instruction (check 4 catches it). All
+of those failure modes are ones a looser "diff the two briefs" test would
+miss.
+
+**What this proves, and what it does not.** With a stubbed writer these four
+assertions prove that selection ignores knowledge state, that exactly the right
+item's text is affected, and that the instruction handed to the writer drops the
+explain directive once a concept is familiar. They do **not** prove that the
+live model complies with that instruction - a model told to omit an explanation
+can still produce one. No deterministic test can close that gap, and leaving it
+unsaid would make #2's criterion 5 read as covered when it is half covered.
 
 ## What this leaves open
 
@@ -264,6 +317,11 @@ failure modes are ones a looser "diff the two briefs" test would miss.
   separate tagging pass): out of scope for this issue, since it doesn't change
   any of the four file shapes above, only how their `subjects`/`concepts`
   fields get populated.
+- Verifying that the *live* model omits the explanation it was told to omit.
+  The stubbed test above deliberately does not cover this; the check that would
+  - an assertion against real model output, tolerant of wording but intolerant
+  of the explanation reappearing - belongs to the engineer child that first
+  makes the model call.
 - The real (non-fixture) `kind: rss` fetch implementation: explicitly out of
   scope per #2 and this issue's own scope section - a later engineer child,
   against these schemas.
