@@ -61,7 +61,18 @@ jobs:
     uses: chamaya00/agent-factory/.github/workflows/agent-run.yml@v1.36.0
     with:
       issue-number: ${{ inputs.issue-number || '' }}
-      max-turns: 80
+      # Raised from 80 on 2026-09-21. #5 capped twice in a row - attempt 1 at
+      # 81 turns with the implementation done and no tests, attempt 2 at 88
+      # with the tests written and the pull request body unfinished. Both
+      # attempts produced sound work and neither could finish, which is a
+      # budget that is too small rather than an issue that is too big: the
+      # second run carried the first's branch forward and still ran out.
+      #
+      # Two caps cost two of three attempts on a child that then merged
+      # unchanged, so the cap was very nearly the thing that sent a correct
+      # issue to needs-decomposition. 150 is sized on that evidence - attempt
+      # 2 needed roughly 120 to have finished - and still stops a runaway.
+      max-turns: 150
       timeout-minutes: 30
     secrets:
       claude-code-oauth-token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
