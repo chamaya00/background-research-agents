@@ -1,0 +1,11 @@
+concepts:
+  - id: cohort-retention
+    label: "Cohort retention analysis"
+    familiarity: familiar
+    last_updated: "2026-09-10"
+    note: "Learned from the Amplitude brief on 2026-09-10"
+  - id: usage-based-pricing-101
+    label: "What usage-based pricing means"
+    familiarity: unfamiliar
+    last_updated: null
+    note: null

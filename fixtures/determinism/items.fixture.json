@@ -1,0 +1,22 @@
+[
+  {
+    "id": "item-1",
+    "sourceId": "gartner-blog",
+    "title": "Enterprise buyers now expect usage-based AI pricing",
+    "url": "https://example.com/a",
+    "publishedAt": "2026-09-15",
+    "subjects": ["usage-based-pricing"],
+    "concepts": ["cohort-retention"],
+    "rawText": "Enterprise buyers are increasingly negotiating usage-based pricing for AI features, citing cohort retention data as their main justification."
+  },
+  {
+    "id": "item-2",
+    "sourceId": "a16z-enterprise-ai",
+    "title": "Agentic BI copilots are shipping faster than expected",
+    "url": "https://example.com/b",
+    "publishedAt": "2026-09-16",
+    "subjects": ["agentic-bi-tools"],
+    "concepts": [],
+    "rawText": "Several vendors have shipped agentic interfaces to their BI tools ahead of schedule, letting analysts ask questions in plain language."
+  }
+]
