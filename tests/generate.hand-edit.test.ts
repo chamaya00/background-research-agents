@@ -5,10 +5,10 @@ import { templateWriter } from "../src/writer.js";
 import { copyDeterminismFixtures, FIXTURE_AS_OF } from "./helpers/tempFixtures.js";
 
 describe("acceptance criterion 4: a hand-edited state file changes the next run's output", () => {
-  it("drops an item once its only subject is hand-muted in interest.yaml", () => {
+  it("drops an item once its only subject is hand-muted in interest.yaml", async () => {
     const fixtures = copyDeterminismFixtures("a");
 
-    const before = generateBrief({
+    const before = await generateBrief({
       sourcesPath: fixtures.sourcesPath,
       itemsPath: fixtures.itemsPath,
       interestPath: fixtures.interestPath,
@@ -27,7 +27,7 @@ describe("acceptance criterion 4: a hand-edited state file changes the next run'
     );
     writeFileSync(fixtures.interestPath, edited);
 
-    const after = generateBrief({
+    const after = await generateBrief({
       sourcesPath: fixtures.sourcesPath,
       itemsPath: fixtures.itemsPath,
       interestPath: fixtures.interestPath,

@@ -11,9 +11,12 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src tests",
     "test": "vitest run",
-    "build": "tsc -p tsconfig.build.json"
+    "build": "tsc -p tsconfig.build.json",
+    "verify-network": "npm run build && node scripts/verify-network.mjs"
   },
   "dependencies": {
+    "@octokit/rest": "^22.0.1",
+    "fast-xml-parser": "^5.11.1",
     "yaml": "^2.5.1",
     "zod": "^3.23.8"
   },

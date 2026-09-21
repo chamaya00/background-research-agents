@@ -5,10 +5,10 @@ import { loadInterest, loadPreference } from "../src/state.js";
 import { copyDeterminismFixtures, FIXTURE_AS_OF } from "./helpers/tempFixtures.js";
 
 describe("acceptance criterion 1: every item names a source link, a date, and a real reason", () => {
-  it("produces a reason string that traces to an actual key in interest or preference state", () => {
+  it("produces a reason string that traces to an actual key in interest or preference state", async () => {
     const fixtures = copyDeterminismFixtures("a");
 
-    const brief = generateBrief({
+    const brief = await generateBrief({
       sourcesPath: fixtures.sourcesPath,
       itemsPath: fixtures.itemsPath,
       interestPath: fixtures.interestPath,
