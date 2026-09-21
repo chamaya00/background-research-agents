@@ -58,7 +58,7 @@ on:
 
 jobs:
   agent:
-    uses: chamaya00/agent-factory/.github/workflows/agent-run.yml@v1.36.0
+    uses: chamaya00/agent-factory/.github/workflows/agent-run.yml@v1.38.0
     with:
       issue-number: ${{ inputs.issue-number || '' }}
       # Raised from 80 on 2026-09-21. #5 capped twice in a row - attempt 1 at
