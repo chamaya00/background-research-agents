@@ -5,6 +5,10 @@ export type { Writer, Instruction } from "./writer.js";
 export { selectAndRank } from "./select.js";
 export type { SelectedItem } from "./select.js";
 export { fetchItems } from "./fetch.js";
+export type { FetchResult, FetchOptions, SkippedSource } from "./fetch.js";
+export { postBrief, briefHash, markerFor, renderIssueBody } from "./post.js";
+export type { IssueClient, PostResult, PostOptions } from "./post.js";
+export { createOctokitIssueClient } from "./github.js";
 export {
   loadInterest,
   loadPreference,

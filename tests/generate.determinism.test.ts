@@ -8,14 +8,14 @@ function withoutText(brief: Brief) {
 }
 
 describe("acceptance criterion 2: knowledge state changes wording, never selection", () => {
-  it("matches the four-part comparison from #3's design doc", () => {
+  it("matches the four-part comparison from #3's design doc", async () => {
     const fixturesA = copyDeterminismFixtures("a");
     const fixturesB = copyDeterminismFixtures("b");
 
     const stubA = createStubWriter();
     const stubB = createStubWriter();
 
-    const briefA = generateBrief({
+    const briefA = await generateBrief({
       sourcesPath: fixturesA.sourcesPath,
       itemsPath: fixturesA.itemsPath,
       interestPath: fixturesA.interestPath,
@@ -25,7 +25,7 @@ describe("acceptance criterion 2: knowledge state changes wording, never selecti
       asOf: FIXTURE_AS_OF,
     });
 
-    const briefB = generateBrief({
+    const briefB = await generateBrief({
       sourcesPath: fixturesB.sourcesPath,
       itemsPath: fixturesB.itemsPath,
       interestPath: fixturesB.interestPath,

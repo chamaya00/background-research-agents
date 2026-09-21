@@ -6,10 +6,10 @@ import { templateWriter } from "../src/writer.js";
 import { copyDeterminismFixtures, FIXTURE_AS_OF } from "./helpers/tempFixtures.js";
 
 describe("acceptance criterion 3: a new source can add an item to the brief", () => {
-  it("includes an item absent from the previous run once a fixture source is appended", () => {
+  it("includes an item absent from the previous run once a fixture source is appended", async () => {
     const fixtures = copyDeterminismFixtures("a");
 
-    const before = generateBrief({
+    const before = await generateBrief({
       sourcesPath: fixtures.sourcesPath,
       itemsPath: fixtures.itemsPath,
       interestPath: fixtures.interestPath,
@@ -45,7 +45,7 @@ describe("acceptance criterion 3: a new source can add an item to the brief", ()
     });
     writeFileSync(fixtures.itemsPath, JSON.stringify(items, null, 2));
 
-    const after = generateBrief({
+    const after = await generateBrief({
       sourcesPath: fixtures.sourcesPath,
       itemsPath: fixtures.itemsPath,
       interestPath: fixtures.interestPath,
