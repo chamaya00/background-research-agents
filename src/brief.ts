@@ -1,5 +1,5 @@
 import { loadInterest, loadKnowledge, loadPreference, loadSources, loadFixtureItems } from "./state.js";
-import { fetchItems } from "./fetch.js";
+import { fetchItems, type SkippedSource } from "./fetch.js";
 import { selectAndRank } from "./select.js";
 import { buildInstruction, type Writer } from "./writer.js";
 
@@ -16,12 +16,14 @@ export interface BriefItem {
 
 export interface Brief {
   items: BriefItem[];
+  /** Sources that failed to fetch this run, and why - #5's criterion 2. */
+  skipped: SkippedSource[];
 }
 
 export interface GenerateBriefConfig {
   sourcesPath: string;
-  /** Fixture stand-in for a live fetch - see `fetchItems`. */
-  itemsPath: string;
+  /** Fixture stand-in for a live fetch, read by `kind: fixture` sources only. Omit if none are fixtures. */
+  itemsPath?: string;
   interestPath: string;
   preferencePath: string;
   knowledgePath: string;
@@ -29,6 +31,8 @@ export interface GenerateBriefConfig {
   writer: Writer;
   /** Reference date recency is measured against. Defaults to now; tests pin it. */
   asOf?: Date;
+  /** Injected so tests never make a real network call. Defaults to the global `fetch`. */
+  fetchImpl?: typeof fetch;
 }
 
 /**
@@ -36,14 +40,17 @@ export interface GenerateBriefConfig {
  * one between two calls is picked up on the next one, with no caching layer
  * to invalidate.
  */
-export function generateBrief(config: GenerateBriefConfig): Brief {
+export async function generateBrief(config: GenerateBriefConfig): Promise<Brief> {
   const sources = loadSources(config.sourcesPath);
-  const allItems = loadFixtureItems(config.itemsPath);
+  const fixtureItems = config.itemsPath ? loadFixtureItems(config.itemsPath) : [];
   const interest = loadInterest(config.interestPath);
   const preference = loadPreference(config.preferencePath);
   const knowledge = loadKnowledge(config.knowledgePath);
 
-  const fetched = fetchItems(sources, allItems);
+  const { items: fetched, skipped } = await fetchItems(sources, {
+    fixtureItems,
+    fetchImpl: config.fetchImpl,
+  });
   const ranked = selectAndRank(fetched, interest, preference, { asOf: config.asOf ?? new Date() });
 
   const items: BriefItem[] = ranked.map(({ item, reason }) => {
@@ -60,5 +67,5 @@ export function generateBrief(config: GenerateBriefConfig): Brief {
     };
   });
 
-  return { items };
+  return { items, skipped };
 }

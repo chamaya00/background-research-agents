@@ -24,7 +24,8 @@ function activeSubjectsFor(item: FetchedItem, subjectById: Map<string, InterestS
 /**
  * Filters the candidate pool by interest (active subjects) and preference's
  * hard recency cutoff, then ranks what is left by interest weight, source
- * weight, depth preference, and recency preference - in that order.
+ * weight, depth preference, format preference, and recency preference - in
+ * that order.
  *
  * Knowledge state never enters this function: per #3's design doc, knowledge
  * changes what an item's text says, never whether it is selected or where it ranks.
@@ -53,11 +54,19 @@ export function selectAndRank(
     const publishedAtMs = new Date(item.publishedAt).getTime();
     const depthBonus =
       preference.depth === "deep" ? item.rawText.length : -item.rawText.length;
+    // Earlier in `preference.formats` ranks higher; a format absent from the
+    // list ranks below every listed one rather than being rejected.
+    const formatRank = preference.formats.indexOf(item.format);
+    const formatBonus = formatRank === -1 ? -1 : preference.formats.length - formatRank;
     const recencyBonus = preference.recency.prefer_recent ? publishedAtMs : -publishedAtMs;
 
     // Weighted so that a higher-priority factor never gets outweighed by a lower one.
     const score =
-      topSubject.weight * 1_000_000 + sourceWeight * 10_000 + depthBonus / 1_000 + recencyBonus / 1e13;
+      topSubject.weight * 1_000_000 +
+      sourceWeight * 10_000 +
+      depthBonus / 1_000 +
+      formatBonus / 100 +
+      recencyBonus / 1e13;
 
     return { item, reason, score };
   });
