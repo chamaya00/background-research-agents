@@ -9,3 +9,8 @@ thing, drop the one that has stopped being relevant, tighten what survives.
 
 Delete any lesson that has graduated into a test, a lint rule, or a type.
 -->
+
+- A brief run states its date window and its source stand-in in the document
+  itself - `docs/reader/profile.md` specifies neither, so a brief that leaves
+  them implicit cannot be argued with and the reaction it earns is about the
+  wrong thing.

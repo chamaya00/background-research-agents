@@ -63,6 +63,40 @@ without a parser being written for it. If
 back toward the pipeline, this decision is superseded rather than extended -
 the two encodings should not both exist.
 
+## Consequence, settled by #19
+
+The first real round of the loop
+([#19](https://github.com/chamaya00/background-research-agents/issues/19), run as
+[#21](https://github.com/chamaya00/background-research-agents/issues/21)) was
+written by an agent reading `profile.md` off the branch. `src/` was not run, not
+wired in, and not modified. It stays on disk, tested and merged, and unused by
+this loop.
+
+Two reasons, and neither is "we did not get round to it":
+
+1. **The pipeline has no production writer.** `src/writer.ts` exports
+   `templateWriter`, and its own comment says it is "a template placeholder, not
+   the production writer the ADR describes", added because the issue that built
+   it excluded live network access and nothing has since wired the credential a
+   model call needs. Running the pipeline today would post assembled boilerplate
+   - title, URL, and a directive-shaped clause - where a brief should be.
+   Replacing it is a separate decision with its own `Privilege change:` line, not
+   a step inside a research run.
+2. **It reads the state this record decided not to create.** `src/state.ts`
+   loads interest, preference, knowledge and source-list YAML through
+   `loadYaml`, and `state/` does not exist - this record is why. The only files
+   of that shape in the repository are under `fixtures/determinism/`, which are
+   test inputs. Pointing `src/` at `profile.md` means writing the parser the
+   "Ruled out later" paragraph above already names, and that is the point at
+   which this record is superseded rather than extended.
+
+So the position is deliberate: two encodings of the same state do not both exist,
+and the one that does is the one a person edits during a reaction. `src/` is not
+dead code to delete - it is the implementation waiting on the decision above,
+and deleting it would throw away the selection and feedback logic along with the
+placeholder. It should stay unreferenced by the loop until someone decides to
+supersede this record.
+
 ## Alternatives rejected
 
 **Keep the YAML under `state/` and have the agent read that.** An agent can
