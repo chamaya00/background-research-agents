@@ -8,23 +8,32 @@ person.
 
 ## Stack
 
-Not chosen yet. This repository was provisioned before any product code
-landed, and the stack is the first decision an objective here should record -
-as an ADR in `docs/decisions/`, once picked.
+TypeScript on Node 20, recorded in
+[ADR 0001](docs/decisions/0001-stack-typescript-node.md). Zod-validated
+input, vitest for tests, `@octokit/rest` for GitHub, `fast-xml-parser` for
+feeds.
 
 ## Commands
 
-- Install: not applicable yet - no stack chosen.
-- Dev: not applicable yet - no stack chosen.
-- Checks CI runs: none yet. `.github/workflows/ci.yml` ships the placeholder
-  scaffolding gate described below, not a real check.
+- Install: `npm ci`. Run it before anything else - the other four all fail
+  on a missing `node_modules` in a way that reads like a broken repository
+  rather than a missing step.
+- Dev: no dev server. The product is a command-line entry point; `npm run
+  build` then `node dist/cli.js` is the closest thing.
+- Checks CI runs: `npm run typecheck`, `npm run lint`, `npm run test`,
+  `npm run build`.
 
-The checks above are what CI runs once the gate is real. Until then it is
-not: `.github/workflows/ci.yml` ships a placeholder that checks the scaffolding
-is intact and fails the moment product code lands, because a project gets its
-gate before it gets its stack and a gate that goes green on untested code is
-worse than no gate. Replacing it is a step in building this project, not a
-chore to do later - the comment at the top of that file says how.
+Those four are what CI runs, as `ci / checks`. The placeholder scaffolding
+gate that used to sit here was replaced in #8, when the first product code
+landed - a gate that goes green on untested code is worse than no gate, so
+the swap had to happen with that code rather than after it.
+
+This section used to say the stack was not chosen and CI ran nothing. It was
+false from #7 onward, and it was believed: #22's pull request body told a
+reviewer that CI was still the placeholder gate, citing this file, while
+`ci / checks` was green on that very pull request. A run cannot check a claim
+its own permissions forbid it from checking, so what this file says about the
+gate is what it will repeat.
 
 Whatever the gate runs, the rule is the same. If a check is renamed here,
 rename it in `.github/workflows/ci.yml` in the same commit, or the gate
