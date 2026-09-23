@@ -852,8 +852,8 @@ sampled here carry wording or a database that exists only in the version
 Spider 2.0 published on 2025-07-14, and none follows the original. But the audit's 62.8% does not reach AIFunc's bases
 either, and the reason is not the one Level 2 gave. The audit judged the gold
 SQL as it stood before 2025-10-29. On that date Spider 2.0 rewrote its public
-gold: 35 of the 36 public-gold bases AIFunc uses now differ from the audit's
-copy by two or more lines. AIFunc's `sf_local015`, the one example the audit
+gold: all 36 of the rewritten public-gold bases AIFunc uses now differ from
+the audit's copy (the session's content re-count; see item 3). AIFunc's `sf_local015`, the one example the audit
 names, follows the rewritten gold's logic, not the gold the audit judged. The
 answers moved in one of the three cases read in full and stayed the same in
 two. So the audit measured a gold that no longer exists, and it says nothing
@@ -1115,7 +1115,7 @@ The audit's verdict on `sf_local015` therefore does not carry over to AIFunc's
 
 ---
 
-### 3. The audit judged a gold that Spider 2.0 replaced eight months before AIFunc, and 35 of AIFunc's 36 public-gold bases were rewritten
+### 3. The audit judged a gold that Spider 2.0 replaced eight months before AIFunc, and all 36 of AIFunc's rewritten public-gold bases changed
 
 **1. What it is.** The audit's supplementary material describes the July
 change as one to the questions only: "the Spider 2.0 team updated user
