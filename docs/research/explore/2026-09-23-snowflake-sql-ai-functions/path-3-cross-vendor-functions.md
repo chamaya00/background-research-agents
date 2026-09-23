@@ -37,7 +37,10 @@ accuracy figure for it. What changed is who gets it without asking for it.**
   different things against different references on different datasets. In
   the window, the only per-function accuracy number any of the three vendors
   published was Databricks' **94.7%**, for a mode that costs *more*, not less
-  (item 3).
+  (item 3). *(Path 2, Level 2 found an earlier one, by search summary only:
+  a Databricks post of 2026-07-20 reporting 0.81 accuracy for `ai_classify`
+  against 0.76 for Gemini 3.5 Flash. "Only" should read "the only one read
+  here".)*
 
 **Background (out of window), the one figure the level's question turns on.**
 Google's disclosure is a blog post of **2026-05-13** by Thibaud Hottelier and
@@ -382,8 +385,12 @@ by reading harder:
 
 **The independent check that exists does not test the cheap modes.**
 **SemBench** is the only benchmark found that runs a vendor's SQL AI functions
-next to academic systems. It is by the `utndatasystems` group behind breadth
-item 3's SemCEB, and appears in PVLDB. Its BigQuery queries call
+next to academic systems. *(Level 1 attributed it to the `utndatasystems` group
+behind SemCEB. Corrected by the session from path 2, Level 2: the README's
+citation block lists Özcan, Gupta, Hottelier and Kissel among its authors,
+and a search summary describes it as a collaboration with Google's BigQuery
+team - so it is not independent of the vendor whose functions it runs.)* It
+appears in PVLDB. Its BigQuery queries call
 `AI.IF(... connection_id => ..., model_params => ...)` with **no `embeddings`
 argument and no `optimization_mode`**, so by Google's own rule they run Gemini
 on every row. Its repository's in-window activity (2026-07-01, 07-02, 07-16) is
