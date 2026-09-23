@@ -14,3 +14,9 @@ Delete any lesson that has graduated into a test, a lint rule, or a type.
   itself - `docs/reader/profile.md` specifies neither, so a brief that leaves
   them implicit cannot be argued with and the reaction it earns is about the
   wrong thing.
+
+- Re-fetch every host while writing the document rather than reconstructing
+  the list from what you cited - #21 did this in its revision round and found
+  that `hpcwire.com` 403s, so an item it had cited as corroboration had never
+  been read. A citation list records what you meant to read; only a re-fetch
+  records what you got.
