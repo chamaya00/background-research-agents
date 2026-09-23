@@ -31,6 +31,12 @@ the factory's reach.
    a research run reads the default branch and the issue it was queued on, so
    the issue body is the injection point that survives a factory release.
 
+   It also carries the **table section** of [`sources.md`](sources.md) and a
+   pointer to that file by path - the table, not the whole file, and
+   [ADR 0004](../decisions/0004-curated-source-list-lives-beside-the-profile.md)
+   is where that split and its successor are argued. The per-entry detail is
+   read off the branch.
+
 2. **The run produces the brief.** A researcher child writes it and opens a
    pull request, or - for a round where the point is speed rather than
    plumbing - the driver writes it in session and says plainly that it did.
@@ -61,6 +67,28 @@ the factory's reach.
    the thread is complete even when the reaction happened in a session. The
    issue thread is the human-readable record; `profile.md`'s history is the
    one the next run reads.
+
+## The source list, and how step 2 uses it
+
+[`sources.md`](sources.md) carries which hosts answer a fetch, which refuse,
+and when that was last observed. Three commitments govern it, and they are
+written here as well as in that file and in ADR 0004 because a rule about how
+to use a file is useless where a run will not see it:
+
+- **The list is reached first and by default, and is never the only thing a
+  run is permitted to read.** It is a starting point, not an allowlist.
+- **Open search stays available for everything the list does not cover.** The
+  single most consequential item in [#26](https://github.com/chamaya00/background-research-agents/issues/26)
+  arrived by search from a host no list would have carried yet. A list treated
+  as a boundary would have excluded it.
+- **The brief says, for each item, whether it came from a listed source or
+  from search.** One clause per item. It is the only feedback the list has:
+  without it there is no way to tell a list that is working from one that is
+  being ignored.
+
+A run that fetches a host amends that host's row - status and Observed date -
+in the same pull request as the brief. Nothing checks reachability on a
+schedule, so a row's Observed date is the whole of its warranty.
 
 ## What the driver owns here
 
