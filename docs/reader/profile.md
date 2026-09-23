@@ -138,8 +138,8 @@ is referenced in passing; a concept marked new is explained once.
   where it is actually read. Posting only a link makes reading it a second
   decision. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "read 29 to me so i can react here...
   standard operating procedure going forward", 2026-09-23.*
-- **Every presented item follows the same six-part structure, in this order,
-  and is short:**
+- **Every presented item follows the same six-part structure, in this
+  order:**
   1. what it is, briefly;
   2. how long ago;
   3. how it relates to what has already been read;
@@ -147,11 +147,18 @@ is referenced in passing; a concept marked new is explained once.
   5. one or two things to research next to go deeper on it;
   6. a link to the source it came from.
 
-  *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "too wordy ... i want a more consistent structure
-  among posts", 2026-09-23. This governs the **presented** brief - the session
-  read-back and the issue. The document under `docs/research/` keeps its fuller
-  provenance, because that is what makes a claim checkable later; the presented
-  brief is a different artefact for one reader today, per `loop.md`.*
+  **The structure is what replaces the wordiness, not brevity.** Each part
+  carries as much detail as it is worth - "too wordy" was about prose that
+  sprawled, and the correction is that a reader should know where in an item
+  to find each thing, not that there should be less in it. *Brief
+  [#29](https://github.com/chamaya00/background-research-agents/issues/29), "too wordy ... i want a more consistent structure
+  among posts", then "the brief should be more detailed", 2026-09-23.*
+
+  This governs the **presented** brief - the session read-back and the issue.
+  The document under `docs/research/` is unchanged by it. *Whether that
+  document still earns its keep once briefs carry this much detail is an open
+  question the reader raised and parked on 2026-09-23; it is not decided here
+  and nothing should be removed on the strength of it.*
 - **Item 6 of that structure is the source link, and it is load-bearing beyond
   the item.** It is what lets a reader start judging which sources keep earning
   their place. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "link to the post so i can see where
