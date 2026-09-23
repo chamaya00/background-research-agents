@@ -88,6 +88,20 @@ derived rather than stored.
   benchmarks, and what is built on top of them.
   *Briefs: [#35](https://github.com/chamaya00/background-research-agents/issues/35). Items: 2. Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "the dbt findings", 2026-09-23.
   Narrower than its parent rather than separate from it.*
+- **`semantic-models`** · **active** · 0 runs · never run · window **90d**
+  **Depth**, under `dbt-context`: semantic models themselves - how one is
+  defined, what it costs to build and maintain, who curates it, and the
+  deterministic-compilation pattern that [#35](https://github.com/chamaya00/background-research-agents/issues/35)'s items 5 and 6 both
+  landed on independently.
+  *Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "dive deeper into semantic models", 2026-09-23.
+  [#35](https://github.com/chamaya00/background-research-agents/issues/35)'s own counter-argument is why this is its own topic: every
+  number in that report is accuracy on questions a semantic layer was built to
+  answer, and nobody reports what building it took.*
+- **`warehouse-agentic`** · **active** · 0 runs · never run · window **90d**
+  **Depth**, under `analytics-broad`: agentic AI features shipped by the
+  warehouse and transformation vendors themselves - Snowflake and dbt first.
+  *Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "snowflake and dbt agentic ai features",
+  2026-09-23.*
 
 ### How topic state works
 
@@ -211,28 +225,50 @@ What is lost: a reaction is no longer visible to anyone outside the session
 until the profile pull request lands. That is the whole cost, and it is
 acceptable while there is one reader.
 -->
-- **Every item in it follows the same six-part structure, in this order:**
+- **Every item in it follows the same seven-part structure, in this order:**
   1. what it is, briefly;
   2. how long ago;
   3. how it relates to what has already been read;
   4. what through-line it changes, or that it changes none;
   5. one or two things to research next to go deeper on it;
-  6. a link to the source it came from, and whether it came from
-     `sources.md` or from open search.
+  6. a link to the source, **whether it came from `sources.md` or from open
+     search, and how deeply it was read** - one of *full page read*,
+     *abstract or landing page only*, or *search summary only*;
+  7. **verified / inferred / assumed for this item**, not for the brief.
 
   **The structure replaces sprawl, not detail.** Each part carries as much as
   it is worth. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "too wordy ... i want a more consistent
   structure among posts", then "the brief should be more detailed",
-  2026-09-23. Unchanged by the [#38](https://github.com/chamaya00/background-research-agents/issues/38) reaction, which was about the
-  condensing, not the structure - [#35](https://github.com/chamaya00/background-research-agents/issues/35)'s document already followed
-  all six parts and is the thing the reader asked for more of.*
-- **Everything around the items stays too**, and it is not optional padding:
-  what was dropped and why, what was searched for and not found, the fetch
-  record, the recommendation with the argument against it, and the
-  verified/inferred/assumed split. *Same reaction. These are the sections the
-  condensed version cut, and two of them - the counter-argument and the
-  numbered assumptions - were named as things that would have changed the
-  reading.*
+  2026-09-23. Parts 6 and 7 extended by the reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35): "put
+  verified, inferred, assumed in line with the post item ... indicate if the
+  result is from a full page read or something less", 2026-09-23.*
+
+  **Why 7 moved inline.** As a closing section it was one paragraph covering
+  seven items, so a reader who wanted to know how far to trust item 4 had to
+  find item 4's clause inside it. Next to the item, the claim and its warranty
+  are read together.
+- **Read full pages, not abstracts or search summaries, and say which.**
+  Prefer full text over a landing page, and a landing page over a search
+  index. Twice in [#35](https://github.com/chamaya00/background-research-agents/issues/35) that difference decided whether something was
+  a fact or an inference: item 5's system identification was impossible from
+  the arXiv abstract and trivial from `arxiv.org/html/<id>v1`, and item 1's
+  quotes were summarised by the rendered GitHub page and verbatim from
+  `raw.githubusercontent.com`. Where only a summary was available, part 6 says
+  so and part 7 files the claim accordingly. *Brief [#35](https://github.com/chamaya00/background-research-agents/issues/35), "prioritize
+  reading full pages, not just abstracts or search summaries", 2026-09-23.*
+- **The report carries content, not plumbing.** What the run writes under
+  `docs/research/` is what a reader reads: the items, the headline, what was
+  dropped, what was searched for and not found, the recommendation and its
+  argument against. **The process evidence goes in the pull request body
+  instead** - window arithmetic and per-item filing decisions, the fetch
+  record, which acceptance criterion each section satisfies, and the note on
+  `src/`. A reviewer needs those; a reader does not. *Brief [#35](https://github.com/chamaya00/background-research-agents/issues/35),
+  "leave out any plumbing comments / sections, only deliver content from the
+  posts", 2026-09-23.*
+
+  Two things stay in the report because they are content rather than plumbing:
+  **what was dropped and why**, and **what was searched for and not found**. A
+  near-miss and a verified absence are findings.
 - **Item 6's source link is load-bearing beyond the item.** It is what lets a
   reader judge which sources keep earning their place. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29),
   "link to the post so i can see where it came from and start identifying

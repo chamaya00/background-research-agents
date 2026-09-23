@@ -37,7 +37,13 @@ the factory's reach.
    is where that split and its successor are argued. The per-entry detail is
    read off the branch.
 
-2. **The run produces the brief.** A researcher child writes it and opens a
+2. **The run produces the brief.** The document it writes carries content
+   only - the items, the headline, what was dropped, what was searched for and
+   not found, the recommendation and its argument against. **Process evidence
+   goes in the pull request body**: window arithmetic, per-item filing
+   decisions, the fetch record, which acceptance criterion each section
+   satisfies, and the note on `src/`. The reviewer reads the pull request; the
+   reader reads the document, and until #35 the reader was reading both. A researcher child writes it and opens a
    pull request, or - for a round where the point is speed rather than
    plumbing - the driver writes it in session and says plainly that it did.
    Which one it was goes at the top of the brief, because a driver-written
