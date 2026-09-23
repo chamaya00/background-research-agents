@@ -534,3 +534,509 @@ lines, but this repository is not.
   findings sentence, and a source with no critic has been found, not checked.
 - **New SemBench results, or a Snowflake or Databricks runner, since
   2026-05-23.** None in the README or the commit history.
+
+---
+
+## Level 2 - Whether any benchmark measures a production warehouse's AI functions
+
+**Headline: every number on what a production warehouse's AI function costs
+and how accurate it is was still produced by the vendor. The one partial
+exception, SemBench's BigQuery column, was co-written with Google's BigQuery
+team. Its cost is list-price arithmetic, not a bill, and its own data shows
+the arithmetic losing tokens.**
+
+- **Nobody has built a second engine into SemBench.** No Snowflake or
+  Databricks runner exists anywhere this run could reach: SemBench itself, the
+  six forks pushed this quarter, its 15 pull requests, its 12 issues, or the
+  code of the one adopter this quarter that published a runner (item 1).
+- **What the BigQuery number measures.** It is Gemini 2.5 Flash tokens,
+  collected from a log table and multiplied by a price table written into the
+  runner. The runner never reads what BigQuery billed for the query. For the
+  same query at the same output size, the recorded usage runs from 8.9
+  million tokens down to **zero** (item 1, Background).
+- **The quarter's one number on both cost and accuracy is a vendor's.**
+  Databricks published it on 2026-07-20 for `ai_classify`: 0.81 accuracy
+  against Gemini's 0.76, at about a hundredth of the cost. It was measured by
+  Databricks on datasets no summary names (item 2).
+- **Adopters leave the warehouse out.** When someone outside SemBench's authors
+  ran SemBench this quarter, they ran the academic systems and left BigQuery
+  out (item 3).
+
+**What this level asked, and the answer.** Is there any independent,
+reproducible measurement of what a production warehouse's AI function costs and
+how accurate it is? **No.**
+
+- **BigQuery** has one reproducible measurement. It is not independent, and it
+  is not a measurement of the bill.
+- **Snowflake and Databricks** have none. Their only numbers are the vendors'
+  own. In this window those are Snowflake's analytical 11.4× (Level 1, item 2)
+  and Databricks' 0.81.
+
+---
+
+### 1. SemBench this quarter: six forks, one pull request, three adopters, and no second production engine
+
+**1. What it is.** A check of every place a Snowflake (`AI_FILTER`,
+`AI_CLASSIFY`, `AI_AGG`) or Databricks (`ai_query`, `ai_classify`) runner for
+SemBench could exist, and what was found in each. **None was found.**
+
+- **Upstream.** `src/runner/` holds six runners: BigQuery, CAESURA, FlockMTL,
+  LOTUS, Palimpzest and ThalamusDB. The only per-system configuration folders
+  are for Palimpzest and ThalamusDB.
+- **Forks.** The repository shows 24 forks, and GitHub lists 15 of them as
+  having push activity. Six of those were pushed inside the window:
+  - `cezary17`, 2026-07-15.
+  - `AymaneHassini`, 2026-07-26.
+  - `UviniR`, 2026-08-10.
+  - `Joy1Ren`, 2026-08-23.
+  - `ABCbum`, 2026-09-03.
+  - `SleepyLGod/SemBench-IVM`, 2026-09-14. Its tagline is "IVM Scenarios
+    Added", but its main branch has no commit past upstream's 2026-07-16.
+
+  Of these, five main branches were opened (all but `ABCbum`'s) and each has
+  the same six runner folders as upstream. The one fork with six open pull
+  requests, `DamonZhao-sfu`, was last pushed 2026-06-07 and has the same six
+  runner folders.
+- **Pull requests.** There are 15, and none adds a runner for a new engine. The
+  only one inside the window is **#29**, opened 2026-09-03 by `ABCbum` and
+  still unmerged. It forwards `skip_setup` in seven scenario runners for LOTUS,
+  Palimpzest and ThalamusDB, and does not touch BigQuery.
+- **Issues.** There are 12, and none asks for Snowflake, Databricks or any
+  other warehouse.
+
+**Background (out of window): what SemBench's BigQuery number measures.** Read
+from the runner and the query files.
+
+- **Which functions.** SemBench calls BigQuery's newer AI functions directly,
+  not `ML.GENERATE_TEXT`:
+  - `AI.IF` for filters and for joins. Movie Q5 to Q7 compare pairs of reviews
+    of one film. E-commerce q8 joins every long product description to every
+    product image.
+  - `AI.CLASSIFY` for e-commerce q6.
+  - `AI.SCORE` inside an `ORDER BY` for the ranking query, e-commerce q14.
+  - The animals scenario used `IF(AI.GENERATE(...))` until 2025-12-20. The
+    maintainer wrote that "the BigQuery version we used before has an error
+    when using AI.IF() for audio modality".
+
+  **No query asks for optimized mode.** Path 3, Level 1, item 3 established
+  this from the movie `Q1.sql` and `Q2.sql` and the runner. The three
+  e-commerce files read here (q6, q8, q14) are the same: they pass
+  `connection_id` and `model_params`, with no `embeddings` argument and no
+  `optimization_mode`.
+- **Which model.** `model_name: str = "gemini-2.5-flash"`, with
+  `thinking_budget: int = 0` passed into each call's `model_params`, and 20
+  concurrent workers. Every recorded BigQuery run read here names
+  gemini-2.5-flash.
+- **How cost is computed. It is not the bill.**
+  - **Tokens.** After each query the runner prints "Waiting 5 seconds for
+    inference logs to materialize...". It then reads per-model log tables
+    (`inference_logs.gemini_2_5_flash` and four others). It pulls Gemini's own
+    usage fields out of each logged response:
+    `$.usageMetadata.promptTokenCount`, `candidatesTokenCount` and
+    `thoughtsTokenCount`.
+  - **Price.** It multiplies those tokens by a `MODEL_PRICES` table written
+    into the code. For `gemini_2_5_flash` that table reads `0.30 / 1e6` per
+    input token, `1.00 / 1e6` per audio input token and `2.50 / 1e6` per
+    output token, with thinking tokens charged at the output rate.
+  - **Not read.** The runner never reads `total_bytes_billed` or `slot_ms`. So
+    whatever BigQuery charged to run the query itself is not in SemBench's
+    BigQuery cost.
+- **The method loses tokens, and SemBench's own files show it.** Movie Q7 pairs
+  every review of one film with every other and asks `AI.IF` whether the two
+  disagree. It returns about 36,000 rows at every scale factor, so the model
+  work should be about the same each time. The recorded usage is not:
+
+  | Run | Rows returned | Tokens recorded | Cost recorded |
+  |---|---|---|---|
+  | sf2000 | 35,914 | 8,927,153 | $3.46 |
+  | sf8000 | 35,865 | 8,527,116 | $3.31 |
+  | sf16000, repeat 1 | 36,236 | 2,684,224 | $1.03 |
+  | sf16000 | 35,888 | **0** | **$0.00** |
+
+  The same sf16000 run records **0 tokens and $0.00 for Q6** as well. Q6 is a
+  `LIMIT 10` query that cost about $1.01 in the other three runs, and in this
+  run it still scored F1 0.9, which it could not have done without calling the
+  model. Both entries are marked `"status": "success"`.
+- **Who wrote it.** SemBench's citation block lists 15 authors, including Fatma
+  Özcan, Gautam Gupta, Thibaud Hottelier and Kris Kissel. Google's own blog
+  bylines Hottelier as a Google "Software Engineer". According to a search
+  summary, the DEEM Lab announcement calls SemBench "a collaboration between
+  Google's BigQuery team and researchers from Cornell, MIT, UTN, UMichigan".
+  In December 2025, the GitHub user `thibaudbh` wrote three pull requests
+  (#8, #10 and #11) that reshaped the BigQuery queries, for example "Make q5
+  and q6 use AI.CLASSIFY in ecomm". They were merged the same day, and #10
+  shows "No reviews".
+- **The paper's own caveat**, from a search summary only: BigQuery shows
+  "relatively high quality variance across different runs" because its
+  "model-related parameters ... are controlled internally and are not exposed
+  to users".
+
+**2. How long ago.**
+
+- **2026-09-14**, 9 days ago, for the latest fork push. **2026-09-03**, 20
+  days ago, for pull request #29.
+- The other in-window forks were pushed 2026-07-15 (70 days), 2026-07-26 (59
+  days), 2026-08-10 (44 days) and 2026-08-23 (31 days).
+- The runner itself was last changed **2025-11-20**, and the BigQuery query
+  rewrites date from **2025-12-20**. Both are Background.
+
+**3. How it relates to what has already been read.** It directly answers
+Level 1, item 3's two leads, and it **converges with path 3, Level 1, item 3**
+on the same primary source: the BigQuery runner and query files. The two paths
+agree that optimized mode is off.
+
+It also adds two things that path 3 does not have. The first is what the cost
+column counts. The second is who wrote the benchmark. Path 3 attributes
+SemBench to "the `utndatasystems` group". Its citation block and the DEEM Lab
+announcement put Google's BigQuery team among its authors.
+
+It serves **`analytics-broad`**, in its reading as the measurement of AI
+systems, and touches **`warehouse-agentic`**. Both have a 90-day window in
+this mode.
+
+**4. What through-line it changes.** Level 1 said the benchmark that "*has*
+scored a production engine" had not re-run it. This item changes what that
+score is.
+
+- **It is not independent.** It is vendor co-authored, and the vendor's engineer
+  wrote the queries' current form.
+- **Its cost column is not a bill.** It prices tokens from a list and leaves
+  out BigQuery's own charges.
+- **Its token capture is unreliable at the largest runs.**
+
+So #19's pattern, "vendor-run on undisclosed question sets", now has a
+function-level cousin. The question sets are public, but the vendor
+co-authored the run and the cost is not audited.
+
+**5. What to research next.**
+
+- **Which Q7 and Q6 figures reach the paper.** Which of the four recorded Q7
+  runs (0, 2.68 million, 8.53 million or 8.93 million tokens) feed SemBench's
+  published scale-factor figure? And do `across_system_2.5flash_sf16000_repeat2`
+  to `repeat5` (`bigquery.json`) show the same undercount? That would settle
+  whether the five-second log wait undercounts BigQuery systematically at
+  large runs, or failed once.
+- **Whether the price table matches the bill.** Does SemBench's `MODEL_PRICES`
+  entry for gemini-2.5-flash match what Google bills for an `AI.IF` call made
+  through a BigQuery connection? And how large are the on-demand bytes or slot
+  charges for movie Q7 and e-commerce q8, which the runner never reads, next to
+  the token cost? This needs Google's pricing pages read without truncation.
+
+**6. Source.** From open search. `github.com` is on `sources.md` for other
+lines, but this repository is not.
+
+- **Full page read:**
+  - [`generic_bigquery_runner.py`](https://raw.githubusercontent.com/SemBench/SemBench/main/src/runner/generic_bigquery_runner/generic_bigquery_runner.py),
+    read four times for verbatim code, and
+    [its history](https://github.com/SemBench/SemBench/commits/main/src/runner/generic_bigquery_runner).
+  - The query files
+    [movie Q5](https://raw.githubusercontent.com/SemBench/SemBench/main/files/movie/query/bigquery/Q5.sql),
+    [Q6](https://raw.githubusercontent.com/SemBench/SemBench/main/files/movie/query/bigquery/Q6.sql)
+    and [Q7](https://raw.githubusercontent.com/SemBench/SemBench/main/files/movie/query/bigquery/Q7.sql),
+    and e-commerce [q6](https://raw.githubusercontent.com/SemBench/SemBench/main/files/ecomm/queries/dialects/bigquery/q6.sql),
+    [q8](https://raw.githubusercontent.com/SemBench/SemBench/main/files/ecomm/queries/dialects/bigquery/q8.sql)
+    and [q14](https://raw.githubusercontent.com/SemBench/SemBench/main/files/ecomm/queries/dialects/bigquery/q14.sql).
+  - The BigQuery metrics files at
+    [sf2000](https://raw.githubusercontent.com/SemBench/SemBench/main/files/movie/metrics/across_system_2.5flash_sf2000/bigquery.json),
+    [sf8000](https://raw.githubusercontent.com/SemBench/SemBench/main/files/movie/metrics/across_system_2.5flash_sf8000/bigquery.json),
+    [sf16000](https://raw.githubusercontent.com/SemBench/SemBench/main/files/movie/metrics/across_system_2.5flash_sf16000/bigquery.json)
+    (its Q6 and Q7 entries were read a second time, character for character)
+    and [sf16000 repeat 1](https://raw.githubusercontent.com/SemBench/SemBench/main/files/movie/metrics/across_system_2.5flash_sf16000_repeat1/bigquery.json).
+  - The [README](https://raw.githubusercontent.com/SemBench/SemBench/main/README.md),
+    for the citation block.
+  - The [pull request list](https://github.com/SemBench/SemBench/pulls?q=is%3Apr),
+    [#10](https://github.com/SemBench/SemBench/pull/10),
+    [#11](https://github.com/SemBench/SemBench/pull/11) and
+    [#29](https://github.com/SemBench/SemBench/pull/29), and the
+    [issue list](https://github.com/SemBench/SemBench/issues?q=is%3Aissue).
+  - The [forks page](https://github.com/SemBench/SemBench/forks), and the
+    `src/runner` listings of five in-window forks and of `DamonZhao-sfu`.
+  - Google's [2026-05-13 blog byline](https://cloud.google.com/blog/products/data-analytics/more-than-100x-faster-and-cheaper-llm-powered-sql-queries-with-proxy-models),
+    for Hottelier's affiliation.
+- **Read through a fetch tool that summarises long files, so possibly
+  incomplete:** the default-scale
+  [`bigquery.json`](https://raw.githubusercontent.com/SemBench/SemBench/main/files/movie/metrics/bigquery.json)
+  came back with 2 of 10 queries, and was not used.
+- **Search summary only:**
+  - The [DEEM Lab announcement](https://deem.berlin/post/2026-03-15-sembench/).
+    The host refused.
+  - The paper's variance caveat, via [arXiv:2511.01716](https://arxiv.org/abs/2511.01716).
+    `arxiv.org` refused.
+
+**7. Verified / inferred / assumed.**
+
+- **Verified:**
+  - The six upstream runners, and the same six on each fork main branch
+    opened.
+  - The fork push dates, pull request #29's scope, and that no pull request or
+    issue asks for Snowflake or Databricks.
+  - The functions each query file calls, and that none of them sets a mode.
+  - The default model and thinking budget.
+  - The log-table source, the price table, and that bytes and slots are never
+    read.
+  - Every figure in the Q7 table, and the sf16000 Q6 entry.
+  - The author list, Hottelier's Google byline, and `thibaudbh`'s three pull
+    requests with their merge dates.
+- **Inferred:**
+  - That the Q7 and Q6 zeros and the 2.68 million figure are log-capture
+    undercounts rather than real savings. This rests on near-identical row
+    counts across runs, and on a Q6 F1 of 0.9 recorded at zero tokens. An
+    engine-side cache is the alternative explanation, and nothing read rules
+    it out.
+  - That the per-query label (`"query_uuid"`) is what the aggregation filters
+    the log tables on. The label is in every query, but the filter clause was
+    not in what came back.
+  - That `thibaudbh` is Thibaud Hottelier. The name matches, and SemBench is
+    that account's only repository, but the profile states no name.
+  - That the runner's prices equal Google's list prices. Google's pricing pages
+    came back truncated.
+- **Search summary only, filed as inferred:** the "Google's BigQuery team"
+  wording, the four authors' Google affiliation other than Hottelier's, and
+  the paper's variance caveat.
+- **Assumed:** that no Snowflake or Databricks runner sits on a non-default
+  branch of any fork. Only main branches were read, and nine inactive forks
+  were not opened, on the reasoning that a fork with no pushes cannot hold new
+  code.
+
+---
+
+### 2. The quarter's one cost-and-accuracy figure for a production AI function is Databricks' own: `ai_classify` behind vector search
+
+**1. What it is.** "Scaling document classification to 100k+ labels", a
+Databricks blog post dated **2026-07-20** according to search summaries. It
+benchmarks three ways to classify documents into taxonomies of 35,000 to
+100,000 labels:
+
+- pure vector search with Qwen3-Embedding-8B and hybrid BM25 scoring;
+- vector search that shortlists the **top 20 labels**, then `ai_classify`
+  choosing from that shortlist;
+- direct calls to frontier models.
+
+**The headline:** the shortlist-then-`ai_classify` workflow "achieves 0.81
+average accuracy across three datasets", against **0.76 for Gemini 3.5
+Flash**, the best direct frontier model, "at roughly 1/100th the per-document
+cost". One summary says "token cost" rather than per-document cost. The three
+datasets, the labels' provenance and the dollar figures are not in any summary
+read.
+
+**This is the only in-window figure found that states both the cost and the
+accuracy of a production warehouse's AI function against an alternative.** It
+was run by the vendor, and nothing was found that reproduces it.
+
+**2. How long ago.** **2026-07-20**, 65 days ago, from search summaries.
+
+**3. How it relates to what has already been read.**
+
+- **Level 1 dropped this post.** Its Databricks line calls it "a product post
+  on shortlisting labels by embedding before classifying", and dropped it
+  because it says nothing about plan-time cost. For this level's question,
+  whether any production number is independent, it is the Databricks data
+  point.
+- **It qualifies path 3, Level 1, item 3.** That item says "In the window, the
+  only per-function accuracy number any of the three vendors published was
+  Databricks' **94.7%**", for `ai_extract` precision mode on 2026-08-18. This
+  post came four weeks earlier, and is for a configuration sold as *cheaper*
+  than calling a model directly. The comparison is a workflow against another
+  vendor's model, not against a cheaper mode of `ai_classify` itself. So it
+  complicates path 3's through-line ("accuracy is disclosed when it sells an
+  upgrade") without overturning it.
+
+It serves **`analytics-broad`** (the measurement reading) and
+**`warehouse-agentic`**.
+
+**4. What through-line it changes.** It confirms #19's "vendor-run on
+undisclosed question sets" at the function level, for a third vendor. It also
+shows the one way a vendor publishes cost and accuracy together: as a
+comparison against *another vendor's model called directly*, never against its
+own function's cheaper or dearer setting.
+
+**5. What to research next.**
+
+- **The three datasets behind 0.81 against 0.76.** Are they named and public,
+  who labelled them, and what are the per-document dollar figures for each of
+  the three approaches? This needs the post itself, on `www.databricks.com`,
+  which refused this run.
+- **Whether an outsider could recompute "1/100th the per-document cost".** Do
+  the `ai_classify` reference page or the July 2026 release notes state the
+  model behind `ai_classify` and a price per call or per token?
+
+**6. Source.** From open search. Neither host is on `sources.md`.
+
+- [Databricks blog, "Scaling document classification to 100k+ labels"](https://www.databricks.com/blog/scaling-document-classification-100k-labels):
+  **search summary only**, from three differently worded searches.
+  `www.databricks.com` refused.
+- The [StartupHub.ai write-up](https://www.startuphub.ai/ai-news/technology/2026/databricks-ai-classify-beats-llms-on-cost):
+  **search summary only**. It is secondary, and was not fetched.
+
+**7. Verified / inferred / assumed.**
+
+- **Verified:** nothing in this item was read in full. It is kept as an item
+  because it is the only in-window cost-and-accuracy figure found for a
+  production AI function, and the level's question is whether such figures
+  are all vendor-made.
+- **Search summary only, filed as inferred:**
+  - The date.
+  - The three approaches, the top-20 shortlist and the embedding model.
+  - The 0.81, 0.76 and "1/100th" figures.
+  - The 35,000 to 100,000 label range.
+- **Inferred:** that the post names no public datasets. The summaries do not
+  name them, and that is not the same as the post not naming them.
+- **Assumed:** that "AI Classify" in the post is the `ai_classify` SQL
+  function, not a separate product surface. Summaries use both spellings.
+
+---
+
+### 3. When someone other than SemBench's authors ran it this quarter, BigQuery dropped out
+
+**1. What it is.** **BlendSQL v0.1.0**, "Large Databases Need Small,
+Open-Weight Language Models", by Parker Glenn of Capital One
+(arXiv:2606.31808). It was accepted to the AI for Databases workshop at VLDB
+2026 and added to SemBench's Adopted by list on 2026-07-02.
+
+According to the search summary of its abstract, it reaches "a win-or-tie rate
+of 57% against closed-source alternatives at 390× lower cost and 3.8× lower
+latency on the SemBench benchmark", with quantized open-weight models on a
+single 16 GB GPU. The same summary says that proprietary-API systems "can incur
+costs exceeding $10,000 for a single set of experiments".
+
+**What its code shows.** BlendSQL's own SemBench harness,
+`research/movies_sembench/runner.py`, imports five evaluation functions:
+`run_blendsql_eval`, `run_thalamusdb_eval`, `run_flock_eval`, `run_lotus_eval`
+and `run_palimpzest_eval`. **There is no BigQuery evaluation.**
+
+Its plotting notebook, of which only the start could be read, loads
+`results/2026-01-08/{model_path}/all_results_with_runs.csv`. It filters
+Palimpzest out and prints "Total thalamusdb + lotus costs: 8.77". So the
+"closed-source alternatives" are closed models (Gemini, GPT) called through
+the academic systems, **not a warehouse's AI function**.
+
+SemBench's other two in-window adopters, CADENZA and the compilation-based
+operators paper, were read only as search summaries. Neither summary mentions
+BigQuery.
+
+**2. How long ago.** **2026-07-02**, 83 days ago, for the Adopted by entry.
+The arXiv identifier dates the paper to late June 2026: it is numbered above
+SemJoin (arXiv:2606.29532), which was submitted 2026-06-28. The runs its
+notebook reads are dated 2026-01-08, which is Background.
+
+**3. How it relates to what has already been read.** It is the forward edge of
+item 1: what happened when an outsider picked SemBench up. Level 1, item 3
+listed BlendSQL as one of three in-window adopters, and assumed that "Adopted
+by" means each one reports SemBench numbers. For BlendSQL that is now
+**verified in code**, with the warehouse left out. It serves
+**`analytics-broad`**.
+
+**4. What through-line it changes.** It adds a mechanism to Level 1's
+"production engines ... frozen at one run". **Only the vendor re-runs the
+vendor's engine.** An outside group can re-run LOTUS on its own API key, but
+re-running BigQuery means paying for BigQuery and trusting the log-table cost
+method (item 1). None of the three in-window adopters' readable material shows
+one doing so. The public harness therefore compares research systems with each
+other, and quotes the warehouse only from its co-authored first run.
+
+**5. What to research next.**
+
+- **Which systems count as the "closed-source alternatives".** Which SemBench
+  systems and models make up the 57% win-or-tie and the 390× in BlendSQL's
+  results table? Does any BigQuery figure from SemBench's published metrics
+  enter the comparison? This needs `arxiv.org/html/2606.31808`.
+- **Whether LOTUS and ThalamusDB were re-run or copied.** In BlendSQL's
+  `research/movies_sembench/src/eval_scripts` and its 2026-01-08 results, were
+  LOTUS and ThalamusDB run by BlendSQL's author, or copied from SemBench's
+  `files/movie/metrics`? And do their costs match SemBench's for the same
+  model? That is a test of whether SemBench's token-based costs reproduce
+  outside its authors even for the open systems.
+
+**6. Source.** From open search. `github.com` is on `sources.md` for other
+lines, but this repository is not.
+
+- **Full page read:** [`research/movies_sembench/runner.py`](https://raw.githubusercontent.com/parkervg/blendsql/main/research/movies_sembench/runner.py),
+  [`benchmark-providers.py`](https://raw.githubusercontent.com/parkervg/blendsql/main/research/movies_sembench/benchmark-providers.py),
+  the [`research/` listing](https://github.com/parkervg/blendsql/tree/main/research)
+  and the [repository README](https://github.com/parkervg/blendsql).
+- **Read through a fetch tool that truncated it:**
+  [`visualize.ipynb`](https://raw.githubusercontent.com/parkervg/blendsql/main/research/movies_sembench/visualize.ipynb)
+  is 624 KB, and the read ended inside embedded image data.
+- **Search summary only:** the paper's abstract, via [arXiv:2606.31808](https://arxiv.org/abs/2606.31808),
+  and CADENZA and the compilation-based paper. `arxiv.org` refused.
+
+**7. Verified / inferred / assumed.**
+
+- **Verified:**
+  - The five imported evaluation functions and the absence of BigQuery from
+    the runner.
+  - The notebook lines quoted.
+  - The 2026-07-02 Adopted by date, from Level 1's commit read.
+- **Search summary only, filed as inferred:**
+  - The 57%, 390×, 3.8× and "$10,000" figures.
+  - The workshop acceptance.
+  - That CADENZA and the compilation paper do not use BigQuery.
+- **Inferred:**
+  - The late-June dating, from identifier order.
+  - That "closed-source alternatives" means closed models inside academic
+    systems. This rests on the runner, not on the paper's text.
+- **Assumed:** that the truncated remainder of the notebook adds no BigQuery
+  series. The runner, which was read in full, gives it nothing to plot.
+
+---
+
+### What was dropped and why
+
+- **AtScale, "Inside a Real Benchmark: Measuring the Cost of AI on the
+  Warehouse".** By its search summary, it measures LLM-*generated* SQL on
+  BigQuery (cost against time, r = 0.16), not AI functions. The host refused.
+- **Estuary, "Best Data Warehouse for AI in 2026: 5 Platforms Benchmarked".**
+  The host refused, and the summary shows no measured AI-function figure.
+- **SemJoin** (arXiv:2606.29532, Purdue, 2026-06-28). It is in the window,
+  but it is an academic semantic-join optimiser with no production engine in
+  its summary.
+- **"Large Language Model-Enhanced Relational Operators: Taxonomy, Benchmark,
+  and Analysis"** (arXiv:2603.02537). This is a second benchmark of semantic
+  operators, but it is from March 2026, outside the window, and search summary
+  only.
+- **Snowflake's "Batch Inference Performance: Cross-Platform Comparison"
+  blog.** It is vendor-run, and it compares classic ML model inference against
+  SageMaker and Spark UDFs, not SQL AI functions.
+- **Snowflake's AI Function Studio.** The option nobody asked for: a vendor
+  tool that, by its search summary, "benchmarks candidate function
+  configurations against representative datasets to measure accuracy". That
+  would be a customer measuring on their own data. It is undated in anything
+  read, and `docs.snowflake.com` refused. It is a candidate for its own lead,
+  not an item.
+- **"SemBench: A Universal Semantic Framework for LLM Evaluation"**
+  (arXiv:2603.11687). It shares the name, and a search engine attached its
+  "single encoder may introduce biases" limitation to this SemBench. It is a
+  different benchmark, so it was dropped rather than cited as a critic.
+- **The SemBench paper's "about $140" for e-commerce Q8.** This is Level 1
+  Background. Item 1 explains how such a figure is computed, but the paper's
+  own run could not be read to check it.
+
+### What was searched for and not found
+
+- **A Snowflake or Databricks runner for SemBench.** None was found in:
+  - upstream `src/runner/`;
+  - the main branch of five of the six forks pushed in the window, and of
+    `DamonZhao-sfu` (`ABCbum`'s was not opened, but its one known change is
+    pull request #29);
+  - SemBench's 15 pull requests and 12 issues;
+  - BlendSQL's harness.
+- **Any in-window re-run of SemBench's BigQuery queries.** None. The runner
+  was last changed 2025-11-20, and Level 1 found no result-changing commit
+  after 2026-05-23.
+- **An independent measurement of Snowflake `AI_FILTER`/`AI_CLASSIFY` or
+  Databricks `ai_query`/`ai_classify` cost and accuracy on public data.** Six
+  differently worded searches found none. They were phrased as benchmark,
+  practitioner "million rows" experiment, GitHub repository, and cross-vendor
+  comparison. They returned only pricing guides, vendor posts and feature
+  comparisons.
+- **A critic of SemBench's BigQuery cost method.** None. The only caveat found
+  is the paper's own, about variance, and it concerns quality rather than
+  cost. A method with no critic has been found, not checked.
+- **Google's list price for Gemini 2.5 Flash, to check the runner's table.**
+  Both `cloud.google.com/vertex-ai/generative-ai/pricing` and
+  `cloud.google.com/bigquery/pricing` came back truncated before the relevant
+  section.
+- **SemBench's leaderboard, the DEEM Lab post, the UTN blog post and the
+  paper's text.** `sembench.github.io`, `deem.berlin`, `utndatasystems.github.io`
+  and `arxiv.org` all refused. So whether the leaderboard lists any
+  production engine besides BigQuery rests on the repository alone.
