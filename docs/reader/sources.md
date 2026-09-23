@@ -53,11 +53,16 @@ actual fetch, never inferred from a citation. **Cited** names the document and
 which of its two tables the row came from:
 `19` = `docs/research/19-analytics-for-enterprise-ai-brief-2026-09-21.md`,
 `26` = `docs/research/26-analytics-and-agent-efficacy-brief-2026-09-23.md`,
-`35` = `docs/research/35-depth-brief-2026-09-23-benchmarks-and-dbt.md`.
+`35` = `docs/research/35-depth-brief-2026-09-23-benchmarks-and-dbt.md`,
+`42` = `docs/research/42-depth-brief-2026-09-23-semantic-models-and-warehouse-agentic.md`.
 
 The two Depth lines were added to `profile.md` by the reaction to
 [#29](https://github.com/chamaya00/background-research-agents/issues/29) and
 first served by #35, which is why every `B` and `D` row below cites 35.
+
+Two more Depth lines were added by the reaction to
+[#35](https://github.com/chamaya00/background-research-agents/issues/35) and
+first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 
 | Host | Line | Status | Observed | Cited |
 |---|---|---|---|---|
@@ -65,22 +70,25 @@ first served by #35, which is why every `B` and `D` row below cites 35.
 | `mc.merill.net` | A and E | reads | 2026-09-21 and 2026-09-23 | 19, Read row; 26, Read row |
 | `gethynellis.com` | A | reads | 2026-09-21 | 19, Read row |
 | `pointfive.co` | A and E | reads | 2026-09-21 | 19, Read row |
-| `prnewswire.com` | E | reads | 2026-09-21 | 19, Read row |
 | `kucoin.com` | E | reads | 2026-09-21 | 19, Read row |
-| `arxiv.org` | E and B and D | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
+| `arxiv.org` | E and B and D and S | reads | 2026-09-23, re-observed same day by #35 and by #42 | 26, Read row; 35, Read row; 42 |
 | `bird-bench.github.io` | E and B | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
-| `spider2-sql.github.io` | B | reads | 2026-09-23 | 35, Read row |
-| `github.com` | B and D | reads | 2026-09-23 | 35, Read row |
-| `docs.getdbt.com` | D | reads | 2026-09-23 | 35, Read row |
+| `spider2-sql.github.io` | B | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
+| `github.com` | B and D and W | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
+| `docs.getdbt.com` | D and W | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
+| `ossie.apache.org` | S | reads | 2026-09-23 | 42 |
+| `docs.snowflake.com` | S and W | **reads; user guide full, release notes return a shell** | 2026-09-23 | 42 |
 | `bird-critic.github.io` | B | reads | 2026-09-23 | 35, Read row |
 | `genloop.ai` | B | reads | 2026-09-23 | 35, Read row |
-| `dbt-labs.github.io` | D | **reads, returns nothing usable** | 2026-09-23 | 35, "Reached but returned nothing usable" |
+| `dbt-labs.github.io` | D | **reads, returns nothing usable** | 2026-09-23, re-observed same day by #42 | 35, "Reached but returned nothing usable"; 42 |
 | `fivetran.com` | A | reads | 2026-09-23 | 26, Read row |
 | `techtarget.com` | A | reads | 2026-09-23, re-observed same day | 26, Read row; re-fetched by #32 |
 | `salesforce.com` | A | reads | 2026-09-23 | 26, Read row |
 | `cxfoundation.com` | A | reads | 2026-09-23 | 26, Read row |
-| `snowflake.com` | A | reads | 2026-09-23 | 26, Read row |
+| `snowflake.com` | A and W and S | reads | 2026-09-23, re-observed same day by #42 | 26, Read row; 42 |
+| `prnewswire.com` | E and W | reads | 2026-09-21, re-observed 2026-09-23 by #42 | 19, Read row; 42 |
 | `community.fabric.microsoft.com` | A | refuses | 2026-09-21 | 19, Refused row |
+| `blogs.oracle.com` | B | refuses | 2026-09-23 | 42 |
 | `hpcwire.com` | A | refuses | 2026-09-21 and 2026-09-23 | 19, Refused row; re-fetched by #32 |
 | `openai.com` | A | refuses | 2026-09-23 | 26, Refused row |
 | `blogs.mulesoft.com` | A | refuses | 2026-09-23 | 26, Refused row |
@@ -201,6 +209,12 @@ let that round happen at all.
   and cannot show movement; #35 had to reach the top entry's 2026-03-01 date from
   the vendor's own announcement by search. Budget that if a round needs to date a
   Spider 2.0 result.
+
+  **#42 re-fetched it and found a second limit worth recording:** it carries
+  **three tracks only - Snow, DBT and Lite - and no AIFunc track**, eleven weeks
+  after the benchmark's own authors published AIFunc. A track with no leaderboard
+  cannot show movement even in principle, so a round asked to report on AIFunc
+  should expect to establish an absence rather than read a standing.
 - **`github.com`** - two repositories, both read on 2026-09-23:
   `xlang-ai/Spider2` for #35's verbatim News quotes and the benchmark's
   gold-answer release history, and `dbt-labs/dbt-llm-sl-bench` for the dbt
@@ -248,6 +262,75 @@ let that round happen at all.
   in its own text. The data is public and in the repository; a run that needs
   those numbers should go to `github.com` for the raw results rather than
   re-fetching this.
+
+  **#42 re-fetched it and can now say why, which closes this.** The landing page
+  returns descriptive prose and no figures; the `/compare` page returns a shell
+  whose Summary, Accuracy, Latency, Cost and Tradeoffs sections every one read
+  **"Loading..."**. It is an Evidence dashboard that queries a DuckDB file in the
+  browser, so the figures are never in the HTML a fetch receives. **Do not
+  re-fetch this host again** - the failure is architectural, not transient, and
+  the one remaining route to those numbers is querying
+  `results_analysis/llm_bench.duckdb` from the repository, which is a spike for an
+  engineer rather than a fetch.
+
+### Serving line S - semantic models
+
+Added by #42, the first round on this line. Both new hosts arrived by open
+search; neither was on this list.
+
+- **`ossie.apache.org`** - the Apache Ossie (incubating) project site, formerly
+  Open Semantic Interchange, and the source of #42's item 1. Its `/updates/`
+  index is the changelog for the one cross-vendor semantic-model specification
+  that Snowflake, Databricks, Salesforce and dbt Labs all contribute to, so it is
+  the single host most likely to carry the next development on this line.
+  **Read the update post rather than the home page** - the home page is a
+  marketing summary and the post carries the commit counts, the contributor list
+  and the explicit list of what the project has *not* decided.
+- **`docs.snowflake.com`** - a different host from `snowflake.com`, and it
+  behaves differently. **The user guide pages read in full**
+  (`/en/user-guide/views-semantic/autopilot` carried every Power BI ingestion
+  detail in #42's item 2). **The release-note pages return a navigation shell**
+  and none of their own body - `/en/release-notes/2026/other/2026-08-18-semantic-views-power-bi-ingestion-ga`
+  gave #42 nothing, so that item's GA date rests on the note's title and URL path
+  rather than on its text. This is the same per-path split the `arxiv.org` entry
+  records and the reason a per-host status column cannot capture it: **go to the
+  user guide for substance and expect to date a feature from somewhere else.**
+- **`arxiv.org`** - re-observed by #42, which read three full texts on this line
+  (GROUND 2608.26157, and the dropped 2604.25149 and 2606.05634). #42 also
+  confirmed what #35 suspected about the split: it read `/html/<id>v1` for
+  substance and `/abs/<id>` **only for the submission-history line**, because the
+  identifier's month and the stated submission date do not agree in this corpus
+  and the date is what the window turns on. Fetch both, for different reasons.
+
+### Serving line W - warehouse agentic features
+
+Added by #42. Unlike line S, both hosts here were already listed.
+
+- **`snowflake.com`** - now observed on three lines. #42 read the 2026-07-28
+  Cortex AI Gateway press release and the same day's engineering blog in full,
+  and both answered. **The newsroom and the engineering blog both read; the
+  product blog path also reads** (`/en/blog/semantic-view-autopilot/`). This is
+  the most reliable vendor host in the whole file.
+- **`docs.getdbt.com`** - the release-notes page
+  (`/docs/dbt-versions/dbt-cloud-release-notes`) carries **June through September
+  2026 in one document**, which makes it the cheapest single fetch on this line:
+  one page covers a whole 90-day window of what shipped and at what availability
+  status. #42's item 5 is entirely from it.
+- **`github.com`** - re-observed. #42 used `raw.githubusercontent.com` for three
+  repositories (`xlang-ai/Spider2`'s README News list, `dbt-labs/dbt`'s v2
+  roadmap note, `dbt-labs/dbt-llm-sl-bench`'s README) and **`api.github.com` for
+  a recursive file tree**, which is the way to find out what data a repository
+  actually contains without cloning it. That tree is how #42 established that
+  `dbt-llm-sl-bench` publishes its results **only as binary database files** -
+  there is no CSV or JSON to read, which is why that question has now failed
+  twice for a reason no re-fetch will fix.
+- **`prnewswire.com`** - re-observed on a second line. #42 fetched dbt Labs'
+  agentic-features release in full and then dropped it as eleven months out of
+  window. Recorded because a successful fetch that produces no item is still an
+  observation, and this is the second time this file has recorded one.
+- **`blogs.oracle.com`** - *refuses*, **403**. Wanted for Oracle's claim to top
+  Spider 2.0-Lite, which would have been a dated leaderboard development. Nothing
+  in #42 depends on it, and the claim remains unchecked.
 
 ### Serving both lines
 
