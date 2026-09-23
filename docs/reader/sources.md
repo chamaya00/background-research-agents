@@ -44,13 +44,20 @@ casually would be the first thing to start deciding selection silently.
 below it is detail a run reads off the branch. See ADR 0004 for why the file is
 split this way.*
 
-Columns: **Line** is which of `profile.md`'s two Interests lines the host has
+Columns: **Line** is which of `profile.md`'s Interests lines the host has
 actually been observed serving - `A` = "Analytics for enterprise AI, broadly",
-`E` = "Measuring agent efficacy in an enterprise setting". **Status** is
-reachability as observed by an actual fetch, never inferred from a citation.
-**Cited** names the document and which of its two tables the row came from:
+`E` = "Measuring agent efficacy in an enterprise setting", `B` = the Depth line
+"text-to-SQL and data-agent benchmarks by name", `D` = the Depth line "dbt's
+semantic and context layer work". **Status** is reachability as observed by an
+actual fetch, never inferred from a citation. **Cited** names the document and
+which of its two tables the row came from:
 `19` = `docs/research/19-analytics-for-enterprise-ai-brief-2026-09-21.md`,
-`26` = `docs/research/26-analytics-and-agent-efficacy-brief-2026-09-23.md`.
+`26` = `docs/research/26-analytics-and-agent-efficacy-brief-2026-09-23.md`,
+`35` = `docs/research/35-depth-brief-2026-09-23-benchmarks-and-dbt.md`.
+
+The two Depth lines were added to `profile.md` by the reaction to
+[#29](https://github.com/chamaya00/background-research-agents/issues/29) and
+first served by #35, which is why every `B` and `D` row below cites 35.
 
 | Host | Line | Status | Observed | Cited |
 |---|---|---|---|---|
@@ -60,8 +67,14 @@ reachability as observed by an actual fetch, never inferred from a citation.
 | `pointfive.co` | A and E | reads | 2026-09-21 | 19, Read row |
 | `prnewswire.com` | E | reads | 2026-09-21 | 19, Read row |
 | `kucoin.com` | E | reads | 2026-09-21 | 19, Read row |
-| `arxiv.org` | E | reads | 2026-09-23 | 26, Read row |
-| `bird-bench.github.io` | E | reads | 2026-09-23 | 26, Read row |
+| `arxiv.org` | E and B and D | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
+| `bird-bench.github.io` | E and B | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
+| `spider2-sql.github.io` | B | reads | 2026-09-23 | 35, Read row |
+| `github.com` | B and D | reads | 2026-09-23 | 35, Read row |
+| `docs.getdbt.com` | D | reads | 2026-09-23 | 35, Read row |
+| `bird-critic.github.io` | B | reads | 2026-09-23 | 35, Read row |
+| `genloop.ai` | B | reads | 2026-09-23 | 35, Read row |
+| `dbt-labs.github.io` | D | **reads, returns nothing usable** | 2026-09-23 | 35, "Reached but returned nothing usable" |
 | `fivetran.com` | A | reads | 2026-09-23 | 26, Read row |
 | `techtarget.com` | A | reads | 2026-09-23, re-observed same day | 26, Read row; re-fetched by #32 |
 | `salesforce.com` | A | reads | 2026-09-23 | 26, Read row |
@@ -173,6 +186,68 @@ future run would otherwise have to rediscover. Ordered as the table is.
   the item's date.
 - **`aimagazine.com`** - *refuses*. Same publisher, same story, same
   non-dependency.
+
+### Serving line B - text-to-SQL and data-agent benchmarks by name
+
+All four added by #35, the first depth round. **None of them was on this list
+before that round**, which is the most useful single fact in this section: the
+list was built from two breadth rounds, and every host the depth subject actually
+lives on was missing from it. Commitment 2 - open search stays available - is what
+let that round happen at all.
+
+- **`spider2-sql.github.io`** - the Spider 2.0 leaderboard, and the source of
+  #35's item 1. Carries all three tracks with rank, method, score and
+  organisation. **It carries no dates at any point**, so it can show a standing
+  and cannot show movement; #35 had to reach the top entry's 2026-03-01 date from
+  the vendor's own announcement by search. Budget that if a round needs to date a
+  Spider 2.0 result.
+- **`github.com`** - two repositories, both read on 2026-09-23:
+  `xlang-ai/Spider2` for #35's verbatim News quotes and the benchmark's
+  gold-answer release history, and `dbt-labs/dbt-llm-sl-bench` for the dbt
+  benchmark harness's activity. The raw README path
+  (`raw.githubusercontent.com/<org>/<repo>/main/README.md`) returned the full
+  News list verbatim where the rendered repository page had summarised it - worth
+  knowing, because the quotes in #35's item 1 are load-bearing.
+- **`bird-critic.github.io`** - the BIRD family's harder tracks: BIRD-CRITIC's
+  35.5% ceiling, the 2026 track release dates, the PostgreSQL human baseline.
+  Reachable, and it is the host that shows the BIRD project disagreeing with its
+  own headline leaderboard by fifty points. `bird-bench.github.io` does not carry
+  that; fetch both.
+- **`genloop.ai`** - a vendor blog, and the only one in this section. It carries
+  the 2026-03-01 date for the Spider 2.0-Snow top submission, which the
+  leaderboard itself does not carry, and the architecture description #35's item
+  5 quotes. **Read it for what a top-of-board system says it does**, not for
+  scores; its sibling pages are the listicles #35 dropped on substance.
+- **`arxiv.org`** - re-observed. Carried five of #35's seven items. Still reached
+  by search rather than by browsing the list, exactly as in #26.
+
+  **The abstract page and the full-text page are not interchangeable**, and #35
+  is where that cost something. `arxiv.org/abs/<id>` gave that run a figure it
+  could only match against a leaderboard by inference; `arxiv.org/html/<id>v1`
+  gave it the system's name, the leaderboard entry and the full baseline table,
+  which turned the inference into a fact and supplied the correction to a figure
+  two briefs had repeated. **Fetch the HTML full text before concluding that a
+  paper does not say something.**
+
+### Serving line D - dbt's semantic and context layer work
+
+- **`docs.getdbt.com`** - **this row is a reversal and is the reason to read it.**
+  The host refused the session that wrote #20, and had never been successfully
+  fetched by any run; #24 quoted its benchmark figures from a search summary
+  because of that. It **answered #35 on 2026-09-23** and carried the whole
+  "Semantic Layer vs. Text-to-SQL: 2026 Benchmark Update" post - every figure,
+  the methodology, the authors and the 2026-04-07 date. Reading it corrected the
+  framing #24 had put on those figures. A refusal is a status with a date on it,
+  not a property of a host, and this is the first observed case here of one
+  flipping the good way.
+- **`dbt-labs.github.io`** - the rendered results dashboard for
+  `dbt-labs/dbt-llm-sl-bench`. **A third kind of status**, and the reason the
+  Status column now has a value that is neither "reads" nor "refuses": it
+  returned HTTP 200 and a navigation shell, and none of the figures the page
+  exists to publish. Nothing in #35 rests on it and item 6 of that brief says so
+  in its own text. The data is public and in the repository; a run that needs
+  those numbers should go to `github.com` for the raw results rather than
+  re-fetching this.
 
 ### Serving both lines
 
