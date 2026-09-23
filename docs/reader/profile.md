@@ -122,6 +122,12 @@ is referenced in passing; a concept marked new is explained once.
   re-introduced. *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20.*
 - Sources come from a curated list rather than open search.
   *Seed, from the objective's delivery questions, 2026-09-20.*
+- **Read the brief back in full in the session, not only as a link to the
+  issue.** The issue is the durable record and the place a reaction is filed;
+  the session is where it is actually read. Posting only a link makes reading
+  it a second decision. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "read 29 to me so i can
+  react here... this should be standard operating procedure going forward",
+  2026-09-23.*
 
 ## Retired
 
