@@ -844,3 +844,495 @@ on `sources.md` for line B.
   started (547 − 513)**, and whether any of them are audited examples. Not
   found.
 - **The IDs of AIFunc's seven C5 instances.** Not reachable.
+
+## Level 3 - Which version of Spider 2.0-Snow AIFunc built on, and whether the audit reaches it
+
+**AIFunc built on the rewritten questions. Eight of the nine instructions
+sampled here carry wording or a database that exists only in the version
+Spider 2.0 published on 2025-07-14, and none follows the original. But the audit's 62.8% does not reach AIFunc's bases
+either, and the reason is not the one Level 2 gave. The audit judged the gold
+SQL as it stood before 2025-10-29. On that date Spider 2.0 rewrote its public
+gold: 35 of the 36 public-gold bases AIFunc uses now differ from the audit's
+copy by two or more lines. AIFunc's `sf_local015`, the one example the audit
+names, follows the rewritten gold's logic, not the gold the audit judged. The
+answers moved in one of the three cases read in full and stayed the same in
+two. So the audit measured a gold that no longer exists, and it says nothing
+about the gold AIFunc used. Nobody outside the two author teams has audited
+any version AIFunc could have used.**
+
+The window is 90 days, so items must be dated on or after **2026-06-25**. The
+only in-window anchor is AIFunc's release, on **2026-07-07**, with its last
+commit on 2026-07-08. The items below are dated by that release. Everything
+AIFunc is compared against here is **Background**:
+- the question rewrite of 2025-07-14;
+- the gold rewrite of 2025-10-29;
+- the audit's supplementary material (committed 2025-11-01);
+- the audit paper (January 2026).
+
+**Nothing moved in the window on this question.** No commit has landed under
+`spider2-snow/` since 2025-10-30 (Level 2). No in-window statement from either
+author team mentions the other's versions.
+
+**How this level could read its sources.** This level read GitHub in full, on
+`github.com` and `raw.githubusercontent.com`:
+- the current and pre-rewrite gold SQL;
+- the expected-result files at both commits;
+- the per-file commit histories.
+
+The task files and the audit's supplementary PDF were read in full from
+copies the session downloaded. The counts marked below as computed by the
+session come from its scripts over those public files. `docs.google.com`
+refused this run, and so did `arxiv.org`. That is why the Spider 2.0 data
+update log and the audit paper's revision history could not be read.
+
+---
+
+### 1. AIFunc's instructions derive from the 2025-07-14 rewrite of Spider 2.0-Snow, not from the 0713 original
+
+**1. What it is.** Spider 2.0 keeps two question files with the same 547 IDs:
+- `spider2-snow-0713.jsonl`, the original;
+- `spider2-snow.jsonl`, rewritten "to resolve ambiguities".
+
+Both landed in one commit on 2025-07-14. Computed by the session from the
+public files, **345 of the 547 instructions differ substantively**, and the
+median change is about 77% of the text. That means an AIFunc task can be
+dated to one version or the other by its wording.
+
+Nine AIFunc main tasks were set against both versions. They were chosen by
+hand, not at random: `sf_local015` first, then IDs earlier levels had
+touched.
+
+| ID | 0713 original | 2025-07-14 rewrite | AIFunc (main) | Follows |
+|---|---|---|---|---|
+| `sf_local015` | "percentage of motorcycle accident fatalities involving riders who were wearing helmets" | fatalities ÷ collisions per group, from `party_safety_equipment` fields | "(total fatalities / total collisions) × 100", from `party_safety_equipment_1` and `_2` | rewrite |
+| `sf_bq003` | "purchase and non-purchase sessions", undefined | purchase = "transactions ≥ 1 and productRevenue not null" | "transactions >= 1 and at least one hit has productRevenue not null" | rewrite |
+| `sf_bq295` | database `GITHUB_REPOS`; "a keyword 'def'" | database `GITHUB_REPOS_DATE`; ".py extension", substring "def " | database `GITHUB_REPOS_DATE`; ".py file", substring "def " | rewrite |
+| `sf_local004` | lifespan "in float number if it's longer than one week, otherwise ... 1.0" | days ÷ seven, "if the result is less than seven days, setting it to 1.0" | "days ... divided by 7, with a minimum of 1.0 if less than 7 days" | rewrite |
+| `sf_local022` | "strikers ... their team lost" | "players ... while playing for the team that lost" | "players ... while playing for the losing team" | rewrite |
+| `sf_local029` | "the top 3 customers" | "based on their customer_unique_id" | `customer_unique_id` | rewrite |
+| `sf_local263` | one L1_model per status | "each model (specified by name and version)", "for any of its steps" | "each model (identified by name and version)", "for any step" | rewrite |
+| `sf_bq052` | "summary texts" | "abstract text", sorted by application date | "abstract text", sorted by application date | rewrite (citation definitions follow neither; item 3) |
+| `sf_bq017` | base sentence | adds "analyzed through planet features" | base sentence without that phrase | neither |
+
+**Eight of nine follow the rewrite and none follows the original.** The
+strongest single mark is `sf_bq295`'s database. The rewrite moved it from
+`GITHUB_REPOS` to `GITHUB_REPOS_DATE`, and AIFunc uses `GITHUB_REPOS_DATE`.
+That is a change of data source, and no rewording could produce it by
+accident.
+
+**So the 71 the audit counted are the relevant set, and AIFunc overlaps it
+heavily.** Computed by the session from the public files:
+- 71 of the 120 examples with public gold had their question rewritten. That
+  is the audit's 71 exactly.
+- **239 of AIFunc's 393 released tasks (180 main, 59 diversity) sit on 199
+  bases whose question was rewritten.**
+- 43 of those 239 (on 36 bases) also have public gold, so they are among the
+  audit's 71.
+
+One check on Level 2 falls out of this. The per-order payment wording in
+AIFunc's `sf_local029` ("calculated by first summing all payment values for
+each order, then averaging across orders") is in neither Spider 2.0 version.
+Level 2 item 3 attributed it to AIFunc, and that attribution stands.
+
+**2. How long ago.** Dated by AIFunc's release, **2026-07-07**, 78 days ago.
+The two question files it is compared against are Background, from
+2025-07-14.
+
+**3. How it relates to what has already been read.** It serves
+**`benchmarks-depth`**. Level 2 item 1 crossed AIFunc with the audit's 121
+examples by ID alone, without asking which version of each question AIFunc
+had used. Level 2 item 2 found that AIFunc's pipeline "transforms the target
+SQL ... and the corresponding instruction is revised to match". This item
+fixes the starting point of that revision: the July 2025 questions.
+
+**4. What through-line it changes.** None on its own. It removes one way
+out. If AIFunc had built on the 0713 questions, the audit's "update has
+limited effectiveness" finding would have been beside the point. It is not
+beside the point, because AIFunc started from exactly the questions the audit
+judged. Item 3 shows why the finding still does not transfer.
+
+**5. What to research next.**
+- **Run the version test on all 180 AIFunc main tasks whose base question was
+  rewritten.** For each one, score its instruction's word overlap with the
+  0713 and the current Snow instruction for the same ID, and list every task
+  where 0713 is closer. The nine above are a hand-picked sample, and a
+  scripted pass over the session's files would turn "eight of nine" into a
+  count.
+- **Whether AIFunc's `sf_bq363` follows the 2025-08-05 fix to its Spider 2.0
+  question or the 2025-07-14 text.** `sf_bq363` is an AIFunc main task.
+  `spider2-snow.jsonl` changed again for it on 2025-08-05, so the match would
+  date AIFunc's snapshot of the questions to after that fix or before it.
+
+**6. Source.** Reached from Level 2 and the session's download. `github.com`
+is on `sources.md` for line B.
+- [`spider2-snow.jsonl`](https://github.com/xlang-ai/Spider2/blob/main/spider2-snow/spider2-snow.jsonl)
+  and [`spider2-snow-0713.jsonl`](https://github.com/xlang-ai/Spider2/blob/main/spider2-snow/spider2-snow-0713.jsonl):
+  **read in full** for the nine IDs.
+- [`data/spider2-aifunc.jsonl`](https://raw.githubusercontent.com/Leolty/Spider2-AIFunc/main/data/spider2-aifunc.jsonl):
+  **read in full** for the nine IDs and their diversity variants.
+- The [Spider 2.0 README](https://github.com/xlang-ai/Spider2/blob/main/README.md)
+  News entry of 2025-07-13: **full page read**.
+- The 345, 71, 239/199 and 43/36 counts: computed by the session from the
+  public files.
+
+**7. Verified / inferred / assumed.**
+- **Verified:**
+  - every quotation in the table, and the `GITHUB_REPOS_DATE` change;
+  - that neither Snow version holds the `sf_local029` per-order payment
+    wording.
+- **Verified by the session's script:** 345, 71, 239 (180 + 59) on 199
+  bases, and 43 on 36.
+- **Inferred:** that the whole released set derives from the rewrite. The
+  sample was hand-picked, and one of the nine is neutral.
+- **Assumed:** that AIFunc's generation read `spider2-snow.jsonl` and not
+  some third private copy of the questions. `generation.md` names the Spider
+  2.0 gold files, not the question file.
+
+---
+
+### 2. `sf_local015`, the one example the audit names: AIFunc follows the October 2025 gold, and its wording removes the error the audit found
+
+**1. What it is.** The audit's supplementary material uses this example as
+its case study (its Figure 14). Its argument has three steps:
+- The July rewrite added a formula, fatalities divided by collisions. That
+  formula "computes the number of fatalities per collision" and conflicts with
+  the question's own phrase "the percentage of motorcyclist fatalities".
+- Such a figure could exceed 100%.
+- Because "the corresponding gold SQL query multiplies the number of
+  motorcyclist fatalities per collision by 100", even rewording the question
+  "would not resolve the error".
+
+**There are two gold queries for this example, and the audit read the older
+one.** The audit's copy (`SAR-Agent/spider2/sql/sf_local015.sql`) is
+identical to Spider 2.0's file at commit `a5f0ca2` (2024-12-24). It:
+- matches the exact strings `'driver, motorcycle helmet used'` and
+  `'passenger, motorcycle helmet used'`;
+- keeps only parties with a non-null age;
+- works per party row, so one collision can count in both groups;
+- returns two columns.
+
+Spider 2.0 replaced it in **"update 1029" (2025-10-29)**, which is the file's
+only later commit. The current query:
+- keeps only parties whose `statewide_vehicle_type` contains "motorcycle";
+- matches `'%helmet%'` with and without `'%not%'`;
+- classifies each **collision** as `helmet_worn` only when some party wore a
+  helmet and none did not, and the reverse for `no_helmet`, excluding mixed
+  collisions;
+- returns one row per group.
+
+**AIFunc's instruction follows the current query, not the one the audit
+read.** Its main task:
+- identifies "motorcycle parties by filtering where the condition 'This
+  vehicle type is a motorcycle: ' concatenated with the statewide_vehicle_type
+  field evaluates to true", which is the current gold's filter turned into an
+  `AI_FILTER`;
+- assigns each helmet group "at the collision level ... otherwise exclude the
+  collision";
+- returns a row per helmet group.
+
+Its diversity variant restates the current rule almost word for word: "any
+party has helmet status 'used' and no party has 'not_used'". The older gold
+has no vehicle-type filter and no collision-level exclusion.
+
+**The error the audit found is gone from AIFunc's text, although the gold's
+arithmetic is kept.** AIFunc drops "percentage of motorcyclist fatalities".
+It asks instead for a "fatality rate percentage calculated as (total
+fatalities / total collisions) × 100, rounded to 2 decimal places". That is
+exactly what both gold queries compute, now stated. The audit objected to the
+question and the gold disagreeing, and they no longer disagree. Its separate
+point, that the measure is not really a percentage, now concerns what the
+figure is called, not whether the answer is correct.
+
+**The expected answer did not change across the gold rewrite.**
+- Before: `sf_local015.csv` at commit `84911f3`, the parent of "update 1029",
+  holds 16.67 and 0.00.
+- After: `sf_local015_a.csv` holds `helmet_worn` 16.666667 and `no_helmet`
+  0.000000, and `sf_local015_b.csv` gives `helmet` 16.666700 and
+  `no_helmet` 0.000000.
+
+The query was rewritten, and on this database it returns the same two
+numbers.
+
+**2. How long ago.** Dated by AIFunc's release, **2026-07-07**, 78 days ago.
+The two gold versions (2024-12-24 and 2025-10-29) and the audit's case study
+(supplement committed 2025-11-01) are Background.
+
+**3. How it relates to what has already been read.** Level 2 item 2 inferred
+that AIFunc's instruction rewrite "can absorb the disagreement into the
+instruction instead of passing it on as a wrong answer". Level 2 item 3 found
+one case of it, `sf_local029`, outside the audit's reach. This is the first
+case inside the audit's reach, and it is the audit's own chosen example.
+
+**4. What through-line it changes.** It sharpens Level 2's "why the true share
+could still sit well below 62.8%". On the example the audit itself used to
+show that the July fix failed, AIFunc's task differs in two ways:
+- it is built on a different gold query from the one the audit judged;
+- its wording removes the specific contradiction the audit reported.
+
+The audit's verdict on `sf_local015` therefore does not carry over to AIFunc's
+`sf_local015`. That is one example. Item 3 shows how far it generalises.
+
+**5. What to research next.**
+- **How many collisions sit behind 16.67% and 0.00% in
+  `CALIFORNIA_TRAFFIC_COLLISION`.** Both groups' collision counts are needed.
+  If the helmet group is about six collisions, one `AI_CLASSIFY` decision on a
+  party's equipment text moves AIFunc's answer by about 17 points, and
+  exact-match scoring makes the task close to a coin toss on classifier
+  behaviour. It needs an engineer's spike against the Snowflake share.
+- **Whether arXiv:2601.08778v3 revises the `sf_local015` case study, or the
+  62.8%, against the 2025-10-29 gold.** Search shows that a v3 exists. Read
+  its Spider 2.0-Snow appendix and its revision date.
+
+**6. Source.** `github.com` is on `sources.md` for line B.
+- [Current gold `sf_local015.sql`](https://raw.githubusercontent.com/xlang-ai/Spider2/main/spider2-snow/evaluation_suite/gold/sql/sf_local015.sql),
+  [pre-rewrite gold at `a5f0ca2`](https://raw.githubusercontent.com/xlang-ai/Spider2/a5f0ca2/spider2-snow/evaluation_suite/gold/sql/sf_local015.sql),
+  and the [audit's copy](https://github.com/uiuc-kang-lab/text_to_sql_benchmarks/blob/main/SAR-Agent/spider2/sql/sf_local015.sql):
+  **full page read**.
+- [The file's commit history](https://github.com/xlang-ai/Spider2/commits/main/spider2-snow/evaluation_suite/gold/sql/sf_local015.sql):
+  **full page read**.
+- The expected results
+  [`sf_local015_a.csv`](https://raw.githubusercontent.com/xlang-ai/Spider2/main/spider2-snow/evaluation_suite/gold/exec_result/sf_local015_a.csv),
+  [`sf_local015_b.csv`](https://raw.githubusercontent.com/xlang-ai/Spider2/main/spider2-snow/evaluation_suite/gold/exec_result/sf_local015_b.csv)
+  and [`sf_local015.csv` at `84911f3`](https://raw.githubusercontent.com/xlang-ai/Spider2/84911f3/spider2-snow/evaluation_suite/gold/exec_result/sf_local015.csv):
+  **full page read**.
+- [`materials/supplementary_material.pdf`](https://github.com/uiuc-kang-lab/text_to_sql_benchmarks/blob/main/materials/supplementary_material.pdf),
+  section A.4: **full text read**, extracted by the session.
+- AIFunc's `sf_local015` and `sf_local015_div`: **read in full** from the task
+  file.
+
+**7. Verified / inferred / assumed.**
+- **Verified:**
+  - the audit's copy matching the `a5f0ca2` file;
+  - the file's only later commit being "update 1029";
+  - every quotation from both gold queries, from AIFunc and from the
+    supplement;
+  - the three expected-result files.
+- **Inferred:** that AIFunc built from the post-October gold. The vehicle-type
+  filter and the collision-level exclusion appear in AIFunc and in the
+  current gold, and in neither the older gold nor either Snow question.
+- **Assumed:** that AIFunc's hidden gold for this task computes what its
+  instruction says. That gold is held out.
+
+---
+
+### 3. The audit judged a gold that Spider 2.0 replaced eight months before AIFunc, and 35 of AIFunc's 36 public-gold bases were rewritten
+
+**1. What it is.** The audit's supplementary material describes the July
+change as one to the questions only: "the Spider 2.0 team updated user
+questions in 71 examples". It concludes that "only updating user questions is
+insufficient to fix the annotation errors". Its gold is the copy in
+`SAR-Agent/spider2/sql/`, 121 files.
+
+**That copy predates Spider 2.0's next change.** Spider 2.0's News entry for
+**2025-10-29** reads "Major update! ... We fixed the evaluation-suite issue, so
+scores are now more accurate and stable." The commit behind it, `575a7a4`
+("update 1029"), touches 2,136 files, including the gold SQL and the expected
+results. The supplement nowhere mentions October or this commit. It was
+committed three days later, on 2025-11-01. The audit repository's copy of the
+gold was committed on 2026-01-19, 82 days after that gold had been replaced.
+
+**How much of the gold the audit read has since been rewritten.** Counted in
+this level, line by line, from the audit's copy and the session's clone of
+Spider 2.0:
+- **116 of the 120 files that both hold differ by two or more lines.**
+- Three have the same length: `sf_local010`, `sf_bq359` and `sf_bq421`.
+  `sf_local010`'s history shows no commit after 2024-12-24, which is
+  consistent with it being unchanged.
+- One, `sf_bq294`, differs by a single line.
+- **Of the 36 public-gold bases AIFunc uses among the audit's 71, 35 differ by
+  two or more lines, and `sf_bq294` is the one-line case.**
+
+**Re-counted by the session, by content rather than line count.** Comparing
+each file's text with whitespace normalised, not its length: **118 of the 120
+differ.** Only `sf_local010` and `sf_bq421` are identical. `sf_bq359` has the
+same length but different content. **All 36** of AIFunc's rewritten
+public-gold bases differ, including `sf_bq294`, and so do **65 of all 66**
+public-gold bases AIFunc uses. The line counts above understate the change
+slightly. The conclusion only gets stronger.
+
+Per-file history was read for four of the 36: `sf_local015`, `sf_bq052`,
+`sf_local022` and `sf_bq295`. **Each has exactly one commit after 2024,
+"update 1029".**
+
+**What the rewrite did to the answers, in the three cases read in full:**
+
+| Base | The query | The expected answer |
+|---|---|---|
+| `sf_local015` | Rewritten (item 2) | **Unchanged**: 16.67 and 0.00 |
+| `sf_local022` | Rewritten. The old gold assigns `team_1` as loser whenever `match_winner` is not `team_1`, which includes no-result matches. The new one excludes matches with no winner. | **Unchanged**: the same seven players |
+| `sf_bq052` | Rewritten. The old gold returns `summary_text` from `BRF_SUM_TEXT`. The new one returns `abstract` and joins citations the other way round. | **Replaced**: five patents (4229202, 6544620, 7422682, 9615657 and 10221536) became two (4921024 and 8260465), with no overlap |
+
+**And AIFunc departed from both versions on `sf_bq052`:**
+- **Backward citations.** Both Spider 2.0 golds count the same direction of
+  citation in both columns. The old one counts patents the patent cites; the
+  new one counts patents citing it, which is what the rewritten Snow question
+  says. AIFunc's instruction defines backward citations as "patents cited by
+  the current patent" and forward as "patents that cite the current patent".
+- **Application date.** AIFunc adds "using the earliest application date if
+  multiple exist".
+- **The forward window.** AIFunc makes it inclusive of the application date
+  and exclusive of the one-month boundary. The current gold does the reverse.
+
+Either AIFunc's generation rewrote the query well beyond adding AI functions,
+or its instruction misdescribes its own gold. The gold is held out, so which
+one cannot be told.
+
+**2. How long ago.** Dated by AIFunc's release, **2026-07-07**, 78 days ago.
+AIFunc came out 251 days after the gold rewrite. The rewrite (2025-10-29), the
+audit's supplement (2025-11-01) and its gold copy (2026-01-19) are Background.
+
+**3. How it relates to what has already been read.** Level 2 item 1 recorded
+that the audit's copy holds `sf001.sql` and the current folder does not, and
+read that as a difference of one file. It is a difference of almost all of
+them. Level 2 item 3 noted that the 2025 fixes had touched AIFunc bases.
+"Update 1029" touched nearly all of the public ones at once.
+
+**4. What through-line it changes.** **It withdraws Level 2's expectation
+that "about 41 of the 66 would be wrong, carrying about 53 of the 84
+tasks".** That expectation applied the audit's rate to AIFunc as if the two
+shared a gold. They do not. The audit measured Spider 2.0-Snow's gold as it
+stood before 2025-10-29, and AIFunc's instructions follow the gold as it has
+stood since.
+
+The corrected statement for the path: **no part of AIFunc stands on gold that
+anyone outside the two author teams has audited.** That now includes the 21%
+Level 2 counted as audited. How far the old verdicts carry over is unmeasured
+in both directions:
+- two of three answers read here are unchanged, and there the audit's verdict
+  on the answer plausibly still holds;
+- the third answer is entirely new.
+
+The 62.8% remains evidence that Spider 2.0-Snow's annotation process made
+many errors. It is not a rate that describes the gold AIFunc started from.
+
+**5. What to research next.**
+- **For all 36 bases, whether the expected answer changed across "update
+  1029".** Compare each ID's result file at commit `84911f3` with its `_a`/`_b`
+  files on `main`. That gives a count of AIFunc bases on which the audit judged
+  an answer that no longer exists (like `sf_bq052`) and a count on which the
+  answer survived (like `sf_local015` and `sf_local022`). It is a script over
+  public files and needs no database.
+- **Which citation definitions AIFunc's hidden `sf_bq052` gold uses.** Ask
+  the authors on `Leolty/Spider2-AIFunc`, or submit predictions under both
+  readings to the hand-scoring the evaluation guide offers. It is the one case
+  found where AIFunc's instruction contradicts the query it was derived from.
+
+**6. Source.** `github.com` is on `sources.md` for line B.
+- The [Spider 2.0 README](https://github.com/xlang-ai/Spider2/blob/main/README.md)
+  News entry for 2025-10-29: **full page read**.
+- [Commit `575a7a4`](https://github.com/xlang-ai/Spider2/commit/575a7a4):
+  **landing page only**. The page gave the 2,136-file count and truncated the
+  file list.
+- Commit histories for
+  [`sf_bq052.sql`](https://github.com/xlang-ai/Spider2/commits/main/spider2-snow/evaluation_suite/gold/sql/sf_bq052.sql),
+  [`sf_local022.sql`](https://github.com/xlang-ai/Spider2/commits/main/spider2-snow/evaluation_suite/gold/sql/sf_local022.sql),
+  [`sf_bq295.sql`](https://github.com/xlang-ai/Spider2/commits/main/spider2-snow/evaluation_suite/gold/sql/sf_bq295.sql)
+  and [`sf_local010.sql`](https://github.com/xlang-ai/Spider2/commits/main/spider2-snow/evaluation_suite/gold/sql/sf_local010.sql):
+  **full page read**.
+- Gold SQL, current and in the [audit's copy](https://github.com/uiuc-kang-lab/text_to_sql_benchmarks/tree/main/SAR-Agent/spider2/sql),
+  for `sf_bq052`, `sf_local022` and `sf_bq295`: **read in full**. Also read in
+  full: `sf_local022` at [`a5f0ca2`](https://raw.githubusercontent.com/xlang-ai/Spider2/a5f0ca2/spider2-snow/evaluation_suite/gold/sql/sf_local022.sql)
+  and `sf_bq052` at [`d431404`](https://raw.githubusercontent.com/xlang-ai/Spider2/d431404/spider2-snow/evaluation_suite/gold/sql/sf_bq052.sql).
+  The line counts cover all 120 files in both copies.
+- Expected results, **full page read**:
+  - `sf_bq052` at [`84911f3`](https://raw.githubusercontent.com/xlang-ai/Spider2/84911f3/spider2-snow/evaluation_suite/gold/exec_result/sf_bq052.csv)
+    and on `main` ([`_a`](https://raw.githubusercontent.com/xlang-ai/Spider2/main/spider2-snow/evaluation_suite/gold/exec_result/sf_bq052_a.csv),
+    [`_b`](https://raw.githubusercontent.com/xlang-ai/Spider2/main/spider2-snow/evaluation_suite/gold/exec_result/sf_bq052_b.csv));
+  - `sf_local022` at [`84911f3`](https://raw.githubusercontent.com/xlang-ai/Spider2/84911f3/spider2-snow/evaluation_suite/gold/exec_result/sf_local022.csv)
+    and on [`main`](https://raw.githubusercontent.com/xlang-ai/Spider2/main/spider2-snow/evaluation_suite/gold/exec_result/sf_local022_a.csv).
+- The supplement: **full text read**, extracted by the session.
+
+**7. Verified / inferred / assumed.**
+- **Verified:**
+  - the News wording;
+  - the commit's file count and message;
+  - the four file histories;
+  - the old-versus-new queries and answers for `sf_local015`, `sf_local022`
+    and `sf_bq052`;
+  - AIFunc's `sf_bq052` definitions;
+  - that the supplement never mentions the October change.
+- **Verified by counting in this level:** 116 of 120 files differ by two or
+  more lines, 35 of the 36 AIFunc bases do, and `sf_bq294` differs by one
+  line.
+- **Inferred:**
+  - that the 32 AIFunc bases whose history was not read also changed in
+    "update 1029" and not in the 2025-07-17 or 2025-08-06 commits;
+  - that a line-count difference is a substantive rewrite and not
+    reformatting. It was substantive in all three cases read.
+  - the citation directions in both `sf_bq052` golds. That reading rests on
+    PatentsView's convention that `patent_id` in `USPATENTCITATION` is the
+    citing patent and `citation_id` the cited one, which was not checked
+    against PatentsView's own documentation here.
+- **Assumed:** that the audit's 62.8% was computed against the gold in its own
+  repository copy. The supplement does not name the gold's version, and the
+  copy matches the pre-October files in every case compared.
+
+---
+
+### What was dropped and why
+
+- **Commit `575a7a4`'s full file list.** The commit page truncates, so the
+  number of gold SQL files the commit itself changed was not taken from it.
+  The line-count comparison stands in for it.
+- **"A Cost-Aware Agentic Architecture for NL-to-SQL over Nested Enterprise
+  Schemas, with a New Benchmark" (arXiv:2609.04641, September 2026).** It is in
+  window and surfaced by the search on the audit. It reports on Spider 2.0-Snow
+  as a whole and does not touch its gold versions or AIFunc, and it could be
+  seen only as a search summary.
+- **The Spider 2.0 News entry of 2026-08-12, on the suspension of the
+  Snowflake evaluation account.** It is in window, but it concerns access, not
+  gold. It is already the latest entry Level 1 recorded.
+- **Pith's and Lacuna's renderings of the two papers.** They are third-party
+  readers of a refused host, so they were not fetched, as in Levels 1 and 2.
+
+### What was searched for and not found
+
+- **A per-example error list in the audit's supplement.** None. It names one
+  example, `sf_local015`. That is why this level could test the audit's
+  verdict on one base and not 36.
+- **Any statement by the audit's authors on Spider 2.0's 2025-10-29 gold
+  rewrite.** The supplement has none. The audit repository's in-window
+  commits are BIRD-only (Level 2).
+- **The date and content of arXiv:2601.08778v3.** Search shows that a v3
+  exists and does not give its date. `arxiv.org` refused.
+- **Any audit or re-annotation of Spider 2.0-Snow's post-October gold.** Two
+  differently worded searches returned only the January audit, its CIDR
+  version, and forks of Spider 2.0.
+- **Anyone connecting AIFunc with `spider2-snow-0713.jsonl` or "update
+  1029".** A search on the names together returned the separate pages and
+  nothing linking them.
+- **Spider 2.0's data update log**, the Google Doc linked from its README,
+  which would say what "update 1029" changed per example. `docs.google.com`
+  refused.
+
+### Where this path ends
+
+The three levels together say this about AIFunc's headline, "the best models
+reach 67-70%":
+
+- **Level 1: it is a score on a set nobody else has.** The paper's figures fit
+  465 tasks. The public release holds 393, and seventy-two were removed with no
+  note. The release is scored by hand, by the authors, on request.
+- **Level 2: its answer key was inherited, not checked.** AIFunc rewrote
+  Spider 2.0-Snow's private gold and describes no check that the gold was
+  correct. The one independent audit of Spider 2.0-Snow covered only the 121
+  examples with public gold, and found most of them wrong.
+- **Level 3: even that audit does not describe what AIFunc used.** AIFunc
+  started from Spider 2.0's July 2025 questions and its October 2025 gold, and
+  the audit judged the gold as it stood before October. In the three cases
+  read, the October rewrite sometimes changed the answer and sometimes did not.
+  AIFunc then rewrote each task again, which on the audit's own example
+  removed the error the audit had found.
+
+**No version of the answer key behind 67-70% has been checked by anyone
+outside the people who wrote it.** A reader should not use the figure as a
+measured difficulty, and should not use the gap against Spider 2.0-Snow's
+96.70 as a measured gap. What it supports is weaker: on the authors' own
+unreleased set, current frontier models fail about a third of AI-function
+SQL tasks, and some of those failures may belong to the answer key. That
+could change on either of two events:
+- AIFunc's authors release the gold, or open scoring;
+- someone audits Spider 2.0-Snow's post-October gold.
+
+The first is the only one either team has promised, as "the official
+submission process is still being finalized".
