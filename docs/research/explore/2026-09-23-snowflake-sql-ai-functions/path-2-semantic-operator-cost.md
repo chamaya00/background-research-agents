@@ -1040,3 +1040,735 @@ lines, but this repository is not.
   paper's text.** `sembench.github.io`, `deem.berlin`, `utndatasystems.github.io`
   and `arxiv.org` all refused. So whether the leaderboard lists any
   production engine besides BigQuery rests on the repository alone.
+
+---
+
+## Level 3 - Whether SemBench's BigQuery cost is an undercount, and whether it reaches what was published
+
+**Headline: yes, and yes. Every error goes the same way: it makes BigQuery
+look cheaper.** SemBench reads BigQuery's token counts from a log. Google's
+own tutorial for that log says it takes "a few minutes" to fill. SemBench's
+runner waits seconds, then keeps whatever it finds.
+
+- **An empty log** is recorded as **$0.00**, and the query is still marked
+  `"success"`.
+- **A half-filled log** is recorded as the query's cost, and nothing flags
+  it.
+
+The paper's tables, its scale-factor figure and the leaderboard all apply the
+same rule: they discard the $0.00 runs as "not supported", but they average
+the half-counted runs in. The cells affected come out about a fifth too
+cheap. On one cars query, that is enough to rank BigQuery below ThalamusDB,
+when the full count puts it 17% above.
+
+No one has reported this upstream. Nothing about it changed in the window. At
+HEAD (2026-07-15), the repository still serves these files from a snapshot it
+labels "Paper submission version - October 2025".
+
+Two more findings qualify the leaderboard:
+
+- **Its "GPT-4o Mini" and "GPT-5 Mini" views show a BigQuery column that is
+  really a Gemini run.** It is copied from the Gemini folders, and nothing on
+  the leaderboard says so.
+- **The same snapshot holds Snowflake `AI_FILTER` queries for four scenarios
+  and Snowflake results for one.** No Snowflake cost or accuracy number was
+  ever published from them. This corrects Level 2's "no Snowflake runner
+  exists anywhere".
+
+**What this level asked, and the answer.**
+
+- **Is the one production-warehouse cost figure in SemBench an undercount?**
+  Yes.
+  - **Zeros:** 76 of 2,114 successful BigQuery records carry zero tokens and
+    zero cost while returning rows.
+  - **Partial counts:** at least seven more carry a partial count.
+- **Does it reach what was published?**
+  - The zeros do not: they are dropped.
+  - The partial counts do. They lower BigQuery's cost by 19-26% on movie Q7
+    at four of the five scale factors in the scale-factor figure, and by 22%
+    on cars Q5 in the main table.
+
+---
+
+### 1. The runner records whatever the log holds when it looks, and Google says the log takes minutes to fill
+
+**1. What it is.** This item is the mechanism, read from the code.
+
+**Where `token_usage` comes from.**
+
+- **The log.** BigQuery's `AI.IF`, `AI.CLASSIFY` and `AI.SCORE` call Gemini
+  through Vertex AI. Vertex AI can write a copy of every model request and
+  response to a BigQuery table. This is called **request-response logging**.
+  - The table has `full_request` and `full_response` columns, both JSON.
+  - It also has a `logging_time` column, which Google's tutorial defines as
+    "roughly when the response was returned".
+- **How SemBench finds its own calls.** It tags each call with a label,
+  `query_uuid = <run id>-q<query number>`. After the run, it sums Gemini's
+  own usage fields over five `inference_logs.*` tables, filtered on
+  `JSON_VALUE(full_request, '$.labels.query_uuid') = @query_uuid`. Level 2
+  inferred that filter; it is now read.
+- **The log tables are not created anywhere in the repository.** So how
+  logging was configured, including what fraction of requests it samples,
+  is outside the code.
+
+**Two rules in the runner at HEAD produce the undercount.**
+
+- **Any non-empty result is final.** An empty result raises "usage not
+  materialized yet (no rows)" and triggers a retry. A non-empty result is
+  accepted at once.
+  - Nothing compares the number of logged responses with the number of rows
+    the model was called on.
+  - So a log that has caught up with half the calls yields half the tokens,
+    and the record looks normal.
+- **Failure is written as a success.** When the retries run out, the runner
+  prints "Could not retrieve cost data ... setting to 0". It sets
+  `token_usage` to 0 and `money_cost` to 0.0.
+  - `status` stays `"success"`. It was set when the query returned rows.
+  - `run.py` prints tokens and cost only when they are above zero. So on the
+    console, a zeroed query looks like a query with no cost line, not like a
+    failure.
+
+**How long the runner waits, against how long Google says the log takes.**
+
+- **At HEAD:** a 5-second sleep, then at most three attempts 5 seconds apart,
+  so about 15 seconds. Commit `d9ae9fb` added the first sleep on 2025-11-20:
+  "add initial 5 seconds wait for inference log materialization".
+- **In the version uploaded with the results on 2025-10-01** (`f7f3569`):
+  there is no initial sleep, and `max_retries = 12  # 12 * 5s = 1 minute max
+  wait`. The retry still applies only to an empty result.
+- **Google's tutorial for this logging:**
+  - "It can take a few minutes for the dataset to be created and for logs to
+    show up".
+  - It waits two minutes before querying the table.
+  - "It may take a few minutes for new logs to appear."
+  - Request-response pairs larger than the 10 MB BigQuery write-API row limit
+    "will not be recorded".
+  - A `sampling_rate` below 1.0 logs only that fraction of requests.
+
+**What the files show fits that timing.**
+
+- **The zeros are the end of the run.** A run executes every query first and
+  reads the logs afterwards, in the same order. So the last queries executed
+  are read soonest after they finish.
+  - The execution order is the key order in each metrics file, because the
+    runner builds the metrics in query order.
+  - In the four runs checked, the zeros are the last queries executed:
+    - movie `across_system_2.5flash_1`: Q7-Q10;
+    - movie `_3`: Q6-Q10;
+    - cars `_1`: Q4-Q9 (cars files run in the order Q1, Q10, Q2 ... Q9).
+  - Cars `_4` shows the boundary inside one run:
+
+    | Query | Tokens recorded | Same query in other rounds |
+    |---|---|---|
+    | Q4 | 3,973,003 | 3,973,003 |
+    | Q5 | **774,640** | 5.96-6.33 million |
+    | Q6-Q9 | **0** | millions |
+
+- **No speed signature, against the cache explanation.** Level 2 named an
+  engine-side cache as the alternative to a logging failure. If the model had
+  not been called, the zero and partial runs should be faster. They are not:
+  - movie Q7's zero and partial runs took **135-340 s**;
+  - its full-count runs took **137-593 s**.
+- **Identical output is not evidence either way.** The model is deterministic
+  here. Full runs of movie Q7 recorded exactly 8,515,104 tokens eleven
+  times. The 112,062-token run (`sf1000_repeat2`) returned the same 36,236
+  rows, with the same precision and recall, as a 9,182,314-token run.
+  A cache would also do that.
+- **The systems that count tokens in-process never zero out.** Counts
+  computed by the session from the repository's metrics files, for records
+  with zero tokens but at least one row:
+
+  | System | Records with zero tokens | Share |
+  |---|---|---|
+  | BigQuery | 76 of 2,114 | 3.6% |
+  | LOTUS | 0 of 1,525 | 0% |
+  | ThalamusDB | 0 of 1,417 | 0% |
+  | Palimpzest | 0 of 1,081 | 0% |
+  | FlockMTL | 10 of 10 | 100% |
+  | Caesura | 5 of 8 | 63% |
+
+  - LOTUS reads its counts from `lotus.settings.lm.stats`, in the same
+    process that made the calls, according to SemBench's submit page.
+  - FlockMTL and Caesura are samples too small to read, and they come from
+    different runners.
+
+**Nobody has flagged it.** None of SemBench's 12 issues concerns BigQuery,
+tokens or cost. Level 2 found that none of its 15 pull requests does either.
+
+**A source of truth that does not depend on the log** (search summary only).
+BigQuery now shows, "for some generative AI functions", the input, output,
+thought and cache token counts per query under "Job information". This is in
+Preview. According to a search summary, the Job REST resource also carries
+"GenAi stats". Neither is dated in anything read. SemBench's runner reads
+neither.
+
+**Background (out of window).**
+
+- The runner as uploaded on 2025-10-01, and the 2025-11-20 change.
+- Google's tutorial notebook, by Eric Dong, © 2025.
+
+**2. How long ago.**
+
+- **2026-07-15**, 70 days ago, for HEAD `c814e38`: the repository state that
+  still carries all of this. Level 1 dated the same merge, pull request #28,
+  2026-07-16. The difference is presumably a time zone.
+- Everything else in this item is Background.
+
+**3. How it relates to what has already been read.**
+
+- **It settles Level 2 item 1's main inference.** Level 2 said: "That the Q7
+  and Q6 zeros and the 2.68 million figure are log-capture undercounts rather
+  than real savings... An engine-side cache is the alternative explanation."
+  The mechanism is now read in code. The run-tail pattern and the timing
+  evidence favour the log.
+- **It verifies the `query_uuid` filter**, which Level 2 could only infer.
+- **Filing.** It serves `analytics-broad`, in its reading as the measurement
+  of AI systems, and touches `warehouse-agentic`. Both have a 90-day window
+  in this mode.
+
+**4. What through-line it changes.** Level 2 said SemBench's BigQuery cost "is
+not a bill". This item adds that **it is not a complete count of tokens
+either**. It counts the tokens that had reached an asynchronous log within
+seconds (or a minute, in the 2025 version), and checks nothing.
+
+The general lesson for this path: **a cost read from a log that is written
+after the fact is a lower bound, not a measurement, unless something
+reconciles it** against the number of calls or against the bill.
+
+**5. What to research next.**
+
+- **Whether BigQuery's job-level token statistics match the log on a full
+  run.**
+  - The test query is movie Q7, which records 8,515,104 tokens in most full
+    runs. Run it once. Read the Preview "Job information" counts and the
+    Job resource's GenAi stats. Then query the `inference_logs` table after
+    0 s, 15 s, 60 s and 5 minutes.
+  - That would show how fast the log fills and whether a reconciled source
+    exists.
+  - The field names and the Preview date need `docs.cloud.google.com`, which
+    refused this run. The measurement needs a GCP project. That makes it a
+    task for an engineer, not for reading.
+- **How SemBench's `inference_logs` dataset was configured.**
+  - What `sampling_rate` did it use?
+  - Did any request-response pair exceed the 10 MB row limit? E-commerce q8,
+    which joins long descriptions to product images, is the candidate.
+  - The setup is not in the repository. It needs the paper's appendix
+    (`arxiv.org/html/2511.01716v2`) or an issue on `SemBench/SemBench`.
+
+**6. Source.** From open search. `github.com` is on `sources.md` for other
+lines, but this repository is not.
+
+- **Full file read, from a fresh clone of HEAD `c814e38` made by the
+  session:**
+  - [`generic_bigquery_runner.py`](https://github.com/SemBench/SemBench/blob/c814e38/src/runner/generic_bigquery_runner/generic_bigquery_runner.py),
+    [`generic_runner.py`](https://github.com/SemBench/SemBench/blob/c814e38/src/runner/generic_runner.py),
+    [`run.py`](https://github.com/SemBench/SemBench/blob/c814e38/src/run.py)
+    and [`run_worker.py`](https://github.com/SemBench/SemBench/blob/c814e38/src/run_worker.py).
+  - The experiment scripts
+    [`scale_factor_experiment_timeout.sh`](https://github.com/SemBench/SemBench/blob/c814e38/scripts/scale_factor_experiment_timeout.sh)
+    and [`repeat_experiment.sh`](https://github.com/SemBench/SemBench/blob/c814e38/scripts/repeat_experiment.sh).
+  - The runner section of [`docs/submit.html`](https://github.com/SemBench/SemBench/blob/c814e38/docs/submit.html).
+  - The BigQuery metrics files for cars
+    [`across_system_2.5flash_1`](https://github.com/SemBench/SemBench/blob/c814e38/files/cars/metrics/across_system_2.5flash_1/bigquery.json)
+    to [`_5`](https://github.com/SemBench/SemBench/blob/c814e38/files/cars/metrics/across_system_2.5flash_5/bigquery.json),
+    and for movie `_1` to `_5`, `sf1000_repeat1` and
+    [`sf1000_repeat2`](https://github.com/SemBench/SemBench/blob/c814e38/files/movie/metrics/across_system_2.5flash_sf1000_repeat2/bigquery.json).
+  - The Q7 record in every movie BigQuery file.
+- **Computed by the session from the repository's metrics files:** the
+  76-of-2,114 count, the per-system counts and the movie Q7 series.
+- **Full page read:** the [issue list](https://github.com/SemBench/SemBench/issues?q=is%3Aissue),
+  the [runner's commit history](https://github.com/SemBench/SemBench/commits/main/src/runner/generic_bigquery_runner),
+  and commit [`d9ae9fb`](https://github.com/SemBench/SemBench/commit/d9ae9fb78f8e450cdd8fa9016794814d4f79a2a9)
+  for its message only. Its diff did not render.
+- **Read through a fetch tool that summarises, so the quoted lines are its
+  quotes:**
+  - The [2025-10-01 runner at `f7f3569`](https://raw.githubusercontent.com/SemBench/SemBench/f7f3569/src/runner/generic_bigquery_runner/generic_bigquery_runner.py).
+  - Google's [request-response logging notebook](https://github.com/GoogleCloudPlatform/generative-ai/blob/main/gemini/logging/intro_request_response_logging.ipynb),
+    read from `raw.githubusercontent.com`.
+- **Search summary only:**
+  - Google's [request-response logging page](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging).
+    `docs.cloud.google.com` refused, and `cloud.google.com` redirected there.
+  - BigQuery's job-level token counts, via
+    [the token-quota page](https://docs.cloud.google.com/bigquery/docs/control-genai-costs)
+    and [the Job resource](https://docs.cloud.google.com/bigquery/docs/reference/rest/v2/Job).
+
+**7. Verified / inferred / assumed.**
+
+- **Verified:**
+  - The accept-if-not-empty rule.
+  - That a failure is written as zero while the status stays `"success"`.
+  - The console printing tokens only when above zero.
+  - The 5-second sleep and the three attempts at HEAD, and `d9ae9fb`'s date
+    and message.
+  - The label filter.
+  - That nothing in the repository creates the log tables.
+  - The run-tail pattern in the four runs named, and the cars `_4` figures.
+  - The Q7 execution-time ranges.
+  - The per-system counts (the session's computation).
+  - That there is no upstream issue.
+- **Verified through a summarising fetch, and filed with that caveat:**
+  - The 12 retries and the absence of an initial sleep at `f7f3569`.
+  - The tutorial's "a few minutes", its two-minute wait, `sampling_rate` and
+    the 10 MB limit.
+- **Inferred:**
+  - That log latency is the cause. This rests on the run-tail pattern, the
+    empty-only retry and Google's wording.
+  - That an engine-side cache is not the cause. This rests on execution times
+    alone. A cache that still took minutes is not ruled out.
+- **Search summary only, filed as inferred:** the job-level token counts and
+  their Preview status.
+- **Assumed:** that SemBench logged at a sampling rate of 1.0. A lower rate
+  would thin every query evenly rather than zero the end of a run, so the
+  pattern argues against it. But the configuration was not read.
+
+---
+
+### 2. The published aggregates drop the zeros and keep the partial counts, so the error reaches the paper's table and figure, in BigQuery's favour
+
+**1. What it is.** This item covers how the per-run records become published
+numbers, and what the leaderboard labels them as.
+
+**Three aggregators, one rule.** Each treats a record with `money_cost` 0 as
+"system doesn't support this query in this run" and leaves it out, along with
+that run's quality and latency.
+
+- **`src/table_brick_design_avg.py`** writes the per-scenario LaTeX heatmap
+  tables. Their caption reads "Experimental Results of SemBench for the {...}
+  Scenario".
+  - Its code says: "Check if this system supports this query (money_cost >
+    0)".
+  - By default it averages the five round folders
+    `across_system_2.5flash_{1..5}`.
+- **`src/plot_scalability_combined.py`** is headed "Combined Scalability and
+  Memory Plotting for VLDB Conference Paper".
+  - It reads only the `_sf*_repeat*` folders.
+  - It skips a record `if exec_time <= 0 or money <= 0`.
+  - It averages each query over its repeats, then averages over the queries
+    every system completed.
+- **The leaderboard's `docs/static/js/sembench.js`** says "Only include if has
+  positive cost (matches Python logic)".
+  - Its only data version is `paper-2025-10-01`, described in `versions.json`
+    as "Paper submission version - October 2025" and created 2025-09-19.
+  - That snapshot holds the same zero records and the same partial counts
+    (checked by grep, including `774640` and `112062`).
+
+**What the rule does to the two kinds of error.**
+
+- **Zeros are dropped, not averaged in as $0.** That part of the rule works.
+  But whole runs go with them:
+  - in the main movie table, BigQuery's Q7-Q10 rest on 3 of 5 rounds, and
+    Q6 on 4;
+  - in the main cars table, Q4-Q9 rest on 3 or 4.
+- **Partial counts are above zero, so they are kept** as that run's cost.
+
+**Two verified cases where a partial count changes a published number.**
+
+- **Cars Q5, main table.** BigQuery's round costs:
+
+  | Round | Cost | Tokens |
+  |---|---|---|
+  | 2 | $1.85 | 5,984,816 |
+  | 3 | $1.84 | 5,960,386 |
+  | 4 | **$0.25** | **774,640** |
+  | 5 | $1.95 | 6,328,482 |
+  | 1 | $0 (dropped) | 0 |
+
+  - The cell's mean is **$1.47**. The mean of the three full rounds is
+    **$1.88**, so the cell is **22% low**.
+  - ThalamusDB's cars Q5 costs **$1.61** in each of four rounds; its fifth
+    record is a zero and is dropped.
+  - So the table puts BigQuery **9% cheaper than ThalamusDB**. The full count
+    puts it **17% dearer**.
+  - Palimpzest, at $0.011, is cheapest either way.
+  - BigQuery's answer was exact (relative error 0.0) in all five rounds,
+    including the partial one and the zero one.
+- **Movie Q7, scale-factor figure.** BigQuery's recorded mean, as the plot
+  computes it, against the mean of the full-count repeats:
+
+  | Rows | Full-count repeats | Recorded mean | Full-count mean | Low by |
+  |---|---|---|---|---|
+  | 1,000 | 4 of 5 | $2.68 | $3.34 | 20% |
+  | 2,000 | 4 of 5 | $2.65 | $3.28 | 19% |
+  | 4,000 | 5 of 5 | $3.28 | $3.28 | 0% |
+  | 8,000 | 3 of 5 | $2.47 | $3.28 | 25% |
+  | 16,000 | 2 of 5, plus one zero dropped | $2.42 | $3.28 | 26% |
+
+  - In one raw file the ordering against LOTUS inverts. At 16,000 rows,
+    repeat 1, BigQuery records **$1.03** against LOTUS's **$1.50**. The full
+    count, about $3.28, is 2.2 times LOTUS's.
+  - The figure averages repeats, so it does not show that inversion. Its
+    BigQuery line and error band are still pulled down and widened by the
+    partial counts.
+
+**How much, and in which direction.**
+
+- **Direction.** Every effect found makes BigQuery look cheaper, never
+  dearer.
+- **Size.** At 1,000 rows, Q7's shortfall is $0.66. That is about a ninth of
+  BigQuery's summed movie cost per run, about $5.75 over ten queries in
+  repeat 1. This holds if Q7 is among the queries every system completed.
+- **Unchecked.** The main movie table is unaffected: its three full rounds
+  are clean. Animals, e-commerce, medical and MMQA were not checked for
+  partial counts. A partial count is only detectable where a query has a
+  stable full-count reference.
+
+**Separately, the BigQuery column under the OpenAI model views is a Gemini
+run.**
+
+- **The files label themselves.**
+  - `files/movie/metrics/across_system_4omini/bigquery.json` records
+    `"model_name": "gemini-2.0-flash-001"` on every query.
+  - `across_system_5mini/bigquery.json` in movie, animals and medical records
+    `"gemini-2.5-flash"`.
+  - The session found the figures identical to the 2.0-flash and 2.5-flash
+    files. For example, Q7 is 8,734,443 tokens and $1.573 in both the
+    2.0-flash and 4o-mini files.
+  - So these are copies, and the files say so.
+- **The stand-ins match on price.** SemBench's own LOTUS price table gives:
+
+  | Model | Input, per million tokens | Output, per million tokens |
+  |---|---|---|
+  | `gpt-4o-mini` | $0.15 | $0.60 |
+  | `gemini-2.0-flash` (text) | $0.15 | $0.60 |
+  | `gpt-5-mini` | $0.25 | $2.00 |
+  | `gemini_2_5_flash` (BigQuery runner) | $0.30 | $2.50 |
+
+  - So the 4o-mini stand-in has identical text list prices.
+  - The 5-mini stand-in is 20-25% dearer per token, which biases that view
+    against BigQuery.
+- **The leaderboard does not say so.**
+  - `sembench.js` maps movie's `'4omini'` to "GPT-4o Mini" and `'5mini'` to
+    "GPT-5 Mini", and loads `bigquery.json` from those folders like any other
+    system.
+  - It has no BigQuery-specific handling. Its only BigQuery references are
+    the system list, the display name and the SQL path.
+  - The snapshot contains both movie files.
+  - No text in the README, `index.html`, `submit.html` or `website.readme`
+    explains the substitution.
+
+**2. How long ago.**
+
+- **2026-07-15**, 70 days ago, for HEAD: the state these aggregators and the
+  leaderboard are served in.
+- The aggregators (2025-09-17), the snapshot (2025-09-19, uploaded
+  2025-10-01) and the runs are Background.
+
+**3. How it relates to what has already been read.** It answers both halves
+of Level 2 item 1's first lead.
+
+- **Which recorded Q7 runs feed the scale-factor figure?** All the `_repeat`
+  folders except the zeros. The folders without `_repeat` (including
+  `sf16000`, which Level 2's table cited) feed only the memory plots, and
+  those skip BigQuery by code.
+- **Do `sf16000_repeat2` to `repeat5` show the same undercount?**
+  - `repeat2` is zero;
+  - `repeat3` is partial, at 5,450,174 tokens;
+  - `repeat4` and `repeat5` are full.
+
+It also qualifies Level 2's statement that "every recorded BigQuery run read
+here names gemini-2.5-flash". The 4o-mini file names 2.0 Flash.
+
+It serves `analytics-broad` and touches `warehouse-agentic`.
+
+**4. What through-line it changes.** A cleaning rule that treats missing data
+as "unsupported" catches the obvious failure and keeps the subtle one.
+
+- **It catches the zeros**, so no published cell reads $0.
+- **It averages the partial counts in**, so a published cell can read 22%
+  low and look normal.
+
+For this path, that turns Level 2's "not a bill" into **a lower estimate that
+favours the vendor, even as token arithmetic**.
+
+The model-substitution finding adds a second, general point. **A leaderboard
+keyed by model cannot hold a production warehouse to the same model.** The
+warehouse offers only its own vendor's models, so any "same model" comparison
+against it is a stand-in, and this one is unlabelled.
+
+**5. What to research next.**
+
+- **Re-score every BigQuery cell with the partial counts excluded, across all
+  six scenarios.**
+  - Flag any record below, say, half of that query's median tokens across
+    runs.
+  - Then list which main-table cells and which scale-figure points move, and
+    which rankings against LOTUS, ThalamusDB and Palimpzest flip.
+  - This run checked only movie and cars.
+  - It needs a script over `files/*/metrics`. That is an analyst's task with
+    no network.
+- **Whether the published paper shows the numbers these scripts produce.**
+  - Does arXiv:2511.01716v2's cars table show BigQuery Q5 at about $1.47?
+  - Does its model-comparison section put a BigQuery column beside
+    GPT-4o-mini or GPT-5-mini results?
+  - The generated file names itself `table_2.py`, not
+    `table_brick_design_avg.py`. So which script made which published table
+    is inferred.
+  - This needs `arxiv.org/html/2511.01716v2`, which refused this run.
+
+**6. Source.** From open search. `github.com` is on `sources.md` for other
+lines, but this repository is not.
+
+- **Full file read, from the session's clone of HEAD:**
+  - [`table_brick_design_avg.py`](https://github.com/SemBench/SemBench/blob/c814e38/src/table_brick_design_avg.py)
+    and [`plot_scalability_combined.py`](https://github.com/SemBench/SemBench/blob/c814e38/src/plot_scalability_combined.py).
+  - [`plot.py`](https://github.com/SemBench/SemBench/blob/c814e38/src/plot.py),
+    lines 2166-2260 and 4150-4230.
+  - [`sembench.js`](https://github.com/SemBench/SemBench/blob/c814e38/docs/static/js/sembench.js),
+    lines 1-90, 349-355 and 400-580, plus a search of the whole file.
+  - [`versions.json`](https://github.com/SemBench/SemBench/blob/c814e38/docs/static/versions.json).
+  - The generic LOTUS runner's [price table](https://github.com/SemBench/SemBench/blob/c814e38/src/runner/generic_lotus_runner/generic_lotus_runner.py).
+  - The Q5 record of every system in cars rounds 1-5.
+  - The `model_name` field of every BigQuery file under `across_system_4omini`
+    and `_5mini`.
+- **Computed by the session from the repository's metrics files:** the movie
+  Q7 series, and the identity of the 4o-mini and 5-mini files with their
+  Gemini counterparts.
+- **This run's own arithmetic,** from the verified figures: the means and
+  shortfalls in the two tables above.
+
+**7. Verified / inferred / assumed.**
+
+- **Verified:**
+  - The zero-means-unsupported rule in all three aggregators.
+  - That the snapshot is the leaderboard's only version and holds the same
+    records.
+  - The cars Q5 and movie Q7 figures. The means are arithmetic on them.
+  - The LOTUS inversion in `sf16000_repeat1`.
+  - The model names in the substituted files, and both price tables.
+  - That `sembench.js` gives BigQuery no special handling.
+  - That no explanatory text exists in the four files searched.
+- **Inferred:**
+  - That these scripts produced the paper's tables and figure. The file
+    names say so, and the paper could not be read.
+  - The "about a ninth" share.
+  - That the rendered leaderboard shows a BigQuery column in the 4o-mini and
+    5-mini views. `sembench.github.io` refused, so the page was not seen.
+  - That the stand-ins were chosen for price. The exact match for 4o-mini
+    suggests it, and nothing says it.
+- **Assumed:** that the partial counts are undercounts and not cheaper runs.
+  Item 1 argues this, but no billing record was read for any run.
+
+---
+
+### 3. The paper snapshot holds a Snowflake `AI_FILTER` column that was written, partly run, and never scored
+
+**1. What it is.** SemBench's paper snapshot, served by the leaderboard from
+`docs/static/data/paper-2025-10-01/`, contains **Snowflake Cortex query
+files** and **Snowflake results**. It contains no Snowflake cost or quality
+figure anywhere.
+
+**What exists:**
+
+- **`AI_FILTER` queries for four scenarios** (Cortex AI SQL is Snowflake's
+  family of SQL AI functions):
+  - movie: 10 files;
+  - e-commerce: 11;
+  - medical: 7;
+  - MMQA: 11.
+  - Movie Q7, for example, is the same review self-join as BigQuery's,
+    written as `AI_FILTER(PROMPT('These two movie reviews express opposite
+    sentiments ... {0} ... {1}', r1."reviewText", r2."reviewText"))`.
+- **Two e-commerce files record a limit**: "Currently not supported in
+  Snowflake with the following error: Unsupported prompt input modality type:
+  multiImages for function: AI_FILTER".
+- **Snowflake result files for medical** Q1, Q3, Q4, Q8 and Q10, in two
+  round folders, `flash_2` and `flash_4`. Their columns are in Snowflake's
+  upper case, for example `AGE,GENDER,SMOKING_HISTORY,...`. So at least one
+  scenario was run.
+
+**What is missing:**
+
+- **No `snowflake.json` metrics file**, in the snapshot or at HEAD.
+- **None in the 2025-10-01 upload's** `files/medical/metrics` folders.
+- **No Snowflake query folder** in that upload's `files/medical/query`.
+- **No runner class.** The repository's search finds no file named for
+  Snowflake outside the snapshot.
+
+**The code keeps a slot for it, switched off:**
+
+- `run.py` maps `"snowflake": "SnowflakeRunner"`, and no such class exists.
+- The e-commerce and medical scenario handlers import `setup.snowflake`
+  modules that are not in the repository.
+- The table generator has `# "Snowflake",` commented out of its system list.
+- `scripts/analysis.py` defaults to `include_snowflake = False`. The
+  analysis files it wrote say "The 'snowflake' system has been excluded from
+  this analysis".
+- `website_version_update.py` defaults to an analysis directory named
+  `academic_bigquery_snowflake_3scenarios`.
+- `sembench.js` lists `'snowflake'` among the systems it will load.
+- E-commerce's BigQuery runner still opens with the docstring "Snowflake
+  system runner implementation. Placeholder required by the current
+  structure".
+
+**Why it was dropped is not stated in anything read.**
+
+**2. How long ago.**
+
+- **2026-07-15**, 70 days ago, for HEAD, which still serves the snapshot.
+- The snapshot itself was created 2025-09-19 and uploaded 2025-10-01. It is
+  Background.
+
+**3. How it relates to what has already been read.**
+
+- **It corrects Level 2.** Level 2 wrote: "No Snowflake or Databricks runner
+  exists anywhere this run could reach". Its searches covered `src/runner/`,
+  forks, pull requests and issues.
+  - The runner code does not exist.
+  - Snowflake queries and results do, in `docs/`, where none of those
+    searches looked.
+- **It does not change Level 1 item 3's statement** that no Snowflake system
+  has been added "as an evaluated system". That remains true.
+- It serves `warehouse-agentic` and `analytics-broad`.
+
+**4. What through-line it changes.** Level 2 said Snowflake and Databricks
+have no independent measurement. The sharper version is this:
+**the one independent benchmark wrote a Snowflake `AI_FILTER` column, ran part
+of it, and published neither a cost nor an accuracy.**
+
+So the absence of a Snowflake number is not for lack of trying. What stopped
+it is not recorded.
+
+**5. What to research next.**
+
+- **Snowflake `AI_FILTER`'s accuracy on SemBench medical, computed from files
+  already in the repository.**
+  - Score the `flash_2` and `flash_4` Snowflake results for Q1, Q3, Q4, Q8
+    and Q10 against `raw_results/ground_truth`.
+  - Compare them with BigQuery's `bigquery_flash` results for the same five
+    queries.
+  - That would be the first third-party accuracy figure for `AI_FILTER` on
+    public data. It is an analyst's task with no network.
+- **Why the Snowflake column was dropped, and how its cost would have been
+  measured.**
+  - Does arXiv:2511.01716 v1 or v2 mention Snowflake Cortex?
+  - What did the `academic_bigquery_snowflake_3scenarios` analysis contain?
+    It is named in the code, but it is not in the repository.
+  - The routes are the paper's HTML, and an issue on `SemBench/SemBench`.
+
+**6. Source.** From open search. `github.com` is on `sources.md` for other
+lines, but this repository is not.
+
+- **Full file read, from the session's clone of HEAD:**
+  - The movie [Q1](https://github.com/SemBench/SemBench/blob/c814e38/docs/static/data/paper-2025-10-01/movie/query/snowflake/Q1.sql)
+    and [Q7](https://github.com/SemBench/SemBench/blob/c814e38/docs/static/data/paper-2025-10-01/movie/query/snowflake/Q7.sql)
+    Snowflake queries.
+  - E-commerce [q9](https://github.com/SemBench/SemBench/blob/c814e38/docs/static/data/paper-2025-10-01/ecomm/queries/dialects/snowflake/q9.sql).
+  - Medical [Q1](https://github.com/SemBench/SemBench/blob/c814e38/docs/static/data/paper-2025-10-01/medical/query/snowflake/Q1.sql)
+    and the head of its [`flash_2` result](https://github.com/SemBench/SemBench/blob/c814e38/docs/static/data/paper-2025-10-01/medical/raw_results/flash_2/snowflake/Q1.csv).
+  - E-commerce's [BigQuery runner](https://github.com/SemBench/SemBench/blob/c814e38/src/scenario/ecomm/runner/bigquery_runner/bigquery_runner.py).
+  - `scripts/analysis.py`, lines 290-340.
+  - A search of the whole repository for "snowflake" and "cortex", and file
+    listings of every `snowflake` folder.
+- **Full page read, through a fetch tool:** the 2025-10-01 upload's
+  [`files/medical/metrics`](https://github.com/SemBench/SemBench/tree/f7f3569/files/medical/metrics),
+  its [`across_system_2.5flash_2`](https://github.com/SemBench/SemBench/tree/f7f3569/files/medical/metrics/across_system_2.5flash_2)
+  and [`files/medical/query`](https://github.com/SemBench/SemBench/tree/f7f3569/files/medical/query)
+  listings, and the repository's commit search for "snowflake". It found one
+  commit, the 2026-03-20 Adopted by entry.
+
+**7. Verified / inferred / assumed.**
+
+- **Verified:**
+  - The query files and their counts, and the two e-commerce error notes.
+  - The medical result files.
+  - The absence of any Snowflake metrics file and of any runner class.
+  - Every code trace quoted.
+- **Inferred:**
+  - That "flash_2" and "flash_4" are round folders of the Gemini 2.5 Flash
+    experiments. This is from the naming.
+  - That the upper-case columns mean the results came from Snowflake.
+- **Assumed:** that no Snowflake metrics exist on a branch or in a file the
+  search missed. Only the default branch and the one upload commit were
+  checked.
+
+---
+
+### What was dropped and why
+
+- **An engine-side response cache as the main explanation.** Dropped as the
+  lead explanation because execution times show no speed signature and
+  identical outputs are normal here. It is kept as a named alternative in item
+  1.
+- **A sampling rate below 1.0 as the explanation.** It would thin every query
+  in proportion. The records show intact early queries and zeroed late ones.
+- **Google's 2025-09-17 blog, "BigQuery enhancements to boost gen AI
+  inference".** Read in full. It covers throughput and row-level retries
+  ("over 99.99% row-level success rate"), not token accounting, and it is
+  Background.
+- **The memory plots.** They skip BigQuery by code
+  (`if system_name.lower() == "bigquery": continue`).
+- **FlockMTL's 10 of 10 and Caesura's 5 of 8 zero-token records.** The
+  samples are tiny, and they come from different runners with different
+  causes, not examined here.
+- **Cars Q3's spread of 5.09-5.52 million tokens across rounds.** It is
+  within what an LLM-driven `LIMIT` query varies by, and was not treated as a
+  partial count.
+- **Quality drift from dropped runs.** Cars Q8 F1 runs from 0.17 to 0.28
+  across rounds. Dropping rounds 1 and 4 moves the mean from 0.23 to 0.24,
+  too small to report as an item.
+
+### What was searched for and not found
+
+- **An upstream issue or pull request about zero or missing BigQuery tokens.**
+  None among the 12 issues (the list was read), and none among the 15 pull
+  requests (Level 2).
+- **Any critic of SemBench's cost method.** A search phrased as "SemBench
+  BigQuery token usage zero cost inference logs undercount" returned only the
+  repository, the paper and Google's documentation.
+- **SemBench's logging configuration.** Neither the sampling rate nor any
+  table-creation step appears in the code, the README or the submit page.
+- **Google's documented latency on its own logging page.**
+  `docs.cloud.google.com` refused. Only the tutorial notebook's wording was
+  read.
+- **When BigQuery's job-level token counts shipped.** The release notes are
+  on the refused host, and three searches gave no date.
+- **The paper's text.** `arxiv.org` refused, so which script produced which
+  published table is inferred from file headers.
+- **Any in-window change to BigQuery results, the runner, the aggregators or
+  the leaderboard data.** None.
+  - The runner was last changed 2025-11-20.
+  - `versions.json` holds one version.
+  - The one repository commit that mentions Snowflake is the 2026-03-20
+    Adopted by entry.
+
+### Where this path ends
+
+Three levels, one chain.
+
+- **Level 1** found that the cost of a warehouse AI function has become an
+  optimiser problem.
+  - The research estimators that would steer it are poor: off by 16 to 664
+    times on average.
+  - Snowflake's engine team sidesteps estimation by learning while the query
+    runs.
+  - The only harness that has scored a production engine, SemBench on
+    BigQuery, had not re-run it this quarter.
+- **Level 2** found that even that one score is not independent and not a
+  bill.
+  - Google's BigQuery team co-wrote it.
+  - It prices logged tokens at list rates.
+  - Every other production number this quarter came from the vendor itself.
+- **Level 3** found that the log undercounts, and that the undercount reaches
+  the published results.
+  - About one run in thirty records no cost at all. Those runs are
+    discarded.
+  - A smaller number record part of the cost. Those are averaged in.
+  - The result is a vendor's function reported as cheaper than it was, by
+    about a fifth where it shows, and cheap enough to change one ranking.
+  - The same snapshot also shows that SemBench wrote a Snowflake column and
+    never scored it.
+
+The plain answer to the question under the whole path: **a published cost
+figure for a warehouse AI function can be trusted only as far as its token
+source is reconciled against the bill.** Today, nothing checked by this path
+does that:
+
+- no vendor's own figure;
+- SemBench's BigQuery column;
+- Snowflake's analytical 11.4×;
+- Databricks' 1/100th.
+
+The likely fix looks cheap: read job-level statistics or billing exports
+instead of a log, and fail loudly on a zero. The job-level route is in Preview
+and was read here only in search summaries. Until someone does this, the
+honest reading of any such number is **"at least this much"**.
