@@ -192,3 +192,16 @@ a factory release does not touch:
 Knowledge changes wording only. A reaction that says something is already
 understood must never narrow what gets fetched - that conflation is what
 `docs/research/3-state-and-source-schema.md` was written to prevent.
+
+## Lessons
+
+Cross-role, so they are here rather than in four copies under `docs/memory/`.
+Same rules as those files: one line, the reason attached, deleted once a check
+enforces it.
+
+- Do not leave a pull request open across a factory release. #10 branched
+  before v1.38.0 and its diff against `main` two days later would have deleted
+  the `research-craft` skill and rolled four workflow pins back to v1.36.0 -
+  it stopped being a retro and became a revert, while still reading as a
+  retro in the list. Rebase it the day the release lands, or re-cut it from
+  `main` and close the original.
