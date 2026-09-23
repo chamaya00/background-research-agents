@@ -33,6 +33,7 @@ which settled this split for the pipeline that was being built at the time:
 |---|---|---|---|
 | Interests | which subjects get fetched | **Yes** | No |
 | Not interested | what is actively excluded | **Yes** | No |
+| Window | how far back an item may be dated | **Yes** | No |
 | Knowledge | what is already known | **No** | **Yes** |
 | Format | how the result is rendered | No | **Yes** |
 
@@ -42,6 +43,13 @@ else. A reaction that reads as knowledge ("I already know what RAG is") must
 not end up in Interests, or the brief quietly stops covering a subject the
 reader only said they understood.
 
+**Window** is a fifth section rather than a Format line, and the first
+reaction is what exposed the need for it. Recency gates selection - an item
+outside the window is excluded, not reworded - so filing it under Format would
+be the exact conflation this split exists to prevent. #2's original three axes
+had recency under *preference*, which gates selection; folding preference into
+Interests and Format lost it, and this puts it back.
+
 The encoding is prose rather than the YAML that document specified, because
 the consumer changed: that schema was read by a parser, and this file is read
 by an agent. The axes are the part that was decided; the file format was not.
@@ -49,7 +57,15 @@ by an agent. The axes are the part that was decided; the file format was not.
 ## Interests
 
 - Analytics for enterprise AI, broadly - what actually changed, not
-  explainers. *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20.*
+  explainers. *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20. Confirmed
+  as covering both readings - analytics products AI has changed, and the
+  measurement of AI systems - by the reaction to brief
+  [#24](https://github.com/chamaya00/background-research-agents/issues/24), 2026-09-23.*
+- Measuring agent efficacy in an enterprise setting - evals, benchmarks, and
+  what an enterprise accepts as evidence that a deployed agent works.
+  *Brief [#24](https://github.com/chamaya00/background-research-agents/issues/24), "add another research angle on
+  measuring agent efficacy in an enterprise setting", 2026-09-23. Not yet
+  covered by any brief, so it carries the 90-day first pass below.*
 
 <!--
 Nothing below the seed line yet, on purpose. Subjects belong here once a
@@ -62,6 +78,24 @@ would put three invented preferences in front of every future run.
 ## Not interested
 
 <!-- Empty. Fills from reactions that say "less of this". -->
+
+## Window
+
+- **90 days for a subject's first appearance in a brief, 30 days after that.**
+  *Brief [#24](https://github.com/chamaya00/background-research-agents/issues/24), "match the recommended 90 days at
+  first then 30 days", 2026-09-23.*
+
+<!--
+This is #21's own recommendation, and its argument is why the rule is written
+per *subject* rather than per brief: a first pass has no predecessor to have
+covered the older material, and that is true of a newly added subject just as
+much as of a newly started topic. Read per brief it would already have expired
+- #20 and #24 both exist - and adding a subject would inherit a 30-day window
+that has never once been applied to it.
+
+So on the next run: "analytics for enterprise AI, broadly" is at 30 days, and
+"measuring agent efficacy" is at 90.
+-->
 
 ## Knowledge
 
