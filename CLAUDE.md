@@ -189,6 +189,12 @@ a factory release does not touch:
    translated by a reader, not obeyed literally, and the translation is the
    step the person has to be able to veto.
 
+**`/round` runs the driver's side of a round**: forming and queuing the
+next one, delivering a merged report and recording it, and turning a reaction
+into a diff. A session-start hook says when a merged brief was never
+recorded. Use the command rather than working the steps out from
+`loop.md` each time. That is how round 4's topic state went unrecorded.
+
 Knowledge changes wording only. A reaction that says something is already
 understood must never narrow what gets fetched - that conflation is what
 `docs/research/3-state-and-source-schema.md` was written to prevent.
