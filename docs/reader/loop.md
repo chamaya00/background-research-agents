@@ -63,6 +63,13 @@ the factory's reach.
 6. **Commit the diff as one pull request against `profile.md`.** One per
    brief, so the file's git history is the reaction log.
 
+   **The same pull request updates topic state** for every topic the brief
+   covered: bump `runs`, set `last` to the brief's date, add the brief to
+   `Briefs:`, add the items it yielded to `Items:`, and clear `run in flight`.
+   The window is derived, so it corrects itself. Doing this anywhere but here
+   is how it goes stale - the reaction pull request is the one moment when the
+   brief is finished, read, and in front of somebody.
+
 7. **Post the reaction and the resulting diff back to the brief's issue**, so
    the thread is complete even when the reaction happened in a session. The
    issue thread is the human-readable record; `profile.md`'s history is the

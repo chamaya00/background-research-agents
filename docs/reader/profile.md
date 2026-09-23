@@ -56,35 +56,85 @@ by an agent. The axes are the part that was decided; the file format was not.
 
 ## Interests
 
-- Analytics for enterprise AI, broadly - what actually changed, not
-  explainers. *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20. Confirmed
-  as covering both readings - analytics products AI has changed, and the
-  measurement of AI systems - by the reaction to brief
-  [#24](https://github.com/chamaya00/background-research-agents/issues/24), 2026-09-23.*
-- Measuring agent efficacy in an enterprise setting - evals, benchmarks, and
-  what an enterprise accepts as evidence that a deployed agent works.
-  *Brief [#24](https://github.com/chamaya00/background-research-agents/issues/24), "add another research angle on
-  measuring agent efficacy in an enterprise setting", 2026-09-23. Not yet
-  covered by any brief, so it carries the 90-day first pass below.*
-- **Depth:** text-to-SQL and data-agent benchmarks by name - Spider, Spider
-  2.0, BIRD, ERPBench. Leaderboard movement, methodology, and what each one's
-  design does and does not make measurable. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "places i want
-  to go deeper next, like ... the data benchmarks like spider and bird",
-  2026-09-23. Narrower than the efficacy line above rather than separate from
-  it; breadth was explicitly kept.*
-- **Depth:** dbt's semantic and context layer work - the Fivetran/dbt Agents
-  Schema, the semantic-layer-versus-text-to-SQL benchmarks, and what is built
-  on top of them. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "the dbt findings", 2026-09-23.
-  Narrower than "analytics for enterprise AI, broadly" rather than separate
-  from it.*
+Each entry carries its own state on the first line. **How topic state works**
+is below the entries; the short version is that a topic is one line here, the
+state is maintained by the driver when a brief merges, and the window is
+derived rather than stored.
 
-<!--
-Nothing below the seed line yet, on purpose. Subjects belong here once a
-reaction has named one, not before. The example subjects in the schema
-document (usage-based pricing, agentic BI, data residency) were illustrations
-of a YAML shape and were never stated as interests - treating them as real
-would put three invented preferences in front of every future run.
--->
+- **`analytics-broad`** · **active** · 3 runs · last **2026-09-23** · window **30d**
+  Analytics for enterprise AI, broadly - what actually changed, not
+  explainers.
+  *Briefs: [#20](https://github.com/chamaya00/background-research-agents/issues/20) (driver-written, round 0), [#24](https://github.com/chamaya00/background-research-agents/issues/24), [#29](https://github.com/chamaya00/background-research-agents/issues/29). Items: 2
+  since [#29](https://github.com/chamaya00/background-research-agents/issues/29), when per-item line attribution began. Seed, from
+  [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20. Confirmed as covering both readings - analytics
+  products AI has changed, and the measurement of AI systems - by the reaction
+  to [#24](https://github.com/chamaya00/background-research-agents/issues/24), 2026-09-23.*
+- **`agent-efficacy`** · **active** · 1 run · last **2026-09-23** · window **30d**
+  Measuring agent efficacy in an enterprise setting - evals, benchmarks, and
+  what an enterprise accepts as evidence that a deployed agent works.
+  *Briefs: [#29](https://github.com/chamaya00/background-research-agents/issues/29). Items: 3. Added by the reaction to [#24](https://github.com/chamaya00/background-research-agents/issues/24), "add
+  another research angle on measuring agent efficacy in an enterprise
+  setting", 2026-09-23.*
+- **`benchmarks-depth`** · **active** · 0 runs · never run · window **90d** · run in flight: [#35](https://github.com/chamaya00/background-research-agents/issues/35)
+  **Depth**, under `agent-efficacy`: text-to-SQL and data-agent benchmarks by
+  name - Spider, Spider 2.0, BIRD, ERPBench. Leaderboard movement,
+  methodology, and what each one's design does and does not make measurable.
+  *Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "places i want to go deeper next,
+  like ... the data benchmarks like spider and bird", 2026-09-23. Narrower
+  than its parent rather than separate from it; breadth was explicitly kept.*
+- **`dbt-context`** · **active** · 0 runs · never run · window **90d** · run in flight: [#35](https://github.com/chamaya00/background-research-agents/issues/35)
+  **Depth**, under `analytics-broad`: dbt's semantic and context layer work -
+  the Fivetran/dbt Agents Schema, the semantic-layer-versus-text-to-SQL
+  benchmarks, and what is built on top of them.
+  *Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "the dbt findings", 2026-09-23.
+  Narrower than its parent rather than separate from it.*
+
+### How topic state works
+
+Recorded here rather than left to convention, because the Window rule already
+depended on this state and was already wrong: before this section existed,
+`agent-efficacy` still read "Not yet covered by any brief" while
+[#29](https://github.com/chamaya00/background-research-agents/issues/29) had given it three items. A fact that two places have to agree
+on, maintained by hand in prose, disagrees.
+
+**The fields, in order on the first line of each entry:**
+
+| Field | What it is |
+|---|---|
+| `id` | A stable short name. This is what a person or an issue refers to a topic by, so it does not change when the wording does. |
+| status | **active** or **retired**. A retired topic keeps its entry and its history; nothing is deleted. |
+| runs | How many briefs have covered this topic. |
+| last | The date of the most recent brief that covered it, or **never run**. |
+| window | **Derived, not stored** - 90 days at 0 runs, 30 days after that. |
+| run in flight | The issue number of a queued or running brief covering this topic. Present only when there is one. |
+
+**And on the italic line:** `Briefs:` the issues that covered it, which is the
+audit trail the run count is derived from; `Items:` how many items it has
+actually yielded; and the provenance of the line itself.
+
+**`Items` is the field that earns its keep.** A topic that is active, has been
+run three times and has yielded nothing is a topic to re-scope or retire, and
+nothing else in this file would say so. It counts from [#29](https://github.com/chamaya00/background-research-agents/issues/29), the
+first brief where every item named the Interests line it served; earlier
+briefs predate that attribution and are not guessed at.
+
+**A Depth topic names its parent.** It narrows a broader topic rather than
+replacing it. The profile has no mechanism for a parent to outrank a child in
+selection, and that is a known gap rather than an oversight - if depth should
+displace breadth rather than compete with it, that is a decision to make
+explicitly.
+
+**Who writes it, and when.** The driver, in the same pull request that reacts
+to a brief - `loop.md` step 6. A research run does not touch this file at all;
+that rule is what makes the reaction diff the only way a preference becomes
+true. This is the same who-writes-it test that put `sources.md` in a separate
+file, and it lands the other way here: run counts and retirement are the
+driver's facts, so they belong beside the preference rather than in a file of
+their own. See [ADR 0005](../decisions/0005-topic-state-lives-on-the-interests-entry.md).
+
+**What it answers.** "Which active topics have not been refreshed in seven
+days" is a read of status and `last` down this section, with `run in flight`
+telling you which of those are already queued.
 
 ## Not interested
 
@@ -95,6 +145,9 @@ would put three invented preferences in front of every future run.
 - **90 days for a subject's first appearance in a brief, 30 days after that.**
   *Brief [#24](https://github.com/chamaya00/background-research-agents/issues/24), "match the recommended 90 days at
   first then 30 days", 2026-09-23.*
+
+**Each topic's current window is on its entry under Interests**, derived from
+its run count rather than stored, so the rule and the state cannot disagree.
 
 <!--
 This is #21's own recommendation, and its argument is why the rule is written
