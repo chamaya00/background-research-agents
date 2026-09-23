@@ -66,6 +66,17 @@ by an agent. The axes are the part that was decided; the file format was not.
   *Brief [#24](https://github.com/chamaya00/background-research-agents/issues/24), "add another research angle on
   measuring agent efficacy in an enterprise setting", 2026-09-23. Not yet
   covered by any brief, so it carries the 90-day first pass below.*
+- **Depth:** text-to-SQL and data-agent benchmarks by name - Spider, Spider
+  2.0, BIRD, ERPBench. Leaderboard movement, methodology, and what each one's
+  design does and does not make measurable. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "places i want
+  to go deeper next, like ... the data benchmarks like spider and bird",
+  2026-09-23. Narrower than the efficacy line above rather than separate from
+  it; breadth was explicitly kept.*
+- **Depth:** dbt's semantic and context layer work - the Fivetran/dbt Agents
+  Schema, the semantic-layer-versus-text-to-SQL benchmarks, and what is built
+  on top of them. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "the dbt findings", 2026-09-23.
+  Narrower than "analytics for enterprise AI, broadly" rather than separate
+  from it.*
 
 <!--
 Nothing below the seed line yet, on purpose. Subjects belong here once a
@@ -122,16 +133,41 @@ is referenced in passing; a concept marked new is explained once.
   re-introduced. *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20.*
 - Sources come from a curated list rather than open search.
   *Seed, from the objective's delivery questions, 2026-09-20.*
-- **Read the brief back in full in the session, not only as a link to the
-  issue.** The issue is the durable record and the place a reaction is filed;
-  the session is where it is actually read. Posting only a link makes reading
-  it a second decision. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "read 29 to me so i can
-  react here... this should be standard operating procedure going forward",
-  2026-09-23.*
+- **Read the brief back in the session, not only as a link to the issue.** The
+  issue is the durable record and the place a reaction is filed; the session is
+  where it is actually read. Posting only a link makes reading it a second
+  decision. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "read 29 to me so i can react here...
+  standard operating procedure going forward", 2026-09-23.*
+- **Every presented item follows the same six-part structure, in this order,
+  and is short:**
+  1. what it is, briefly;
+  2. how long ago;
+  3. how it relates to what has already been read;
+  4. what through-line it changes, or that it changes none;
+  5. one or two things to research next to go deeper on it;
+  6. a link to the source it came from.
+
+  *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "too wordy ... i want a more consistent structure
+  among posts", 2026-09-23. This governs the **presented** brief - the session
+  read-back and the issue. The document under `docs/research/` keeps its fuller
+  provenance, because that is what makes a claim checkable later; the presented
+  brief is a different artefact for one reader today, per `loop.md`.*
+- **Item 6 of that structure is the source link, and it is load-bearing beyond
+  the item.** It is what lets a reader start judging which sources keep earning
+  their place. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "link to the post so i can see where
+  it came from and start identifying trustworthy sources", 2026-09-23. This is
+  the same evidence [#31](https://github.com/chamaya00/background-research-agents/issues/31) is building the curated source list
+  from.*
 
 ## Retired
 
+- **Format:** "Read the brief back **in full** in the session." *Added
+  2026-09-23 from the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29); narrowed the same
+  day by the same brief's second reaction - "too wordy". Reading it back in
+  the session survives; reading it back **in full** does not. The six-part
+  structure above replaces it.*
+
 <!--
 A line replaced by a later reaction, kept with both dates so a reversal is
-visible. Nothing here yet.
+visible.
 -->
