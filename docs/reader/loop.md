@@ -43,10 +43,21 @@ the factory's reach.
    Which one it was goes at the top of the brief, because a driver-written
    brief is not evidence that the pipeline works.
 
-3. **The driver presents it**, with commentary: what it picked, what it
-   dropped, and what it assumed was already known. The commentary is what
-   makes a one-sentence reaction possible. Without it the reader has to
-   reverse-engineer the selection before they can disagree with it.
+3. **The driver delivers the report itself.** The document the run wrote is
+   read back in full in the session. It is not filed as a separate issue - it
+   is already in git with a permanent URL, and a copy in an issue body is a
+   second copy that can drift. **Not a summary of it** - that was tried once, in
+   [#38](https://github.com/chamaya00/background-research-agents/issues/38),
+   and rejected: a condensed brief drops the counter-argument, the near-misses
+   and the numbered assumptions, which are the parts most likely to change how
+   the report reads. Commentary from the driver goes alongside it, not instead
+   of it.
+
+   **Topic state is updated here**, not in step 6: bump `runs`, set `last`,
+   append to `Briefs:`, add to `Items:`, and clear `run in flight`. Delivery is
+   the fact that changes them, and a reaction may never come - `run in flight`
+   was stale the moment #35's report was delivered, because this step used to
+   live at 6.
 
 4. **One sentence back.** That is the contract. Structured per-item questions
    are the fallback for a sentence that is genuinely ambiguous, not the
@@ -63,15 +74,14 @@ the factory's reach.
 6. **Commit the diff as one pull request against `profile.md`.** One per
    brief, so the file's git history is the reaction log.
 
-   **The same pull request updates topic state** for every topic the brief
-   covered: bump `runs`, set `last` to the brief's date, add the brief to
-   `Briefs:`, add the items it yielded to `Items:`, and clear `run in flight`.
-   The window is derived, so it corrects itself. Doing this anywhere but here
-   is how it goes stale - the reaction pull request is the one moment when the
-   brief is finished, read, and in front of somebody.
+   Topic state was already updated at step 3, when the report was delivered.
+   If a reaction retires a topic or adds one, that lands here.
 
-7. **Post the reaction and the resulting diff back to the brief's issue**, so
-   the thread is complete even when the reaction happened in a session. The
+7. **Put the reaction's own words in the pull request** that changes
+   `profile.md` - in the commit message and the body, beside the line they
+   produced. That is the whole record: `git log -p docs/reader/profile.md`
+   then carries what was said and what it changed in one place, which an issue
+   comment never did. The
    issue thread is the human-readable record; `profile.md`'s history is the
    one the next run reads.
 
