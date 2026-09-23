@@ -62,12 +62,12 @@ reachability as observed by an actual fetch, never inferred from a citation.
 | `arxiv.org` | E | reads | 2026-09-23 | 26, Read row |
 | `bird-bench.github.io` | E | reads | 2026-09-23 | 26, Read row |
 | `fivetran.com` | A | reads | 2026-09-23 | 26, Read row |
-| `techtarget.com` | A | reads | 2026-09-23 | 26, Read row |
+| `techtarget.com` | A | reads | 2026-09-23, re-observed same day | 26, Read row; re-fetched by #32 |
 | `salesforce.com` | A | reads | 2026-09-23 | 26, Read row |
 | `cxfoundation.com` | A | reads | 2026-09-23 | 26, Read row |
 | `snowflake.com` | A | reads | 2026-09-23 | 26, Read row |
 | `community.fabric.microsoft.com` | A | refuses | 2026-09-21 | 19, Refused row |
-| `hpcwire.com` | A | refuses | 2026-09-21 | 19, Refused row |
+| `hpcwire.com` | A | refuses | 2026-09-21 and 2026-09-23 | 19, Refused row; re-fetched by #32 |
 | `openai.com` | A | refuses | 2026-09-23 | 26, Refused row |
 | `blogs.mulesoft.com` | A | refuses | 2026-09-23 | 26, Refused row |
 | `technologymagazine.com` | E | refuses | 2026-09-23 | 26, Refused row |
@@ -120,7 +120,9 @@ future run would otherwise have to rediscover. Ordered as the table is.
   availability statuses and every number in it. A vendor press path that
   answers, which is rare enough in this set to be the point.
 - **`techtarget.com`** - #26's item 1 substance. The one trade publisher in
-  the Read half; the other three trade hosts observed both refused.
+  the Read half; the other three trade hosts observed all refused.
+  Re-fetched by this run on 2026-09-23 and still readable, which is the only
+  positive-direction re-observation in this file.
 - **`salesforce.com`** - #26's item 1 context and its backward-follow
   (AIforce 2026-09-15, Agent Fabric 2025-09-25). Note the split with
   `blogs.mulesoft.com` below: the same company's newsroom answers and its
@@ -135,10 +137,11 @@ future run would otherwise have to rediscover. Ordered as the table is.
   #19's rounds. It was item 3's **primary** source, and the item shipped
   assembled from a search excerpt plus the `gethynellis.com` roundup. Treat
   Fabric announcements as needing a mirror from the start.
-- **`hpcwire.com`** (BigDATAwire) - *refuses*. Refused #19 and also refused
-  the earlier session that wrote #20, so this is the host rather than one bad
-  run. **Its status is stale**: #26 did not need it and did not re-test it, so
-  2026-09-21 is as current as this gets.
+- **`hpcwire.com`** (BigDATAwire) - *refuses*. Refused #19, refused the
+  earlier session that wrote #20, and refused again when this run re-fetched
+  `/bigdatawire/2026/09/11/openai-launches-data-agent-as-enterprise-analytics-race-heats-up/`
+  on 2026-09-23. Three refusals across three runs and three dates: this is the
+  host, not a bad run.
 - **`openai.com`** - *refuses*. New refusal in #26; #19 never tested it.
   Nothing has depended on it yet - it was a lead, not a citation - but it is
   the vendor at the centre of line A's last two briefs, so the refusal is
@@ -194,9 +197,20 @@ is separate precisely so that nobody has to wonder which kind of fact they are
 reading.
 
 **A status is only as current as its Observed date**, and this file does not
-pretend otherwise. `hpcwire.com` is the live example: refused on 2026-09-21,
-not re-tested since, still listed as refusing. A run that needs it re-fetches
-it and updates the row in the same pull request as its brief.
+pretend otherwise. A run that needs a host re-fetches it and updates the row
+in the same pull request as its brief.
+
+How much that date is worth is an open question with two data points, both
+gathered by this run: `hpcwire.com` refused again two days after #19 recorded
+it, and `techtarget.com` read again the same day #26 recorded it. Both
+reproduced. But a 403 of this kind is returned by a CDN or WAF layer in front
+of the site, configured by a vendor who changes the rules without notice, and
+rate limiting produces exactly the pattern of a status that reproduces until
+suddenly it does not. So treat a status as a **prior worth acting on, never a
+fact** - the list exists to save a wasted round trip, not to authorise
+skipping a fetch.
+[`docs/research/32-curated-source-list-location-and-inlining.md`](../research/32-curated-source-list-location-and-inlining.md)
+carries the evidence for both halves of that.
 
 **Nothing here is checked on a schedule.** Automated reachability checking was
 put out of scope by #32, and the substitute is that every brief re-fetches the
