@@ -75,18 +75,18 @@ derived rather than stored.
   *Briefs: [#29](https://github.com/chamaya00/background-research-agents/issues/29). Items: 3. Added by the reaction to [#24](https://github.com/chamaya00/background-research-agents/issues/24), "add
   another research angle on measuring agent efficacy in an enterprise
   setting", 2026-09-23.*
-- **`benchmarks-depth`** · **active** · 0 runs · never run · window **90d** · run in flight: [#35](https://github.com/chamaya00/background-research-agents/issues/35)
+- **`benchmarks-depth`** · **active** · 1 run · last **2026-09-23** · window **30d**
   **Depth**, under `agent-efficacy`: text-to-SQL and data-agent benchmarks by
   name - Spider, Spider 2.0, BIRD, ERPBench. Leaderboard movement,
   methodology, and what each one's design does and does not make measurable.
-  *Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "places i want to go deeper next,
+  *Briefs: [#35](https://github.com/chamaya00/background-research-agents/issues/35). Items: 5. Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "places i want to go deeper next,
   like ... the data benchmarks like spider and bird", 2026-09-23. Narrower
   than its parent rather than separate from it; breadth was explicitly kept.*
-- **`dbt-context`** · **active** · 0 runs · never run · window **90d** · run in flight: [#35](https://github.com/chamaya00/background-research-agents/issues/35)
+- **`dbt-context`** · **active** · 1 run · last **2026-09-23** · window **30d**
   **Depth**, under `analytics-broad`: dbt's semantic and context layer work -
   the Fivetran/dbt Agents Schema, the semantic-layer-versus-text-to-SQL
   benchmarks, and what is built on top of them.
-  *Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "the dbt findings", 2026-09-23.
+  *Briefs: [#35](https://github.com/chamaya00/background-research-agents/issues/35). Items: 2. Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "the dbt findings", 2026-09-23.
   Narrower than its parent rather than separate from it.*
 
 ### How topic state works
@@ -186,40 +186,88 @@ is referenced in passing; a concept marked new is explained once.
   re-introduced. *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20.*
 - Sources come from a curated list rather than open search.
   *Seed, from the objective's delivery questions, 2026-09-20.*
-- **Read the brief back in the session, not only as a link to the issue.** The
-  issue is the durable record and the place a reaction is filed; the session is
-  where it is actually read. Posting only a link makes reading it a second
-  decision. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "read 29 to me so i can react here...
-  standard operating procedure going forward", 2026-09-23.*
-- **Every presented item follows the same six-part structure, in this
-  order:**
+- **The research document *is* the brief, and it is read back in full in the
+  session.** No condensed version, no separate rendering, and **no brief
+  issue** - the document under `docs/research/` is the record, it already has
+  a permanent URL, and a copy of it in an issue body is a second copy that can
+  drift from the first. *Brief [#38](https://github.com/chamaya00/background-research-agents/issues/38), "i'd rather see the original 35
+  in full ... don't prepare the briefs like 38 anymore", then "do you have to
+  file it as an issue? why not just read it back word for word in here",
+  2026-09-23.*
+- **Reactions are given in the session**, and land in git: the reaction's own
+  words go in the commit message and pull request body of the `profile.md`
+  change they produce, beside the line they changed. *Same reaction. This is
+  strictly better than an issue comment for the one job that matters - a
+  profile line's provenance - because `git log -p docs/reader/profile.md` then
+  carries the reaction and its effect in one place.*
+
+<!--
+Delivering as a GitHub issue was a seed preference from #2 on 2026-09-20, when
+the plan was a scheduled pipeline whose feedback reader parsed brief-issue
+comments. ADR 0003 stood that pipeline down; the issue outlived the mechanism
+that needed it, and three rounds went by before anyone asked why it was there.
+
+What is lost: a reaction is no longer visible to anyone outside the session
+until the profile pull request lands. That is the whole cost, and it is
+acceptable while there is one reader.
+-->
+- **Every item in it follows the same six-part structure, in this order:**
   1. what it is, briefly;
   2. how long ago;
   3. how it relates to what has already been read;
   4. what through-line it changes, or that it changes none;
   5. one or two things to research next to go deeper on it;
-  6. a link to the source it came from.
+  6. a link to the source it came from, and whether it came from
+     `sources.md` or from open search.
 
-  **The structure is what replaces the wordiness, not brevity.** Each part
-  carries as much detail as it is worth - "too wordy" was about prose that
-  sprawled, and the correction is that a reader should know where in an item
-  to find each thing, not that there should be less in it. *Brief
-  [#29](https://github.com/chamaya00/background-research-agents/issues/29), "too wordy ... i want a more consistent structure
-  among posts", then "the brief should be more detailed", 2026-09-23.*
+  **The structure replaces sprawl, not detail.** Each part carries as much as
+  it is worth. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "too wordy ... i want a more consistent
+  structure among posts", then "the brief should be more detailed",
+  2026-09-23. Unchanged by the [#38](https://github.com/chamaya00/background-research-agents/issues/38) reaction, which was about the
+  condensing, not the structure - [#35](https://github.com/chamaya00/background-research-agents/issues/35)'s document already followed
+  all six parts and is the thing the reader asked for more of.*
+- **Everything around the items stays too**, and it is not optional padding:
+  what was dropped and why, what was searched for and not found, the fetch
+  record, the recommendation with the argument against it, and the
+  verified/inferred/assumed split. *Same reaction. These are the sections the
+  condensed version cut, and two of them - the counter-argument and the
+  numbered assumptions - were named as things that would have changed the
+  reading.*
+- **Item 6's source link is load-bearing beyond the item.** It is what lets a
+  reader judge which sources keep earning their place. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29),
+  "link to the post so i can see where it came from and start identifying
+  trustworthy sources", 2026-09-23. The same evidence `sources.md`
+  accumulates.*
 
-  This governs the **presented** brief - the session read-back and the issue.
-  The document under `docs/research/` is unchanged by it. *Whether that
-  document still earns its keep once briefs carry this much detail is an open
-  question the reader raised and parked on 2026-09-23; it is not decided here
-  and nothing should be removed on the strength of it.*
-- **Item 6 of that structure is the source link, and it is load-bearing beyond
-  the item.** It is what lets a reader start judging which sources keep earning
-  their place. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "link to the post so i can see where
-  it came from and start identifying trustworthy sources", 2026-09-23. This is
-  the same evidence [#31](https://github.com/chamaya00/background-research-agents/issues/31) is building the curated source list
-  from.*
+<!--
+The parked question - whether docs/research/ still earns its keep once briefs
+carry this much detail - is ANSWERED by the reaction above, and answered the
+other way. The document is now the brief rather than a fuller copy behind one,
+so there is nothing to weigh: removing it would remove the product.
+
+A known limit, named here so it is not hit as a surprise. The 65,536-character GitHub
+issue body limit stopped applying the moment the issue did, and the documents
+had already run 23,880 (#19) -> 30,483 (#26) -> 49,355 (#35) toward it.
+
+What still has a limit is a session message. If a report is too long to read
+back in one, split it in reading order and say so - never condense it, which
+is the thing the #38 reaction rejected.
+-->
 
 ## Retired
+
+- **Format:** "This governs the *presented* brief - the session read-back and
+  the issue. The document under `docs/research/` is unchanged by it."
+  *Added 2026-09-23 from the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29); retired the same day by
+  the reaction to [#38](https://github.com/chamaya00/background-research-agents/issues/38). The split between a presented brief and a
+  stored document is gone - they are one artefact. The reasoning was that they
+  serve different readers; the reader says they do not.*
+- **Format:** "Read the brief back in the session, not only as a link."
+  *Added 2026-09-23, narrowed from "in full" the same day, and now restored to
+  **in full** by the reaction to [#38](https://github.com/chamaya00/background-research-agents/issues/38). The middle version lasted one
+  round. Kept here because the round trip is the point: "in full" was removed
+  as wordiness and came back as the requirement.*
+
 
 - **Format:** "Read the brief back **in full** in the session." *Added
   2026-09-23 from the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29); narrowed the same
