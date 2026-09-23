@@ -16,7 +16,8 @@ How a run gets it: the same record, and step 1 of [`loop.md`](loop.md).
 The list is where a run starts, not the boundary of where it may go, and the
 three commitments below are the whole of how it is meant to be used:
 
-1. **The list is reached first and by default** - a run works through it
+1. **The list is reached first and by default, never the only thing a run is permitted to read.**
+   A run works through it
    before it searches, because a host whose reachability is already recorded
    costs one fetch to confirm rather than a search, a click and a 403.
 2. **Open search stays available for everything the list does not cover.**
@@ -27,8 +28,8 @@ three commitments below are the whole of how it is meant to be used:
    that had been treated as a boundary would have excluded it. `arxiv.org` is
    in the table below *because of* that item, not as permission to have found
    it.
-3. **The next brief says, for each item, whether it came from a listed source
-   or from search.** One clause per item is enough. Without it there is no way
+3. **The next brief says, for each item, whether it came from a listed source or from search.**
+   One clause per item is enough. Without it there is no way
    to tell a list that is working from a list that is being ignored, and the
    only fix anyone can propose is "add more sources", which is the wrong one
    about half the time.

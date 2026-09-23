@@ -75,14 +75,14 @@ and when that was last observed. Three commitments govern it, and they are
 written here as well as in that file and in ADR 0004 because a rule about how
 to use a file is useless where a run will not see it:
 
-- **The list is reached first and by default, and is never the only thing a
-  run is permitted to read.** It is a starting point, not an allowlist.
+- **The list is reached first and by default, never the only thing a run is permitted to read.**
+  It is a starting point, not an allowlist.
 - **Open search stays available for everything the list does not cover.** The
   single most consequential item in [#26](https://github.com/chamaya00/background-research-agents/issues/26)
   arrived by search from a host no list would have carried yet. A list treated
   as a boundary would have excluded it.
-- **The brief says, for each item, whether it came from a listed source or
-  from search.** One clause per item. It is the only feedback the list has:
+- **The brief says, for each item, whether it came from a listed source or from search.**
+  One clause per item. It is the only feedback the list has:
   without it there is no way to tell a list that is working from one that is
   being ignored.
 

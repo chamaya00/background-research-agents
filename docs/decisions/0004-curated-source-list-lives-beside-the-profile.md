@@ -82,10 +82,11 @@ entry is the first of these.
 ### How a run gets it: inline the table, point at the file
 
 `sources.md` is split into a compact table - one row per entry, carrying all
-five fields - and per-entry detail below it. **The issue body inlines
-`profile.md` in full, unchanged, plus the source list's table section and a
-pointer to `docs/reader/sources.md` by path.** The per-entry detail is read off
-the default branch.
+five fields - and per-entry detail below it.
+
+**The mechanism: the issue body inlines the table section and a pointer to `docs/reader/sources.md`, not the whole file.**
+`profile.md` is still inlined in full and unchanged. The per-entry detail is
+read off the default branch.
 
 The split is what makes this stable rather than a deferral. The table is the
 part a run needs in order to *select* - it answers "where do I start and what
@@ -128,11 +129,9 @@ These are restated verbatim at the top of `sources.md` and in `loop.md`,
 because a rule about how to use a file that lives only in a decision record is
 a rule a run will not see:
 
-1. **The list is reached first and by default. It is never the only thing a
-   run is permitted to read.**
+1. **The list is reached first and by default, never the only thing a run is permitted to read.**
 2. **Open search stays available for everything the list does not cover.**
-3. **The next brief says, for each item, whether it came from a listed source
-   or from search.**
+3. **The next brief says, for each item, whether it came from a listed source or from search.**
 
 The third is the only one with any feedback in it. Without it there is no way
 to distinguish a list that is working from a list that is being ignored, and
