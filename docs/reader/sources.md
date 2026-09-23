@@ -73,6 +73,7 @@ first served by #35, which is why every `B` and `D` row below cites 35.
 | `github.com` | B and D | reads | 2026-09-23 | 35, Read row |
 | `docs.getdbt.com` | D | reads | 2026-09-23 | 35, Read row |
 | `bird-critic.github.io` | B | reads | 2026-09-23 | 35, Read row |
+| `genloop.ai` | B | reads | 2026-09-23 | 35, Read row |
 | `dbt-labs.github.io` | D | **reads, returns nothing usable** | 2026-09-23 | 35, "Reached but returned nothing usable" |
 | `fivetran.com` | A | reads | 2026-09-23 | 26, Read row |
 | `techtarget.com` | A | reads | 2026-09-23, re-observed same day | 26, Read row; re-fetched by #32 |
@@ -212,8 +213,21 @@ let that round happen at all.
   Reachable, and it is the host that shows the BIRD project disagreeing with its
   own headline leaderboard by fifty points. `bird-bench.github.io` does not carry
   that; fetch both.
-- **`arxiv.org`** - re-observed. Carried four of #35's six items. Still reached by
-  search rather than by browsing the list, exactly as in #26.
+- **`genloop.ai`** - a vendor blog, and the only one in this section. It carries
+  the 2026-03-01 date for the Spider 2.0-Snow top submission, which the
+  leaderboard itself does not carry, and the architecture description #35's item
+  5 quotes. **Read it for what a top-of-board system says it does**, not for
+  scores; its sibling pages are the listicles #35 dropped on substance.
+- **`arxiv.org`** - re-observed. Carried five of #35's seven items. Still reached
+  by search rather than by browsing the list, exactly as in #26.
+
+  **The abstract page and the full-text page are not interchangeable**, and #35
+  is where that cost something. `arxiv.org/abs/<id>` gave that run a figure it
+  could only match against a leaderboard by inference; `arxiv.org/html/<id>v1`
+  gave it the system's name, the leaderboard entry and the full baseline table,
+  which turned the inference into a fact and supplied the correction to a figure
+  two briefs had repeated. **Fetch the HTML full text before concluding that a
+  paper does not say something.**
 
 ### Serving line D - dbt's semantic and context layer work
 

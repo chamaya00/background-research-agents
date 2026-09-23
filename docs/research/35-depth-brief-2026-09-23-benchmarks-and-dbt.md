@@ -20,8 +20,8 @@ last two briefs repeated without reading a page are true.
 turned up on them is named in [What was dropped](#what-was-dropped) and nothing
 else.
 
-**Six items passed filtering.** Four serve the benchmarks line, two serve the dbt
-line. One of the four is a bridge item that serves both and is filed under
+**Seven items passed filtering.** Five serve the benchmarks line, two serve the
+dbt line. One of the five is a bridge item that serves both and is filed under
 benchmarks - the filing is named inline, per the rule in
 [`docs/memory/researcher.md`](../memory/researcher.md).
 
@@ -32,10 +32,22 @@ every concept below is explained once.
 
 ## The headline, before the items
 
-**#29 told you Spider 2.0 "tops out around 31%". That number is wrong, and this
-run read the primary to establish it.**
+**#29 told you Spider 2.0 "tops out around 31%". The number is real and the word
+"tops" is wrong, and this run read the primaries to establish both.**
 
-The Spider 2.0 leaderboard, read at `spider2-sql.github.io` on 2026-09-23, reads:
+31.26% is **ReFoRCE + o1-preview**, and it is the best-scoring *raw-schema*
+pipeline on Spider 2.0-Snow. It is not the benchmark's ceiling. The full ladder,
+quoted from the paper that sits third on that board today:
+
+| Method on Spider 2.0-Snow (547 tasks) | Execution accuracy |
+|---|---|
+| DAIL-SQL + GPT-4o | 2.20% |
+| Spider-Agent + o1-preview | 23.58% |
+| Spider-Agent + Claude-4-Sonnet | 25.78% |
+| **ReFoRCE + o1-preview** - *the "31%"* | **31.26%** |
+| QUVI-3 + Gemini 3 Pro | **94.15%** |
+
+And the live board, read at `spider2-sql.github.io` on 2026-09-23:
 
 | Track | Examples | Top entry | Score |
 |---|---|---|---|
@@ -43,16 +55,14 @@ The Spider 2.0 leaderboard, read at `spider2-sql.github.io` on 2026-09-23, reads
 | Spider 2.0-Lite | 547, BigQuery / Snowflake / SQLite | Tianqiong Data Agent + GLM 5.2 | **76.23** |
 | Spider 2.0-DBT | 68, DuckDB, repository-level code task | SignalPilot Agent | **65.6** |
 
-The 31% in #29 - and the 17.1% for `o1-preview` that still sits on the benchmark's
-own front page - are **2024 numbers from the paper era**, carried forward through
-two briefs by search summary. The gap between them and the board is sixty-five
-points.
+**Sixty-five points separate the best raw-schema pipeline from the top of the
+board on the same 547 questions.** That gap is this brief's subject, and item 5 is
+what it is made of. It is not a story about better SQL-writing models.
 
-That correction is the most consequential thing in this brief, and it does not
-resolve the way a correction usually does. See item 1: the honest reading is not
-"enterprise text-to-SQL is solved", it is that **the board and the benchmark have
-come apart**, and the part of Spider 2.0 that made the number trustworthy has been
-broken since 2026-08-12.
+Two things stop this from being a clean "the gap closed" correction, and both are
+items. The scoring environment behind the 96.70 **has been suspended since
+2026-08-12** (item 1). And the benchmark's own authors published a Snowflake-hosted
+extension in July on which frontier models score **67-70%** (item 2).
 
 ---
 
@@ -64,12 +74,12 @@ cutoff 2026-06-25**.
 
 | Interests line | First appearance? | Window | Cutoff | Items |
 |---|---|---|---|---|
-| Text-to-SQL and data-agent benchmarks by name - Spider, Spider 2.0, BIRD, ERPBench | Yes | **90 days** | **2026-06-25** | 1, 2, 3, 4 |
-| dbt's semantic and context layer work | Yes | **90 days** | **2026-06-25** | 5, 6 |
+| Text-to-SQL and data-agent benchmarks by name - Spider, Spider 2.0, BIRD, ERPBench | Yes | **90 days** | **2026-06-25** | 1, 2, 3, 4, 5 |
+| dbt's semantic and context layer work | Yes | **90 days** | **2026-06-25** | 6, 7 |
 
 **Neither line is at zero**, so acceptance criterion 2's fallback is not needed.
 
-**The filing decision worth knowing about.** Item 4 serves both lines - it is a
+**The filing decision worth knowing about.** Item 5 serves both lines - it is a
 semantic-layer-mediated agent scored on Spider 2.0. It is filed under the
 benchmarks line because what makes it an item is the leaderboard number rather
 than the layer. `docs/memory/researcher.md` requires naming the date it would
@@ -136,10 +146,18 @@ as a development.
 directly. That item's argument against reading BIRD's 82.39% as the gap closing
 was "Spider 2.0 - harder, enterprise-shaped - tops out around 31%", and the issue
 brief for this round flagged that figure as taken from #26's dropped material
-rather than from a read page. It was. **This run read the primary**, and the
-figure is off by sixty-five points. The counter-argument #29 made still holds, but
-not for the reason it gave: Spider 2.0 does not undercut BIRD by being harder, it
-undercuts it by being scored differently.
+rather than from a read page. It was.
+
+**This run read the primaries, and the correction is narrower and more useful than
+"wrong".** 31.26% is a real, correctly-transcribed figure: it is **ReFoRCE +
+o1-preview**, the strongest *raw-schema* pipeline on Spider 2.0-Snow, quoted in
+item 5's paper alongside DAIL-SQL at 2.20% and Spider-Agent at 23-26%. What was
+wrong is the word **"tops out"**. It was the ceiling of one approach, promoted to
+the ceiling of the benchmark. So #29's counter-argument to BIRD survives in
+weakened form - Spider 2.0 is harder than BIRD *for raw text-to-SQL* - but its
+conclusion inverts: the benchmark that was supposed to show the gap was wide is
+now the one showing it closed, and it is a **different architecture** doing the
+closing, not a better model.
 
 **4. What through-line it changes.** It sharpens the standing through-line rather
 than replacing it. #29's was *"the useful question has moved from 'is there a
@@ -163,13 +181,68 @@ environment*, and the scoring environment is a thing that decays.
 **6. Source.** [Spider 2.0 leaderboard](https://spider2-sql.github.io/) (read
 2026-09-23) and the
 [`xlang-ai/Spider2` repository README](https://github.com/xlang-ai/Spider2) (read
-2026-09-23; the News quotes above are verbatim from it). **Neither host was on the
-curated list** - both reached by open search on the benchmark's name, and both are
-added to `sources.md` by this pull request.
+2026-09-23; the News quotes above are verbatim from it - the
+`raw.githubusercontent.com` path returned them where the rendered page had
+summarised them). **Neither host was on the curated list** - both reached by open
+search on the benchmark's name, and both are added to `sources.md` by this pull
+request.
 
 ---
 
-### 2. A new enterprise text-to-SQL benchmark argues Spider and BIRD have the wrong shape of schema
+### 2. Spider 2.0's own authors published a harder Snowflake track in July, and frontier models score 67-70% on it
+
+**1. What it is.** **Spider 2.0-AIFunc**, an extension of Spider 2.0 to what the
+authors call *AI-native SQL workflows*: **465 verified instances across 125
+real-world databases**, requiring six types of **AI function** now available as
+native SQL capabilities on Snowflake rather than conventional SQL alone.
+
+An *AI function* here is an LLM call invoked from inside a SQL statement -
+classification, extraction, summarisation over a column - so the task is no longer
+"write correct SQL" but "decide where in the query a model should be called, and
+on what". That is a real enterprise workload and it is not what any benchmark in
+these briefs has measured.
+
+The results: **67-70% execution accuracy for the strongest proprietary models,
+58.1% for the best open-source model.**
+
+**2. How long ago.** Submitted **2026-07-07**, eleven weeks ago. Inside the
+window.
+
+**3. How it relates to what has already been read.** It is the first **development
+on Spider 2.0 itself** to reach these briefs - #29 only ever cited the benchmark
+as a counter-example, from a number it had not read. The author list includes
+**Tao Yu**, who is on the original Spider 2.0 work, so this is the benchmark's own
+lineage rather than a competitor. It does not move #29's item 3 (BIRD); it is the
+other half of item 1.
+
+**4. What through-line it changes.** It is the single best argument against
+reading item 1's 96.70 as "enterprise text-to-SQL is solved", and it is the
+benchmark family's own argument. Two months after AIFunc reported **67-70%** for
+the best proprietary models on 465 Snowflake tasks, the Snow leaderboard's top
+entry reads 96.70 on 547 Snowflake tasks. Those two numbers come from the same
+project, on the same platform, months apart. **Either the task definition or the
+scoring is doing almost all of the work in that thirty-point difference**, and
+that is precisely item 1's point about the board and the benchmark coming apart -
+stated here by the people who built both.
+
+**5. What to research next.**
+- **Whether AIFunc has a leaderboard, and whether any of the Snow leaderboard's
+  top three has been scored on it.** If Genloop or QUVI-3 sits near 96 on Snow and
+  near 70 on AIFunc, the gap is the task. If neither has been scored on it, that
+  is its own finding.
+- **Whether AIFunc's 465 instances use the same Snowflake evaluation account that
+  has been suspended since 2026-08-12.** If so, the benchmark's newest track has
+  been unrunnable since a month after it shipped.
+
+**6. Source.** [Liu, Xu, Lei, Kuang, Chen, Yu, McAuley, Yao and He, "Spider
+2.0-AIFunc: Extending Real-World Text-to-SQL to AI-Native SQL Workflows",
+arXiv:2607.06229](https://arxiv.org/abs/2607.06229) (read). **`arxiv.org` is on
+the curated list; reached by open search**, chasing item 1's subject rather than
+browsing the list.
+
+---
+
+### 3. A new enterprise text-to-SQL benchmark argues Spider and BIRD have the wrong shape of schema
 
 **1. What it is.** **DevRev NL2SQL**, a benchmark of **900 execution-verified
 queries** over production enterprise schemas with nested types and link-graph
@@ -193,12 +266,12 @@ the system's quality.
 **2. How long ago.** Submitted **2026-09-04**, nineteen days ago. Comfortably
 inside the 90-day window.
 
-**3. How it relates to what has already been read.** It is the **third** new named
-benchmark to reach these briefs in two rounds, after **#29's item 4** (ERPBench,
-arXiv:2609.17885) and item 3 below. It does not move #29's item 3 (BIRD) or item
-4 (ERPBench) - it competes with them. And it is the first item in any brief here
-that attacks **Spider and BIRD's construct validity** rather than reporting a
-score on them.
+**3. How it relates to what has already been read.** It is one of **four** newly
+named benchmarks to reach these briefs in two rounds, after **#29's item 4**
+(ERPBench, arXiv:2609.17885) and alongside items 2 and 4 here. It does not move
+#29's item 3 (BIRD) or item 4 (ERPBench) - it competes with them. And it is the
+first item in any brief here that attacks **Spider and BIRD's construct validity**
+rather than reporting a score on them.
 
 **4. What through-line it changes.** It adds a second axis to #29's through-line.
 ERPBench said the *grounding* of a benchmark decides whether its number means
@@ -224,7 +297,7 @@ That distinction is the point of commitment 3.
 
 ---
 
-### 3. A benchmark where roughly half the correct answers are refusals
+### 4. A benchmark where roughly half the correct answers are refusals
 
 **1. What it is.** **WarehouseReliabilityBench**: 400 frozen tasks over two
 synthetic warehouses, in which **roughly half the correct responses are a
@@ -248,7 +321,7 @@ where half the gold answers are refusals is built to.
 **#29's item 4** (ERPBench, 85%-save-vs-3%-correct) that has appeared - both
 measure the gap between an agent appearing to succeed and actually succeeding.
 ERPBench found it by reading the database; this finds it by making refusal a
-correct answer. It also connects forward to item 5: the failure-mode asymmetry it
+correct answer. It also connects forward to item 6: the failure-mode asymmetry it
 quantifies is exactly the one dbt's own benchmark describes in prose.
 
 **4. What through-line it changes.** It is the strongest single piece of evidence
@@ -274,24 +347,38 @@ the curated list; this paper was reached by open search.**
 
 ---
 
-### 4. Routing through a semantic layer is how a system gets to the top of Spider 2.0
+### 5. Routing through a semantic layer is how a system gets to the top of Spider 2.0 - and the top two entries both do it
 
 **Filed under the benchmarks line; serves both.** See
 [Windows](#windows-and-how-each-item-was-filed) - the filing costs nothing this
 round, because both Depth lines are at 90 days.
 
 **1. What it is.** A natural-language-to-SQL agent that does not generate SQL from
-the schema. It reasons over a **curated semantic layer** using an intermediate
-representation the authors call **Semantic Model Query (SMQ)**, and compiles that
-to SQL for SQLite, BigQuery or Snowflake. It reports **94.15% execution accuracy
-on the 547-task Spider2-snow benchmark**.
+the schema. It reasons over a **curated semantic layer** using a compact
+intermediate representation the authors call **Semantic Model Query (SMQ)**; a
+**deterministic engine** compiles an SMQ into dialect-correct SQL for SQLite,
+BigQuery or Snowflake, which the agent then inspects, composes and executes. It
+reports **94.15% execution accuracy on the 547-task Spider2-snow benchmark**,
+using Gemini 3 Pro preview at temperature 0.1 with extended thinking at the high
+setting.
 
-That figure is on the Spider 2.0-Snow board this run read for item 1, third place,
-as `QUVI-3 + Gemini-3-pro-preview` at 94.15 - the same number. **This is an
-inference, not something either source states**: the paper does not name a
-leaderboard entry and the leaderboard does not cite the paper. It is a single
-matching figure on the same track, and it should be treated as likely rather than
-established.
+**The leaderboard identification is confirmed, not inferred.** The paper names its
+system *spider2-daquv-quvi*, referred to throughout as **QUVI**, and the Spider
+2.0-Snow board's third entry is `QUVI-3 + Gemini-3-pro-preview` at 94.15. The
+paper's own baseline table is where item 1's corrected ladder comes from.
+
+**And this is not one paper's idiosyncrasy - the two entries above it are the same
+idea.** Genloop, whose Sentinel Agent v2 Pro tops the board at 96.70, describes
+its architecture as a **"Unified Business Memory"**: *"a governed layer that holds
+your business logic, metric definitions, join paths, and team-specific context"*,
+against which it builds *"a context graph of your data environment, and reason
+against that"* rather than translating questions directly to SQL. Native, second
+at 96.53, describes reasoning across the data to discover *"structure,
+relationships, definitions, exceptions, and gaps"* before querying.
+
+Three different vendors and one academic group, the top three places and a fourth
+close behind, all having independently concluded that **the model should not see
+the raw schema**.
 
 **2. How long ago.** Submitted **2026-06-30**, twelve weeks ago - five days inside
 the 90-day cutoff of 2026-06-25, and the oldest item in this brief.
@@ -315,21 +402,32 @@ benchmark have come apart; this says what the top of the board is actually made
 of, and it is not a better SQL-writing model.
 
 **5. What to research next.**
-- **Confirm or kill the QUVI-3 identification**, by checking the Spider 2.0
-  submission record or the authors' own pages. If it holds, it is the first
-  leaderboard-verified semantic-layer result in these briefs.
-- **Whether any Spider 2.0-Snow entry above it - Genloop's 96.70, Native's 96.53 -
-  is also semantic-layer mediated.** If the top three all are, the finding is much
-  larger than one paper.
+- **Whether any system near the top of Spider 2.0-Snow works on the raw schema.**
+  This round established what the top of the board is made of; the sharper
+  question is whether raw text-to-SQL appears anywhere above ReFoRCE's 31.26% at
+  all. If it does not, "text-to-SQL" has quietly stopped being the thing the
+  text-to-SQL leaderboard measures.
+- **Who curates the semantic layer in each case, and how long it takes.** Every
+  system here presupposes a modelled layer exists. dbt's own benchmark (item 7)
+  is explicit that three extra models were hand-built; QUVI calls its layer
+  "curated". **The cost of the curation is the number nobody is reporting**, and
+  it is what a buyer would actually be quoted.
 
 **6. Source.** [Kim, Khoeurn and Yoon, "A Semantic-Layer-Mediated Agent for
 Natural Language to SQL over Heterogeneous Enterprise Databases",
-arXiv:2606.31041](https://arxiv.org/abs/2606.31041) (read). Reached **by open
-search**, on a host that is on the curated list.
+arXiv:2606.31041](https://arxiv.org/abs/2606.31041) - abstract and
+[full text](https://arxiv.org/html/2606.31041v1) both read; the system name, the
+baseline ladder and the backbone come from the full text. Genloop's architecture
+description is from ["Genloop is #1 on Spider
+2.0"](https://genloop.ai/blogs/genloop-is-1-on-spider-2.0) (read, dated
+2026-03-01). Native's is from a **search summary of `usenative.ai`, not a page
+this run opened** - it is the one architecture claim here that was not read at
+source, and nothing rests on it. All reached **by open search**; `arxiv.org` is
+listed, `genloop.ai` is not and is added by this pull request.
 
 ---
 
-### 5. Somebody outside dbt ran dbt's own benchmark dataset, and reported a paired statistical test
+### 6. Somebody outside dbt ran dbt's own benchmark dataset, and reported a paired statistical test
 
 **1. What it is.** **Semantic path compilation (SPC)**: instead of a model
 generating SQL, a multi-turn planner grounds phrases and picks from constrained
@@ -354,9 +452,12 @@ variance estimate.
 **development** on **#24's item 2**, the dbt semantic-layer benchmark. #24 quoted
 dbt's numbers; this is a third party running the same dataset and getting the same
 direction of result from a different mechanism - deterministic compilation rather
-than a semantic-layer API. It also converges with item 3: both papers conclude
-that the fix for confident wrongness is to take SQL construction away from the
-model and gate the output deterministically.
+than a semantic-layer API. It also converges with items 4 and 5: all three
+conclude that the fix for confident wrongness is to take SQL construction away
+from the model and gate the output deterministically. **Item 5's QUVI compiles an
+SMQ with a deterministic engine; this compiles a semantic path with deterministic
+code.** Two groups, two names, one mechanism - and one of them is top-three on the
+hardest public board.
 
 **4. What through-line it changes.** It is the first item in any of these briefs
 to attach a **significance test** to a claim about agent accuracy, and that is a
@@ -381,7 +482,7 @@ search**, on a listed host.
 
 ---
 
-### 6. dbt re-ran its semantic-layer benchmark in August against a new generation of models
+### 7. dbt re-ran its semantic-layer benchmark in August against a new generation of models
 
 **1. What it is.** `dbt-labs/dbt-llm-sl-bench` is the public harness behind the
 figures #24 quoted: three strategies - raw `sql`, `semantic_layer`, and `mcp` -
@@ -411,7 +512,7 @@ for what reading that primary corrected.
 
 **4. What through-line it changes.** None on its own. Its significance is
 conditional and worth stating as such: **if** the August run shows the
-semantic-layer advantage shrinking as models improve, it undercuts items 4 and 5
+semantic-layer advantage shrinking as models improve, it undercuts items 5 and 6
 and the Fivetran Context Layer's entire premise; **if** it shows the advantage
 holding, it is the strongest available evidence for them. A re-run whose result
 nobody has published is a pending answer to the most load-bearing question on this
@@ -434,15 +535,34 @@ was not on the curated list and is added by this pull request.
 
 ---
 
+### Item 7's part 4, restated for the through-line
+
+Item 7 is the only item here whose value is a pending answer rather than a
+finding, and it is worth saying once more where it points. **Items 5 and 6 say
+the semantic layer is winning; item 7 is the experiment that could say it is
+winning by less each generation.** The April primary already shows the unmodeled
+gap narrowing from 27.8 points to 8.2 as models improved from GPT-4 to Sonnet 4.6.
+The August run added three model generations past that. Nobody has published what
+it found.
+
+---
+
 ## What the covered figures actually say
 
 Acceptance criterion 6 asks this run to state, for the two figures earlier briefs
 took from search summaries, whether it read a primary. Both answers are below.
 
-### Spider 2.0's "~31%" - **primary read, figure wrong**
+### Spider 2.0's "~31%" - **primary read; figure correct, description wrong**
 
-Covered in full in item 1. `spider2-sql.github.io` was fetched on 2026-09-23. The
-board reads 96.70 / 76.23 / 65.6 across its three tracks. **Do not repeat the 31%.**
+Covered in full in item 1. `spider2-sql.github.io` was fetched on 2026-09-23 and
+the board reads 96.70 / 76.23 / 65.6 across its three tracks; the full-text of
+arXiv:2606.31041 supplied the baseline ladder that shows where 31% came from.
+
+**31.26% is ReFoRCE + o1-preview, the best raw-schema pipeline on Spider 2.0-Snow.**
+It is not the benchmark's ceiling and never was. Repeating the number is fine;
+repeating **"tops out"** is not. The correct sentence is: *raw-schema text-to-SQL
+tops out around 31% on Spider 2.0-Snow, and semantic-layer-mediated systems are
+sixty-five points above it.*
 
 ### dbt's semantic-layer benchmark figures - **primary read, figures right, framing wrong**
 
@@ -473,7 +593,7 @@ by construction while GPT-5.3-Codex text-to-SQL scores 100%.
 
 The post's own framing is the part worth carrying: *"With text-to-SQL, failure
 looks like a plausible but incorrect answer. With the Semantic Layer, failure
-looks like an error message."* That is the same claim item 3's 0.754 false-success
+looks like an error message."* That is the same claim item 4's 0.754 false-success
 rate quantifies, from a vendor rather than a benchmark.
 
 ---
@@ -511,11 +631,12 @@ On-subject, excluded on **date** against the 90-day cutoff of 2026-06-25:
 | Candidate | Date | Line | Why dropped |
 |---|---|---|---|
 | dbt Labs, "Semantic Layer vs. Text-to-SQL: 2026 Benchmark Update" - the primary behind #24's figures | 2026-04-07 | dbt | Fifteen weeks out. **Read anyway**, because criterion 6 asks whether the figures hold - see [What the covered figures actually say](#what-the-covered-figures-actually-say). |
-| Genloop Sentinel Agent v2 Pro reaching 96.70 on Spider 2.0-Snow | 2026-03-01 | Benchmarks | Out by twelve weeks as news. Carried inside item 1 as a **correction** to a figure two briefs repeated, which is a different claim than reporting it as new. |
+| Genloop Sentinel Agent v2 Pro reaching 96.70 on Spider 2.0-Snow | 2026-03-01 | Benchmarks | Out by twelve weeks as news. Carried inside items 1 and 5 as a **correction** and as architectural evidence, which is a different claim than reporting it as new. |
 | BIRD Effi-SQL, 300 SQL-efficiency benchmark pairs | 2026-06-18 | Benchmarks | Misses the cutoff by **seven days**. The nearest miss in this brief, and the one most worth revisiting if the window is ever widened. |
 | LiveSQLBench-Large-v1 - ~1K columns, ~54 tables per DB, 480 tasks, Business Rule Drift | 2026-03 | Benchmarks | Six months out. Named in [Checked and not moved](#checked-and-not-moved) because its ~44% ceiling contradicts BIRD's headline board. |
 | ProSPy - profiling-driven SQL-Python agent, 60.15% / 60.51% on Spider 2.0-Lite and -Snow with Claude-4.5-Opus | 2026-06-04 | Benchmarks | Three weeks out. Would have been an item; its Spider 2.0 figures are a useful sanity check against item 1's board and are recorded here for that reason alone. |
-| arXiv:2604.25149 - paired benchmark of semantic-layer accuracy and hallucination across three frontier models | 2026-04 | dbt | Five months out. Closest relative of item 5 and the first thing to read if that line needs depth next round. |
+| arXiv:2601.08778 - "Pervasive Annotation Errors Break Text-to-SQL Benchmarks and Leaderboards" | 2026-01 | Benchmarks | Eight months out, and the **most frustrating exclusion in this brief**: it argues directly for item 1's thesis from a direction this round did not take, that the gold answers themselves are wrong. Named here so the next round starts from it rather than rediscovering it. |
+| arXiv:2604.25149 - paired benchmark of semantic-layer accuracy and hallucination across three frontier models | 2026-04 | dbt | Five months out. Closest relative of item 6 and the first thing to read if that line needs depth next round. |
 
 Excluded on **substance**:
 
@@ -543,14 +664,23 @@ that the two Depth lines are narrow enough to be worth holding separately.
 - **The August 2026 results from `dbt-llm-sl-bench`.** The repository records the
   models being added; the rendered dashboard returned no figures to this fetcher.
   This is a **reachability** failure, not an absence - the data exists and is
-  public, and item 6 says so.
+  public, and item 7 says so.
 - **Submission dates for any Spider 2.0 leaderboard entry.** The board carries
   rank, method, score and organisation, and **no dates at all**. The 2026-03-01
   date for the top entry came from the vendor's own announcement, reached by
   search. A leaderboard with no dates cannot show movement, which is a real
-  limitation on the "leaderboard movement" half of this Depth Interests line.
+  limitation on the "leaderboard movement" half of this Depth Interests line -
+  and the reason item 1 had to be written about the benchmark's state rather than
+  its trajectory.
 - **Any independent audit of a Spider 2.0 submission.** None found. The board's
   integrity rests on a submission guidance document this run did not open.
+- **Any published cost or effort figure for building the semantic layers in items
+  5 and 6.** Searched; nothing. This is the absence the recommendation's
+  counter-argument is built on, and it is a null result rather than a gap in the
+  search - four systems report accuracy and none reports what the modelling took.
+- **A leaderboard or scored result for Spider 2.0-AIFunc.** The paper reports
+  model scores; no board was found, and no top-three Snow system appears to have
+  been scored on it.
 
 ---
 
@@ -564,34 +694,50 @@ request, per acceptance criterion 4.
 | Host | What it carries here | On the list before this round? |
 |---|---|---|
 | `spider2-sql.github.io` | Item 1's leaderboard figures for all three tracks | **No** - new row |
-| `github.com` | Item 1's verbatim News quotes and submission properties; item 6's repository activity | **No** - new row |
-| `arxiv.org` | Items 2, 3, 4 and 5 in full | Yes |
+| `github.com` | Item 1's verbatim News quotes and submission properties; item 7's repository activity | **No** - new row |
+| `arxiv.org` | Items 2, 3, 4, 5 and 6 in full, and item 1's corrected baseline ladder | Yes |
 | `docs.getdbt.com` | The dbt benchmark verification in full | **No** - new row, and it **refused #20** |
 | `bird-bench.github.io` | The verified BIRD null - 82.39%, 92.96%, the three top entries | Yes |
 | `bird-critic.github.io` | BIRD-CRITIC's 35.5% ceiling and the BIRD family's 2026 track dates | **No** - new row |
+| `genloop.ai` | Item 5's Unified Business Memory quotes, and the 2026-03-01 date for the 96.70 submission | **No** - new row |
 
 **Reached but returned nothing usable:**
 
 | Host | Status | Consequence |
 |---|---|---|
-| `dbt-labs.github.io` | HTTP 200, navigation shell only | Item 6's figures. **Item 6 states plainly that it has none**; nothing in this brief rests on the August run's numbers. |
+| `dbt-labs.github.io` | HTTP 200, navigation shell only | Item 7's figures. **Item 7 states plainly that it has none**; nothing in this brief rests on the August run's numbers. |
 
 **Refused: none.** Zero 403s this round, against four in #26. The two hosts the
 issue brief warned would refuse - `technologymagazine.com` and `aimagazine.com` -
 were **not fetched**, because no item needed them; budgeting a substitute turned
 out to be unnecessary rather than useful. Their rows are unchanged.
 
-**Items resting on a page I did not open: none.** The one inference drawn across
-two read pages - item 4's QUVI-3 identification - is flagged inline as an
-inference.
+**Items resting on a page I did not open: one clause, flagged.** Native's
+architecture description in item 5 comes from a search summary of `usenative.ai`,
+which this run did not fetch; the item says so and nothing depends on it. Every
+other claim in this brief comes from a host in the Read table. Item 5's QUVI-3
+identification, which the first push of this document carried as an **inference**,
+was confirmed from the paper's full text before this document was finished.
 
-**What this says about the curated list.** Six hosts were read and **four were not
-on it**. The list carried `arxiv.org` and `bird-bench.github.io`, which supplied
-five of six items' sources between them - so the list did real work - but every
-benchmark host this round's subject actually lives on was missing, because the
-list was built from two breadth rounds and these are depth subjects. That is the
-list working as designed rather than failing: commitment 2 is what let this round
-happen at all, and the four new rows are what commitment 3's feedback is for.
+**What this says about the curated list.** Seven hosts were read and **five were
+not on it**. The list carried `arxiv.org` and `bird-bench.github.io`, and
+`arxiv.org` alone supplied five of seven items - so the list did real work - but
+every benchmark host this round's subject actually lives on was missing, because
+the list was built from two breadth rounds and these are depth subjects. That is
+the list working as designed rather than failing: commitment 2 is what let this
+round happen at all, and the five new rows are what commitment 3's feedback is
+for.
+
+**One thing the list cannot currently record, and should.** `arxiv.org` was
+reached seven times and "reads" is now doing a lot of work for it - but the
+*abstract* page and the *full-text HTML* page behave differently and answered
+different questions. Item 5's identification was impossible from the abstract and
+trivial from `arxiv.org/html/<id>v1`. Same for `github.com`: the rendered
+repository page summarised the News list, and `raw.githubusercontent.com` returned
+it verbatim, which is what made item 1's quotes usable. **A per-host row cannot
+carry "this path works and that one doesn't"**, and twice this round that was the
+difference between an inference and a fact. Noted in `sources.md`'s per-entry
+detail rather than proposed as a schema change, which is out of scope here.
 
 ---
 
@@ -599,47 +745,70 @@ happen at all, and the four new rows are what commitment 3's feedback is for.
 
 **Hold both Depth lines. They are one subject, and this round found its seam.**
 
-Read items 1, 4 and 5 together. The top of the hardest public enterprise
-text-to-SQL leaderboard is not a better SQL-writing model - on the best available
-identification it is a **semantic layer with a compiler behind it** (item 4), the
-same architecture an unaffiliated group independently validated on dbt's own
-dataset with a significance test (item 5). Meanwhile the leaderboard that carries
-that result has had its evaluation environment suspended for six weeks and its
-answer key is substantially public (item 1). **The architecture question is being
-answered more convincingly than the measurement question**, which is the reverse
-of what #29 found, and it is why the two Depth lines should not be split.
+Read items 1, 5 and 6 together. The top of the hardest public enterprise
+text-to-SQL leaderboard is not a better SQL-writing model. It is a **semantic
+layer with a deterministic compiler behind it** - confirmed for QUVI-3 at 94.15
+from the paper's own text, and described in the same terms by the two vendors
+above it (item 5). That is the architecture an unaffiliated group independently
+validated on dbt's own benchmark dataset, with the only significance test in any
+of these briefs (item 6). The two subjects the reader named separately are one
+argument, and neither line answers on its own.
 
-**The strongest argument against that**, which I went looking for: item 4's
-identification is an inference from one matching number, and the entire claim
-above rests on it. If `QUVI-3 + Gemini-3-pro-preview` is not that paper, then the
-top of Spider 2.0-Snow is three vendor systems whose architecture is unknown, and
-the seam between the two Depth lines is one preprint (item 5) on an 11-question
-dataset. **One fetch decides this**, and it is the first thing named under item 4's
-part 5. There is a second, weaker argument: four of six items are arXiv preprints,
-three of them single- or small-team submissions from the last six weeks with no
-citations, and a brief assembled from preprints is measuring what got published,
-not what is true.
+**The measurement question, meanwhile, got worse rather than better.** The board
+carrying that result has had its evaluation account suspended for six weeks, its
+ground truth has been public since 2025-04-20 (item 1), and the benchmark's own
+authors published a July extension on which frontier models score 67-70% (item 2).
+This is the reverse of what #29 found: **the architecture question is now being
+answered more convincingly than the measurement question.**
+
+**The strongest argument against that**, which I went looking for and which is not
+the one this document carried on its first push - that one was the QUVI-3
+identification, and confirming it removed it.
+
+It is this: **every number above is execution accuracy on questions a semantic
+layer was built to answer, and the cost of building it is reported by nobody.**
+dbt's own primary is the evidence. On questions *outside* the modeled scope its
+semantic layer scores **0.0% by construction** while GPT-5.3-Codex text-to-SQL
+scores 100%, and the modeled configuration that produces its best figures required
+three hand-built models. QUVI calls its layer "curated"; Genloop's is "governed".
+So the honest reading of the sixty-five-point gap may be that these systems moved
+the work from inference time to modelling time and then measured only inference
+time. **A benchmark cannot see labour that happened before the benchmark started**,
+and item 4's 400-task refusal benchmark is the only thing in this brief that even
+gestures at what falls outside a modeled scope in production.
+
+A second, weaker argument: five of seven items are arXiv preprints, four of them
+single- or small-team submissions from the last eleven weeks with no citations.
+A brief assembled from preprints measures what got published, not what is true.
 
 **What would flip it:** the August `dbt-llm-sl-bench` run showing the
 semantic-layer advantage collapsing as models improve - the April primary already
-shows the gap narrowing from 27.8 points to 8.2 on the unmodeled schema, which is
-the trend line pointing that way; a Spider 2.0-Snow entry above 94.15 that is
-demonstrably raw text-to-SQL; or the QUVI-3 identification failing.
+shows the unmodeled gap narrowing from 27.8 points to 8.2, which is the trend line
+pointing that way; a Spider 2.0-Snow entry above 94.15 that is demonstrably raw
+text-to-SQL; or any of these systems reporting how long its semantic layer took to
+build, and it turning out to be cheap.
 
 ## Verified, inferred, assumed
 
-- **Verified** (read on the page, quotable): every leaderboard figure in item 1;
-  the two News quotes and their dates; every date, figure and claim attributed to
-  an arXiv abstract in items 2-5; BIRD's 82.39%, 92.96% and top-three ordering;
-  every dbt benchmark figure in [What the covered figures
+- **Verified** (read on the page, quotable): every leaderboard figure in item 1
+  and the baseline ladder behind the 31% correction; the two News quotes and their
+  dates; every date, figure and claim attributed to an arXiv paper in items 2-6;
+  item 5's system name and its identification as the `QUVI-3` leaderboard entry;
+  Genloop's architecture quotes and its 2026-03-01 date; BIRD's 82.39%, 92.96% and
+  top-three ordering; every dbt benchmark figure in [What the covered figures
   actually say](#what-the-covered-figures-actually-say).
-- **Inferred**, and flagged inline: that item 4's paper is the `QUVI-3 +
-  Gemini-3-pro-preview` leaderboard entry, from one matching figure on one track.
-  Also inferred: that Spider 2.0's public ground-truth release makes its
-  leaderboard weaker than BIRD's held-out scoring - the properties are stated by
-  each benchmark, the comparison is mine.
+- **Inferred**, and flagged inline: that Spider 2.0's public ground-truth release
+  makes its leaderboard weaker than BIRD's held-out scoring - the properties are
+  stated by each benchmark, the comparison is mine. Also inferred: that Genloop's
+  "Unified Business Memory" and QUVI's semantic layer are the same architectural
+  idea. They are described in similar terms by parties with no reason to agree,
+  which is the strength of it and also its whole basis.
+- **Read only in summary**, not at source: Native's architecture description in
+  item 5, from a search index rather than `usenative.ai`. Nothing rests on it.
+  Note also that Native's own materials claim **#1 at 96.53** while the board this
+  run read shows Genloop at 96.70 above it; the board is what this brief follows.
 - **Assumed**, and load-bearing:
-  1. That item 6's repository activity is correctly dated to August 2026. It came
+  1. That item 7's repository activity is correctly dated to August 2026. It came
      from a repository landing page rather than a commit log, and it is the only
      item whose window placement I cannot pin to a day.
   2. That the Spider 2.0 leaderboard read on 2026-09-23 reflects validated
@@ -650,7 +819,7 @@ demonstrably raw text-to-SQL; or the QUVI-3 identification failing.
      both were derived from items in #29. The profile's Window comment supports
      this; naming it because a reader could argue #29 already covered both
      subjects, and under a 30-day window this brief would have **one** item -
-     item 2.
+     item 3, the only one dated inside 2026-08-24.
 
 ## This brief's relationship to `src/` and the profile
 
