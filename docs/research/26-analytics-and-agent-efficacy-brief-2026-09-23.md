@@ -14,7 +14,7 @@ evaluation cost visibility, and the iterative DAX sub-agent in Fabric data
 agents - are covered ground here. None is re-reported. Two items below are
 **developments on** one of them and say which one and what moved.
 
-**Five items passed filtering.** One serves the established subject, four serve
+**Five items passed filtering.** Two serve the established subject, three serve
 the new one. That split is the window rule working and is the most argue-withable
 thing in this document; it is unpacked in
 [The two windows](#the-two-windows-and-what-each-one-let-through) rather than
@@ -34,18 +34,26 @@ The profile now carries a Window rule that did not exist when #24 was written:
 
 | Interests line | Appeared in a brief before? | Window | Cutoff date | Items below |
 |---|---|---|---|---|
-| Analytics for enterprise AI, broadly | Yes - #24 | **30 days** | **2026-08-24** | 1 |
-| Measuring agent efficacy in an enterprise setting | No | **90 days** | **2026-06-25** | 4 |
+| Analytics for enterprise AI, broadly | Yes - #24 | **30 days** | **2026-08-24** | 2 (items 1, 2) |
+| Measuring agent efficacy in an enterprise setting | No | **90 days** | **2026-06-25** | 3 (items 3, 4, 5) |
 
 Every item states its line and its cutoff, so a date can be checked against the
 right one without arithmetic.
 
 **The asymmetry is not an accident and it is not padding.** At 30 days for both
-subjects this brief would have had two items, not five: the three efficacy items
-dated 2026-08-19, 2026-08-22 and 2026-09-15 include two that fall two and five
-days the wrong side of 2026-08-24. The 90-day first pass is doing real work on
-its first outing, which is the argument #21 made for it, now visible rather than
-predicted.
+subjects this brief would have had three items, not five. Of the three efficacy
+items, the ones dated 2026-08-22 and 2026-08-19 fall two and five days the wrong
+side of 2026-08-24 and would have been excluded; the third, dated 2026-09-15,
+clears a 30-day window comfortably and is here because of its subject, not
+because of its window.
+
+So the 90-day first pass admitted **two** items that 30 days would have kept out.
+That is real work on its first outing, which is the argument #21 made for it, now
+visible rather than predicted - but it is a smaller result than the 2-vs-3 split
+suggests on its own, and the split should not be read as the window's doing. The
+larger share of what is new here comes from the new *subject* rather than the new
+*window*: adding the Interests line is what put three items in scope at all, and
+only two of those three needed the extra sixty days to get in.
 
 **One judgement call you should know about, because it changes the brief.** Items
 3 and 5 touch both Interests lines. I assigned each to the efficacy line, which
