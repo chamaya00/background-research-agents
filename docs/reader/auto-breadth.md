@@ -21,11 +21,23 @@ GitHub Actions by default is [ADR 0007](../decisions/0007-auto-breadth-runs-in-a
 ## Where it runs
 
 **By default, in GitHub Actions**, through the `auto-breadth` workflow
-(`.github/workflows/auto-breadth.yml`). Start it from the Actions tab with a
-seed, or have a session start it. It runs unattended on a runner with open
+(`.github/workflows/auto-breadth.yml`). It runs unattended on a runner with open
 network, needs no session to stay alive, and ends in one pull request. It never
-merges. A session asked for `auto breadth <seed>` should dispatch the workflow
-rather than run the tree itself, then watch for the pull request.
+merges. There are two ways to start it:
+
+- **File an issue and label it `auto-breadth`.** The title is the seed, with or
+  without an "Auto breadth:" prefix. The body may set `width=N`, `paths=N`,
+  `depth=N`. This is how a session starts one: the GitHub connection a
+  session uses cannot dispatch workflows, but a label it adds starts them.
+  The run comments on the issue when it starts, when its pull request opens,
+  and if it fails. The pull request closes the issue when it merges, so the
+  issue is the exploration's trail.
+- **Run it by hand** from the Actions tab (`Run workflow`), with the seed and
+  parameters as inputs.
+
+Either way, only people with write access can start one. For a labelled issue,
+both the labeller and the issue's author are checked, because on a public
+repository anyone can open an issue.
 
 **In a session**, when the person asks for that specifically, or when the
 workflow cannot run. This is how the first exploration ran. A session is

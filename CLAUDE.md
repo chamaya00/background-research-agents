@@ -197,7 +197,8 @@ understood must never narrow what gets fetched - that conflation is what
 first and follows the best leads down several levels without a person between
 levels - `docs/reader/auto-breadth.md` is the mechanic, ADRs 0006 and 0007 the
 reasons. It runs in GitHub Actions by default (the `auto-breadth` workflow,
-which opens a pull request and never merges), or in a session when asked.
+started by labelling an issue `auto-breadth` whose title is the seed; it opens
+a pull request and never merges), or in a session when asked.
 It reads the profile like any run and **never writes it**: a followed path is a
 proposal until a reaction adopts it through the loop above. The loop stays the
 default. **Shorthand:** a message starting with `auto breadth` - any case, with

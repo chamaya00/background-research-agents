@@ -49,6 +49,20 @@ exploration folder and `docs/reader/sources.md`. Only then does it mint the App
 token, push one commit and open the pull request. The App identity is what
 makes CI run on that pull request.
 
+**A labelled issue starts it too** (added 2026-09-24, the same day). A session's
+GitHub connection was refused when it tried to dispatch the workflow (403,
+"Resource not accessible by integration"). A label a session adds does start
+workflows; that is how `agent:queued` works. So an issue labelled
+`auto-breadth` starts a run, with its title as the seed. A gate job refuses
+unless both the labeller and the issue's author have write access, and it is
+the only job that reads the issue. The App token that comments on the issue is
+minted either in a separate job on its own runner (when the run starts) or
+after the agent has finished (landing, or failure), so it never shares a
+machine with the agent while the agent runs. This does not go through the
+orchestrator. The orchestrator makes role-labelled children for `agent-run`,
+which is exactly the machinery 0006 found a tree does not fit, and it is
+factory-managed.
+
 **It never merges.** The house rules keep merging with a session carrying the
 person's instruction, or with the person. The standing "merge for me" in the
 mode's step 5 is exercised by a session.
