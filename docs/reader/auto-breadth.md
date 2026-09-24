@@ -151,6 +151,13 @@ Each path is a chain, not a tree: one lead per level. Paths run in parallel -
 one subagent per path per level, and the next level of a path starts as soon as
 its previous level lands.
 
+**In the workflow, parallel means foreground.** Start several subagents in one
+message and wait for all of them - never send one to the background. A
+headless run ends when the driver's turn ends and takes background work with
+it. The first two workflow runs stopped straight after the breadth pass for
+exactly that reason, 2026-09-24. A session is woken when background work
+finishes, so there the choice is free.
+
 A level's subagent appends one section, `## Level N - <lead>`, to
 `path-<n>-<slug>.md`: two to four items in the seven-part structure, narrower
 than the level above, and two research-next leads per item. The driver picks
