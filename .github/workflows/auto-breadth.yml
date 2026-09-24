@@ -5,9 +5,18 @@ name: auto-breadth
 # docs/reader/auto-breadth.md; this file only gives it a runner, a network,
 # and a way to land. ADR 0007 is why it runs here rather than in a session.
 #
-# Started by hand from the Actions tab, or by a session with the person's
-# instruction. GitHub requires write access to dispatch a workflow, so on a
-# public repository nobody else can start one.
+# Two ways to start it, and both need write access to the repository:
+#
+# - By hand from the Actions tab (workflow_dispatch). GitHub requires write
+#   access to dispatch a workflow.
+# - By labelling an issue `auto-breadth`. The issue title is the seed; the body
+#   may carry `width=N`, `paths=N`, `depth=N`. This is how a session starts
+#   one: the GitHub connection a session uses cannot dispatch workflows, but a
+#   label it adds does start them, the same way `agent:queued` does. On a public
+#   repository anyone can open an issue, so the gate job refuses unless both
+#   the person who added the label and the issue's author have write access.
+#   The run comments on the issue when it starts, when its pull request opens,
+#   and if it fails; the pull request closes the issue when it merges.
 #
 # The shape that matters: the agent never holds a token that can write to the
 # repository. It spends two hours reading untrusted web pages, and anything it
@@ -40,6 +49,8 @@ on:
         required: false
         default: '3'
         type: string
+  issues:
+    types: [labeled]
 
 # The workflow token can read and nothing else. The only write in this file is
 # the landing step's, with the App token minted inside that step.
@@ -47,31 +58,116 @@ permissions:
   contents: read
 
 jobs:
+  # Who asked, and what for. Everything the other two jobs use comes from here,
+  # already checked, so neither ever reads the issue itself.
+  gate:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issues' && github.event.label.name == 'auto-breadth' && github.event.issue.state == 'open')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      seed: ${{ steps.inputs.outputs.seed }}
+      width: ${{ steps.inputs.outputs.width }}
+      paths: ${{ steps.inputs.outputs.paths }}
+      depth: ${{ steps.inputs.outputs.depth }}
+      slug: ${{ steps.inputs.outputs.slug }}
+      day: ${{ steps.inputs.outputs.day }}
+      issue: ${{ steps.inputs.outputs.issue }}
+    steps:
+      - name: Check who asked
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SENDER: ${{ github.event.sender.login }}
+          AUTHOR: ${{ github.event.issue.user.login }}
+        run: |
+          set -euo pipefail
+          # Fails closed: an API error is a refusal, not a pass.
+          for who in "$SENDER" "$AUTHOR"; do
+            perm="$(gh api "repos/${GITHUB_REPOSITORY}/collaborators/${who}/permission" --jq .permission 2>/dev/null || echo unknown)"
+            case "$perm" in
+              admin|write) echo "ok: $who has $perm" ;;
+              *) echo "::error::$who has '$perm' access. Only people with write access may start an exploration."; exit 1 ;;
+            esac
+          done
+
+      - name: Read the inputs
+        id: inputs
+        env:
+          RAW_SEED: ${{ inputs.seed || github.event.issue.title }}
+          RAW_BODY: ${{ github.event.issue.body }}
+          IN_WIDTH: ${{ inputs.width }}
+          IN_PATHS: ${{ inputs.paths }}
+          IN_DEPTH: ${{ inputs.depth }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+          # One line, and without the optional "Auto breadth:" prefix a title
+          # may carry.
+          seed="$(printf '%s' "$RAW_SEED" | tr -d '\r\n' | sed -E 's/^[[:space:]]*[Aa]uto[ -][Bb]readth[[:space:]]*:?[[:space:]]*//; s/[[:space:]]+$//')"
+          [ -n "${seed// /}" ] || { echo "::error::the seed is empty"; exit 1; }
+          param() { # $1 name, $2 dispatch value
+            if [ -n "$2" ]; then printf '%s' "$2"; return; fi
+            v="$(printf '%s' "$RAW_BODY" | grep -oiE "(^|[^a-z])$1[[:space:]]*=[[:space:]]*[0-9]+" | head -n1 | grep -oE '[0-9]+$' || true)"
+            printf '%s' "${v:-$3}"
+          }
+          width="$(param width "$IN_WIDTH" 5)"; paths="$(param paths "$IN_PATHS" 3)"; depth="$(param depth "$IN_DEPTH" 3)"
+          for v in "$width" "$paths" "$depth"; do
+            case "$v" in ''|*[!0-9]*) echo "::error::width, paths and depth must be whole numbers, got '$v'"; exit 1 ;; esac
+            [ "$v" -ge 1 ] && [ "$v" -le 8 ] || { echo "::error::width, paths and depth must be between 1 and 8, got $v"; exit 1; }
+          done
+          slug="$(printf '%s' "$seed" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//' | cut -c1-60 | sed -E 's/-+$//')"
+          [ -n "$slug" ] || slug="exploration"
+          delim="EOF_$(od -An -N8 -tx8 /dev/urandom | tr -d ' ')"
+          {
+            echo "seed<<$delim"; printf '%s\n' "$seed"; echo "$delim"
+            echo "width=$width"; echo "paths=$paths"; echo "depth=$depth"
+            echo "slug=$slug"; echo "day=$(date -u +%Y-%m-%d)"; echo "issue=${ISSUE:-}"
+          } >> "$GITHUB_OUTPUT"
+          echo "Seed: $seed"; echo "width=$width paths=$paths depth=$depth slug=$slug issue=${ISSUE:-none}"
+
+  # Says on the issue that a run started, from its own runner: the App token
+  # never exists on the machine the agent runs on while the agent runs.
+  announce:
+    needs: gate
+    if: needs.gate.outputs.issue != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Mint the agent identity token
+        id: app-token
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+        with:
+          app-id: ${{ secrets.AGENT_APP_ID }}
+          private-key: ${{ secrets.AGENT_APP_PRIVATE_KEY }}
+      - name: Comment that the run started
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          ISSUE: ${{ needs.gate.outputs.issue }}
+          WIDTH: ${{ needs.gate.outputs.width }}
+          PATHS: ${{ needs.gate.outputs.paths }}
+          DEPTH: ${{ needs.gate.outputs.depth }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh issue comment "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "Exploration started: [run]($RUN_URL), width $WIDTH, paths $PATHS, depth $DEPTH. A pull request will follow here when it lands; the research is kept as a run artifact whatever happens."
+
   explore:
+    needs: gate
     runs-on: ubuntu-latest
     # A 5/3/3 exploration is up to ten research runs. In a session the paths
     # took about ninety minutes with levels in parallel; this leaves room for
     # a slow host without letting a stuck run hold a runner for six hours.
     timeout-minutes: 240
     env:
-      SEED: ${{ inputs.seed }}
-      WIDTH: ${{ inputs.width }}
-      PATHS: ${{ inputs.paths }}
-      DEPTH: ${{ inputs.depth }}
+      SEED: ${{ needs.gate.outputs.seed }}
+      WIDTH: ${{ needs.gate.outputs.width }}
+      PATHS: ${{ needs.gate.outputs.paths }}
+      DEPTH: ${{ needs.gate.outputs.depth }}
+      SLUG: ${{ needs.gate.outputs.slug }}
+      DAY: ${{ needs.gate.outputs.day }}
+      ISSUE: ${{ needs.gate.outputs.issue }}
     steps:
-      - name: Check the inputs
-        run: |
-          set -euo pipefail
-          for v in "$WIDTH" "$PATHS" "$DEPTH"; do
-            case "$v" in ''|*[!0-9]*) echo "::error::width, paths and depth must be whole numbers, got '$v'"; exit 1 ;; esac
-            [ "$v" -ge 1 ] && [ "$v" -le 8 ] || { echo "::error::width, paths and depth must be between 1 and 8, got $v"; exit 1; }
-          done
-          [ -n "${SEED// /}" ] || { echo "::error::the seed is empty"; exit 1; }
-          slug="$(printf '%s' "$SEED" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//' | cut -c1-60 | sed -E 's/-+$//')"
-          [ -n "$slug" ] || slug="exploration"
-          echo "SLUG=$slug" >> "$GITHUB_ENV"
-          echo "DAY=$(date -u +%Y-%m-%d)" >> "$GITHUB_ENV"
-
       # No stored credential: nothing the agent runs can push with the checkout.
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
@@ -111,10 +207,10 @@ jobs:
             You are the driver of an auto-breadth exploration in
             ${{ github.repository }}, running unattended in GitHub Actions.
 
-            Seed: ${{ inputs.seed }}
-            Parameters: width=${{ inputs.width }} paths=${{ inputs.paths }} depth=${{ inputs.depth }}
-            Date: ${{ env.DAY }}
-            Folder: docs/research/explore/${{ env.DAY }}-${{ env.SLUG }}/
+            Seed: ${{ needs.gate.outputs.seed }}
+            Parameters: width=${{ needs.gate.outputs.width }} paths=${{ needs.gate.outputs.paths }} depth=${{ needs.gate.outputs.depth }}
+            Date: ${{ needs.gate.outputs.day }}
+            Folder: docs/research/explore/${{ needs.gate.outputs.day }}-${{ needs.gate.outputs.slug }}/
 
             Read `docs/reader/auto-breadth.md` in full and follow it. It is
             written for whoever drives the run, and in this run that is you.
@@ -161,7 +257,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: auto-breadth-${{ env.DAY }}-${{ env.SLUG }}
+          name: auto-breadth-${{ needs.gate.outputs.day }}-${{ needs.gate.outputs.slug }}
           path: |
             docs/research/explore/
             docs/reader/sources.md
@@ -223,6 +319,7 @@ jobs:
             printf 'Auto-breadth exploration of **%s**. Start at [`%s/README.md`](%s/README.md).\n\nThe run wrote no pull request body, so there is no process evidence here.\n' "$SEED" "$folder" "$folder" > "$body_file"
           fi
           printf '\n\n---\nOpened by the `auto-breadth` workflow ([run](%s)); seed `%s`, width %s, paths %s, depth %s. The workflow never merges.\n' "$RUN_URL" "$SEED" "$WIDTH" "$PATHS" "$DEPTH" >> "$body_file"
+          if [ -n "$ISSUE" ]; then printf '\nCloses #%s\n' "$ISSUE" >> "$body_file"; fi
 
           git config user.name "${APP_SLUG}[bot]"
           git config user.email "${APP_SLUG}[bot]@users.noreply.github.com"
@@ -239,4 +336,26 @@ jobs:
           Run: ${RUN_URL}
           EOF
           git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${branch}"
-          gh pr create --repo "$GITHUB_REPOSITORY" --base "${{ github.event.repository.default_branch }}" --head "$branch" --title "$title" --body-file "$body_file"
+          pr_url="$(gh pr create --repo "$GITHUB_REPOSITORY" --base "${{ github.event.repository.default_branch }}" --head "$branch" --title "$title" --body-file "$body_file")"
+          echo "Opened $pr_url"
+          if [ -n "$ISSUE" ]; then
+            gh issue comment "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "Exploration landed: $pr_url - start at \`$folder/README.md\`. Merging it closes this issue."
+          fi
+
+      # Only after the agent has finished, so a fresh token here is never on
+      # the machine while the agent runs.
+      - name: Mint a token to report the failure
+        id: fail-token
+        if: failure() && env.ISSUE != ''
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+        with:
+          app-id: ${{ secrets.AGENT_APP_ID }}
+          private-key: ${{ secrets.AGENT_APP_PRIVATE_KEY }}
+
+      - name: Say on the issue that it failed
+        if: failure() && env.ISSUE != '' && steps.fail-token.outputs.token != ''
+        env:
+          GH_TOKEN: ${{ steps.fail-token.outputs.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh issue comment "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "Exploration failed before landing: [run]($RUN_URL). Whatever research it produced is in the run's artifact \`auto-breadth-${DAY}-${SLUG}\` for 30 days. Removing and re-adding the \`auto-breadth\` label starts a fresh run."
