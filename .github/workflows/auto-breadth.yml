@@ -49,6 +49,12 @@ on:
         required: false
         default: '3'
         type: string
+      mode:
+        description: learning (survey what has been written) or scrutiny (drill into claims).
+        required: false
+        default: 'learning'
+        type: choice
+        options: [learning, scrutiny]
   issues:
     types: [labeled]
 
@@ -71,6 +77,7 @@ jobs:
       width: ${{ steps.inputs.outputs.width }}
       paths: ${{ steps.inputs.outputs.paths }}
       depth: ${{ steps.inputs.outputs.depth }}
+      mode: ${{ steps.inputs.outputs.mode }}
       slug: ${{ steps.inputs.outputs.slug }}
       day: ${{ steps.inputs.outputs.day }}
       issue: ${{ steps.inputs.outputs.issue }}
@@ -100,6 +107,7 @@ jobs:
           IN_WIDTH: ${{ inputs.width }}
           IN_PATHS: ${{ inputs.paths }}
           IN_DEPTH: ${{ inputs.depth }}
+          IN_MODE: ${{ inputs.mode }}
           ISSUE: ${{ github.event.issue.number }}
         run: |
           set -euo pipefail
@@ -117,15 +125,21 @@ jobs:
             case "$v" in ''|*[!0-9]*) echo "::error::width, paths and depth must be whole numbers, got '$v'"; exit 1 ;; esac
             [ "$v" -ge 1 ] && [ "$v" -le 8 ] || { echo "::error::width, paths and depth must be between 1 and 8, got $v"; exit 1; }
           done
+          # Learning unless someone asked for scrutiny, by input or by
+          # `mode=scrutiny` in the issue body. Anything else is learning.
+          mode="learning"
+          if [ "${IN_MODE:-}" = "scrutiny" ] || printf '%s' "$RAW_BODY" | grep -qiE '(^|[^a-z])mode[[:space:]]*=[[:space:]]*scrutiny'; then
+            mode="scrutiny"
+          fi
           slug="$(printf '%s' "$seed" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//' | cut -c1-60 | sed -E 's/-+$//')"
           [ -n "$slug" ] || slug="exploration"
           delim="EOF_$(od -An -N8 -tx8 /dev/urandom | tr -d ' ')"
           {
             echo "seed<<$delim"; printf '%s\n' "$seed"; echo "$delim"
-            echo "width=$width"; echo "paths=$paths"; echo "depth=$depth"
+            echo "width=$width"; echo "paths=$paths"; echo "depth=$depth"; echo "mode=$mode"
             echo "slug=$slug"; echo "day=$(date -u +%Y-%m-%d)"; echo "issue=${ISSUE:-}"
           } >> "$GITHUB_OUTPUT"
-          echo "Seed: $seed"; echo "width=$width paths=$paths depth=$depth slug=$slug issue=${ISSUE:-none}"
+          echo "Seed: $seed"; echo "width=$width paths=$paths depth=$depth mode=$mode slug=$slug issue=${ISSUE:-none}"
 
   # Says on the issue that a run started, from its own runner: the App token
   # never exists on the machine the agent runs on while the agent runs.
@@ -226,6 +240,7 @@ jobs:
 
             Seed: ${{ needs.gate.outputs.seed }}
             Parameters: width=${{ needs.gate.outputs.width }} paths=${{ needs.gate.outputs.paths }} depth=${{ needs.gate.outputs.depth }}
+            Mode: ${{ needs.gate.outputs.mode }} (the mode doc's "Two modes" says what this changes)
             Date: ${{ needs.gate.outputs.day }}
             Folder: docs/research/explore/${{ needs.gate.outputs.day }}-${{ needs.gate.outputs.slug }}/
 
