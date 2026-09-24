@@ -176,6 +176,22 @@ jobs:
       - name: Record where the run starts
         run: echo "BASE=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
+      # The secret scrub below needs bubblewrap, which GitHub's runners do not
+      # ship; without it Claude Code refuses to start (the first two live runs,
+      # 2026-09-24). Ubuntu 24.04 also blocks the unprivileged user namespaces
+      # bwrap uses, through AppArmor, so that is relaxed for this runner only.
+      # The last line proves the sandbox starts before any research does.
+      - name: Install bubblewrap for subprocess isolation
+        run: |
+          set -euo pipefail
+          sudo apt-get update -q >/dev/null
+          sudo apt-get install -y -q bubblewrap >/dev/null
+          if [ -e /proc/sys/kernel/apparmor_restrict_unprivileged_userns ]; then
+            sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+          fi
+          bwrap --ro-bind / / --dev /dev --proc /proc --unshare-pid --die-with-parent true
+          echo "bubblewrap $(bwrap --version) works"
+
       - name: Explore
         uses: anthropics/claude-code-action@8cf3482550831fb35a4fc3fbf7ca139cf8028b4c # v1.0.233
         env:
