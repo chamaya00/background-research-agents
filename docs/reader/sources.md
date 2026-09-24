@@ -57,6 +57,7 @@ which of its two tables the row came from:
 `42` = `docs/research/42-depth-brief-2026-09-23-semantic-models-and-warehouse-agentic.md`.
 `X1` = the auto-breadth exploration `docs/research/explore/2026-09-23-snowflake-sql-ai-functions/`.
 `X2` = the auto-breadth exploration `docs/research/explore/2026-09-24-agentic-ai-features-for-analytics-launched-or-announced-ware/`, run in GitHub Actions.
+`X3` = the auto-breadth exploration `docs/research/explore/2026-09-24-methodology-for-proving-agentic-ai-efficacy-study-designs-ev/`, run in GitHub Actions.
 
 The two Depth lines were added to `profile.md` by the reaction to
 [#29](https://github.com/chamaya00/background-research-agents/issues/29) and
@@ -73,10 +74,10 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `gethynellis.com` | A | reads | 2026-09-21 | 19, Read row |
 | `pointfive.co` | A and E | reads | 2026-09-21 | 19, Read row |
 | `kucoin.com` | E | reads | 2026-09-21 | 19, Read row |
-| `arxiv.org` | E and B and D and S | reads | 2026-09-23, re-observed same day by #35 and by #42; re-observed 2026-09-24 by X2 | 26, Read row; 35, Read row; 42; X2 |
+| `arxiv.org` | E and B and D and S | reads (`/html/` and `/abs/`; `/pdf/` and `/src/` return binary a shell-less runner cannot open) | 2026-09-23, re-observed same day by #35 and by #42; re-observed 2026-09-24 by X2 and X3 | 26, Read row; 35, Read row; 42; X2; X3 |
 | `bird-bench.github.io` | E and B | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
 | `spider2-sql.github.io` | B | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
-| `github.com` | B and D and W and A and E | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` rate-limited, 403, or truncated; pull-request "Files changed" views return a shell; attached `.zip` trace archives redirect to `objects.githubusercontent.com` and return binary) | 2026-09-23, re-observed same day by #42 and by X1; re-observed 2026-09-24 by X2 | 35, Read row; 42; X1; X2 |
+| `github.com` | B and D and W and A and E | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` varies by run - rate-limited or 403 on 2026-09-23, truncated for X2 and answered contents, trees, commits and issues for X3 on 2026-09-24; pull-request "Files changed" views return a shell; attached `.zip` trace archives redirect to `objects.githubusercontent.com` and return binary) | 2026-09-23, re-observed same day by #42 and by X1; re-observed 2026-09-24 by X2 and X3 | 35, Read row; 42; X1; X2; X3 |
 | `docs.getdbt.com` | D and W and S | reads | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 | 35, Read row; 42; X2 |
 | `ossie.apache.org` | S | reads | 2026-09-23; re-observed 2026-09-24 by X2 | 42; X2 |
 | `cloud.google.com` (blog only) | A and W | **reads the `/blog/` path; `/bigquery/docs/*` 301s to `docs.cloud.google.com`** | 2026-09-23; re-observed 2026-09-24 by X2 | X1; X2 |
@@ -97,8 +98,8 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `typedef.ai` | S | reads | 2026-09-24 | X2 |
 | `colrows.com` | W | reads | 2026-09-24 | X2 |
 | `codecentric.de` | E | reads | 2026-09-24 | X2 |
-| `pith.science` | E | reads - machine-generated preprint reviews | 2026-09-24 | X2 |
-| `huggingface.co` | E | reads | 2026-09-24 | X2 |
+| `pith.science` | E | reads - machine-generated preprint reviews, paper pages; `/about` refuses, 403 | 2026-09-24 | X2; X3 |
+| `huggingface.co` | E | reads (dataset cards, file trees, `resolve/main` files) | 2026-09-24 | X2; X3 |
 | `venturebeat.com` | A | reads | 2026-09-24 | X2 |
 | `atscale.com` | S | reads | 2026-09-24 | X2 |
 | `seemoredata.io` | W | reads | 2026-09-24 | X2 |
@@ -109,7 +110,7 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `dbt-labs.github.io` | D | **reads, returns nothing usable** | 2026-09-23, re-observed same day by #42 | 35, "Reached but returned nothing usable"; 42 |
 | `fivetran.com` | A and S | reads | 2026-09-23; re-observed 2026-09-24 by X2 | 26, Read row; X2 |
 | `techtarget.com` | A | reads | 2026-09-23, re-observed same day; re-observed 2026-09-24 by X2 | 26, Read row; re-fetched by #32; X2 |
-| `salesforce.com` | A | reads the newsroom; the Salesforce+ keynote page returns a truncated shell | 2026-09-23; re-observed 2026-09-24 by X2 | 26, Read row; X2 |
+| `salesforce.com` | A and E | reads the newsroom; the Salesforce+ keynote page returns a truncated shell | 2026-09-23; re-observed 2026-09-24 by X2 and X3 | 26, Read row; X2; X3 |
 | `cxfoundation.com` | A | reads | 2026-09-23 | 26, Read row |
 | `snowflake.com` | A and W and S and E | reads - newsroom, product and engineering blogs, developer guides | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 | 26, Read row; 42; X2 |
 | `prnewswire.com` | E and W | reads | 2026-09-21, re-observed 2026-09-23 by #42 | 19, Read row; 42 |
@@ -120,10 +121,25 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `web.archive.org` | E | **not fetchable by the run's fetch tool** - no archived copy could be compared | 2026-09-24 | X2 |
 | `blogs.oracle.com` | B | refuses | 2026-09-23 | 42 |
 | `hpcwire.com` | A | refuses | 2026-09-21 and 2026-09-23 | 19, Refused row; re-fetched by #32 |
-| `openai.com` | A | refuses | 2026-09-23 | 26, Refused row |
+| `openai.com` | A and E | refuses | 2026-09-23; re-observed 2026-09-24 (403 on `/index/separating-signal-from-noise-coding-evaluations/`) | 26, Refused row; X3 |
 | `blogs.mulesoft.com` | A | refuses | 2026-09-23 | 26, Refused row |
 | `technologymagazine.com` | E | refuses | 2026-09-23 | 26, Refused row |
 | `aimagazine.com` | E | refuses | 2026-09-23 | 26, Refused row |
+| `nist.gov` | E | reads (`/caisi`, CAISI news posts, the AI Agent Standards Initiative page) | 2026-09-24 | X3 |
+| `metr.org` | E | reads (`/blog/`, `/research/`, individual posts; a guessed post URL 404s) | 2026-09-24 | X3 |
+| `commandline.microsoft.com` | E | reads | 2026-09-24 | X3 |
+| `epoch.ai` | E | reads | 2026-09-24 | X3 |
+| `hal.cs.princeton.edu` | E | reads | 2026-09-24 | X3 |
+| `aievaluatorforum.org` | E | reads | 2026-09-24 | X3 |
+| `ai-act-service-desk.ec.europa.eu` | E | reads | 2026-09-24 | X3 |
+| `the-decoder.com` | E | reads | 2026-09-24 | X3 |
+| `faros.ai` | E | reads | 2026-09-24 | X3 |
+| `fin.ai` | E | reads (help-centre article) | 2026-09-24 | X3 |
+| `hub.docker.com` | E | reads (tags API) | 2026-09-24 | X3 |
+| `zenodo.org` | E | reads, landing page only (archives not opened) | 2026-09-24 | X3 |
+| `intercom.com` | E | **reads, returns nothing usable** (help article returned navigation only) | 2026-09-24 | X3 |
+| `swebench.com` | E | **reads, returns nothing usable** (leaderboard table drawn by JavaScript) | 2026-09-24 | X3 |
+| `cnbc.com` | E | refuses, 403 | 2026-09-24 | X3 |
 
 A **refuses** row is not a dead entry and is the reason this list is worth
 more than a bookmark folder. It says: this host has a page you want, you
@@ -160,7 +176,7 @@ looking like the same kind.
 
 | Source | Line | Status | Last checked | Cited |
 |---|---|---|---|---|
-| **NIST CAISI**, AI Agent Standards Initiative | E | **not yet observed** - no confirmed publication inside the window; nothing fetched, because nothing was found to fetch | 2026-09-23 | 26, "What I searched for and did not find" |
+| **NIST CAISI**, AI Agent Standards Initiative | E | **not yet observed** - no confirmed publication inside the window. The Initiative's page on `nist.gov` was fetched on 2026-09-24: updated 2026-08-14, nothing dated from 2026-06-26 on, and NIST AI 800-2 still an Initial Public Draft. **CAISI itself has published** (three assessments, 2026-07-17, 07-23, 09-17), so `nist.gov` is now in the table above | 2026-09-23; 2026-09-24 | 26, "What I searched for and did not find"; X3, breadth item 5 |
 
 The detail worth not re-deriving: everything either search returned dated to
 February-April 2026 - the 2026-02-17 launch, an automated-benchmark-evaluation
