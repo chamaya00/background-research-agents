@@ -75,11 +75,11 @@ derived rather than stored.
   *Briefs: [#29](https://github.com/chamaya00/background-research-agents/issues/29). Items: 3. Added by the reaction to [#24](https://github.com/chamaya00/background-research-agents/issues/24), "add
   another research angle on measuring agent efficacy in an enterprise
   setting", 2026-09-23.*
-- **`benchmarks-depth`** · **active** · 1 run · last **2026-09-23** · window **30d**
+- **`benchmarks-depth`** · **active** · 2 runs · last **2026-09-23** · window **30d**
   **Depth**, under `agent-efficacy`: text-to-SQL and data-agent benchmarks by
   name - Spider, Spider 2.0, BIRD, ERPBench. Leaderboard movement,
   methodology, and what each one's design does and does not make measurable.
-  *Briefs: [#35](https://github.com/chamaya00/background-research-agents/issues/35). Items: 5. Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "places i want to go deeper next,
+  *Briefs: [#35](https://github.com/chamaya00/background-research-agents/issues/35), [#42](https://github.com/chamaya00/background-research-agents/issues/42). Items: 6. Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "places i want to go deeper next,
   like ... the data benchmarks like spider and bird", 2026-09-23. Narrower
   than its parent rather than separate from it; breadth was explicitly kept.*
 - **`dbt-context`** · **active** · 1 run · last **2026-09-23** · window **30d**
@@ -88,19 +88,19 @@ derived rather than stored.
   benchmarks, and what is built on top of them.
   *Briefs: [#35](https://github.com/chamaya00/background-research-agents/issues/35). Items: 2. Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "the dbt findings", 2026-09-23.
   Narrower than its parent rather than separate from it.*
-- **`semantic-models`** · **active** · 0 runs · never run · window **90d**
+- **`semantic-models`** · **active** · 1 run · last **2026-09-23** · window **30d**
   **Depth**, under `dbt-context`: semantic models themselves - how one is
   defined, what it costs to build and maintain, who curates it, and the
   deterministic-compilation pattern that [#35](https://github.com/chamaya00/background-research-agents/issues/35)'s items 5 and 6 both
   landed on independently.
-  *Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "dive deeper into semantic models", 2026-09-23.
+  *Briefs: [#42](https://github.com/chamaya00/background-research-agents/issues/42). Items: 3. Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "dive deeper into semantic models", 2026-09-23.
   [#35](https://github.com/chamaya00/background-research-agents/issues/35)'s own counter-argument is why this is its own topic: every
   number in that report is accuracy on questions a semantic layer was built to
   answer, and nobody reports what building it took.*
-- **`warehouse-agentic`** · **active** · 0 runs · never run · window **90d**
+- **`warehouse-agentic`** · **active** · 1 run · last **2026-09-23** · window **30d**
   **Depth**, under `analytics-broad`: agentic AI features shipped by the
   warehouse and transformation vendors themselves - Snowflake and dbt first.
-  *Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "snowflake and dbt agentic ai features",
+  *Briefs: [#42](https://github.com/chamaya00/background-research-agents/issues/42). Items: 2. Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "snowflake and dbt agentic ai features",
   2026-09-23.*
 - **`efficacy-methodology`** · **active** · 0 runs · never run · window **90d**
   **Depth**, under `agent-efficacy`: how the efficacy of agentic AI is
@@ -152,9 +152,9 @@ selection, and that is a known gap rather than an oversight - if depth should
 displace breadth rather than compete with it, that is a decision to make
 explicitly.
 
-**Who writes it, and when.** The driver, in the same pull request that reacts
-to a brief - `loop.md` step 6. A research run does not touch this file at all;
-that rule is what makes the reaction diff the only way a preference becomes
+**Who writes it, and when.** The driver, when the report is delivered -
+`loop.md` step 3, which `/round` carries out. A research run does not touch
+this file at all; that rule is what makes the reaction diff the only way a preference becomes
 true. This is the same who-writes-it test that put `sources.md` in a separate
 file, and it lands the other way here: run counts and retirement are the
 driver's facts, so they belong beside the preference rather than in a file of
@@ -217,8 +217,6 @@ is referenced in passing; a concept marked new is explained once.
 
 ## Format
 
-- Delivered as a GitHub issue, reacted to in its comments.
-  *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20.*
 - One thing to open each morning - a single artifact, not a feed.
   *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20.*
 - Every item carries what it is, a source link, a date, and **why it was
@@ -327,6 +325,11 @@ is the thing the #38 reaction rejected.
 
 ## Retired
 
+- **Format:** "Delivered as a GitHub issue, reacted to in its comments."
+  *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20; replaced by the reaction to
+  [#38](https://github.com/chamaya00/background-research-agents/issues/38), 2026-09-23, which put delivery and reactions in the session.
+  The replacing lines landed in #39 and this one stayed behind until the
+  round 4 topic-state update found it.*
 - **Format:** "This governs the *presented* brief - the session read-back and
   the issue. The document under `docs/research/` is unchanged by it."
   *Added 2026-09-23 from the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29); retired the same day by
