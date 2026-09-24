@@ -10,6 +10,14 @@ Read it in full and follow it; this file only starts it. It lives under
 `docs/` rather than here for the reason `docs/reader/loop.md` gives: that is
 the half of the repository a factory release does not rewrite.
 
+**By default, dispatch the `auto-breadth` workflow** with the seed and any
+parameters, rather than running the tree in this session. The workflow runs
+unattended on a runner with open network access, and opens one pull request.
+Then watch for that pull request, merge it under the rules in the mode's step
+5, and read the index back. Run the tree in the session only when the person
+asks for that, or when the workflow cannot run. See the mode's "Where it
+runs" section.
+
 Anything after the seed of the form `width=N`, `paths=N` or `depth=N`
 overrides that default. Everything else is the seed.
 

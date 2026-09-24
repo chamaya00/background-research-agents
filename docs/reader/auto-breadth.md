@@ -14,9 +14,27 @@ whole tree at the end. The person's judgment moves from *between* levels to
 *after* them: they read several breadth-to-depth paths at once and react, and
 the reaction goes through the ordinary loop.
 
-Started by `/auto-breadth <seed>`, or a message starting `auto breadth` (see
-`CLAUDE.md`). Why it is shaped this way and what was rejected is
-[ADR 0006](../decisions/0006-auto-breadth-mode.md).
+Why it is shaped this way and what was rejected is
+[ADR 0006](../decisions/0006-auto-breadth-mode.md); why it now runs in
+GitHub Actions by default is [ADR 0007](../decisions/0007-auto-breadth-runs-in-actions.md).
+
+## Where it runs
+
+**By default, in GitHub Actions**, through the `auto-breadth` workflow
+(`.github/workflows/auto-breadth.yml`). Start it from the Actions tab with a
+seed, or have a session start it. It runs unattended on a runner with open
+network, needs no session to stay alive, and ends in one pull request. It never
+merges. A session asked for `auto breadth <seed>` should dispatch the workflow
+rather than run the tree itself, then watch for the pull request.
+
+**In a session**, when the person asks for that specifically, or when the
+workflow cannot run. This is how the first exploration ran. A session is
+limited by its cloud environment's network policy. On 2026-09-23 that policy
+refused Snowflake's docs and arXiv and displaced two of three leads, so check
+reachability before choosing this.
+
+Everything below is the same procedure in both places. "The driver" is whoever
+runs it: the Claude Code run inside the workflow, or the session.
 
 ## Parameters
 
@@ -70,15 +88,15 @@ one does, the new entry's provenance cites the exploration.
 
 ## The run
 
-The session running the command is the driver. Research is done by `researcher`
-subagents inside the session - no issues, no labels, no Actions runs, and no
-merge between levels, because nothing downstream reads the default branch until
-the end.
+The driver runs the whole tree in one place. Research is done by `researcher`
+subagents - no issues, no labels, no orchestrator, and no merge between levels,
+because nothing downstream reads the default branch until the end.
 
 ### 0. Set up
 
-- Branch `claude/auto-breadth-<slug>` from the default branch (or the branch
-  the session was told to use).
+- In the workflow, branch and commit are the workflow's own final steps; the
+  driver only writes files. In a session: branch `claude/auto-breadth-<slug>`
+  from the default branch, or the branch the session was told to use.
 - Folder `docs/research/explore/<YYYY-MM-DD>-<slug>/`. Everything the run
   writes goes there, plus `sources.md` row updates.
 - Read `profile.md`, the table in `sources.md`, and list `docs/research/` so
@@ -96,7 +114,7 @@ Plus the headline, what was dropped, and what was searched for and not found.
 
 ### 2. Picking the paths
 
-The session - not a subagent - scores every lead in the breadth pass and keeps
+The driver - not a subagent - scores every lead in the breadth pass and keeps
 **paths** of them. In order:
 
 1. **Excluded** if it falls under Not interested or outside Interests entirely.
@@ -123,10 +141,20 @@ its previous level lands.
 
 A level's subagent appends one section, `## Level N - <lead>`, to
 `path-<n>-<slug>.md`: two to four items in the seven-part structure, narrower
-than the level above, and two research-next leads per item. The session picks
+than the level above, and two research-next leads per item. The driver picks
 the next lead by the same five rules plus one: **it must be narrower than the
 lead it came from.** A lead that widens back out is a new path, and new paths
 are not opened mid-run.
+
+**The driver checks the numbers a conclusion rests on.** When a level's
+finding turns on a count - how many tasks, files or records, and what fraction
+- the driver re-computes it from the primary data by script before the next
+level builds on it. It adds the exact figure beside the subagent's own figure
+and does not quietly replace it. Where a subagent cannot get at the data (a
+file that truncates under a page fetch, a PDF, a repository's full history),
+the driver fetches it and hands it the result. In the first exploration this
+produced the headline evidence of two of the three paths and corrected four
+claims. It is the part of the driver's job most worth keeping.
 
 **A path stops early**, and the stop is written into both the path document and
 the index as a finding:
@@ -170,8 +198,18 @@ as information.
   - a change outside that folder and `sources.md`, anything in the house
   rules' list of what a revert does not undo - is a reason to stop and ask
   instead.
+- **Only a session merges, never the workflow.** The workflow opens the pull
+  request and stops. That is the house rules' line: automation does not merge
+  its own output. The instruction to merge is carried by the session that
+  received it, or by the person. The workflow's landing step also enforces the
+  bullet above mechanically: it refuses to push anything if any changed path
+  falls outside the folder and `sources.md`.
 
 ### 6. Read it back
+
+A workflow run cannot do this step: it has nobody to read to. The session
+that dispatched it, or the next session the person opens, does it once the
+pull request has merged.
 
 The index is read back **in full** in the session, and then the paths are
 offered one at a time: each is read **in full** on "next", in order, split in
