@@ -72,10 +72,10 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `gethynellis.com` | A | reads | 2026-09-21 | 19, Read row |
 | `pointfive.co` | A and E | reads | 2026-09-21 | 19, Read row |
 | `kucoin.com` | E | reads | 2026-09-21 | 19, Read row |
-| `arxiv.org` | E and B and D and S | reads | 2026-09-23, re-observed same day by #35 and by #42 | 26, Read row; 35, Read row; 42 |
+| `arxiv.org` | E and B and D and S | reads (`/html/` and `/abs/`; `/pdf/` and `/src/` return binary a shell-less runner cannot open) | 2026-09-23, re-observed same day by #35 and by #42; re-observed 2026-09-24 | 26, Read row; 35, Read row; 42; explore 2026-09-24 |
 | `bird-bench.github.io` | E and B | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
 | `spider2-sql.github.io` | B | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
-| `github.com` | B and D and W and A | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` rate-limited, 403) | 2026-09-23, re-observed same day by #42 and by X1 | 35, Read row; 42; X1 |
+| `github.com` | B and D and W and A and E | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` rate-limited, 403 on 2026-09-23, **answered** contents, trees, commits and issues on 2026-09-24) | 2026-09-23, re-observed same day by #42 and by X1; re-observed 2026-09-24 | 35, Read row; 42; X1; explore 2026-09-24 |
 | `docs.getdbt.com` | D and W | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
 | `ossie.apache.org` | S | reads | 2026-09-23 | 42 |
 | `cloud.google.com` (blog only) | A and W | **reads the `/blog/` path; `/bigquery/docs/*` 301s to `docs.cloud.google.com`** | 2026-09-23 | X1 |
@@ -85,17 +85,34 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `dbt-labs.github.io` | D | **reads, returns nothing usable** | 2026-09-23, re-observed same day by #42 | 35, "Reached but returned nothing usable"; 42 |
 | `fivetran.com` | A | reads | 2026-09-23 | 26, Read row |
 | `techtarget.com` | A | reads | 2026-09-23, re-observed same day | 26, Read row; re-fetched by #32 |
-| `salesforce.com` | A | reads | 2026-09-23 | 26, Read row |
+| `salesforce.com` | A and E | reads | 2026-09-23; re-observed 2026-09-24 | 26, Read row; explore 2026-09-24 |
 | `cxfoundation.com` | A | reads | 2026-09-23 | 26, Read row |
 | `snowflake.com` | A and W and S | reads | 2026-09-23, re-observed same day by #42 | 26, Read row; 42 |
 | `prnewswire.com` | E and W | reads | 2026-09-21, re-observed 2026-09-23 by #42 | 19, Read row; 42 |
 | `community.fabric.microsoft.com` | A | refuses | 2026-09-21 | 19, Refused row |
 | `blogs.oracle.com` | B | refuses | 2026-09-23 | 42 |
 | `hpcwire.com` | A | refuses | 2026-09-21 and 2026-09-23 | 19, Refused row; re-fetched by #32 |
-| `openai.com` | A | refuses | 2026-09-23 | 26, Refused row |
+| `openai.com` | A and E | refuses | 2026-09-23; re-observed 2026-09-24 (403 on `/index/separating-signal-from-noise-coding-evaluations/`) | 26, Refused row; explore 2026-09-24 |
 | `blogs.mulesoft.com` | A | refuses | 2026-09-23 | 26, Refused row |
 | `technologymagazine.com` | E | refuses | 2026-09-23 | 26, Refused row |
 | `aimagazine.com` | E | refuses | 2026-09-23 | 26, Refused row |
+| `nist.gov` | E | reads (`/caisi`, CAISI news posts, the AI Agent Standards Initiative page) | 2026-09-24 | explore 2026-09-24 |
+| `metr.org` | E | reads (`/blog/`, `/research/`, individual posts; a guessed post URL 404s) | 2026-09-24 | explore 2026-09-24 |
+| `huggingface.co` | E | reads (dataset cards, file trees, `resolve/main` files) | 2026-09-24 | explore 2026-09-24 |
+| `commandline.microsoft.com` | E | reads | 2026-09-24 | explore 2026-09-24 |
+| `epoch.ai` | E | reads | 2026-09-24 | explore 2026-09-24 |
+| `hal.cs.princeton.edu` | E | reads | 2026-09-24 | explore 2026-09-24 |
+| `aievaluatorforum.org` | E | reads | 2026-09-24 | explore 2026-09-24 |
+| `ai-act-service-desk.ec.europa.eu` | E | reads | 2026-09-24 | explore 2026-09-24 |
+| `the-decoder.com` | E | reads | 2026-09-24 | explore 2026-09-24 |
+| `faros.ai` | E | reads | 2026-09-24 | explore 2026-09-24 |
+| `fin.ai` | E | reads (help-centre article) | 2026-09-24 | explore 2026-09-24 |
+| `hub.docker.com` | E | reads (tags API) | 2026-09-24 | explore 2026-09-24 |
+| `pith.science` | E | reads paper pages; `/about` refuses, 403 | 2026-09-24 | explore 2026-09-24 |
+| `zenodo.org` | E | reads, landing page only (archives not opened) | 2026-09-24 | explore 2026-09-24 |
+| `intercom.com` | E | **reads, returns nothing usable** (help article returned navigation only) | 2026-09-24 | explore 2026-09-24 |
+| `swebench.com` | E | **reads, returns nothing usable** (leaderboard table drawn by JavaScript) | 2026-09-24 | explore 2026-09-24 |
+| `cnbc.com` | E | refuses, 403 | 2026-09-24 | explore 2026-09-24 |
 
 A **refuses** row is not a dead entry and is the reason this list is worth
 more than a bookmark folder. It says: this host has a page you want, you
@@ -132,7 +149,7 @@ looking like the same kind.
 
 | Source | Line | Status | Last checked | Cited |
 |---|---|---|---|---|
-| **NIST CAISI**, AI Agent Standards Initiative | E | **not yet observed** - no confirmed publication inside the window; nothing fetched, because nothing was found to fetch | 2026-09-23 | 26, "What I searched for and did not find" |
+| **NIST CAISI**, AI Agent Standards Initiative | E | **not yet observed** - no confirmed publication inside the window. The Initiative's page on `nist.gov` was fetched on 2026-09-24: updated 2026-08-14, nothing dated from 2026-06-26 on, and NIST AI 800-2 still an Initial Public Draft. **CAISI itself has published** (three assessments, 2026-07-17, 07-23, 09-17), so `nist.gov` is now in the table above | 2026-09-23; 2026-09-24 | 26, "What I searched for and did not find"; explore 2026-09-24, breadth item 5 |
 
 The detail worth not re-deriving: everything either search returned dated to
 February-April 2026 - the 2026-02-17 launch, an automated-benchmark-evaluation
