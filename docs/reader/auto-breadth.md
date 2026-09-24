@@ -173,10 +173,13 @@ as information.
 
 ### 6. Read it back
 
-The index is read back **in full** in the session. Then the paths, in order,
-each **in full**, one per message or split in reading order where one is too
-long - never condensed, per the Format line that rejected #38. The person can
-stop at any point and react.
+The index is read back **in full** in the session, and then the paths are
+offered one at a time: each is read **in full** on "next", in order, split in
+reading order where one is too long - never condensed, per the Format line that
+rejected #38. The person can react at any point, and usually will from the
+index alone. The preference is the Format line in [`profile.md`](profile.md)
+("An auto-breadth exploration is read back as its index ..."), which is where
+it changes if it changes.
 
 ## After the read-back
 
