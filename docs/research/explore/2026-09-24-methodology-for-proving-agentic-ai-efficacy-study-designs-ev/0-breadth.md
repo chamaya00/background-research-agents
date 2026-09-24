@@ -93,6 +93,9 @@ repeated runs.
 
 ## Angle 4 - Re-evaluating a production agent inside a company
 
+How a team that owns an agent keeps checking it after every change without
+running the whole benchmark each time.
+
 ### Efficient Benchmarking in Production: A Study of an Evolving LLM Agent
 [link](https://arxiv.org/abs/2609.21267) · 2026-09-18 · paper · read in full
 
@@ -103,6 +106,8 @@ repeated runs.
 5. **Takeaways for you:** The team deployed fixed question subsets because they were simple to run. The paper does not say how much a full run varies by itself, and path 1 shows that can be large.
 
 ## Angle 5 - What governments and regulators treat as evidence
+
+What public evaluators publish as method, and what regulators can now demand.
 
 ### CAISI's Assessment of Z.ai's GLM-5.3 Cyber Capabilities
 [link](https://www.nist.gov/news-events/news/2026/09/caisis-assessment-zais-glm-53-cyber-capabilities) · 2026-09-17 · report · read in full
