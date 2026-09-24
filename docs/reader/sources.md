@@ -58,6 +58,7 @@ which of its two tables the row came from:
 `X1` = the auto-breadth exploration `docs/research/explore/2026-09-23-snowflake-sql-ai-functions/`.
 `X2` = the auto-breadth exploration `docs/research/explore/2026-09-24-agentic-ai-features-for-analytics-launched-or-announced-ware/`, run in GitHub Actions.
 `X3` = the auto-breadth exploration `docs/research/explore/2026-09-24-methodology-for-proving-agentic-ai-efficacy-study-designs-ev/`, run in GitHub Actions.
+`X4` = the auto-breadth exploration `docs/research/explore/2026-09-24-what-a-product-data-scientist-moving-into-data-engineering-s/`, run in GitHub Actions.
 
 The two Depth lines were added to `profile.md` by the reaction to
 [#29](https://github.com/chamaya00/background-research-agents/issues/29) and
@@ -77,15 +78,19 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `arxiv.org` | E and B and D and S | reads (`/html/` and `/abs/`; `/pdf/` and `/src/` return binary a shell-less runner cannot open) | 2026-09-23, re-observed same day by #35 and by #42; re-observed 2026-09-24 by X2 and X3 | 26, Read row; 35, Read row; 42; X2; X3 |
 | `bird-bench.github.io` | E and B | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
 | `spider2-sql.github.io` | B | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
-| `github.com` | B and D and W and A and E | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` varies by run - rate-limited or 403 on 2026-09-23, truncated for X2 and answered contents, trees, commits and issues for X3 on 2026-09-24; pull-request "Files changed" views return a shell; attached `.zip` trace archives redirect to `objects.githubusercontent.com` and return binary) | 2026-09-23, re-observed same day by #42 and by X1; re-observed 2026-09-24 by X2 and X3 | 35, Read row; 42; X1; X2; X3 |
-| `docs.getdbt.com` | D and W and S | reads | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 | 35, Read row; 42; X2 |
+| `github.com` | B and D and W and A and E | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` varies by run - rate-limited or 403 on 2026-09-23, truncated for X2 and answered contents, trees, commits and issues for X3 on 2026-09-24; pull-request "Files changed" views return a shell; attached `.zip` trace archives redirect to `objects.githubusercontent.com` and return binary) | 2026-09-23, re-observed same day by #42 and by X1; re-observed 2026-09-24 by X2, X3 and X4 (X4: pull requests and issues read in full with review threads; the raw Iceberg OpenAPI file truncated partway) | 35, Read row; 42; X1; X2; X3; X4 |
+| `docs.getdbt.com` | D and W and S | reads | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 and X4 | 35, Read row; 42; X2; X4 |
+| `getdbt.com` | D and W | reads - blog and Summit announcements | 2026-09-24 | X4 |
+| `roundup.getdbt.com` | D and A | reads - dbt Labs' newsletter, the one Substack-built host that answered | 2026-09-24 | X4 |
 | `ossie.apache.org` | S | reads | 2026-09-23; re-observed 2026-09-24 by X2 | 42; X2 |
-| `cloud.google.com` (blog only) | A and W | **reads the `/blog/` path; `/bigquery/docs/*` 301s to `docs.cloud.google.com`** | 2026-09-23; re-observed 2026-09-24 by X2 | X1; X2 |
-| `docs.cloud.google.com` | A and W and S | reads - BigQuery and Looker release notes in full, Looker parameter references, BigQuery Graph docs, Colab release notes | 2026-09-24 | X2 |
-| `docs.snowflake.com` | S and W and E | **reads; user guide full. Release notes are per-page: some return their body (2026-08-26, 2026-08-28, 2026-09-02, release 10.24, the new-features index) and some a shell (2026-04-13 four times, 2026-06-26, 2026-08-21)** | 2026-09-23; re-observed 2026-09-24 by X2 | 42; X2 |
-| `docs.databricks.com` | A and W and E | reads - platform and AI/BI release notes, Genie benchmarks docs | 2026-09-24 | X2 |
-| `databricks.com` | W and E | reads - blog posts in full | 2026-09-24 | X2 |
-| `learn.microsoft.com` | A | reads - Power BI "What's new" | 2026-09-24 | X2 |
+| `cloud.google.com` (blog only) | A and W | **reads the `/blog/` path; `/bigquery/docs/*` 301s to `docs.cloud.google.com`** | 2026-09-23; re-observed 2026-09-24 by X2 and X4 | X1; X2; X4 |
+| `docs.cloud.google.com` | A and W and S | reads - BigQuery and Looker release notes in full, Looker parameter references, BigQuery Graph docs, Colab release notes; Lakehouse (formerly BigLake) release notes and credential-vending docs | 2026-09-24, re-observed same day by X4 | X2; X4 |
+| `docs.snowflake.com` | S and W and E | **reads; user guide full. Release notes are per-page: some return their body (2026-08-26, 2026-08-28, 2026-09-02, 2026-09-08, 2026-09-10, 2026-09-15, release 10.24, the new-features index) and some a shell (2026-04-13 four times, 2026-06-26, 2026-07-24, 2026-07-27, 2026-08-18, 2026-08-21). Adding `.md` to a release-note or user-guide URL returned the text where the HTML gave a shell (X4, 2026-07-27, 07-30, 07-20 notes and the migrate-streams-tasks page)** | 2026-09-23; re-observed 2026-09-24 by X2 and X4 | 42; X2; X4 |
+| `docs.databricks.com` | A and W and E | reads - platform and AI/BI release notes, Genie benchmarks docs; Lakeflow pipeline SQL references, Unity Catalog Skills tutorials, cross-engine ABAC | 2026-09-24, re-observed same day by X4 | X2; X4 |
+| `databricks.com` | W and E | reads - blog posts in full | 2026-09-24, re-observed same day by X4 | X2; X4 |
+| `community.databricks.com` | W | reads | 2026-09-24 | X4 |
+| `learn.microsoft.com` | A | reads - Power BI "What's new"; Fabric "What's new" read but gives months, not dates | 2026-09-24, re-observed same day by X4 | X2; X4 |
+| `blog.fabric.microsoft.com` | W | refuses (403) | 2026-09-24 | X4 |
 | `learn.hex.tech` | E and A | reads - changelog entries and Evals docs | 2026-09-24 | X2 |
 | `hex.tech` | E and B | reads - blog, and the DataBench leaderboard | 2026-09-24 | X2 |
 | `deepnote.com` | A | reads | 2026-09-24 | X2 |
@@ -108,16 +113,34 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `bird-critic.github.io` | B | reads | 2026-09-23 | 35, Read row |
 | `genloop.ai` | B | reads | 2026-09-23 | 35, Read row |
 | `dbt-labs.github.io` | D | **reads, returns nothing usable** | 2026-09-23, re-observed same day by #42 | 35, "Reached but returned nothing usable"; 42 |
-| `fivetran.com` | A and S | reads | 2026-09-23; re-observed 2026-09-24 by X2 | 26, Read row; X2 |
+| `fivetran.com` | A and S and D | reads | 2026-09-23; re-observed 2026-09-24 by X2 and X4 | 26, Read row; X2; X4 |
 | `techtarget.com` | A | reads | 2026-09-23, re-observed same day; re-observed 2026-09-24 by X2 | 26, Read row; re-fetched by #32; X2 |
 | `salesforce.com` | A and E | reads the newsroom; the Salesforce+ keynote page returns a truncated shell | 2026-09-23; re-observed 2026-09-24 by X2 and X3 | 26, Read row; X2; X3 |
 | `cxfoundation.com` | A | reads | 2026-09-23 | 26, Read row |
-| `snowflake.com` | A and W and S and E | reads - newsroom, product and engineering blogs, developer guides | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 | 26, Read row; 42; X2 |
+| `snowflake.com` | A and W and S and E | reads - newsroom, product and engineering blogs, developer guides | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 and X4 | 26, Read row; 42; X2; X4 |
 | `prnewswire.com` | E and W | reads | 2026-09-21, re-observed 2026-09-23 by #42 | 19, Read row; 42 |
 | `community.fabric.microsoft.com` | A | refuses | 2026-09-21; refused again 2026-09-24 by X2 (403) | 19, Refused row; X2 |
 | `powerbi.microsoft.com` | A | refuses (403) | 2026-09-24 | X2 |
 | `tableau.com` | A | refuses (403) on `/products/new-features` | 2026-09-24 | X2 |
-| `medium.com` | E and W | refuses (403) - three different posts, including `thumbtack-engineering` and `@prathamesh.nimkar` | 2026-09-24 | X2 |
+| `medium.com` | E and W | refuses (403) - three different posts, including `thumbtack-engineering` and `@prathamesh.nimkar`; again for X4 (`/snowflake/...` skills walkthrough, a dbt Projects deep dive, an SCD2 post). Medium custom domains refuse too: `blog.dataengineerthings.org` | 2026-09-24, re-observed same day by X4 | X2; X4 |
+| `blog.dataengineerthings.org` | W | refuses (403) - Medium-hosted | 2026-09-24 | X4 |
+| Substack hosts (`joereis`, `seattledataguy`, `gradientflow`, `dataanalysis`, `learnanalyticsengineering`, `amdatalakehouse`) | A and W | **refuse (403)** - every post tried; `roundup.getdbt.com` is the exception, and `dev.to` carries copies of the `amdatalakehouse` weeklies | 2026-09-24 | X4 |
+| `blog.rittmananalytics.com` | D | refuses (403) | 2026-09-24 | X4 |
+| `upriverdata.com` | W and B | reads | 2026-09-24 | X4 |
+| `ssp.sh` | S | reads | 2026-09-24 | X4 |
+| `dremio.com` | S and A | reads - blog | 2026-09-24 | X4 |
+| `dev.to` | S and A | reads - Dremio's weekly lakehouse digests and State of Polaris posts | 2026-09-24 | X4 |
+| `datalakehousehub.com` | S and A | reads | 2026-09-24 | X4 |
+| `cloudrps.com` | A | reads | 2026-09-24 | X4 |
+| `onehouse.ai` | A | reads | 2026-09-24 | X4 |
+| `polaris.apache.org` | A | reads (pages undated) | 2026-09-24 | X4 |
+| `www.mail-archive.com` | A | reads - mirror of the Apache Iceberg dev list, used where `lists.apache.org` was not tried | 2026-09-24 | X4 |
+| `iceberg.apache.org` | A | **reads, returns nothing usable** - `/rest-catalog-spec/` gave navigation only; read the OpenAPI file on GitHub | 2026-09-24 | X4 |
+| `app.opencve.io` | A | reads | 2026-09-24 | X4 |
+| `lakeops.dev` | A | reads | 2026-09-24 | X4 |
+| `developers.redhat.com` | D | reads | 2026-09-24 | X4 |
+| `community.snowflake.com` | W | **reads, returns nothing usable** - page loaded with no article text | 2026-09-24 | X4 |
+| Read, but nothing used as an item: `joereis.github.io`, `blog.dataexpert.io`, `dataengineeringweekly.com`, `datus.ai`, `getorchestra.io`, `aimpointdigital.com`, `mechanicalrock.io`, `rebricked.org`, `daily.dev` (summary cards only), `thehackerwire.com`, `mallory.ai`, `iomete.com`, `iceberglakehouse.com`, `javatask.dev`, `data-today.net`, `tothenew.com` | A and W and D | reads | 2026-09-24 | X4 |
 | `web.archive.org` | E | **not fetchable by the run's fetch tool** - no archived copy could be compared | 2026-09-24 | X2 |
 | `blogs.oracle.com` | B | refuses | 2026-09-23 | 42 |
 | `hpcwire.com` | A | refuses | 2026-09-21 and 2026-09-23 | 19, Refused row; re-fetched by #32 |
