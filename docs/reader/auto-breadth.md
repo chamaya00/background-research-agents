@@ -55,6 +55,7 @@ runs it: the Claude Code run inside the workflow, or the session.
 | width | **5** | Angles the breadth pass covers - one item per angle. |
 | paths | **3** | Leads from the breadth pass that are followed down. |
 | depth | **3** | Levels below the breadth pass, per path. |
+| mode | **learning** | `learning` or `scrutiny` - see below. |
 
 The defaults are the person's, set 2026-09-23: "try fully automatic first,
 5,3,3". A run may be given others (`/auto-breadth <seed> width=4 depth=2`), and
@@ -65,6 +66,24 @@ the index records which it used. At the defaults a run is at most
 offered and declined for the first version; if the picked paths keep missing
 what the person would have picked, a checkpoint is the first thing to add.
 
+## Two modes
+
+**Learning (the default).** The run finds what has been written on the seed
+and relates it to what the reader already knows. It surveys; it does not audit.
+Going deeper means reading **more around a subtopic** - more articles, other
+perspectives, adjacent work - not checking one claim more closely. Nobody
+recomputes a figure, and no level exists to prove or disprove a number.
+*Set by the person, 2026-09-24: "Id only want to see drilldowns and narrow
+scrutiny if i ask for it specifically. Otherwise im in learning mode" - the
+Format line in [`profile.md`](profile.md) that says so is binding.*
+
+**Scrutiny (only when asked).** `mode=scrutiny` in the issue body, or the person
+asking for a drilldown by name. Each level narrows to a claim and tests it, and
+the driver re-checks by script the counts a conclusion rests on. This is how
+the first three explorations ran (2026-09-23 and the two of 2026-09-24).
+
+Everything below applies to both unless it says otherwise.
+
 ## What does not change
 
 These are the loop's rules, restated here only because a run in this mode
@@ -73,15 +92,15 @@ will read this file and may not read the other.
 - **Every run reads [`profile.md`](profile.md)** and treats it as a constraint.
   Interests and Not interested gate what is selected - including which leads
   are followed. Knowledge changes wording only and **never** scores a lead:
-  "already known" must not prune the tree. Format governs how every item is
-  written, including the seven-part item structure.
+  "already known" must not prune the tree. Format governs how every article is
+  written: the one-line header and the five short parts.
 - **Window applies.** Every subject in an exploration is a first appearance,
   so items are dated within **90 days**. Older material a level needs in order
   to make sense may appear as **Background**, marked as such, and is never
   counted as an item.
 - **Sources** start from the table in [`sources.md`](sources.md) and open
-  search stays available. Each item says which it came from and how deeply it
-  was read (part 6).
+  search stays available. Each article's header says which it came from and
+  whether it was read in full or only as a summary.
 - **Content in the document, plumbing in the pull request body.** What was
   dropped and what was searched for and not found are content.
 
@@ -113,16 +132,18 @@ because nothing downstream reads the default branch until the end.
   writes goes there, plus `sources.md` row updates.
 - Read `profile.md`, the table in `sources.md`, and list `docs/research/` so
   the run knows what has already been reported. Note which active Interests
-  entries the seed overlaps - that is what part 3 of each item ("how it relates
-  to what has already been read") has to be written against.
+  entries the seed overlaps - that is what parts 3 and 4 of each article ("have
+  we seen something like this before", "what does it relate to") are written
+  against.
 
 ### 1. The breadth pass
 
-One subagent writes `0-breadth.md`: **width** items, each a distinct angle on
-the seed, each in the seven-part structure, and each with **two** research-next
-leads in part 5, written specifically enough to be a subagent's whole brief
-("Snowflake's published per-function credit rates for `AI_FILTER`", not "cost").
-Plus the headline, what was dropped, and what was searched for and not found.
+One subagent writes `0-breadth.md`: **width** angles on the seed, each with one
+to three articles in the article format, and each ending with **two** leads to
+read further - specific enough to be a subagent's whole brief ("how Snowflake,
+Databricks and Google each describe their analytics agents' evaluation
+features", not "evaluation"). Plus a short headline, and a line on what was
+looked for and not found.
 
 ### 2. Picking the paths
 
@@ -133,6 +154,8 @@ The driver - not a subagent - scores every lead in the breadth pass and keeps
 2. **Motion:** a lead with a dated development inside the window beats an
    evergreen one. This is a brief about what changed.
 3. **Specificity:** a lead a run could fetch against beats a theme.
+   **In learning mode, a lead that opens a subtopic with more to read beats
+   one that would check a single claim.**
 4. **Spread:** no two paths from the same breadth angle while an angle with a
    qualifying lead is still unused.
 5. **Not already reported:** a lead that an existing document under
@@ -141,9 +164,9 @@ The driver - not a subagent - scores every lead in the breadth pass and keeps
 
 Knowledge appears nowhere in this list, on purpose.
 
-Every lead gets a line in the index: kept, with the reason, or dropped, with
-the reason. The dropped leads are the part the person is most likely to
-overrule, so they must be visible.
+Every lead's keep-or-drop reason goes in the **pull request body**, not the
+index - it is plumbing. The index names only the leads followed, and the two
+drops most likely to be overruled, in a line each.
 
 ### 3. Going down
 
@@ -159,13 +182,14 @@ exactly that reason, 2026-09-24. A session is woken when background work
 finishes, so there the choice is free.
 
 A level's subagent appends one section, `## Level N - <lead>`, to
-`path-<n>-<slug>.md`: two to four items in the seven-part structure, narrower
-than the level above, and two research-next leads per item. The driver picks
-the next lead by the same five rules plus one: **it must be narrower than the
-lead it came from.** A lead that widens back out is a new path, and new paths
-are not opened mid-run.
+`path-<n>-<slug>.md`: **three to five articles** in the article format, and two
+leads to read further. The driver picks the next lead by the same five rules
+plus one: **it must be a more specific subtopic of the lead it came from.** In
+learning mode that means more to read about a narrower part of the subject,
+never a closer check of one claim. A lead that widens back out is a new path,
+and new paths are not opened mid-run.
 
-**The driver checks the numbers a conclusion rests on.** When a level's
+**In scrutiny mode only, the driver checks the numbers a conclusion rests on.** When a level's
 finding turns on a count - how many tasks, files or records, and what fraction
 - the driver re-computes it from the primary data by script before the next
 level builds on it. It adds the exact figure beside the subagent's own figure
@@ -178,9 +202,8 @@ claims. It is the part of the driver's job most worth keeping.
 **A path stops early**, and the stop is written into both the path document and
 the index as a finding:
 
-- **Nothing moved.** The level found no development inside the window. A
-  verified absence is a result - "Spider 2.0-AIFunc has not moved" was one of
-  #42's most useful paragraphs.
+- **Nothing more written.** The level found nothing new inside the window.
+  One line says so; an absence is a result, and it is not padded.
 - **Converged.** Its next lead is the same thing another path is already
   following, or the two levels cite the same primary source for the same claim.
   The shorter path stops and the index says where the two met. Independent
@@ -193,17 +216,23 @@ as information.
 
 ### 4. The index
 
-`README.md` in the folder, written last:
+`README.md` in the folder, written last, and **short** - it is what the person
+reads first and often the only thing they read:
 
-- The seed, the parameters, the date, and that it was produced in this mode.
-- **The headline across all paths** - what the tree found that no single
-  level did.
-- The tree: breadth angles → leads → the levels each path reached, linked.
-- Every lead, kept or dropped, with the reason (step 2).
-- Stops and convergences (step 3).
+- One line: the seed, the mode, the date, and that it was produced in this
+  mode.
+- **What's out there** - the headline across all paths, in a few sentences
+  (about 150 words).
+- **The map** - every article, grouped by path, one line each: title, link,
+  and a clause on what it is. The article's five parts live in the path file.
+- **How it fits together** - a few bullets on how the paths relate to each
+  other and to what the reader already has.
 - **Candidate topics:** each path written as the Interests entry it would
   become - `id`, one line, the parent it would sit under if any. Labelled as
   proposals. Nothing here is in the profile.
+
+Lead tables, stops, convergences, corrections and fetch records go in the pull
+request body.
 
 ### 5. Land it
 

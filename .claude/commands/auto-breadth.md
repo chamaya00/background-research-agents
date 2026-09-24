@@ -20,8 +20,9 @@ it under the rules in the mode's step 5, and read the index back. Run the tree i
 asks for that, or when the workflow cannot run. See the mode's "Where it
 runs" section.
 
-Anything after the seed of the form `width=N`, `paths=N` or `depth=N`
-overrides that default. Everything else is the seed.
+Anything after the seed of the form `width=N`, `paths=N`, `depth=N` or
+`mode=scrutiny` overrides that default. Everything else is the seed. The mode
+is **learning** unless the person asks for scrutiny or a drilldown by name.
 
 This is a separate mode, not a replacement for the loop: a brief on an
 existing topic still goes through `/objective` and `docs/reader/loop.md`.

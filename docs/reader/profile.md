@@ -251,36 +251,37 @@ What is lost: a reaction is no longer visible to anyone outside the session
 until the profile pull request lands. That is the whole cost, and it is
 acceptable while there is one reader.
 -->
-- **Every item in it follows the same seven-part structure, in this order:**
-  1. what it is, briefly;
-  2. how long ago;
-  3. how it relates to what has already been read;
-  4. what through-line it changes, or that it changes none;
-  5. one or two things to research next to go deeper on it;
-  6. a link to the source, **whether it came from `sources.md` or from open
-     search, and how deeply it was read** - one of *full page read*,
-     *abstract or landing page only*, or *search summary only*;
-  7. **verified / inferred / assumed for this item**, not for the brief.
+- **Learning mode is the default.** Find what has been written and relate it
+  to what I already know. Do not audit, recompute or adjudicate claims.
+  Drilldowns and close scrutiny only when I ask for them by name.
+  *Reaction to the 2026-09-24 explorations (#55, #56), "In general these
+  explorations are Still too wordy and too narrowly focused on proving or
+  disproving certain numbers. Id only want to see drilldowns and narrow
+  scrutiny if i ask for it specifically. Otherwise im in learning mode, i just
+  want to see whats been written out there and i want the researcher to help
+  me find it and relate them back to me", 2026-09-24.*
+- **Each article: a one-line header, then five short parts.** The header gives
+  the title, link, date, source type, and whether it was read in full or only
+  as a summary. Then:
+  1. What is this article about
+  2. Why is it being shown to me
+  3. Have we seen something like this before
+  4. What does it relate to
+  5. The most relevant takeaways for me
 
-  **The structure replaces sprawl, not detail.** Each part carries as much as
-  it is worth. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "too wordy ... i want a more consistent
-  structure among posts", then "the brief should be more detailed",
-  2026-09-23. Parts 6 and 7 extended by the reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35): "put
-  verified, inferred, assumed in line with the post item ... indicate if the
-  result is from a full page read or something less", 2026-09-23.*
-
-  **Why 7 moved inline.** As a closing section it was one paragraph covering
-  seven items, so a reader who wanted to know how far to trust item 4 had to
-  find item 4's clause inside it. Next to the item, the claim and its warranty
-  are read together.
+  One or two sentences per part, about 120 words per article.
+  *Same reaction, "The aspects that come with each post need to be condensed
+  and the writing needs to be more concise. Lets try something like this per
+  article", 2026-09-24. The 120-word figure is the driver's translation of
+  "concise", shown in the diff and accepted.*
 - **Read full pages, not abstracts or search summaries, and say which.**
   Prefer full text over a landing page, and a landing page over a search
   index. Twice in [#35](https://github.com/chamaya00/background-research-agents/issues/35) that difference decided whether something was
   a fact or an inference: item 5's system identification was impossible from
   the arXiv abstract and trivial from `arxiv.org/html/<id>v1`, and item 1's
   quotes were summarised by the rendered GitHub page and verbatim from
-  `raw.githubusercontent.com`. Where only a summary was available, part 6 says
-  so and part 7 files the claim accordingly. *Brief [#35](https://github.com/chamaya00/background-research-agents/issues/35), "prioritize
+  `raw.githubusercontent.com`. Where only a summary was available, the article's
+  header says so. *Brief [#35](https://github.com/chamaya00/background-research-agents/issues/35), "prioritize
   reading full pages, not just abstracts or search summaries", 2026-09-23.*
 - **The report carries content, not plumbing.** What the run writes under
   `docs/research/` is what a reader reads: the items, the headline, what was
@@ -324,6 +325,14 @@ is the thing the #38 reaction rejected.
   2026-09-24.*
 
 ## Retired
+
+- **Format:** "Every item in it follows the same seven-part structure" - what
+  it is, how long ago, how it relates, what through-line it changes, what to
+  research next, the source link and read depth, and verified / inferred /
+  assumed per item. *Added 2026-09-23 from the reactions to #29 and #35;
+  retired 2026-09-24 by the reaction to #55 and #56, which replaced it with
+  the five-part article above. Read depth survives as a tag in the header;
+  verified / inferred / assumed does not.*
 
 - **Format:** "Delivered as a GitHub issue, reacted to in its comments."
   *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20; replaced by the reaction to
