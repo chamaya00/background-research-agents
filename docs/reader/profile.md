@@ -102,6 +102,20 @@ derived rather than stored.
   warehouse and transformation vendors themselves - Snowflake and dbt first.
   *Briefs: [#42](https://github.com/chamaya00/background-research-agents/issues/42). Items: 2. Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "snowflake and dbt agentic ai features",
   2026-09-23.*
+- **`efficacy-methodology`** · **active** · 0 runs · never run · window **90d**
+  **Depth**, under `agent-efficacy`: how the efficacy of agentic AI is
+  *proven*, not claimed - study designs (online experiments, holdouts,
+  comparisons against a human baseline), offline evals and whether a benchmark
+  is valid, and what an organization accepts as evidence. Lessons from **any
+  agentic AI domain** count - coding, support, research agents - not only
+  analytics.
+  *Reaction to the Snowflake SQL AI functions exploration
+  ([`docs/research/explore/2026-09-23-snowflake-sql-ai-functions/`](../research/explore/2026-09-23-snowflake-sql-ai-functions/README.md)),
+  "Im more interested now in methodology to prove agentic ai efficacy ...
+  Efficacy measurement lessons can also come from other agentic AI domains",
+  2026-09-24. That exploration's path 1 - whether a benchmark's headline can be
+  trusted - is folded in here as its first evidence rather than adopted as a
+  topic of its own.*
 
 ### How topic state works
 
@@ -152,7 +166,12 @@ telling you which of those are already queued.
 
 ## Not interested
 
-<!-- Empty. Fills from reactions that say "less of this". -->
+- **Cost and pricing of AI features as a subject in itself** - per-token
+  pricing, metering, spend controls, cost benchmarks. Cost stays in where it is
+  part of an efficacy measure, such as #42's cost per correct answer.
+  *Reaction to the Snowflake SQL AI functions exploration, "im not so
+  interested in continuing down any of these paths about cost", 2026-09-24.
+  That exploration's two cost candidate topics were not adopted.*
 
 ## Window
 
@@ -186,6 +205,15 @@ Empty on purpose. Level per concept, one line each, e.g.
 Three levels only: new, familiar, expert. A concept marked familiar or expert
 is referenced in passing; a concept marked new is explained once.
 -->
+
+- `outside-analytics-stacks` - **new**. Vendor analytics and data products
+  outside Meta - warehouses, BI tools, semantic layers, notebooks, and the
+  agent features built on them: explain what a product is and where it sits in
+  a stack the first time it appears.
+  *Reaction to the Snowflake SQL AI functions exploration, "Ive been at meta
+  for 8 years and havent seen outside company stacks during that time",
+  2026-09-24. Records only that these are new; nothing is inferred about what
+  is known from inside Meta.*
 
 ## Format
 
@@ -287,6 +315,13 @@ What still has a limit is a session message. If a report is too long to read
 back in one, split it in reading order and say so - never condense it, which
 is the thing the #38 reaction rejected.
 -->
+
+- **An auto-breadth exploration is read back as its index, in full, then its
+  paths one at a time on "next".** The index is the reading surface; a path is
+  read in full when asked for, never condensed. *Reaction to the Snowflake SQL
+  AI functions exploration, "you had it exactly right already, reading the
+  index to me then offering to step through the paths with a next",
+  2026-09-24.*
 
 ## Retired
 

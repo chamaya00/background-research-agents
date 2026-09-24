@@ -55,6 +55,7 @@ which of its two tables the row came from:
 `26` = `docs/research/26-analytics-and-agent-efficacy-brief-2026-09-23.md`,
 `35` = `docs/research/35-depth-brief-2026-09-23-benchmarks-and-dbt.md`,
 `42` = `docs/research/42-depth-brief-2026-09-23-semantic-models-and-warehouse-agentic.md`.
+`X1` = the auto-breadth exploration `docs/research/explore/2026-09-23-snowflake-sql-ai-functions/`.
 
 The two Depth lines were added to `profile.md` by the reaction to
 [#29](https://github.com/chamaya00/background-research-agents/issues/29) and
@@ -74,9 +75,10 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `arxiv.org` | E and B and D and S | reads | 2026-09-23, re-observed same day by #35 and by #42 | 26, Read row; 35, Read row; 42 |
 | `bird-bench.github.io` | E and B | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
 | `spider2-sql.github.io` | B | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
-| `github.com` | B and D and W | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
+| `github.com` | B and D and W and A | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` rate-limited, 403) | 2026-09-23, re-observed same day by #42 and by X1 | 35, Read row; 42; X1 |
 | `docs.getdbt.com` | D and W | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
 | `ossie.apache.org` | S | reads | 2026-09-23 | 42 |
+| `cloud.google.com` (blog only) | A and W | **reads the `/blog/` path; `/bigquery/docs/*` 301s to `docs.cloud.google.com`** | 2026-09-23 | X1 |
 | `docs.snowflake.com` | S and W | **reads; user guide full, release notes return a shell** | 2026-09-23 | 42 |
 | `bird-critic.github.io` | B | reads | 2026-09-23 | 35, Read row |
 | `genloop.ai` | B | reads | 2026-09-23 | 35, Read row |
@@ -100,6 +102,26 @@ more than a bookmark folder. It says: this host has a page you want, you
 cannot have it, so budget a substitute rather than discovering the 403 mid-run
 for the third time. Two of #19's items rested on hosts in that half of the
 table, and it cost that brief its only vendor release note.
+
+### Refused by a session's network policy, not by the host
+
+Separate from the table for the same reason as the section below: a different
+kind of fact. On 2026-09-23 the auto-breadth exploration (`X1`) ran inside a
+cloud session whose organisation network policy denied the connection before
+it reached the host - the proxy's own status said `connect_rejected
+(organization policy)`. The Actions runs behind #35 and #42 read several of the
+same hosts the same day. **So these rows say nothing about the hosts. They say
+what an auto-breadth run in that environment cannot read until the
+environment's network access is widened**, and a table row reading "refuses"
+for `docs.snowflake.com` or `arxiv.org` would mislead every ordinary brief.
+
+Denied in that environment: `docs.snowflake.com`, `www.snowflake.com`,
+`arxiv.org`, `export.arxiv.org`, `docs.databricks.com`, `www.databricks.com`,
+`docs.cloud.google.com`, `learn.microsoft.com`, `huggingface.co`,
+`api.semanticscholar.org`, `openreview.net`, `vldb.org`, `dl.acm.org`,
+`medium.com`, `docs.google.com`, and a long tail of vendor, lab and news
+hosts. Answered: `github.com`, `raw.githubusercontent.com`, the
+`cloud.google.com` blog, and web search.
 
 ### Named but never reached
 

@@ -199,6 +199,18 @@ Knowledge changes wording only. A reaction that says something is already
 understood must never narrow what gets fetched - that conflation is what
 `docs/research/3-state-and-source-schema.md` was written to prevent.
 
+**A second mode: auto breadth.** `/auto-breadth <seed>` explores a seed breadth
+first and follows the best leads down several levels without a person between
+levels - `docs/reader/auto-breadth.md` is the mechanic, ADRs 0006 and 0007 the
+reasons. It runs in GitHub Actions by default (the `auto-breadth` workflow,
+started by labelling an issue `auto-breadth` whose title is the seed; it opens
+a pull request and never merges), or in a session when asked.
+It reads the profile like any run and **never writes it**: a followed path is a
+proposal until a reaction adopts it through the loop above. The loop stays the
+default. **Shorthand:** a message starting with `auto breadth` - any case, with
+or without a trailing `:` - means `/auto-breadth` with the rest of the message
+as the seed. That and `obj` are the only two.
+
 ## Lessons
 
 Cross-role, so they are here rather than in four copies under `docs/memory/`.

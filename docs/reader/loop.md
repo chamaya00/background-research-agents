@@ -8,6 +8,12 @@ This file is the mechanic. [`profile.md`](profile.md) is the state it writes.
 `CLAUDE.md` is what makes it binding on a session that has not read this file
 yet.
 
+It has one sibling. [`auto-breadth.md`](auto-breadth.md) runs a whole
+breadth-to-depth tree from a seed without a person between levels, and hands
+it back to read at once. It feeds into step 4 of this loop - a reaction to an
+exploration is handled exactly like a reaction to a brief - and changes
+nothing else here.
+
 ## Why it is written here and not in `.claude/`
 
 `/update-agents` rewrites `.claude/agents/`, `.claude/skills/`, and six named
