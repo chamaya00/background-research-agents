@@ -211,6 +211,13 @@ default. **Shorthand:** a message starting with `auto breadth` - any case, with
 or without a trailing `:` - means `/auto-breadth` with the rest of the message
 as the seed. That and `obj` are the only two.
 
+**A third mode: writing.** `/post [theme]` turns the research already here
+into a LinkedIn article and feed post in the author's voice, synthesized across
+at least two runs - `docs/writer/writer.md` is the mechanic and
+`docs/writer/style.md` the state, tuned by reactions exactly as the profile is.
+It runs in a session, fetches nothing, never writes the profile, and never
+merges a post until the author says it is ready.
+
 ## Lessons
 
 Cross-role, so they are here rather than in four copies under `docs/memory/`.
