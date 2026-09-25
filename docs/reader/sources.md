@@ -59,7 +59,9 @@ which of its two tables the row came from:
 `X2` = the auto-breadth exploration `docs/research/explore/2026-09-24-agentic-ai-features-for-analytics-launched-or-announced-ware/`, run in GitHub Actions.
 `X3` = the auto-breadth exploration `docs/research/explore/2026-09-24-methodology-for-proving-agentic-ai-efficacy-study-designs-ev/`, run in GitHub Actions.
 `X4` = the auto-breadth exploration `docs/research/explore/2026-09-24-what-a-product-data-scientist-moving-into-data-engineering-s/`, run in GitHub Actions.
-`X5` = the auto-breadth exploration `docs/research/explore/2026-09-25-databricks-agentic-ai-offerings-what-they-are-where-each-sit/`, run in GitHub Actions.
+`X5` = the auto-breadth exploration `docs/research/explore/2026-09-25-the-dbt-semantic-layer-one-level-deeper-what-it-is-how-metri/`, run in GitHub Actions.
+`X6` = the auto-breadth exploration `docs/research/explore/2026-09-25-dbt-evals-one-level-deeper-how-agents-doing-dbt-work-are-eva/`, run in GitHub Actions.
+`X7` = the auto-breadth exploration `docs/research/explore/2026-09-25-databricks-agentic-ai-offerings-what-they-are-where-each-sit/`, run in GitHub Actions.
 
 The two Depth lines were added to `profile.md` by the reaction to
 [#29](https://github.com/chamaya00/background-research-agents/issues/29) and
@@ -76,55 +78,53 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `gethynellis.com` | A | reads | 2026-09-21 | 19, Read row |
 | `pointfive.co` | A and E | reads | 2026-09-21 | 19, Read row |
 | `kucoin.com` | E | reads | 2026-09-21 | 19, Read row |
-| `arxiv.org` | E and B and D and S | reads (`/html/` and `/abs/`; `/pdf/` and `/src/` return binary a shell-less runner cannot open) | 2026-09-23, re-observed same day by #35 and by #42; re-observed 2026-09-24 by X2 and X3; re-observed 2026-09-25 by X5 | 26, Read row; 35, Read row; 42; X2; X3; X5 |
+| `arxiv.org` | E and B and D and S | reads (`/html/` and `/abs/`; `/src/` returns binary. `/pdf/` returned binary to one X6 run and was read by another, which opened the file the fetch tool saved with its file reader - 2609.16487, whose `/html/` 404s) | 2026-09-23, re-observed same day by #35 and by #42; re-observed 2026-09-24 by X2 and X3; 2026-09-25 by X6 and X7 | 26, Read row; 35, Read row; 42; X2; X3; X6; X7 |
 | `bird-bench.github.io` | E and B | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
 | `spider2-sql.github.io` | B | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
-| `github.com` | B and D and W and A and E | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` varies by run - rate-limited or 403 on 2026-09-23, truncated for X2 and answered contents, trees, commits and issues for X3 on 2026-09-24; pull-request "Files changed" views return a shell; attached `.zip` trace archives redirect to `objects.githubusercontent.com` and return binary) | 2026-09-23, re-observed same day by #42 and by X1; re-observed 2026-09-24 by X2, X3 and X4 (X4: pull requests and issues read in full with review threads; the raw Iceberg OpenAPI file truncated partway); re-observed 2026-09-25 by X5 (pull requests, release pages, raw changelogs; `mlflow/mlflow` release dates came back unreliable through the fetch tool) | 35, Read row; 42; X1; X2; X3; X4; X5 |
-| `docs.getdbt.com` | D and W and S | reads | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 and X4; re-observed 2026-09-25 by X5 | 35, Read row; 42; X2; X4; X5 |
-| `getdbt.com` | D and W | reads - blog and Summit announcements | 2026-09-24; re-observed 2026-09-25 by X5 | X4; X5 |
-| `roundup.getdbt.com` | D and A | reads - dbt Labs' newsletter, the one Substack-built host that answered | 2026-09-24 | X4 |
+| `github.com` | B and D and W and A and E | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` varies by run - rate-limited or 403 on 2026-09-23, truncated for X2 and answered contents, trees, commits and issues for X3 on 2026-09-24; pull-request "Files changed" views return a shell; attached `.zip` trace archives redirect to `objects.githubusercontent.com` and return binary) | 2026-09-23, re-observed same day by #42 and by X1; re-observed 2026-09-24 by X2, X3 and X4 (X4: pull requests and issues read in full with review threads; the raw Iceberg OpenAPI file truncated partway); 2026-09-25 by X5 (`api.github.com` answered contents, trees, commits and issues; rendered README and tree pages summarise, raw reads verbatim; GitHub Discussions read); re-observed 2026-09-25 by X7 (pull requests, release pages, raw changelogs; `mlflow/mlflow` release dates came back unreliable through the fetch tool) | 35, Read row; 42; X1; X2; X3; X4; X5; X7 |
+| `docs.getdbt.com` | D and W and S | reads (X5: about forty docs, reference and best-practice pages, every one carrying a "last updated" date; guessed URLs 404) | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 and X4; 2026-09-25 by X5 and X7 | 35, Read row; 42; X2; X4; X5; X7 |
+| `getdbt.com` | D and W and S | reads - blog and Summit announcements. The `/blog` index 404s, and so do `/dbt-summit/agenda/*` session pages; `/dbt-summit/speakers/*` gives a bio only | 2026-09-24; re-observed 2026-09-25 by X5 and X6 (the agenda page for "Don't ship what you can't measure" also 404s); re-observed 2026-09-25 by X7 | X4; X5; X6; X7 |
+| `roundup.getdbt.com` | D and A and S | reads - dbt Labs' newsletter, the one Substack-built host that answered (X5: archive and nine issues) | 2026-09-24; re-observed 2026-09-25 by X5 | X4; X5 |
 | `ossie.apache.org` | S | reads | 2026-09-23; re-observed 2026-09-24 by X2 | 42; X2 |
 | `cloud.google.com` (blog only) | A and W | **reads the `/blog/` path; `/bigquery/docs/*` 301s to `docs.cloud.google.com`** | 2026-09-23; re-observed 2026-09-24 by X2 and X4 | X1; X2; X4 |
 | `docs.cloud.google.com` | A and W and S | reads - BigQuery and Looker release notes in full, Looker parameter references, BigQuery Graph docs, Colab release notes; Lakehouse (formerly BigLake) release notes and credential-vending docs | 2026-09-24, re-observed same day by X4 | X2; X4 |
-| `docs.snowflake.com` | S and W and E | **reads; user guide full. Release notes are per-page: some return their body (2026-08-26, 2026-08-28, 2026-09-02, 2026-09-08, 2026-09-10, 2026-09-15, release 10.24, the new-features index) and some a shell (2026-04-13 four times, 2026-06-26, 2026-07-24, 2026-07-27, 2026-08-18, 2026-08-21). Adding `.md` to a release-note or user-guide URL returned the text where the HTML gave a shell (X4, 2026-07-27, 07-30, 07-20 notes and the migrate-streams-tasks page)** | 2026-09-23; re-observed 2026-09-24 by X2 and X4; re-observed 2026-09-25 by X5 (2026-08-26 Semantic Studio release note returned its body) | 42; X2; X4; X5 |
-| `docs.databricks.com` | A and W and E and S | reads - platform, AI/BI and Lakebase release notes, Genie benchmarks docs; Lakeflow pipeline SQL references, Unity Catalog Skills tutorials, cross-engine ABAC; for X5, Genie Code, Designer, metric views, MLflow, Lakebase and agent-memory docs. Docs pages carry only a "last updated" date. One metric-views URL (`/uc-semantics/metric-views/data-modeling/window-measures`) returned 404 | 2026-09-24, re-observed same day by X4; re-observed 2026-09-25 by X5 | X2; X4; X5 |
-| `databricks.com` | W and E and S | reads - blog posts in full | 2026-09-24, re-observed same day by X4; re-observed 2026-09-25 by X5 | X2; X4; X5 |
-| `community.databricks.com` | W and S | reads - community articles, technical blog, forum threads with employee answers | 2026-09-24; re-observed 2026-09-25 by X5 | X4; X5 |
-| `developers.databricks.com` | W | **reads, returns nothing usable** - `/templates/*` pages returned an agent prompt framework ("DevHub") instead of the template text | 2026-09-25 | X5 |
-| `databrickslabs.github.io` | W | reads - Lakebridge docs (Switch, Reconcile), undated | 2026-09-25 | X5 |
-| `answers.databricks.com` | W and S | reads, pages undated - cannot be placed in a window | 2026-09-25 | X5 |
-| `qubika.com` | W | reads - partner blog | 2026-09-25 | X5 |
-| `entrada.ai` | W | reads - partner blog | 2026-09-25 | X5 |
-| `hiflylabs.com` | S | reads - partner blog | 2026-09-25 | X5 |
-| `datus.ai` | S | reads - blog (listed under "read, nothing used" for X4; used as an item by X5) | 2026-09-24; re-observed 2026-09-25 by X5 | X4; X5 |
-| `datahub.com` | S and W | reads - catalog-vendor blog | 2026-09-25 | X5 |
-| `atlan.com` | S and W | reads - catalog-vendor explainers; publication dates often precede "updated" dates | 2026-09-25 | X5 |
-| `research.isg-one.com` | W and A | reads - analyst perspectives | 2026-09-25 | X5 |
-| `zorost.com` | W | reads - partner blog, unsigned | 2026-09-25 | X5 |
-| `neon.com` | W | reads - blog and dated changelog pages | 2026-09-25 | X5 |
-| `lakefs.io` | W | reads - blog | 2026-09-25 | X5 |
-| `getautonoma.com` | W | reads - blog, dated by month only | 2026-09-25 | X5 |
-| `pandastack.ai` | W | reads | 2026-09-25 | X5 |
-| `diggibyte.com` | W | reads - partner blog | 2026-09-25 | X5 |
-| `kpipartners.com` | S | reads, undated | 2026-09-25 | X5 |
-| `blog.reccehq.com` | D | reads | 2026-09-25 | X5 |
-| `thenewstack.io` | W | **reads, returns nothing usable** - two articles returned only navigation and a newsletter form | 2026-09-25 | X5 |
-| `datapao.com` | S | **reads, returns nothing usable** - empty page | 2026-09-25 | X5 |
-| `dzone.com` | W | refuses (403) | 2026-09-25 | X5 |
-| Read, but nothing used as an item (X5): `chatforest.com` (AI-written, says so), `mlflow.org`, `nextlytics.com`, `nicheelab.com`, `prophecy.ai`, `itdaily.com`, `allocatingintelligence.com`, `xata.io`, `lucentinnovation.com`, `zaimler.ai`, `planetscale.com`, `supabase.com`, `jamesm.blog`, `newsletter.nextgenlakehouse.com` | W and S | reads | 2026-09-25 | X5 |
+| `docs.snowflake.com` | S and W and E | **reads; user guide full. Release notes are per-page: some return their body (2026-08-26, 2026-08-28, 2026-09-02, 2026-09-08, 2026-09-10, 2026-09-15, release 10.24, the new-features index) and some a shell (2026-04-13 four times, 2026-06-26, 2026-07-24, 2026-07-27, 2026-08-18, 2026-08-21). Adding `.md` to a release-note or user-guide URL returned the text where the HTML gave a shell (X4, 2026-07-27, 07-30, 07-20 notes and the migrate-streams-tasks page)** | 2026-09-23; re-observed 2026-09-24 by X2 and X4; re-observed 2026-09-25 by X7 (2026-08-26 Semantic Studio release note returned its body) | 42; X2; X4; X7 |
+| `docs.databricks.com` | A and W and E and S | reads - platform, AI/BI and Lakebase release notes, Genie benchmarks docs; Lakeflow pipeline SQL references, Unity Catalog Skills tutorials, cross-engine ABAC; for X7, Genie Code, Designer, metric views, MLflow, Lakebase and agent-memory docs. Docs pages carry only a "last updated" date. One metric-views URL (`/uc-semantics/metric-views/data-modeling/window-measures`) returned 404 | 2026-09-24, re-observed same day by X4; re-observed 2026-09-25 by X7 | X2; X4; X7 |
+| `databricks.com` | W and E and S | reads - blog posts in full | 2026-09-24, re-observed same day by X4; re-observed 2026-09-25 by X7 | X2; X4; X7 |
+| `community.databricks.com` | W and S | reads - community articles, technical blog, forum threads with employee answers | 2026-09-24; re-observed 2026-09-25 by X7 | X4; X7 |
+| `developers.databricks.com` | W | **reads, returns nothing usable** - `/templates/*` pages returned an agent prompt framework ("DevHub") instead of the template text | 2026-09-25 | X7 |
+| `databrickslabs.github.io` | W | reads - Lakebridge docs (Switch, Reconcile), undated | 2026-09-25 | X7 |
+| `answers.databricks.com` | W and S | reads, pages undated - cannot be placed in a window | 2026-09-25 | X7 |
+| `qubika.com` | W | reads - partner blog | 2026-09-25 | X7 |
+| `entrada.ai` | W | reads - partner blog | 2026-09-25 | X7 |
+| `datus.ai` | S | reads - blog (listed under "read, nothing used" for X4; used as an item by X7) | 2026-09-24; re-observed 2026-09-25 by X7 | X4; X7 |
+| `datahub.com` | S and W | reads - catalog-vendor blog | 2026-09-25 | X7 |
+| `research.isg-one.com` | W and A | reads - analyst perspectives | 2026-09-25 | X7 |
+| `zorost.com` | W | reads - partner blog, unsigned | 2026-09-25 | X7 |
+| `neon.com` | W | reads - blog and dated changelog pages | 2026-09-25 | X7 |
+| `lakefs.io` | W | reads - blog | 2026-09-25 | X7 |
+| `getautonoma.com` | W | reads - blog, dated by month only | 2026-09-25 | X7 |
+| `pandastack.ai` | W | reads | 2026-09-25 | X7 |
+| `diggibyte.com` | W | reads - partner blog | 2026-09-25 | X7 |
+| `kpipartners.com` | S | reads, undated | 2026-09-25 | X7 |
+| `blog.reccehq.com` | D | reads | 2026-09-25 | X7 |
+| `thenewstack.io` | W | **reads, returns nothing usable** - two articles returned only navigation and a newsletter form | 2026-09-25 | X7 |
+| `datapao.com` | S | **reads, returns nothing usable** - empty page | 2026-09-25 | X7 |
+| `dzone.com` | W | refuses (403) | 2026-09-25 | X7 |
+| Read, but nothing used as an item (X7): `chatforest.com` (AI-written, says so), `mlflow.org`, `nextlytics.com`, `nicheelab.com`, `prophecy.ai`, `itdaily.com`, `allocatingintelligence.com`, `xata.io`, `lucentinnovation.com`, `zaimler.ai`, `planetscale.com`, `supabase.com`, `jamesm.blog`, `newsletter.nextgenlakehouse.com` | W and S | reads | 2026-09-25 | X7 |
 | `learn.microsoft.com` | A | reads - Power BI "What's new"; Fabric "What's new" read but gives months, not dates | 2026-09-24, re-observed same day by X4 | X2; X4 |
 | `blog.fabric.microsoft.com` | W | refuses (403) | 2026-09-24 | X4 |
-| `learn.hex.tech` | E and A | reads - changelog entries and Evals docs | 2026-09-24 | X2 |
+| `learn.hex.tech` | E and A and D and S | reads - changelog entries, Evals docs, and Semantic Model Sync docs (undated); guessed paths 404 | 2026-09-24; re-observed 2026-09-25 by X5 and X6 | X2; X5; X6 |
 | `hex.tech` | E and B | reads - blog, and the DataBench leaderboard | 2026-09-24 | X2 |
 | `deepnote.com` | A | reads | 2026-09-24 | X2 |
 | `cube.dev` | S | reads | 2026-09-24 | X2 |
 | `sigmacomputing.com` | A | reads | 2026-09-24 | X2 |
-| `docs.omni.co` | A | reads | 2026-09-24 | X2 |
+| `docs.omni.co` | A and S and E | reads, pages undated; the changelog carries dates; some guessed paths 404; AI Evals docs | 2026-09-24; re-observed 2026-09-25 by X5 and X6 | X2; X5; X6 |
 | `ucbepic.github.io` | B | **reads, returns no table rows** - DataAgentBench's leaderboard renders client-side; read `docs/data/leaderboards.json` on GitHub instead | 2026-09-24 | X2 |
 | `claude.com` | E | reads | 2026-09-24 | X2 |
 | `basedash.com` | E and A | reads | 2026-09-24 | X2 |
-| `typedef.ai` | S | reads | 2026-09-24; re-observed 2026-09-25 by X5 | X2; X5 |
-| `colrows.com` | W and S | reads - `/blogs/` comparisons; the writer sells a competing product | 2026-09-24; re-observed 2026-09-25 by X5 | X2; X5 |
+| `typedef.ai` | S | reads | 2026-09-24; re-observed 2026-09-25 by X7 | X2; X7 |
+| `colrows.com` | W and S | reads - `/blogs/` comparisons; the writer sells a competing product | 2026-09-24; re-observed 2026-09-25 by X7 | X2; X7 |
 | `codecentric.de` | E | reads | 2026-09-24 | X2 |
 | `pith.science` | E | reads - machine-generated preprint reviews, paper pages; `/about` refuses, 403 | 2026-09-24 | X2; X3 |
 | `huggingface.co` | E | reads (dataset cards, file trees, `resolve/main` files) | 2026-09-24 | X2; X3 |
@@ -134,26 +134,26 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `encore.best` | S | reads | 2026-09-24 | X2 |
 | `db.cs.washington.edu` | W | **reads, returns nothing usable** - the slide deck is a PDF the run could not render | 2026-09-24 | X2 |
 | `bird-critic.github.io` | B | reads | 2026-09-23 | 35, Read row |
-| `genloop.ai` | B and S | reads | 2026-09-23; re-observed 2026-09-25 by X5 | 35, Read row; X5 |
+| `genloop.ai` | B and S | reads | 2026-09-23; re-observed 2026-09-25 by X7 | 35, Read row; X7 |
 | `dbt-labs.github.io` | D | **reads, returns nothing usable** | 2026-09-23, re-observed same day by #42 | 35, "Reached but returned nothing usable"; 42 |
 | `fivetran.com` | A and S and D | reads | 2026-09-23; re-observed 2026-09-24 by X2 and X4 | 26, Read row; X2; X4 |
 | `techtarget.com` | A | reads | 2026-09-23, re-observed same day; re-observed 2026-09-24 by X2 | 26, Read row; re-fetched by #32; X2 |
 | `salesforce.com` | A and E | reads the newsroom; the Salesforce+ keynote page returns a truncated shell | 2026-09-23; re-observed 2026-09-24 by X2 and X3 | 26, Read row; X2; X3 |
 | `cxfoundation.com` | A | reads | 2026-09-23 | 26, Read row |
-| `snowflake.com` | A and W and S and E | reads - newsroom, product and engineering blogs, developer guides | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 and X4; re-observed 2026-09-25 by X5 (Cortex Sense, Postgres mirroring) | 26, Read row; 42; X2; X4; X5 |
+| `snowflake.com` | A and W and S and E | reads - newsroom, product and engineering blogs, developer guides | 2026-09-23, re-observed same day by #42; re-observed 2026-09-24 by X2 and X4; re-observed 2026-09-25 by X7 (Cortex Sense, Postgres mirroring) | 26, Read row; 42; X2; X4; X7 |
 | `prnewswire.com` | E and W | reads | 2026-09-21, re-observed 2026-09-23 by #42 | 19, Read row; 42 |
 | `community.fabric.microsoft.com` | A | refuses | 2026-09-21; refused again 2026-09-24 by X2 (403) | 19, Refused row; X2 |
 | `powerbi.microsoft.com` | A | refuses (403) | 2026-09-24 | X2 |
 | `tableau.com` | A | refuses (403) on `/products/new-features` | 2026-09-24 | X2 |
 | `medium.com` | E and W | refuses (403) - three different posts, including `thumbtack-engineering` and `@prathamesh.nimkar`; again for X4 (`/snowflake/...` skills walkthrough, a dbt Projects deep dive, an SCD2 post). Medium custom domains refuse too: `blog.dataengineerthings.org` | 2026-09-24, re-observed same day by X4 | X2; X4 |
 | `blog.dataengineerthings.org` | W | refuses (403) - Medium-hosted | 2026-09-24 | X4 |
-| Substack hosts (`joereis`, `seattledataguy`, `gradientflow`, `dataanalysis`, `learnanalyticsengineering`, `amdatalakehouse`) | A and W | **refuse (403)** - every post tried; `roundup.getdbt.com` is the exception, and `dev.to` carries copies of the `amdatalakehouse` weeklies | 2026-09-24 | X4 |
+| Substack hosts (`joereis`, `seattledataguy`, `gradientflow`, `dataanalysis`, `learnanalyticsengineering`, `amdatalakehouse`, `brainsandbots`) | A and W and D | **refuse (403)** - every post tried; `roundup.getdbt.com` is the exception, and `dev.to` carries copies of the `amdatalakehouse` weeklies | 2026-09-24; `brainsandbots` 2026-09-25 | X4; X5 |
 | `blog.rittmananalytics.com` | D | refuses (403) | 2026-09-24 | X4 |
 | `upriverdata.com` | W and B | reads | 2026-09-24 | X4 |
 | `ssp.sh` | S | reads | 2026-09-24 | X4 |
 | `dremio.com` | S and A | reads - blog | 2026-09-24 | X4 |
 | `dev.to` | S and A | reads - Dremio's weekly lakehouse digests and State of Polaris posts | 2026-09-24 | X4 |
-| `datalakehousehub.com` | S and A and W | reads | 2026-09-24; re-observed 2026-09-25 by X5 | X4; X5 |
+| `datalakehousehub.com` | S and A and W | reads | 2026-09-24; re-observed 2026-09-25 by X7 | X4; X7 |
 | `cloudrps.com` | A | reads | 2026-09-24 | X4 |
 | `onehouse.ai` | A | reads | 2026-09-24 | X4 |
 | `polaris.apache.org` | A | reads (pages undated) | 2026-09-24 | X4 |
@@ -163,11 +163,28 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `lakeops.dev` | A | reads | 2026-09-24 | X4 |
 | `developers.redhat.com` | D | reads | 2026-09-24 | X4 |
 | `community.snowflake.com` | W | **reads, returns nothing usable** - page loaded with no article text | 2026-09-24 | X4 |
+| `atlan.com` | D and S and W | reads - `/know/` explainers, dated by an "updated" line; publication dates often precede "updated" dates | 2026-09-25 | X5; X7 |
+| `omni.co` | S and D and E | reads - articles and blog, including the AI Evals post (a different host from `docs.omni.co`) | 2026-09-25 | X5; X6 |
+| `docs.cube.dev` | S | reads, pages undated; `cube.dev/docs` now 308-redirects here | 2026-09-25 | X5 |
+| `docs.lightdash.com` | S | reads, pages undated | 2026-09-25 | X5 |
+| `paradime.io` | S | reads - blog; the header date and byline date disagree | 2026-09-25 | X5 |
+| `support.claude.com` | D and W | reads - connector admin help articles, dated | 2026-09-25 | X5 |
+| `truefoundry.com` | D | reads - blog | 2026-09-25 | X5 |
+| `digitalturbine.com` | S | reads - engineering blog | 2026-09-25 | X5 |
+| `iandmacomber.com` | S | reads | 2026-09-25 | X5 |
+| `cio.com` | S and A | reads | 2026-09-25 | X5 |
+| `multishoring.com` | D | reads | 2026-09-25 | X5 |
+| `hiflylabs.com` | W and S | reads - partner blog | 2026-09-25 | X5; X7 |
+| `datadef.io` | S | reads; the page shows no date | 2026-09-25 | X5 |
+| `getnao.io` and `docs.getnao.io` | S and D | reads - blog dated, docs undated | 2026-09-25 | X5 |
+| `youtube.com` | D | **reads, returns nothing usable** - the dbt Summit 2026 playlist page came back with no video list | 2026-09-25 | X5 |
+| Read, but nothing used as an item (X5): `upsolve.ai`, `infinisynapse.com`, `b-eye.com`, `motherduck.com`, `adriennevermorel.com`, `docs.getdot.ai`, `docs.push.ai`, `help.sigmacomputing.com`, `analytics8.com`, `builders.ramp.com`, `holistics.io`, `rilldata.com`, `phdata.io`, `datafold.com`, `cloudthat.com`, `changelog.lightdash.com`, `rollstack.com`, `euno.ai`, `prnewswire.co.uk`, `linkedin.com`, `itdaily.com` | S and D and W | reads | 2026-09-25 | X5 |
+| `software.strategy.com`, `ml4devs.com`, `driftwave.io` | S | refuse (403) | 2026-09-25 | X5 |
 | Read, but nothing used as an item: `joereis.github.io`, `blog.dataexpert.io`, `dataengineeringweekly.com`, `datus.ai`, `getorchestra.io`, `aimpointdigital.com`, `mechanicalrock.io`, `rebricked.org`, `daily.dev` (summary cards only), `thehackerwire.com`, `mallory.ai`, `iomete.com`, `iceberglakehouse.com`, `javatask.dev`, `data-today.net`, `tothenew.com` | A and W and D | reads | 2026-09-24 | X4 |
 | `web.archive.org` | E | **not fetchable by the run's fetch tool** - no archived copy could be compared | 2026-09-24 | X2 |
 | `blogs.oracle.com` | B | refuses | 2026-09-23 | 42 |
 | `hpcwire.com` | A | refuses | 2026-09-21 and 2026-09-23 | 19, Refused row; re-fetched by #32 |
-| `openai.com` | A and E | refuses | 2026-09-23; re-observed 2026-09-24 (403 on `/index/separating-signal-from-noise-coding-evaluations/`) | 26, Refused row; X3 |
+| `openai.com` | A and E and D | refuses | 2026-09-23; re-observed 2026-09-24 (403 on `/index/separating-signal-from-noise-coding-evaluations/`); 2026-09-25 (403 on `/business/plugins/dbt/`) | 26, Refused row; X3; X5 |
 | `blogs.mulesoft.com` | A | refuses | 2026-09-23 | 26, Refused row |
 | `technologymagazine.com` | E | refuses | 2026-09-23 | 26, Refused row |
 | `aimagazine.com` | E | refuses | 2026-09-23 | 26, Refused row |
@@ -186,6 +203,15 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `intercom.com` | E | **reads, returns nothing usable** (help article returned navigation only) | 2026-09-24 | X3 |
 | `swebench.com` | E | **reads, returns nothing usable** (leaderboard table drawn by JavaScript) | 2026-09-24 | X3 |
 | `cnbc.com` | E | refuses, 403 | 2026-09-24 | X3 |
+| `datacult.com` | E and D | reads - Data Culture's posts on evaluating dbt Semantic Layer agents | 2026-09-25 | X6 |
+| `help.altimate.ai` | E and D | reads - dbt PR Review docs | 2026-09-25 | X6 |
+| `developer.nvidia.com` | E | reads - technical blog | 2026-09-25 | X6 |
+| `agentskills.io` | E | reads - the open Agent Skills spec and its evaluating-skills guide | 2026-09-25 | X6 |
+| `phdata.io` | E and W | reads | 2026-09-25 | X6 |
+| `langchain.com`, `arize.com`, `blog.agentailor.com`, `braintrust.dev`, `arthur.ai`, `oneuptime.com`, `langfuse.com` | E | reads - eval-engineering blogs and guides (Braintrust, Arthur, Langfuse used only as Background) | 2026-09-25 | X6 |
+| `skillsbench.ai`, `typedef.ai`, `blog.reccehq.com`, `datafold.com`, `rmoff.net`, `paradime.io`, `altimate.ai`, `hfsresearch.com`, `tessl.io` | E and D | reads, but nothing in window used as an item | 2026-09-25 | X6 |
+| `windowsforum.com` | E | refuses (403) | 2026-09-25 | X6 |
+| `github.com/GeniusHTX/SWE-Skills-Bench` | E | **404** - repository and API both | 2026-09-25 | X6 |
 
 A **refuses** row is not a dead entry and is the reason this list is worth
 more than a bookmark folder. It says: this host has a page you want, you
