@@ -325,14 +325,35 @@ back in one, split it in reading order and say so - never condense it, which
 is the thing the #38 reaction rejected.
 -->
 
-- **An auto-breadth exploration is read back as its index, in full, then its
-  paths one at a time on "next".** The index is the reading surface; a path is
-  read in full when asked for, never condensed. *Reaction to the Snowflake SQL
-  AI functions exploration, "you had it exactly right already, reading the
-  index to me then offering to step through the paths with a next",
-  2026-09-24.*
+- **Synthesis leads, at three scales.** A consolidating "so what" - the
+  sources pulled into one narrative, with what it means for me - gets the most
+  care. The articles are supporting detail.
+  1. **The whole run:** the index opens with a synthesis and so what across
+     every path and source, **300-450 words**. It is always the first thing I
+     read.
+  2. **Each path** ends with **Where this path ends** - one paragraph.
+  3. **Each level** ends with a short **So what** - two or three sentences.
+  *Reaction to the data-engineering exploration's path 1 (#60), whose closing
+  paragraph "surprised me by how much value it added": "This is consolidation
+  and synthesis. Its valuable because it gives me the so what and connects the
+  large amount of sources into a cohesive narrative that my brain can handle
+  ... I want every following run to lean here harder", then "make the
+  synthesis required for the entire run as a whole as well as at each level
+  ... I want the first thing i read to be the whole run synthesis", and "The
+  whole run should be a synthesis and so what, target budget 300-450 words",
+  2026-09-25.*
+- **An exploration is read back synthesis first:** the whole-run synthesis,
+  then each path's "Where this path ends", then the level "So what"s.
+  Articles are read only when I ask for a path in full.
+  *Same reaction: "I tried reading the full path 1 output here but could only
+  skim and still started losing attention by the time i got to layer 3."*
 
 ## Retired
+
+- **Format:** "An auto-breadth exploration is read back as its index, in full,
+  then its paths one at a time on 'next'." *Added 2026-09-24 from the reaction
+  to the Snowflake exploration; replaced 2026-09-25 by synthesis-first
+  read-back, after a full path lost the reader's attention by level 3.*
 
 - **Format:** "Every item in it follows the same seven-part structure" - what
   it is, how long ago, how it relates, what through-line it changes, what to

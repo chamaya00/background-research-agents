@@ -54,13 +54,18 @@ runs it: the Claude Code run inside the workflow, or the session.
 |---|---|---|
 | width | **5** | Angles the breadth pass covers - one item per angle. |
 | paths | **3** | Leads from the breadth pass that are followed down. |
-| depth | **3** | Levels below the breadth pass, per path. |
+| depth | **2** | Levels below the breadth pass, per path. Level 1 **branches**: both of its leads are followed, as levels 2a and 2b. |
 | mode | **learning** | `learning` or `scrutiny` - see below. |
 
-The defaults are the person's, set 2026-09-23: "try fully automatic first,
-5,3,3". A run may be given others (`/auto-breadth <seed> width=4 depth=2`), and
-the index records which it used. At the defaults a run is at most
-1 + 3 × 3 = **10 research runs**.
+The defaults are the person's: 5/3/3 on 2026-09-23 ("try fully automatic
+first, 5,3,3"), then depth 2 with a branching first level on 2026-09-25 ("lets
+default to 2 layers for the auto breadth runs, but take both paths presented
+at first instead of picking between the two"). A run may be given others
+(`/auto-breadth <seed> width=4 depth=3`), and the index records which it used.
+At the defaults a run is 1 breadth pass + 3 level-1 runs + 6 level-2 runs =
+**10 research runs**, the same budget as before, spent wider and shallower. At
+depth 3 and beyond, each level-2 branch continues as a chain of one lead per
+level.
 
 **Fully automatic.** There is no checkpoint after the breadth pass. That was
 offered and declined for the first version; if the picked paths keep missing
@@ -182,9 +187,14 @@ exactly that reason, 2026-09-24. A session is woken when background work
 finishes, so there the choice is free.
 
 A level's subagent appends one section, `## Level N - <lead>`, to
-`path-<n>-<slug>.md`: **three to five articles** in the article format, and two
-leads to read further. The driver picks the next lead by the same five rules
-plus one: **it must be a more specific subtopic of the lead it came from.** In
+`path-<n>-<slug>.md`: **three to five articles** in the article format, two
+leads to read further, and a closing **So what** - two or three sentences
+pulling the level's articles into what they mean for the reader.
+
+**Level 1 branches.** Both of level 1's leads are followed, as `## Level 2a`
+and `## Level 2b`, in parallel - no choosing between them. Past level 2, the
+driver picks the next lead of each branch by the same five rules plus one:
+**it must be a more specific subtopic of the lead it came from.** In
 learning mode that means more to read about a narrower part of the subject,
 never a closer check of one claim. A lead that widens back out is a new path,
 and new paths are not opened mid-run.
@@ -221,8 +231,12 @@ reads first and often the only thing they read:
 
 - One line: the seed, the mode, the date, and that it was produced in this
   mode.
-- **What's out there** - the headline across all paths, in a few sentences
-  (about 150 words).
+- **Synthesis - the whole run, first.** A synthesis and so what across every
+  path and source: what the reading adds up to and what it means for the
+  reader, **300-450 words**. It is the first thing the person reads and often
+  the only thing, so it gets the most care of anything the run writes. It is
+  written from the paths' "Where this path ends" paragraphs and the levels'
+  "So what"s, not from the articles directly.
 - **The map** - every article, grouped by path, one line each: title, link,
   and a clause on what it is. The article's five parts live in the path file.
 - **How it fits together** - a few bullets on how the paths relate to each
@@ -234,9 +248,13 @@ reads first and often the only thing they read:
 Lead tables, stops, convergences, corrections and fetch records go in the pull
 request body.
 
-**Length is a limit, not a target.** An article over about 150 words, or an
-index over about 600 not counting the map's links, is cut before the run
-lands: the driver trims it, it does not ask the subagent to. The first
+**Every path ends with "Where this path ends"** - one paragraph consolidating
+its levels into a so what for the reader. The whole-run synthesis builds on
+these.
+
+**Length is a limit, not a target.** An article over about 150 words, a
+whole-run synthesis outside 300-450 words, or the rest of the index over about
+300 not counting the map's links, is fixed before the run lands: the driver trims it, it does not ask the subagent to. The first
 learning-mode run (#60) averaged about 230 words an article and a 1,070-word
 index against targets of 120 and 600, which is why this is a rule rather than
 a hope. *Set by the person, 2026-09-25.*
@@ -266,13 +284,11 @@ A workflow run cannot do this step: it has nobody to read to. The session
 that dispatched it, or the next session the person opens, does it once the
 pull request has merged.
 
-The index is read back **in full** in the session, and then the paths are
-offered one at a time: each is read **in full** on "next", in order, split in
-reading order where one is too long - never condensed, per the Format line that
-rejected #38. The person can react at any point, and usually will from the
-index alone. The preference is the Format line in [`profile.md`](profile.md)
-("An auto-breadth exploration is read back as its index ..."), which is where
-it changes if it changes.
+**Synthesis first.** Read back the whole-run synthesis, then each path's
+"Where this path ends", then the level "So what"s, then offer the map. A path's
+articles are read in full only when the person asks for that path. The
+preference is the Format line in [`profile.md`](profile.md) ("An exploration is
+read back synthesis first"), which is where it changes if it changes.
 
 ## After the read-back
 

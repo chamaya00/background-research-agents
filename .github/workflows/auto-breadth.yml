@@ -45,9 +45,9 @@ on:
         default: '3'
         type: string
       depth:
-        description: Levels below the breadth pass, per path.
+        description: Levels below the breadth pass, per path (level 1 branches into both of its leads).
         required: false
-        default: '3'
+        default: '2'
         type: string
       mode:
         description: learning (survey what has been written) or scrutiny (drill into claims).
@@ -120,7 +120,7 @@ jobs:
             v="$(printf '%s' "$RAW_BODY" | grep -oiE "(^|[^a-z])$1[[:space:]]*=[[:space:]]*[0-9]+" | head -n1 | grep -oE '[0-9]+$' || true)"
             printf '%s' "${v:-$3}"
           }
-          width="$(param width "$IN_WIDTH" 5)"; paths="$(param paths "$IN_PATHS" 3)"; depth="$(param depth "$IN_DEPTH" 3)"
+          width="$(param width "$IN_WIDTH" 5)"; paths="$(param paths "$IN_PATHS" 3)"; depth="$(param depth "$IN_DEPTH" 2)"
           for v in "$width" "$paths" "$depth"; do
             case "$v" in ''|*[!0-9]*) echo "::error::width, paths and depth must be whole numbers, got '$v'"; exit 1 ;; esac
             [ "$v" -ge 1 ] && [ "$v" -le 8 ] || { echo "::error::width, paths and depth must be between 1 and 8, got $v"; exit 1; }
@@ -289,9 +289,13 @@ jobs:
                `.auto-breadth/pr-body.md` all exist. The first two live runs
                ended straight after the breadth pass because the paths were
                sent to the background.
-            8. Length is a limit. Before you stop, cut every article over
-               about 150 words and an index over about 600 (not counting the
-               map's links) - trim them yourself, per the mode's step 4.
+            8. Synthesis leads. Every level ends with a "So what", every path
+               with "Where this path ends", and the index opens with the
+               whole-run synthesis, 300-450 words - the part the person reads
+               first, so it gets the most care. Length is a limit: before you
+               stop, fix every article over about 150 words, a synthesis
+               outside 300-450, and the rest of the index over about 300 (not
+               counting map links) - trim them yourself, per the mode's step 4.
             9. When all of that exists, stop. The index is the deliverable and
                a session will read it back to the person.
           show_full_output: false
