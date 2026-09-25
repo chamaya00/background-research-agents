@@ -59,6 +59,7 @@ which of its two tables the row came from:
 `X2` = the auto-breadth exploration `docs/research/explore/2026-09-24-agentic-ai-features-for-analytics-launched-or-announced-ware/`, run in GitHub Actions.
 `X3` = the auto-breadth exploration `docs/research/explore/2026-09-24-methodology-for-proving-agentic-ai-efficacy-study-designs-ev/`, run in GitHub Actions.
 `X4` = the auto-breadth exploration `docs/research/explore/2026-09-24-what-a-product-data-scientist-moving-into-data-engineering-s/`, run in GitHub Actions.
+`X5` = the auto-breadth exploration `docs/research/explore/2026-09-25-dbt-evals-one-level-deeper-how-agents-doing-dbt-work-are-eva/`, run in GitHub Actions.
 
 The two Depth lines were added to `profile.md` by the reaction to
 [#29](https://github.com/chamaya00/background-research-agents/issues/29) and
@@ -75,7 +76,7 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `gethynellis.com` | A | reads | 2026-09-21 | 19, Read row |
 | `pointfive.co` | A and E | reads | 2026-09-21 | 19, Read row |
 | `kucoin.com` | E | reads | 2026-09-21 | 19, Read row |
-| `arxiv.org` | E and B and D and S | reads (`/html/` and `/abs/`; `/pdf/` and `/src/` return binary a shell-less runner cannot open) | 2026-09-23, re-observed same day by #35 and by #42; re-observed 2026-09-24 by X2 and X3 | 26, Read row; 35, Read row; 42; X2; X3 |
+| `arxiv.org` | E and B and D and S | reads (`/html/` and `/abs/`; `/src/` returns binary. `/pdf/` returned binary to one X5 run and was read by another, which opened the file the fetch tool saved with its file reader - 2609.16487, whose `/html/` 404s) | 2026-09-23, re-observed same day by #35 and by #42; re-observed 2026-09-24 by X2 and X3; 2026-09-25 by X5 | 26, Read row; 35, Read row; 42; X2; X3; X5 |
 | `bird-bench.github.io` | E and B | reads | 2026-09-23, re-observed same day by #35 | 26, Read row; 35, Read row |
 | `spider2-sql.github.io` | B | reads | 2026-09-23, re-observed same day by #42 | 35, Read row; 42 |
 | `github.com` | B and D and W and A and E | reads (and `raw.githubusercontent.com` for raw files; `api.github.com` varies by run - rate-limited or 403 on 2026-09-23, truncated for X2 and answered contents, trees, commits and issues for X3 on 2026-09-24; pull-request "Files changed" views return a shell; attached `.zip` trace archives redirect to `objects.githubusercontent.com` and return binary) | 2026-09-23, re-observed same day by #42 and by X1; re-observed 2026-09-24 by X2, X3 and X4 (X4: pull requests and issues read in full with review threads; the raw Iceberg OpenAPI file truncated partway) | 35, Read row; 42; X1; X2; X3; X4 |
@@ -163,6 +164,18 @@ first served by #42: `S` = `semantic-models`, `W` = `warehouse-agentic`.
 | `intercom.com` | E | **reads, returns nothing usable** (help article returned navigation only) | 2026-09-24 | X3 |
 | `swebench.com` | E | **reads, returns nothing usable** (leaderboard table drawn by JavaScript) | 2026-09-24 | X3 |
 | `cnbc.com` | E | refuses, 403 | 2026-09-24 | X3 |
+| `datacult.com` | E and D | reads - Data Culture's posts on evaluating dbt Semantic Layer agents | 2026-09-25 | X5 |
+| `omni.co` and `docs.omni.co` | E and A | reads - AI Evals blog post and docs | 2026-09-25 | X5 |
+| `learn.hex.tech` | E and A | reads - changelog entries and Evals docs; re-observed | 2026-09-25 | X2; X5 |
+| `help.altimate.ai` | E and D | reads - dbt PR Review docs | 2026-09-25 | X5 |
+| `developer.nvidia.com` | E | reads - technical blog | 2026-09-25 | X5 |
+| `agentskills.io` | E | reads - the open Agent Skills spec and its evaluating-skills guide | 2026-09-25 | X5 |
+| `phdata.io` | E and W | reads | 2026-09-25 | X5 |
+| `langchain.com`, `arize.com`, `blog.agentailor.com`, `braintrust.dev`, `arthur.ai`, `oneuptime.com`, `langfuse.com` | E | reads - eval-engineering blogs and guides (Braintrust, Arthur, Langfuse used only as Background) | 2026-09-25 | X5 |
+| `skillsbench.ai`, `typedef.ai`, `blog.reccehq.com`, `datafold.com`, `rmoff.net`, `paradime.io`, `altimate.ai`, `hfsresearch.com`, `tessl.io` | E and D | reads, but nothing in window used as an item | 2026-09-25 | X5 |
+| `getdbt.com` dbt Summit agenda pages | D | **404** on the "Don't ship what you can't measure" session page | 2026-09-25 | X5 |
+| `windowsforum.com` | E | refuses (403) | 2026-09-25 | X5 |
+| `github.com/GeniusHTX/SWE-Skills-Bench` | E | **404** - repository and API both | 2026-09-25 | X5 |
 
 A **refuses** row is not a dead entry and is the reason this list is worth
 more than a bookmark folder. It says: this host has a page you want, you
