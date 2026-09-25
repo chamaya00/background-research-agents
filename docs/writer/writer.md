@@ -1,7 +1,7 @@
 # The writer mode
 
-Turns the research this repository has already done into posts: a LinkedIn
-article and the feed post that shares it, synthesized across runs. It is the
+Turns the research this repository has already done into LinkedIn posts,
+synthesized across runs and built around the author's own experience. It is the
 third mode beside the read-react-remember loop ([`loop.md`](../reader/loop.md))
 and auto breadth ([`auto-breadth.md`](../reader/auto-breadth.md)). It starts
 with [`/post`](../../.claude/commands/post.md).
@@ -48,6 +48,13 @@ route (ADR 0007); nothing here needs that yet.
 
 ## One post
 
+Three passes, because the research and the author each supply what the other
+cannot. The research gives breadth and sources; the author gives the
+experience that makes a post worth reading. *The author's words, 2026-09-25:
+"First start with the writer first pass, full on research synthesis. Then ask
+me questions to fill in the blanks in order to fulfill my writing
+requirements."*
+
 0. **Read** the files above.
 
 1. **Theme.** Given one, take it. Given none, propose three, each in one
@@ -56,12 +63,31 @@ route (ADR 0007); nothing here needs that yet.
    one run is that run's synthesis with a byline. Stop and let the author
    pick.
 
-2. **The claim, then the draft.** State the post's claim in one sentence and
-   name the runs behind it, then write both pieces without waiting. The author
-   reacts to a draft faster than to an outline.
+2. **First pass: the research draft.** State the claim in one sentence, name
+   the runs behind it, and write the post from the research alone. Show it to
+   the author as a starting point, not as a finished post. It is expected to
+   sound like a literature review.
 
-3. **Write** `docs/posts/<date>-<slug>.md` with this front matter, then the
-   article, then the feed post under a `## Feed post` heading:
+3. **Second pass: the interview.** Compare the draft with `style.md` and ask
+   the author at most five questions, aimed at what only they can supply:
+   - what they believed or saw before;
+   - the moment the subject touched their own work, told without employer
+     internals;
+   - what took longest to understand, and whether it has clicked yet;
+   - what they would tell a friend making the same move;
+   - anything in the draft they do not believe.
+
+   Also read the author's own words in `profile.md` reactions and in commit
+   messages. They are a record of what the author found hard.
+
+4. **Third pass: the rewrite.** Rebuild the post around the answers. The
+   author's experience is the spine and the research answers it. Cut every
+   point the answers do not support. Keep only the three to five sources that
+   carry the argument.
+
+5. **Write** `docs/posts/<date>-<slug>.md` with this front matter, then the
+   post, then a `## First comment` section holding the sources and the
+   reading date:
 
    ```yaml
    title: <the claim>
@@ -71,25 +97,20 @@ route (ADR 0007); nothing here needs that yet.
      - docs/research/explore/<folder>/
    ```
 
-4. **Trace check.** List every factual claim in the article with the source it
-   links to and the research file that carried it. A claim with no line in
-   the research comes out. That table is process evidence, so it goes in the
-   pull request body, not the post. Then check the lengths `style.md` sets and
-   fix any that are over.
+6. **Trace check.** List every factual claim with its source and the research
+   file that carried it. A claim with no line in the research comes out. The
+   author's own experience is marked as theirs and needs no source. The table
+   goes in the pull request body. Then check the lengths `style.md` sets.
 
-5. **Hand it back.** Open a pull request with the post file only, and read the
-   post back in full in the session - it is short enough, and the author is
-   judging the words.
+7. **Hand it back.** Open or update the pull request and read the post back in
+   full in the session.
 
-6. **One sentence back, split in two.** A reaction about **this post** revises
-   the draft on the same branch. A reaction about **posts in general** ("less
-   hedging", "always open with a question") becomes a line in `style.md`: show
-   the diff, commit it on a yes, and put the reaction's own words in the commit
-   message. One reaction can be both. The split is what makes the next post
-   better rather than only this one.
+8. **One sentence back, split in two.** A reaction about **this post** revises
+   the draft on the same branch. A reaction about **posts in general** becomes
+   a line in `style.md`: show the diff, commit it on a yes, and put the
+   reaction's own words in the commit message. One reaction can be both.
 
-7. **Merge when the author says the post is ready**, with `status: ready`.
+9. **Merge when the author says the post is ready**, with `status: ready`.
    Standing merge instructions for research do not cover posts: a post is the
    author's public voice. When the author says it is live, set
-   `status: posted` and add the LinkedIn link under the front matter's `date`
-   as `url:`.
+   `status: posted` and add `url:` with the LinkedIn link.

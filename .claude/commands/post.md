@@ -1,5 +1,5 @@
 ---
-description: Turn the research already in this repository into a LinkedIn article and feed post, synthesized across runs, in the author's voice.
+description: "Turn the research already in this repository into a LinkedIn post - a research draft, then questions for the author, then a rewrite around their answers."
 argument-hint: "[theme]"
 ---
 
