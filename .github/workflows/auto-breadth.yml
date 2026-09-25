@@ -418,6 +418,31 @@ jobs:
           workflow (width ${WIDTH}, paths ${PATHS}, depth ${DEPTH}).
           Run: ${RUN_URL}
           EOF
+
+          # Re-base that one commit onto the default branch as it is now. GitHub
+          # compares a new branch with the default branch, so a run that started
+          # before a workflow file changed there reads as a workflow edit, and
+          # an App without the `workflows` permission is refused - both 2026-09-25
+          # runs, #62 and #63, finished their research and failed right here.
+          # A cherry-pick needs only BASE, the new tip and this commit, so the
+          # shallow checkout is enough, and it cannot add a path the check above
+          # did not pass. If it conflicts (`sources.md` rows, usually), the
+          # commit stays on BASE and the push is tried as before; a session
+          # resolves the conflict on the pull request.
+          default_branch="${{ github.event.repository.default_branch }}"
+          git fetch -q --depth=1 "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "refs/heads/${default_branch}"
+          tip="$(git rev-parse FETCH_HEAD)"
+          work="$(git rev-parse HEAD)"
+          if [ "$tip" != "$BASE" ]; then
+            git checkout -q -B "$branch" "$tip"
+            if git cherry-pick "$work" >/dev/null; then
+              echo "Re-based onto ${default_branch} at $tip."
+            else
+              git cherry-pick --abort
+              git checkout -q -B "$branch" "$work"
+              echo "::warning::Could not re-base onto ${default_branch} at $tip without a conflict; pushing on $BASE."
+            fi
+          fi
           git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${branch}"
           pr_url="$(gh pr create --repo "$GITHUB_REPOSITORY" --base "${{ github.event.repository.default_branch }}" --head "$branch" --title "$title" --body-file "$body_file")"
           echo "Opened $pr_url"
