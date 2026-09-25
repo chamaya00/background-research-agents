@@ -1,6 +1,6 @@
 ---
 description: Explore a seed breadth first, then follow the best leads down several levels, automatically - and hand back every path to read at once.
-argument-hint: "<seed> [width=5] [paths=3] [depth=3]"
+argument-hint: "<seed> [width=5] [paths=3] [depth=2] [mode=scrutiny]"
 ---
 
 Run an auto breadth exploration on `$ARGUMENTS`.
