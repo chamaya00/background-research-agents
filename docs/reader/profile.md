@@ -214,6 +214,14 @@ is referenced in passing; a concept marked new is explained once.
   for 8 years and havent seen outside company stacks during that time",
   2026-09-24. Records only that these are new; nothing is inferred about what
   is known from inside Meta.*
+- `data-engineering` - **new**, coming from product data science. Explain
+  data-engineering concepts (modelling, orchestration, pipelines, testing,
+  governance) in a clause the first time; product analytics and
+  experimentation need no introduction.
+  *"a product data scientist transitioning to data engineering", 2026-09-24,
+  in the request that started the data-engineering exploration (#59). The
+  last clause was the driver's inference, shown in the diff and accepted
+  ("yes add the knowledge line too", 2026-09-25).*
 
 ## Format
 

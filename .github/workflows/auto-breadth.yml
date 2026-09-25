@@ -289,7 +289,10 @@ jobs:
                `.auto-breadth/pr-body.md` all exist. The first two live runs
                ended straight after the breadth pass because the paths were
                sent to the background.
-            8. When all of that exists, stop. The index is the deliverable and
+            8. Length is a limit. Before you stop, cut every article over
+               about 150 words and an index over about 600 (not counting the
+               map's links) - trim them yourself, per the mode's step 4.
+            9. When all of that exists, stop. The index is the deliverable and
                a session will read it back to the person.
           show_full_output: false
 

@@ -234,6 +234,13 @@ reads first and often the only thing they read:
 Lead tables, stops, convergences, corrections and fetch records go in the pull
 request body.
 
+**Length is a limit, not a target.** An article over about 150 words, or an
+index over about 600 not counting the map's links, is cut before the run
+lands: the driver trims it, it does not ask the subagent to. The first
+learning-mode run (#60) averaged about 230 words an article and a 1,070-word
+index against targets of 120 and 600, which is why this is a rule rather than
+a hope. *Set by the person, 2026-09-25.*
+
 ### 5. Land it
 
 - Update `sources.md` rows for hosts the run fetched, as any research run does.
