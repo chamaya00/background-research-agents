@@ -35,6 +35,16 @@ Lines marked *Seed* came from the author's answers when the mode was set up,
   go in a first comment, drafted with the post. *Seed, 2026-09-25; links moved
   to the first comment with the feed-post default.*
 
+## Substack
+
+- **The issue comes first, and each LinkedIn post is cut from it rather than
+  written alongside it.** *Seed: "issue first, posts cut", 2026-09-26 (#72).*
+- **One series, one reusable shape** - decided once, for the series, not
+  chosen again per issue. *Seed: "one series, reusable shape", 2026-09-26
+  (#72).*
+- **Sized to about 10 hours a week**, across the interview and both channels
+  together. *Seed: "about 10 hrs a week", 2026-09-26 (#72).*
+
 ## Audience, in priority order
 
 1. **Data science and data engineering hiring managers and recruiters.** They
