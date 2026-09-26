@@ -17,10 +17,14 @@ only tracks whether the series as a whole is still reaching them.
 
 ## Installments
 
-None claimed yet. A row is added here only when a Substack issue reaches
-`status: posted` in its own front matter - a draft or an abandoned issue does
-not take a number or appear in this list. Once the first is posted, add a row
-here in this form:
+None claimed yet. A row is one installment - a Substack issue together with
+every cut post made from it - not one row per piece. It is added here only
+when the Substack issue reaches `status: posted` in its own front matter; a
+draft or an abandoned issue does not take a number or appear in this list. The
+issue claims the row's number; each cut post carries a `cut_from:` field
+naming that issue and takes its number rather than claiming one of its own,
+landing in the row's Cut posts column as it posts. Once the first issue is
+posted, add a row here in this form:
 
 | # | Status | Substack issue | Cut posts |
 |---|--------|-----------------|-----------|

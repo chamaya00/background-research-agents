@@ -123,11 +123,14 @@ own rather than by reference to the issue it was cut from.
 6. **Cut 2-3 LinkedIn posts from the issue**, each its own file at
    `docs/posts/<date>-<slug>-linkedin-<n>.md`, with the same front matter
    shape (`series`, `installment: unclaimed`, its own `runs` subset) plus
-   `channel: linkedin`. A cut post is not a link to the issue; it stands on
-   its own against every rule `style.md`'s LinkedIn section sets - the first
-   two lines carry the point, no links in the body, sources in a first
-   comment, length inside the feed-post range - because a cut post that only
-   reads correctly after the issue has failed.
+   `channel: linkedin` and `cut_from: <path to the issue file it was cut
+   from>`. A cut post never claims an installment number of its own - see
+   step 10 - and `cut_from` is what lets it inherit its issue's. A cut post
+   is not a link to the issue; it stands on its own against every rule
+   `style.md`'s LinkedIn section sets - the first two lines carry the point,
+   no links in the body, sources in a first comment, length inside the
+   feed-post range - because a cut post that only reads correctly after the
+   issue has failed.
 
 7. **Trace check, per piece.** For the issue and for each cut post
    separately: list every factual claim with its source and the research
@@ -150,9 +153,25 @@ own rather than by reference to the issue it was cut from.
 10. **Merge when the author says a piece is ready**, with `status: ready`.
     Standing merge instructions for research do not cover posts: a post is
     the author's public voice. When the author says it is live, set
-    `status: posted` on that piece, add `url:` with its published link, and
-    only then - never before - **replace `installment: unclaimed` with the
-    next number the series file has not yet used, and add the corresponding
-    row to that series file's installments list.** A piece abandoned or left
-    at `draft` or `ready` never claims a number and never appears in that
-    list; the series only advances on what actually posted.
+    `status: posted` on that piece and add `url:` with its published link -
+    then what happens next depends on which piece it is.
+
+    **The Substack issue** only then - never before - **replaces
+    `installment: unclaimed` with the next number the series file has not
+    yet used, and adds the corresponding row to that series file's
+    installments list** (one row per installment: the issue together with
+    the cut posts made from it, not one row per piece). At the same time,
+    add to that series file's open threads, one line each: whatever the
+    issue said comes next, and anything it promised to return to - that is
+    what makes the pick-up-or-drop rule in step 4 checkable against a real
+    list instead of an empty one.
+
+    **A cut post never claims a number of its own.** When the author says a
+    cut post is live, it sets `status: posted` and `url:` the same way, but
+    its `installment:` field is set to the number already claimed by the
+    issue named in its `cut_from` field, read from that issue's own front
+    matter - not a new number, and not added as its own row.
+
+    A piece abandoned or left at `draft` or `ready` never claims a number
+    and never appears in the installments list; the series only advances on
+    what actually posted.
