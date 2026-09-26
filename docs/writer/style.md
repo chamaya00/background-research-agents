@@ -39,9 +39,6 @@ Lines marked *Seed* came from the author's answers when the mode was set up,
 
 - **The issue comes first, and each LinkedIn post is cut from it rather than
   written alongside it.** *Seed: "issue first, posts cut", 2026-09-26 (#72).*
-- **One series, one reusable shape** - decided once, for the series, not
-  chosen again per issue. *Seed: "one series, reusable shape", 2026-09-26
-  (#72).*
 - **Sized to about 10 hours a week**, across the interview and both channels
   together. *Seed: "about 10 hrs a week", 2026-09-26 (#72).*
 
