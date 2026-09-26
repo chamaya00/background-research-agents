@@ -69,7 +69,7 @@ requirements."*
 
 One interview produces two kinds of file: **one Substack issue**, long-form,
 and **2-3 LinkedIn posts cut from it** - each its own file, each naming its
-series and installment number, each passing the trace check in step 6 on its
+series and installment number, each passing the trace check in step 7 on its
 own rather than by reference to the issue it was cut from.
 
 0. **Read** the files above, including the series file for this run.
