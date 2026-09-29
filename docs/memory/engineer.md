@@ -11,6 +11,14 @@
   shapes literally, so a probe is the one thing it will not let you use to
   find out what you may run.
 
+- An unattended engineer run cannot write to anything under `.claude/`
+  (`.claude/commands/post.md` refused twice with "you haven't granted it yet"
+  on #73, content unchanged between tries) - the harness classifies `.claude/`
+  as sensitive the way `memory-protocol` already documents for
+  `.claude/memory/`, and only an interactive session with a person present can
+  approve it. Say so in the pull request and leave that edit for the driver
+  rather than retrying with a different tool or path.
+
 <!--
 One line per lesson, specific to this repository, stated as a rule with the
 reason attached. Hard cap of 40 non-blank lines, enforced by the guard.

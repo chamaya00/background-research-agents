@@ -1,7 +1,7 @@
 # ADR 0006: auto breadth runs inside a session, and never writes the profile
 
 Date: 2026-09-23
-Status: accepted
+Status: accepted. Where it runs - "inside an interactive session" - is superseded by [ADR 0007](0007-auto-breadth-runs-in-actions.md); the rest stands.
 
 ## Context
 

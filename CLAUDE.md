@@ -189,18 +189,38 @@ a factory release does not touch:
    translated by a reader, not obeyed literally, and the translation is the
    step the person has to be able to veto.
 
+**`/round` runs the driver's side of a round**: forming and queuing the
+next one, delivering a merged report and recording it, and turning a reaction
+into a diff. A session-start hook says when a merged brief was never
+recorded. Use the command rather than working the steps out from
+`loop.md` each time. That is how round 4's topic state went unrecorded.
+
 Knowledge changes wording only. A reaction that says something is already
 understood must never narrow what gets fetched - that conflation is what
 `docs/research/3-state-and-source-schema.md` was written to prevent.
 
 **A second mode: auto breadth.** `/auto-breadth <seed>` explores a seed breadth
 first and follows the best leads down several levels without a person between
-levels - `docs/reader/auto-breadth.md` is the mechanic, ADR 0006 the reasons.
+levels - `docs/reader/auto-breadth.md` is the mechanic, ADRs 0006 and 0007 the
+reasons. It runs in GitHub Actions by default (the `auto-breadth` workflow,
+started by labelling an issue `auto-breadth` whose title is the seed; it opens
+a pull request and never merges), or in a session when asked.
 It reads the profile like any run and **never writes it**: a followed path is a
 proposal until a reaction adopts it through the loop above. The loop stays the
 default. **Shorthand:** a message starting with `auto breadth` - any case, with
 or without a trailing `:` - means `/auto-breadth` with the rest of the message
 as the seed. That and `obj` are the only two.
+
+**A third mode: writing.** `/post [theme]` turns the research already here
+into a long-form Substack issue and 2-3 LinkedIn posts cut from it, in the
+author's voice, synthesized across at least two runs, in three passes: a draft
+from the research, questions for the author, and a rewrite around their
+answers. Each piece is an installment of a series, tracked in a file of its
+own under `docs/writer/series/`. `docs/writer/writer.md` is the mechanic and
+`docs/writer/style.md` the state, tuned by reactions exactly as the profile is,
+with a section per channel. It runs in a session, fetches nothing, never
+writes the profile, and never merges a piece until the author says it is
+ready.
 
 ## Lessons
 

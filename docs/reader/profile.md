@@ -75,11 +75,11 @@ derived rather than stored.
   *Briefs: [#29](https://github.com/chamaya00/background-research-agents/issues/29). Items: 3. Added by the reaction to [#24](https://github.com/chamaya00/background-research-agents/issues/24), "add
   another research angle on measuring agent efficacy in an enterprise
   setting", 2026-09-23.*
-- **`benchmarks-depth`** · **active** · 1 run · last **2026-09-23** · window **30d**
+- **`benchmarks-depth`** · **active** · 2 runs · last **2026-09-23** · window **30d**
   **Depth**, under `agent-efficacy`: text-to-SQL and data-agent benchmarks by
   name - Spider, Spider 2.0, BIRD, ERPBench. Leaderboard movement,
   methodology, and what each one's design does and does not make measurable.
-  *Briefs: [#35](https://github.com/chamaya00/background-research-agents/issues/35). Items: 5. Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "places i want to go deeper next,
+  *Briefs: [#35](https://github.com/chamaya00/background-research-agents/issues/35), [#42](https://github.com/chamaya00/background-research-agents/issues/42). Items: 6. Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "places i want to go deeper next,
   like ... the data benchmarks like spider and bird", 2026-09-23. Narrower
   than its parent rather than separate from it; breadth was explicitly kept.*
 - **`dbt-context`** · **active** · 1 run · last **2026-09-23** · window **30d**
@@ -88,20 +88,34 @@ derived rather than stored.
   benchmarks, and what is built on top of them.
   *Briefs: [#35](https://github.com/chamaya00/background-research-agents/issues/35). Items: 2. Added by the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29), "the dbt findings", 2026-09-23.
   Narrower than its parent rather than separate from it.*
-- **`semantic-models`** · **active** · 0 runs · never run · window **90d**
+- **`semantic-models`** · **active** · 1 run · last **2026-09-23** · window **30d**
   **Depth**, under `dbt-context`: semantic models themselves - how one is
   defined, what it costs to build and maintain, who curates it, and the
   deterministic-compilation pattern that [#35](https://github.com/chamaya00/background-research-agents/issues/35)'s items 5 and 6 both
   landed on independently.
-  *Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "dive deeper into semantic models", 2026-09-23.
+  *Briefs: [#42](https://github.com/chamaya00/background-research-agents/issues/42). Items: 3. Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "dive deeper into semantic models", 2026-09-23.
   [#35](https://github.com/chamaya00/background-research-agents/issues/35)'s own counter-argument is why this is its own topic: every
   number in that report is accuracy on questions a semantic layer was built to
   answer, and nobody reports what building it took.*
-- **`warehouse-agentic`** · **active** · 0 runs · never run · window **90d**
+- **`warehouse-agentic`** · **active** · 1 run · last **2026-09-23** · window **30d**
   **Depth**, under `analytics-broad`: agentic AI features shipped by the
   warehouse and transformation vendors themselves - Snowflake and dbt first.
-  *Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "snowflake and dbt agentic ai features",
+  *Briefs: [#42](https://github.com/chamaya00/background-research-agents/issues/42). Items: 2. Reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35), "snowflake and dbt agentic ai features",
   2026-09-23.*
+- **`efficacy-methodology`** · **active** · 0 runs · never run · window **90d**
+  **Depth**, under `agent-efficacy`: how the efficacy of agentic AI is
+  *proven*, not claimed - study designs (online experiments, holdouts,
+  comparisons against a human baseline), offline evals and whether a benchmark
+  is valid, and what an organization accepts as evidence. Lessons from **any
+  agentic AI domain** count - coding, support, research agents - not only
+  analytics.
+  *Reaction to the Snowflake SQL AI functions exploration
+  ([`docs/research/explore/2026-09-23-snowflake-sql-ai-functions/`](../research/explore/2026-09-23-snowflake-sql-ai-functions/README.md)),
+  "Im more interested now in methodology to prove agentic ai efficacy ...
+  Efficacy measurement lessons can also come from other agentic AI domains",
+  2026-09-24. That exploration's path 1 - whether a benchmark's headline can be
+  trusted - is folded in here as its first evidence rather than adopted as a
+  topic of its own.*
 
 ### How topic state works
 
@@ -138,9 +152,9 @@ selection, and that is a known gap rather than an oversight - if depth should
 displace breadth rather than compete with it, that is a decision to make
 explicitly.
 
-**Who writes it, and when.** The driver, in the same pull request that reacts
-to a brief - `loop.md` step 6. A research run does not touch this file at all;
-that rule is what makes the reaction diff the only way a preference becomes
+**Who writes it, and when.** The driver, when the report is delivered -
+`loop.md` step 3, which `/round` carries out. A research run does not touch
+this file at all; that rule is what makes the reaction diff the only way a preference becomes
 true. This is the same who-writes-it test that put `sources.md` in a separate
 file, and it lands the other way here: run counts and retirement are the
 driver's facts, so they belong beside the preference rather than in a file of
@@ -152,7 +166,12 @@ telling you which of those are already queued.
 
 ## Not interested
 
-<!-- Empty. Fills from reactions that say "less of this". -->
+- **Cost and pricing of AI features as a subject in itself** - per-token
+  pricing, metering, spend controls, cost benchmarks. Cost stays in where it is
+  part of an efficacy measure, such as #42's cost per correct answer.
+  *Reaction to the Snowflake SQL AI functions exploration, "im not so
+  interested in continuing down any of these paths about cost", 2026-09-24.
+  That exploration's two cost candidate topics were not adopted.*
 
 ## Window
 
@@ -187,10 +206,25 @@ Three levels only: new, familiar, expert. A concept marked familiar or expert
 is referenced in passing; a concept marked new is explained once.
 -->
 
+- `outside-analytics-stacks` - **new**. Vendor analytics and data products
+  outside Meta - warehouses, BI tools, semantic layers, notebooks, and the
+  agent features built on them: explain what a product is and where it sits in
+  a stack the first time it appears.
+  *Reaction to the Snowflake SQL AI functions exploration, "Ive been at meta
+  for 8 years and havent seen outside company stacks during that time",
+  2026-09-24. Records only that these are new; nothing is inferred about what
+  is known from inside Meta.*
+- `data-engineering` - **new**, coming from product data science. Explain
+  data-engineering concepts (modelling, orchestration, pipelines, testing,
+  governance) in a clause the first time; product analytics and
+  experimentation need no introduction.
+  *"a product data scientist transitioning to data engineering", 2026-09-24,
+  in the request that started the data-engineering exploration (#59). The
+  last clause was the driver's inference, shown in the diff and accepted
+  ("yes add the knowledge line too", 2026-09-25).*
+
 ## Format
 
-- Delivered as a GitHub issue, reacted to in its comments.
-  *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20.*
 - One thing to open each morning - a single artifact, not a feed.
   *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20.*
 - Every item carries what it is, a source link, a date, and **why it was
@@ -225,36 +259,37 @@ What is lost: a reaction is no longer visible to anyone outside the session
 until the profile pull request lands. That is the whole cost, and it is
 acceptable while there is one reader.
 -->
-- **Every item in it follows the same seven-part structure, in this order:**
-  1. what it is, briefly;
-  2. how long ago;
-  3. how it relates to what has already been read;
-  4. what through-line it changes, or that it changes none;
-  5. one or two things to research next to go deeper on it;
-  6. a link to the source, **whether it came from `sources.md` or from open
-     search, and how deeply it was read** - one of *full page read*,
-     *abstract or landing page only*, or *search summary only*;
-  7. **verified / inferred / assumed for this item**, not for the brief.
+- **Learning mode is the default.** Find what has been written and relate it
+  to what I already know. Do not audit, recompute or adjudicate claims.
+  Drilldowns and close scrutiny only when I ask for them by name.
+  *Reaction to the 2026-09-24 explorations (#55, #56), "In general these
+  explorations are Still too wordy and too narrowly focused on proving or
+  disproving certain numbers. Id only want to see drilldowns and narrow
+  scrutiny if i ask for it specifically. Otherwise im in learning mode, i just
+  want to see whats been written out there and i want the researcher to help
+  me find it and relate them back to me", 2026-09-24.*
+- **Each article: a one-line header, then five short parts.** The header gives
+  the title, link, date, source type, and whether it was read in full or only
+  as a summary. Then:
+  1. What is this article about
+  2. Why is it being shown to me
+  3. Have we seen something like this before
+  4. What does it relate to
+  5. The most relevant takeaways for me
 
-  **The structure replaces sprawl, not detail.** Each part carries as much as
-  it is worth. *Brief [#29](https://github.com/chamaya00/background-research-agents/issues/29), "too wordy ... i want a more consistent
-  structure among posts", then "the brief should be more detailed",
-  2026-09-23. Parts 6 and 7 extended by the reaction to [#35](https://github.com/chamaya00/background-research-agents/issues/35): "put
-  verified, inferred, assumed in line with the post item ... indicate if the
-  result is from a full page read or something less", 2026-09-23.*
-
-  **Why 7 moved inline.** As a closing section it was one paragraph covering
-  seven items, so a reader who wanted to know how far to trust item 4 had to
-  find item 4's clause inside it. Next to the item, the claim and its warranty
-  are read together.
+  One or two sentences per part, about 120 words per article.
+  *Same reaction, "The aspects that come with each post need to be condensed
+  and the writing needs to be more concise. Lets try something like this per
+  article", 2026-09-24. The 120-word figure is the driver's translation of
+  "concise", shown in the diff and accepted.*
 - **Read full pages, not abstracts or search summaries, and say which.**
   Prefer full text over a landing page, and a landing page over a search
   index. Twice in [#35](https://github.com/chamaya00/background-research-agents/issues/35) that difference decided whether something was
   a fact or an inference: item 5's system identification was impossible from
   the arXiv abstract and trivial from `arxiv.org/html/<id>v1`, and item 1's
   quotes were summarised by the rendered GitHub page and verbatim from
-  `raw.githubusercontent.com`. Where only a summary was available, part 6 says
-  so and part 7 files the claim accordingly. *Brief [#35](https://github.com/chamaya00/background-research-agents/issues/35), "prioritize
+  `raw.githubusercontent.com`. Where only a summary was available, the article's
+  header says so. *Brief [#35](https://github.com/chamaya00/background-research-agents/issues/35), "prioritize
   reading full pages, not just abstracts or search summaries", 2026-09-23.*
 - **The report carries content, not plumbing.** What the run writes under
   `docs/research/` is what a reader reads: the items, the headline, what was
@@ -290,8 +325,49 @@ back in one, split it in reading order and say so - never condense it, which
 is the thing the #38 reaction rejected.
 -->
 
+- **Synthesis leads, at three scales.** A consolidating "so what" - the
+  sources pulled into one narrative, with what it means for me - gets the most
+  care. The articles are supporting detail.
+  1. **The whole run:** the index opens with a synthesis and so what across
+     every path and source, **300-450 words**. It is always the first thing I
+     read.
+  2. **Each path** ends with **Where this path ends** - one paragraph.
+  3. **Each level** ends with a short **So what** - two or three sentences.
+  *Reaction to the data-engineering exploration's path 1 (#60), whose closing
+  paragraph "surprised me by how much value it added": "This is consolidation
+  and synthesis. Its valuable because it gives me the so what and connects the
+  large amount of sources into a cohesive narrative that my brain can handle
+  ... I want every following run to lean here harder", then "make the
+  synthesis required for the entire run as a whole as well as at each level
+  ... I want the first thing i read to be the whole run synthesis", and "The
+  whole run should be a synthesis and so what, target budget 300-450 words",
+  2026-09-25.*
+- **An exploration is read back synthesis first:** the whole-run synthesis,
+  then each path's "Where this path ends", then the level "So what"s.
+  Articles are read only when I ask for a path in full.
+  *Same reaction: "I tried reading the full path 1 output here but could only
+  skim and still started losing attention by the time i got to layer 3."*
+
 ## Retired
 
+- **Format:** "An auto-breadth exploration is read back as its index, in full,
+  then its paths one at a time on 'next'." *Added 2026-09-24 from the reaction
+  to the Snowflake exploration; replaced 2026-09-25 by synthesis-first
+  read-back, after a full path lost the reader's attention by level 3.*
+
+- **Format:** "Every item in it follows the same seven-part structure" - what
+  it is, how long ago, how it relates, what through-line it changes, what to
+  research next, the source link and read depth, and verified / inferred /
+  assumed per item. *Added 2026-09-23 from the reactions to #29 and #35;
+  retired 2026-09-24 by the reaction to #55 and #56, which replaced it with
+  the five-part article above. Read depth survives as a tag in the header;
+  verified / inferred / assumed does not.*
+
+- **Format:** "Delivered as a GitHub issue, reacted to in its comments."
+  *Seed, from [#2](https://github.com/chamaya00/background-research-agents/issues/2), 2026-09-20; replaced by the reaction to
+  [#38](https://github.com/chamaya00/background-research-agents/issues/38), 2026-09-23, which put delivery and reactions in the session.
+  The replacing lines landed in #39 and this one stayed behind until the
+  round 4 topic-state update found it.*
 - **Format:** "This governs the *presented* brief - the session read-back and
   the issue. The document under `docs/research/` is unchanged by it."
   *Added 2026-09-23 from the reaction to [#29](https://github.com/chamaya00/background-research-agents/issues/29); retired the same day by

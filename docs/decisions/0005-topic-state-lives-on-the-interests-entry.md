@@ -53,6 +53,10 @@ guessed count is indistinguishable from a real one once it is written down.
 `loop.md` step 6 is where the update happens: the reaction pull request, which
 is the one moment the brief is finished, read, and in front of somebody.
 
+*Amended by #39: the update moved to step 3, delivery, because a reaction may
+never come and `run in flight` went stale while waiting for one. `/round`
+carries it out. The rest of this decision is unchanged.*
+
 ## Consequences
 
 Easy: answering "which active topics are stale" by reading one section;

@@ -31,6 +31,12 @@ the factory's reach.
 
 ## One round
 
+The driver's steps below - 1 and 3 to 7 - are run by
+[`/round`](../../.claude/commands/round.md), which works out which one is due
+from the repository state. This file says why each step exists and that one
+says how it is run; if they disagree, this file wins and the command is
+corrected in the same change.
+
 1. **Form the objective.** The driver writes the issue body, and the body
    carries the topic, the current contents of `profile.md`, and what changed
    since the last brief and why. This is the whole of the memory mechanism:
