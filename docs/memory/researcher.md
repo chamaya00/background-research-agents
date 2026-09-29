@@ -27,3 +27,4 @@ Delete any lesson that has graduated into a test, a lint rule, or a type.
   that `hpcwire.com` 403s, so an item it had cited as corroboration had never
   been read. A citation list records what you meant to read; only a re-fetch
   records what you got.
+- When a run needs a file from the web and `curl` is refused, WebFetch saves binary responses (images) to a local path that Read can open - #86 ran its vision test that way; do not report "cannot test on an image" before trying it.
