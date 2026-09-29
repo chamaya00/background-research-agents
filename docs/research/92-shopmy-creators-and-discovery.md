@@ -79,7 +79,7 @@ developer or app-store page) or **[third-party]**. All fetched 2026-09-29.
 | Question | Answer | Source | URL fetched → result |
 |---|---|---|---|
 | **What a creator's public shop page, shelves and collections expose** (price, retailer, link, size) | **Nothing an agent can read.** Every page returned an empty body to this run. Search engines index the page titles ("Alix Earle's Handpicked Recommendations \| ShopMy"), so the content exists and is rendered by JavaScript. **Inferred, not seen:** a shelf shows a product image, a name, and a `go.shopmy.us/p-<id>` link. Price and size on a shelf could not be established. | Page fetches **[official]**; the titles from search result listings | `shopmy.us/alixearle` → empty. `shopmy.us/cvazzana/latest-finds` → empty. `shopmy.us/erikaveurink/shelves` → empty. `shopmy.us/collections/274735` → empty. `shopmy.us/shop/collections/3071588` → empty. `shopmy.us/shops` → empty. |
-| **Whether a shopper can see or export the list of creators they follow** | **See: yes, in the app. Export: no route found.** Shoppers follow creators through **Circles**: the app connects shoppers with "curated products all recommended by your Circles — the creators, editors, and experts whose taste you already love". "An account is required to use features like Wishlists and Circles." No page describes exporting Circles. | [App Store listing, official](https://apps.apple.com/us/app/shopmy/id6443850511); [Creator Guide FAQ, official](https://guide.shopmy.us/circles-wishlist-latest-finds-and-more/5jLY2jskGAENwEWJEf147B/faqs/5kdVRoGw9nmmppW3uMKyRZ) | App Store → 200 (version 2.2.41, "1d ago"). Guide FAQ → 200. |
+| **Whether a shopper can see or export the list of creators they follow** | **See: yes, in the app. Export: no feature, only a privacy request.** Shoppers follow creators through **Circles**: the app connects shoppers with "curated products all recommended by your Circles — the creators, editors, and experts whose taste you already love". "An account is required to use features like Wishlists and Circles." No help page describes exporting Circles. The privacy policy (effective September 25, 2026) grants "Obtaining a copy of Personal Information you have provided to us in a portable format", on request to `legal@shopmy.us`. It does not name Circles or follows as a category. **Inferred, not tested:** a request would include Circles, since the owner created them. | [App Store listing, official](https://apps.apple.com/us/app/shopmy/id6443850511); [Creator Guide FAQ, official](https://guide.shopmy.us/circles-wishlist-latest-finds-and-more/5jLY2jskGAENwEWJEf147B/faqs/5kdVRoGw9nmmppW3uMKyRZ); [Privacy Policy, official](https://shopmy.us/legal/privacy-policy) | App Store → 200 (version 2.2.41, "1d ago"). Guide FAQ → 200. `static.shopmy.us/Privacy_Policy.pdf` → 301 to `shopmy.us/legal/privacy-policy` → 200. |
 | **Whether any API, feed or structured data exists** | **An API exists, and it is closed and self-scoped.** Base `https://api.shopmy.us/v1/`, OAuth. "Our API access is not yet publicly available"; it is for "external partners"; "no API key for creators at this time". Scopes: `read_links`, `write_links`, `read_collections`, `write_collections`, `read_profile`. `GET /Collections` fetches "a user's ShopMy collections" (the authorised user's own) and returns `id, name, description, image, social_links, private, Section_id, url`, with no products. `GET /Profile` returns "the authenticated user's public ShopMy profile" with no followers or following. `GET /Catalog/search` (scope `write_links`) returns `title, image, brand`, and `retailers[]` with `name, domain, url, rate` (commission rate). **It returns no price and no size.** No RSS or public JSON feed was found. `robots.txt` is `Allow: /`; the sitemap lists blog and marketing pages and almost no creator pages. | [llms.txt index, official](https://docs.shopmy.us/llms.txt); [OAuth setup, official](https://docs.shopmy.us/reference/getting-started-with-your-api-1.md); [Fetch Collections, official](https://docs.shopmy.us/reference/fetch-collections.md); [Search Catalog, official](https://docs.shopmy.us/reference/search-catalog-1.md); [Fetch Profile, official](https://docs.shopmy.us/reference/fetch-profile-1.md) | All five → 200 (Markdown). `shopmy.us/robots.txt` → 200. `shopmy.us/sitemap.xml` → 200 XML. |
 | **What ShopMy's terms say about automated access** | §8 Proper Use: "systematic retrieval of data from the Services without ShopMy's express written permission is strictly prohibited", and users "shall not: (i) use any program, spider, 'bot,' or other automatic device to gather or 'harvest' information", nor engage in "screen scraping" or "database scraping". Shoppers "may browse without registration". Last updated as rendered by the fetch: September 16, 2026. | [Terms of Service, official](https://shopmy.us/legal/terms-of-service) | `shopmy.us/terms` → 200, the homepage (the terms are elsewhere). `shopmy.us/legal/terms-of-service` → 200. |
 
@@ -94,7 +94,7 @@ them. The permissive `robots.txt` does not license the agent.
 | Question | Answer | Source | URL fetched → result |
 |---|---|---|---|
 | **What a creator's public page and posts expose** | **Readable HTML.** The profile page `shopltk.com/explore/<handle>` gave the bio, follower count, and a product gallery with each product's **name, price and an `rstyle.me` or `on.ltk.com` link**. A post page listed each product with **name, brand and retailer name** and an `on.ltk.com` link, with no price, labelled "Paid links". **No size or stock field on either.** Some creators put their own sizes in the bio. | Page fetches **[official]** | `shopltk.com/` → 200, with `/explore/<handle>/posts/<id>` URLs. `shopltk.com/explore/leannebarlow` → 200. `shopltk.com/explore/leannebarlow/posts/68125b78-…` → 200. `shopltk.com/explore/kerrisaf` → 200. `shopltk.com/explore/caitlincovington` → **404** (the handle guessed from memory was wrong; not retried). |
-| **Whether a shopper can see or export who they follow** | **See: yes, in the app. Export: no route found.** "Follow creators and friends with similar interests"; "Your Following feed … see posts only from the creators you choose to follow" (the second is from a search summary). No export described on the FAQ or the app listing. | [App Store listing, official](https://apps.apple.com/us/app/ltk-shop-trusted-recs/id1154027990); [FAQ, official](https://company.shopltk.com/en-gb/faqs) (creator-side only) | App Store → 200 (version 5.74.0, "3 hours ago"). FAQ → 200, no shopper-side answers. |
+| **Whether a shopper can see or export who they follow** | **See: yes, in the app. Export: no feature, only a privacy request, and follows are named.** "Follow creators and friends with similar interests"; "Your Following feed … see posts only from the creators you choose to follow" (the second is from a search summary). No export is described on the FAQ or the app listing. The Privacy Statement (last updated March 18, 2026) says "we track your interactions (posts liked, **Creators followed**, products favorited)". It gives US users the right to "access to and a copy of your personal information", on request to `datarequests@rewardstyle.com`. | [App Store listing, official](https://apps.apple.com/us/app/ltk-shop-trusted-recs/id1154027990); [FAQ, official](https://company.shopltk.com/en-gb/faqs) (creator-side only); [Privacy Statement, official](https://company.shopltk.com/privacy) | App Store → 200 (version 5.74.0, "3 hours ago"). FAQ → 200, no shopper-side answers. Privacy → 200. |
 | **Whether any API, feed or structured data exists** | **APIs exist; access is not public.** The terms (§7) mention "third-party applications, which interface with LTK application programming interfaces ('LTK APIs')", which "LTK may change, suspend, or discontinue … at any time". The developer portal is a sign-in page. No public feed found. `robots.txt` is `Disallow:` (empty; everything allowed). | [Terms §7, official](https://company.shopltk.com/ltk-terms-of-service); [rewardStyle Developer Portal, official](https://api.rewardstyle.com/); an independent API profile exists, [api-evangelist/ltk, third-party](https://github.com/api-evangelist/ltk) (not read) | Terms → 200. `api.rewardstyle.com` → 200, "Welcome back!" sign-in only. `shopltk.com/robots.txt` → 200. `shopltk.com/terms` → **404**. |
 | **What LTK's terms say about automated access** | §4: "systematic retrieval of data from the Services to create or compile … a collection, compilation, database or directory without express written permission of LTK is strictly prohibited"; "You agree that you will not use any robot, spider, other automatic device, **or manual process** to monitor or copy our web pages"; no "screen scraping", "database scraping". Last updated as rendered by the fetch: September 16, 2026. | [LTK Shopping Terms of Service, official](https://company.shopltk.com/ltk-terms-of-service) | → 200. |
 
@@ -107,7 +107,7 @@ them. The permissive `robots.txt` does not license the agent.
 | Retailer on the page | Not established | Yes on posts; readable from every link (§3) |
 | Size or stock on the page | Not established | **No**. Some creators state their own size in the bio |
 | Follows visible to the shopper | Yes (Circles, account needed) | Yes (Following feed) |
-| Follows exportable | No route found | No route found |
+| Follows exportable | No feature. A privacy request to `legal@shopmy.us` for a "portable format" copy; follows not named | No feature. A privacy request to `datarequests@rewardstyle.com`; "Creators followed" named as collected |
 | API | Exists, "not yet publicly available", reads only the signed-in user's own data, catalog search has no price or size | Exists ("LTK APIs"), portal sign-in only |
 | Public feed | None found | None found |
 | Terms on automation | Forbids bots and systematic retrieval | Forbids bots **and "manual process to monitor or copy"** |
@@ -254,8 +254,13 @@ and silence starts deciding.
   toward #87's cap of five questions, after Q1 (size), because a stale size
   gates and a creator note only ranks.
 - **Where the Creators section's first lines come from:** the owner types
-  or pastes the handles. No export route was found on either platform
-  (§1, §2).
+  or pastes the handles. Neither platform has an export feature (§1, §2).
+  A once-only privacy request is the backstop if the list is long: LTK
+  names "Creators followed" as data it holds, and ShopMy promises a
+  "portable format" copy. Either reply is a file on the owner's machine,
+  read by the local session, the same shape as #86's TikTok and Pinterest
+  exports. **Not tested:** neither request was made (creating or using
+  accounts is out of scope), so the format and turnaround are unknown.
 
 **The result that would prove this wrong:** after four rounds, **fewer than
 half of the creator links the owner pasted resolve to a retailer where the
@@ -288,7 +293,8 @@ than the catalog at the one thing the catalog lacks, which is taste.
 
 ## What was searched for and not found
 
-- Any ShopMy or LTK page describing an **export of followed creators**.
+- Any ShopMy or LTK help page describing an **export feature for followed
+  creators**. Only the privacy-law request route exists.
 - A **"similar creators"** feature on either platform's public pages or app
   listings.
 - Any **public feed** (RSS, JSON) of a creator's shelf or posts on either
@@ -310,9 +316,13 @@ than the catalog at the one thing the catalog lacks, which is taste.
   It came from a public post and the creator is unknown.
 - That a local session on a home IP reaches Amazon and Walmart where this
   runner did not. Carried from #86's inference, not tested.
-- The "September 16, 2026" last-updated date on **both** terms pages. It is
-  what the fetch tool reported for each, and the coincidence is suspicious.
-  Read the dates on the pages before quoting them.
+- Both terms pages carry the date "September 16, 2026". I re-fetched both to
+  check the coincidence: ShopMy's reads "Last Revised: September 16, 2026" at
+  the top, and LTK's has the bare date at the bottom. I relied on the fetch
+  tool's reading of both and saw neither page myself.
+- That a privacy request returns followed creators in a usable form. LTK
+  names them as collected. ShopMy does not name them. Neither request was
+  made.
 - LTK's "Following feed" wording and its "Similar Product" feature came
   from search summaries, not from a page this run read.
 - That "manual process to monitor or copy" covers a session reading one LTK
