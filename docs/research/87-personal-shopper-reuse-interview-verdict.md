@@ -11,8 +11,12 @@ that work.
 
 **Status:** first pass, run 1 of 3 on
 [#87](https://github.com/chamaya00/background-research-agents/issues/87),
-2026-09-29. The prior-art section is filled from official pages fetched in
-this run; see its own table for what could not be reached.
+2026-09-29. The ranking stopped moving once the prior art was in: the last
+three sources (Shop's agent terms, the toddler-brand spot check, GitHub's
+reusable-workflow access table) each confirmed the recommendation rather
+than changing it. Not reached: OpenAI's and Perplexity's own pages (403),
+Daydream's site (429), Kidizen, and Rockets of Awesome. What would be read
+next is the owner's own order history, which decides the product side.
 
 **Constraints, not guesses** (answered by the owner on #85, 2026-09-29): O1
 US market; O2 free or free tier only, with Claude through the owner's Max-plan
@@ -67,7 +71,7 @@ or **does not fit** for the first version, with the file the reason rests on.
 | **PR-as-delivery** (loop.md step 2; `.claude/skills/house-rules/SKILL.md`, "Before merge", "Who merges") | **Adapt**: commits yes, pull requests no | "Commit the diff as one pull request against `profile.md`. One per brief, so the file's git history is the reaction log" (loop.md step 6). The reaction log is worth keeping as-is - `git log -p` answering "why am I not seeing this brand" is exactly the audit a shopper needs. The pull request around it is not: its job here is review by a person who is not the reader, and in a one-household tool the reader, the reviewer and the merger are the same person in the same minute. House-rules' "Tests before merge. Every acceptance criterion has a test" has nothing to bite on in a profile edit. A direct commit, shown as a diff first, keeps the log without the ceremony. |
 | **The fetcher** ([`src/fetch.ts`](../../src/fetch.ts)) | **Does not fit** as a runtime; **as-is** as a pattern for one feed | It parses RSS 2.0 into `FetchedItem`s and is called only from `src/brief.ts` (line 50) - no workflow in `.github/workflows/` runs it; ADR 0003 moved research into agent runs. For the shopper: CPSC's recall RSS is RSS (#86 §6), so it would parse as-is (**inferred**, not run). Pinterest board RSS would **not** carry over as-is: `parseRssItems` strips every tag from `description` (`.replace(/<[^>]+>/g, " ")`, fetch.ts line 91), and the pin's image is an `<img>` in that description (#86 §1, Pinterest), so the one thing the shopper wants from a pin is deleted. Shopify `products.json` and the Shop catalog are JSON, which fetch.ts rejects ("unsupported source kind", line 137). In a session-only build the model reads those directly with its fetch tool and no fetcher is needed. |
 | **The curated source list** ([`docs/reader/sources.md`](../reader/sources.md), [ADR 0004](../decisions/0004-curated-source-list-lives-beside-the-profile.md)) | **Adapt** | ADR 0004 names the list's real job as "**reachability**: which hosts answer a fetch, which return 403, and when that was last observed". That is exactly what #86's refusal table is, and a shopper needs it per retailer: "Primary: `products.json` 200, sizes and `available` per variant, 2026-09-29". Kept as a separate file from the profile for ADR 0004's reason ("who writes it"). |
-| **The factory** (`.claude/agents/`, `.claude/skills/`, `.claude/agent-factory.json`) | **Does not fit** | Its roles are "orchestrator, researcher, analyst, designer, engineer" (`.claude/agent-factory.json`, `roles`) and its unit is an objective split into "1-5 child issues ... each with acceptance criteria and one role label" (`CLAUDE.md`, "How work moves"). None of the five roles is a shopper, and adding one locally is reverted: "`/update-agents` deletes a role there that the factory release does not carry" (writer.md, "Why a mode and not a role"). The factory is the right tool for **building** the shopper (§6), not for **being** it. **Assumption:** whether the factory's reusable workflow can be called from a private repository was not read in any vendored file; everything known about the factory here comes from `.claude/` and the workflow pin `chamaya00/agent-factory/...@v1.39.0` (agent-run.yml line 61). |
+| **The factory** (`.claude/agents/`, `.claude/skills/`, `.claude/agent-factory.json`) | **Does not fit** | Its roles are "orchestrator, researcher, analyst, designer, engineer" (`.claude/agent-factory.json`, `roles`) and its unit is an objective split into "1-5 child issues ... each with acceptance criteria and one role label" (`CLAUDE.md`, "How work moves"). None of the five roles is a shopper, and adding one locally is reverted: "`/update-agents` deletes a role there that the factory release does not carry" (writer.md, "Why a mode and not a role"). The factory is the right tool for **building** the shopper (§6), not for **being** it. Everything known about the factory here comes from `.claude/` and the workflow pin `chamaya00/agent-factory/...@v1.39.0` (agent-run.yml line 61); anything beyond those is an assumption. A private repository **can** call it: GitHub's access table lets a private caller use a reusable workflow stored in a public repository ([official](https://docs.github.com/en/actions/reference/workflows-and-actions/reusable-workflows)), and private repositories on GitHub Free get "2,000" Actions minutes a month ([official](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions)). **Assumption:** that the factory's workflow needs nothing else from its caller that a private repository lacks. |
 
 ### Which of the three
 
@@ -81,14 +85,18 @@ over, and it should be read that way. Why each named option loses:
   repository is public, and a shopper's profile carries a child's size by
   date, a household's brands and what it bought. Cloning into a private
   repository fixes that but carries four research modes, a dormant
-  TypeScript pipeline and 400 lines of reader profile that have nothing to
+  TypeScript pipeline and nearly 400 lines of reader profile that have nothing to
   do with shopping, all of which a factory release would keep trying to
   update.
 - **"New repo on the factory."** Loses on fit and on egress. The factory's
   value is splitting work across roles and gating merges; a shopping round is
   one person, one session, three options, one sentence back. And its runs
   execute in Actions, which #86 found blocked by the big-box retailers and
-  which cannot hold the photos without making them part of a log. If a later
+  which cannot hold the photos without making them part of a log. Shop's
+  personal-agent terms also forbid "Operating as an automated service,
+  background process, or intermediary that accesses user account data
+  without the Shop account holder actively directing the agent" (§5), and
+  an Actions run is a background process by construction. If a later
   version needs an unattended job (the recall watch), a scheduled workflow in
   the same private repository is a smaller addition than the factory.
 - **Why not simply "use ChatGPT"?** That is the real competitor, and §5
@@ -236,8 +244,79 @@ only after the diff.
 
 ## 5. Prior art
 
-*In progress on this branch: official pages are being fetched. This section
-is filled in the next commit.*
+Every entry cites the company's own page, labelled **[official]**. Where that
+page did not load from this run, the entry says what came back and uses
+**[official, search snippet]** (text of the official page as it appeared in a
+search result, not read in full) or **[third-party]**. Vendor listicles were
+not used. All fetched 2026-09-29.
+
+| Service | What it does well | What a self-built version adds | What it loses | Source |
+|---|---|---|---|---|
+| **ChatGPT shopping research** | Free, US, conversational. It "builds on ChatGPT's understanding of you from past conversations and your ChatGPT memory to deliver a personalized buyer's guide". Image upload to "find similar items" was reported when checkout was withdrawn. | A profile the owner reads and edits line by line, each with its reason; memory the owner can see is split into gates, ranks and captions; a recall check; size expiry. | Breadth: ChatGPT's product index is not limited to Shopify stores. Zero setup. | openai.com/index/chatgpt-shopping-research/ and help.openai.com article 12440090 both **403**; quotes are **[official, search snippet]**. That Instant Checkout was pulled in March 2026 and replaced by "discovery-first" shopping is **[third-party]** (search summaries of CNBC and Modern Retail; cnbc.com also 403). |
+| **Perplexity shopping** | "available for free to all US Perplexity users ... discovery that knows your taste, plus instant checkout with PayPal", with the retailer as merchant of record. | The same as for ChatGPT, plus no checkout at all, which is a constraint of this build (the agent only recommends). | Breadth and a working checkout, which the owner may actually want and this build refuses. | perplexity.ai/hub/blog/shop-like-a-pro and /shopping-that-puts-you-first, **403**; **[official, search snippet]**. Whether it takes an image as input was **not confirmed**. |
+| **Google Shopping (AI Mode, try-on, price tracking, agentic checkout)** | "Tell us what item you want to track — down to the specific size, color and amount you want to spend", then "have Google buy it for you on the merchant's site using Google Pay". Virtual try-on: "upload a photo of themselves and use AI to virtually try on clothes". Free, US. | Size-specific price tracking is already better than anything proposed here. A self-built version adds only the profile's audit trail and the recall check. | Size-level tracking across big-box retailers, which is exactly the gap #86 could not close. | [official](https://blog.google/products/shopping/agentic-checkout-holiday-ai-shopping/); [official](https://blog.google/products-and-platforms/products/shopping/back-to-school-ai-updates-try-on-price-alerts/) (2025-07-24). Whether try-on or tracking covers kids' sizes is not stated on either page. |
+| **Daydream** | The closest prior art. Shoppers "upload images for visual context"; a "Style Passport" captures "fit preferences, style signals, brand affinities, price sensitivity"; "Shoppers are directed to the brand or retailer websites to complete their purchases". Free on iOS. | Kids: its launch release covers "women's and men's fashion" and does not mention children. The owner's own photos stay on their machine rather than on a vendor. | A catalog of about 3M products and camera-roll outfit search ([third-party](https://techcrunch.com/2026/09/14/fashion-discovery-app-daydream-uses-apple-intelligence-to-help-you-shop-the-outfits-saved-in-your-camera-roll/), TechCrunch 2026-09-14, via search summary), a finished app, no build. | daydream.ing **429** twice. [Launch press release](https://www.prnewswire.com/news-releases/daydream-launches-first-chat-based-shopping-agent-built-exclusively-for-fashion-302490581.html), **[official]** (company-issued on PR Newswire), read in full. |
+| **Alta** | Wardrobe capture: "Snap a photo, get a studio-quality image. Your entire wardrobe, organized instantly." Avatar try-on. "free to use." | It is the prior art for the **Owned** section, and shows how much work an inventory is. A self-built version only records "plenty of X" lines, which is far cheaper and all the ranking needs. | A real wardrobe inventory and try-on. | [official](https://www.altadaily.com/). Nothing on kids, sizes or checkout. |
+| **Stitch Fix (Kids)** | Human-plus-algorithm styling with a per-child profile: "We offer sizes 2T–16 in our Stitch Fix Kids line", items "priced at the budget you set in the child's profile". | Age 1: it starts at 2T. No box to return; free. | A stylist, and clothes actually arriving. | Kids help article **[official]**, read. stitchfix.com/kids was an empty shell. A search snippet of that page says "2T–18", which conflicts with the help article; the help article is what was read. The styling fee was not on the page read. |
+| **Poshmark (kids' resale)** | Peer-to-peer kids' clothing at "up to 90% Off Retail", with size filters down to 18 months, 2T and 4T. | A recall check. No recall information appears on the category page, and resale is where a recalled product is most likely to reappear. | Resale prices; a 1-3-year-old outgrows clothes before wearing them out. | [official](https://poshmark.com/category/Kids). |
+| **ThredUp (kids' resale)** | Kids' items "up to 90% off retail" in 2T-3T, 4T and 18-24 months. | The same recall gap as Poshmark. | Same as Poshmark. | thredup.com/kids **403**; **[official, search snippet]**. |
+| **Kidizen (kids' resale)** | Could not be established. | - | - | kidizen.com and /about failed three times ("Socket is closed"). Fees were found only in third-party sources that disagree with each other, so none are stated here. |
+| **Lovevery Play Kits (toddler subscription)** | Age-staged toy kits for "1-, 2-, 3- and 4-year-olds", "tested through hundreds of hours of play studies"; about $120 per kit every 3 months for ages 1-4 (the fetch tool's rendering of the page). | Nothing on toys in the first version: toys are out of scope (§6). This is the evidence that a toddler toy service already solves age grading by curation. | The age grading and safety work a toy service does before shipping. | [official](https://lovevery.com/products/the-play-kits). Its `products.json` returned **404**. |
+| **KiwiCo Panda Crate (toddler subscription)** | Ages "0-3 months through 35 months", "delivered every 2 months \| cancel anytime". | As for Lovevery. | As for Lovevery. | [official](https://www.kiwico.com/). No price rendered. |
+| **Kidpik (kids' clothing subscription)** | "8 high-quality items that make 3-5 fashion outfits". | Durability: a self-built tool does not depend on a company staying solvent. | Curated boxes. | [official](https://www.kidpik.com/), live. Delisted to OTC with a possible bankruptcy: **[third-party]** newswire, via search. |
+| **Rockets of Awesome** | Could not be established. | - | - | rocketsofawesome.com **503**. Status unknown. |
+
+**What the prior art says about the build, taken together.**
+
+- **Taste from images and a stored style profile is already free.** Daydream
+  and ChatGPT both take an image and remember preferences. A self-built
+  version does not win on that.
+- **Nobody found here covers toddlers and adult taste in one profile.**
+  Daydream does not mention kids, and Stitch Fix Kids starts at 2T.
+- **None of the shopping services shows a recall check.** Searched on every
+  page fetched and in search. This is the absence most in the self-built
+  version's favour, and it is also the cheapest part to build: CPSC's API
+  needs no key (#86 §6).
+- **Size-specific tracking exists at Google** across retailers #86 could not
+  reach. The owner could use it as the fallback for big-box Wants rather than
+  building anything for them.
+
+**Two findings on the product source.** Neither redoes #86; both check its
+load-bearing assumptions.
+
+- **Shop's personal-agent terms were read** [official](https://help.shop.app/en/shop/shopping/personal-agents):
+  "Shop integrations are for personal, individual shopping use only, unless
+  separately authorized by Shopify". Allowed uses include "Search for
+  products". Prohibited: "Operating as an automated service, background
+  process, or intermediary that accesses user account data without the Shop
+  account holder actively directing the agent". So a session the owner
+  drives is inside the terms. An **unattended** Actions job reading the
+  owner's Shop account would not be. A search that touches no account data
+  is **inferred** to be outside that clause, not confirmed. This is one more
+  reason the first version runs in a session.
+- **Toddler-brand spot check of `/products.json`:** Tea Collection and Kyte
+  Baby returned Shopify JSON with per-size `available` flags, and Primary did
+  again. Carter's returned **403**, Old Navy **404** (not Shopify), and
+  Lovevery **404**. Hanna Andersson returned **307** and was not followed.
+  Seven hosts are not a survey. They are consistent with #86's warning: the
+  mid-price direct-to-consumer brands are reachable, and the mass-market
+  kids' retailers are not.
+
+**Searched and not found:**
+
+- An independent experience report, from a shopper rather than a vendor, of
+  an AI shopping assistant getting kids' sizes right or wrong. The search
+  returned only vendor listicles.
+- Any shopping service that checks recalls.
+
+**Discarded, with the reason in a line:**
+
+- **Extending this public repository in place.** A child's dated sizes
+  would be published by the first profile commit.
+- **A browser extension that reads the owner's logged-in retailer pages.**
+  It would reach Target and Amazon, but Target's terms forbid unapproved
+  agents (#86 §4), and it sits one step from add-to-cart, which this build
+  may not include.
 
 ## 6. Recommendation
 
@@ -260,9 +339,11 @@ is filled in the next commit.*
   SerpApi (free 250/month, but no size availability - #86 §4) or any paid
   shopping API. Target, Amazon and Walmart are **links the person clicks**,
   never fetches. **Caveat carried from #86:** the Shop catalog search was
-  never run, and "personal use only" covering the owner's own agent is
-  assumed; the first session's first act is one text query and one image
-  query (of the owner's own clothing, never a child).
+  never run. Its terms now read as permitting a session the owner directs
+  ("personal, individual shopping use only"; "Search for products" allowed,
+  §5), which settles half of #86's load-bearing assumption. The first
+  session's first act is one text query and one image query, using the
+  owner's own clothing and never a child.
 - **Where private images live:** a folder on the owner's machine outside any
   git working tree (#86 §5), read by the local session. The private
   repository holds only approved profile lines, with children named "child
@@ -318,10 +399,10 @@ it changes the privacy design (other people's children), the terms question
 
 - **engineer** - the round command, the `products.json` size check, the CPSC
   check, and the private repository's `CLAUDE.md`.
-- **researcher** - two open questions from #86 that decide the product side
-  and need no build: the Shop terms page (`help.shop.app/.../personal-agents`)
-  and which of the owner's actual brands are on Shopify, from their order
-  history.
+- **researcher** - the open question from #86 that decides the product side
+  and needs no build: which of the owner's actual brands are on Shopify, from
+  their order history. (The Shop terms page #86 left unread was read here,
+  §5.)
 - **analyst** - defines the falsification test above precisely: what counts
   as "kept", where the four rounds' outcomes are recorded, and how the
   big-box share is counted.
@@ -360,7 +441,14 @@ From this document:
   sizes; no growth-chart source was read in this run".
 - "CPSC's recall RSS is RSS (#86 §6), so it would parse as-is
   (**inferred**, not run)" - through `src/fetch.ts`.
-- "**Assumption:** whether the factory's reusable workflow can be called
-  from a private repository was not read in any vendored file".
+- "**Assumption:** that the factory's workflow needs nothing else from its
+  caller that a private repository lacks."
+- "A search that touches no account data is **inferred** to be outside that
+  clause, not confirmed." (Shop's background-process prohibition)
+- "Seven hosts are not a survey." (the toddler-brand `products.json` spot
+  check)
+- ChatGPT's and Perplexity's own pages returned 403. Their entries in §5
+  rest on search snippets of those pages. That ChatGPT's Instant Checkout
+  was withdrawn is third-party only.
 - The falsification thresholds (3 kept items, half of kids' Wants) are the
   author's judgment, not derived from any source.
