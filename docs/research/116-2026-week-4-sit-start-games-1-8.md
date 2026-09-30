@@ -325,3 +325,178 @@ latest from news pages):
 - Pace, pass rate and red-zone splits for either team.
 - A Chicago forecast.
 - A named Bears starter.
+
+## 4. Jaguars at Bengals - Sun 2026-10-04, 1:00 PM ET, CBS
+
+**Line (CBS/DraftKings, full, read 2026-09-30):** Bengals -2.5, total 51.5, the
+highest in this half of the slate. **Implied totals:** Bengals 27.0,
+Jaguars 24.5.
+
+**Pace and tilt:** there are no week 4 figures. Sharp's week 3 worksheets,
+whose public part was read **(full)**, cover weeks 1-2 only:
+
+| | Pass rate | Plays per game | Source |
+|---|---|---|---|
+| Jacksonville | 49.6% | 55.5 | [Sharp, Patriots-Jaguars wk 3](https://www.sharpfootballanalysis.com/fantasy/patriots-jaguars-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), dated 2026-09-23 |
+| Cincinnati | 59.0% (10th) | 61.0 (13th) | [Sharp, Bengals-Steelers wk 3](https://www.sharpfootballanalysis.com/fantasy/bengals-steelers-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), dated 2026-09-22 |
+
+Jacksonville's defense allows the fewest points in the league, 12.0 a game,
+but the 9th-most passing yards, 235.7 a game
+([Bengals.com scouting report](https://www.bengals.com/news/bengals-jaguars-scouting-report-week-4-2026)
+**(full)**, 2026-09-29).
+
+**Injuries.** The Wednesday report was not yet posted, so these are the
+latest statuses from news pages.
+
+- Jaguars: they "emerged from their Week 3 win over the Patriots absent any
+  fantasy-relevant injuries"
+  ([NBC injury report](https://www.nbcsports.com/fantasy/football/news/2026-nfl-week-4-injury-report-achane-acl-baker-thumb-jefferson-ankle-breece-hall-quad-and-more)
+  **(full)**, 2026-09-29).
+- Bengals: WR Andrei Iosivas (thumb) is on IR (same NBC report). WR Colbie
+  Young (knee) "is not expected to play," per Zac Taylor on 2026-09-28
+  ([Yahoo](https://sports.yahoo.com/articles/bengals-rookie-receiver-ruled-week-195300099.html)
+  **(full)**). No injury was found for Burrow, Chase, Higgins, Brown or
+  Gesicki.
+
+**Usage.** Week 3 snap counts come from
+[Yahoo/Jaguars On SI](https://sports.yahoo.com/articles/jaguars-week-3-snap-count-190327368.html)
+**(full)** and
+[Yahoo/Bengals](https://sports.yahoo.com/articles/bengals-week-3-snap-counts-141027748.html)
+**(full)**, both dated 2026-09-28; both give only partial tables. Targets and
+carries come from CBS box scores for
+[Jaguars-Patriots](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_NE@JAC/)
+and
+[Bengals-Steelers](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_CIN@PIT/),
+both **(full)**.
+
+**Weather:** clear, high of 77°F, 9% chance of rain. This is **(summary)**
+only: the search did not name a page that could be credited. No calls rest on
+it.
+
+### Jaguars
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Trevor Lawrence | **Start** | 7 TDs, 2 INTs and 7.6 Y/A (10th) through three games ([Bengals.com](https://www.bengals.com/news/bengals-jaguars-scouting-report-week-4-2026)), with a 24.5 implied total in the slate's highest-total game ([CBS](https://www.cbssports.com/betting/news/week-4-nfl-betting-odds-lines-totals-spreads/)); his floor is low, QB30 in week 2 ([Sharp](https://www.sharpfootballanalysis.com/fantasy/patriots-jaguars-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/)). |
+| RB Bhayshul Tuten | **Start** | He out-carried Chris Rodriguez 15 to 8 in week 3 ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/tuten-totals-90-yards-td-in-blowout-win)), and has 204 rushing yards and 2 TDs at 4.7 yards a carry ([Bengals.com](https://www.bengals.com/news/bengals-jaguars-scouting-report-week-4-2026)). |
+| RB Chris Rodriguez Jr. | **Sit** | 8 carries for 37 yards and a TD in a 35-6 blowout ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_NE@JAC/)), mostly in garbage time ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/tuten-totals-90-yards-td-in-blowout-win)). |
+| WR Parker Washington | **Start** | He leads the team with 15 catches, 221 yards and 2 TDs ([Bengals.com](https://www.bengals.com/news/bengals-jaguars-scouting-report-week-4-2026)) on 81% of snaps in week 3 ([Yahoo](https://sports.yahoo.com/articles/jaguars-week-3-snap-count-190327368.html)), although he drew only 5 targets that week ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_NE@JAC/)). |
+| WR Jakobi Meyers | **Flex** | He led the team with 8 targets in week 3, catching 7 for 64 yards and a TD ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_NE@JAC/)), on 81% of snaps. In full PPR the catch volume makes him a start. |
+| WR Brian Thomas Jr. | **Sit** | 37% of snaps and 1 target in week 3 ([Fantasy Six Pack](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/)), with Josh Cameron taking an equal 23 snaps ([Yahoo](https://sports.yahoo.com/articles/jaguars-week-3-snap-count-190327368.html)). |
+| TE Brenton Strange | **Sit** | 5 targets for 3 catches and 32 yards in week 3 ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_NE@JAC/)); no snap share was found. |
+| D/ST Jaguars | **Start** | Ranked 10th of 32 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)), allowing the fewest points a game at 12.0 ([Bengals.com](https://www.bengals.com/news/bengals-jaguars-scouting-report-week-4-2026)), though a 27.0 opposing implied total caps it. |
+
+### Bengals
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Joe Burrow | **Start** | 28 of 37 for 282 yards, 3 TDs and 0 INTs in week 3 ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_CIN@PIT/)), with a 27.0 implied total against a defense allowing 235.7 passing yards a game ([Bengals.com](https://www.bengals.com/news/bengals-jaguars-scouting-report-week-4-2026)). |
+| RB Chase Brown | **Start** | 13 carries and 2 targets in week 3 ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_CIN@PIT/)), on a 68% snap share and 75% of the backfield's red-zone work through week 2 ([Yahoo/SI](https://sports.yahoo.com/articles/chase-brown-headlines-week-3-114800928.html)). |
+| RB Samaje Perine | **Sit** | 3 carries for 9 yards and 1 catch on 3 targets in week 3 ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_CIN@PIT/)). |
+| WR Ja'Marr Chase | **Start** | 12 targets, 9 catches, 98 yards and a TD in week 3 ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_CIN@PIT/)), in a game with a 51.5 total. |
+| WR Tee Higgins | **Start** | 6 catches on 7 targets for 90 yards and a TD in week 3 ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_CIN@PIT/)), with Iosivas on IR and Young not expected to play ([Yahoo](https://sports.yahoo.com/articles/bengals-rookie-receiver-ruled-week-195300099.html)). |
+| WR Dohnte Meyers | **Sit** | 32 snaps, 72% of them in the slot ([Yahoo](https://sports.yahoo.com/articles/bengals-week-3-snap-counts-141027748.html)), for 3 catches on 5 targets and 29 yards ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_CIN@PIT/)). |
+| TE Mike Gesicki | **Sit** | 3 catches on 3 targets for 37 yards and a TD in week 3 ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_CIN@PIT/)), and CBS is "not excited" about starting him ([CBS TE preview](https://www.cbssports.com/fantasy/football/news/fantasy-football-week-4-te-preview-slate-is-filled-with-excellent-options-but-several-stand-as-must-starts/)); his value is touchdown-dependent. |
+| D/ST Bengals | **Sit** | Ranked 21st of 32 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)), against a 24.5 implied total, and allowed 30 points in week 3 ([Bengals.com](https://www.bengals.com/news/bengals-steelers-recap-postgame-notes-quotes-stats-week-3-2026)). |
+
+**Searched for and not found:**
+
+- Week 1-3 snap shares for Tuten, Rodriguez, Strange, Gesicki or Brown's week
+  3. One search summary gave Brown 88% of snaps, but the full page says 68%
+  through week 2, and only the full-page figure is used.
+- A red-zone split for Jacksonville's backs.
+
+## 5. Cowboys at Texans - Sun 2026-10-04, 1:00 PM ET, FOX
+
+**Line (CBS/DraftKings, full, read 2026-09-30):** Texans -2.5, total 47.5.
+**Implied totals:** Texans 25.0, Cowboys 22.5.
+
+**Pace and tilt:**
+
+- Houston passed at 66.9% (1st) and ran 75.5 plays a game (1st) through
+  weeks 1-2
+  ([Sharp, Texans-Colts wk 3](https://www.sharpfootballanalysis.com/fantasy/texans-colts-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/)
+  **(full)**, 2026-09-23).
+- Houston ran only 54 snaps in week 3
+  ([Yahoo/Athlon](https://sports.yahoo.com/articles/snap-counts-texans-week-3-100307538.html)
+  **(full)**).
+- Dallas allows the 3rd-most fantasy points to QBs
+  ([CBS model rankings](https://www.cbssports.com/fantasy/football/news/fantasy-football-rankings-projections-lineups-sleepers-nfl-week-4-2026/)
+  **(full)**, 2026-09-30).
+- No pace or pass rate was found for Dallas.
+
+**Injuries.** Wednesday's report was not yet posted, so these are the latest
+statuses from news pages.
+
+- **Texans**
+  - WR Nico Collins (grade 1 hamstring) has missed weeks 2-3 without
+    practicing. DeMeco Ryans is "hopeful" he returns
+    ([Yahoo](https://sports.yahoo.com/articles/nico-collins-hamstring-gives-texans-145959867.html)
+    **(full)**, 2026-09-29; same wording in the NBC injury report,
+    2026-09-29).
+  - WR Tank Dell (knee) is on IR, and WR Jayden Higgins (ACL) is out for the
+    season (NBC).
+- **Cowboys**
+  - RB Malik Davis (hip) is on season-ending IR (NBC).
+  - The secondary is depleted:
+    - S Jalen Thompson (hamstring) is an IR candidate.
+    - CBs Shavon Revel Jr. (knee) and Cobie Durant (hamstring) are out for
+      multiple weeks.
+    - S P.J. Locke is on IR.
+    - Source:
+      [Yahoo](https://sports.yahoo.com/articles/cowboys-injury-report-dallas-defense-181830500.html)
+      **(full)**, 2026-09-29.
+
+**Usage.**
+
+- Week 3 snap counts come from:
+  - [Yahoo/Cowboys Wire](https://sports.yahoo.com/articles/snap-counts-injuries-cause-shakeup-155724953.html)
+    **(full)**, 2026-09-28.
+  - [Yahoo/Athlon Texans](https://sports.yahoo.com/articles/snap-counts-texans-week-3-100307538.html)
+    **(full)**, 2026-09-29.
+- Houston's targets come from the
+  [CBS box score](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_HOU@IND/)
+  **(full)**.
+- Dallas's come from the
+  [FOX box score](https://www.foxsports.com/nfl/week-3-baltimore-ravens-vs-dallas-cowboys-sep-27-2026-game-boxscore-11137)
+  **(full)**.
+
+**Roof and weather:** NRG Stadium has a retractable roof, and no roof decision
+for Sunday was found.
+
+### Cowboys
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Dak Prescott | **Start** | He threw 40 times for 276 yards and a TD in week 3 ([FOX box](https://www.foxsports.com/nfl/week-3-baltimore-ravens-vs-dallas-cowboys-sep-27-2026-game-boxscore-11137)), and a 22.5 implied total ([CBS](https://www.cbssports.com/betting/news/week-4-nfl-betting-odds-lines-totals-spreads/)) behind a defense missing most of its secondary ([Yahoo](https://sports.yahoo.com/articles/cowboys-injury-report-dallas-defense-181830500.html)) should keep him throwing. |
+| RB Javonte Williams | **Start** | 76% of snaps ([Yahoo](https://sports.yahoo.com/articles/snap-counts-injuries-cause-shakeup-155724953.html)) and 19 carries for 98 yards and a TD in week 3 ([FOX box](https://www.foxsports.com/nfl/week-3-baltimore-ravens-vs-dallas-cowboys-sep-27-2026-game-boxscore-11137)), with Malik Davis on season-ending IR. |
+| RB Tyler Goodson | **Sit** | 15% of snaps in his debut ([Yahoo](https://sports.yahoo.com/articles/snap-counts-injuries-cause-shakeup-155724953.html)), on 6 carries ([Fantasy Six Pack](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/)). |
+| WR CeeDee Lamb | **Start** | 7 catches on 8 targets for 112 yards in week 3, and 265 yards with 2 TDs over two games ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/ceedee-lamb-tops-100-yards-in-loss-to-ravens)), on 82% of snaps. |
+| WR George Pickens | **Start** | He led the team with 11 targets, catching 7 for 82 yards in week 3 ([Yahoo/Athlon](https://sports.yahoo.com/articles/ravens-had-no-real-answer-210210947.html)), on 85% of snaps ([Yahoo](https://sports.yahoo.com/articles/snap-counts-injuries-cause-shakeup-155724953.html)). |
+| WR Ryan Flournoy | **Sit** | 66% of snaps ([Yahoo](https://sports.yahoo.com/articles/snap-counts-injuries-cause-shakeup-155724953.html)) in a game where Lamb and Pickens took 19 targets between them; his own targets were not found. |
+| TE Jake Ferguson | **Start** | 69% of snaps ([Yahoo](https://sports.yahoo.com/articles/snap-counts-injuries-cause-shakeup-155724953.html)) and a 19-yard TD in week 3 ([Cowboys.com](https://www.dallascowboys.com/news/game-recap-cowboys-lose-in-rio-34-31)), in the week's third-highest total in this half, 47.5. |
+| D/ST Cowboys | **Sit** | Ranked 32nd of 32 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)), with multiple starting DBs out. |
+
+### Texans
+
+| Player | Call | Reason |
+|---|---|---|
+| QB C.J. Stroud | **Start** | Dallas allows the 3rd-most fantasy points to QBs ([CBS model](https://www.cbssports.com/fantasy/football/news/fantasy-football-rankings-projections-lineups-sleepers-nfl-week-4-2026/)), and Houston has a 25.0 implied total, though he went 16 of 27 for 167 yards in week 3 without Collins ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_HOU@IND/)). |
+| RB David Montgomery | **Flex** | 63% of snaps ([Yahoo/Athlon](https://sports.yahoo.com/articles/snap-counts-texans-week-3-100307538.html)) but 11 carries for 33 yards in week 3 ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_HOU@IND/)), and Woody Marks got the goal-line carry ([Fantasy Six Pack](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/)). |
+| RB Woody Marks | **Sit** | 37% of snaps ([Yahoo/Athlon](https://sports.yahoo.com/articles/snap-counts-texans-week-3-100307538.html)) and 5 carries for 15 yards, with his TD coming on that one goal-line carry ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_HOU@IND/)). |
+| WR Nico Collins | **Flex** | 7 catches for 75 yards and a TD in week 1, his only game, followed by two missed games with a hamstring and no practice ([Yahoo](https://sports.yahoo.com/articles/nico-collins-hamstring-gives-texans-145959867.html), 2026-09-29). **Game-time decision.** |
+| WR Xavier Hutchinson | **Sit** | He led the team with 6 targets in week 3, catching 3 for 51 yards ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_HOU@IND/)), on 54% of snaps, and that volume shrinks if Collins returns. **Depends on Collins.** |
+| WR Kayshon Boutte | **Sit** | He led the wideouts with 69% of snaps ([Yahoo/Athlon](https://sports.yahoo.com/articles/snap-counts-texans-week-3-100307538.html)) but saw 2 targets for 21 yards ([CBS box](https://www.cbssports.com/nfl/gametracker/boxscore/NFL_20260927_HOU@IND/)). |
+| TE Dalton Schultz | **Start** | He averages more than 8 targets a game, and Dallas has allowed 6+ catches and a TD to tight ends in 2 of 3 games ([CBS TE preview](https://www.cbssports.com/fantasy/football/news/fantasy-football-week-4-te-preview-slate-is-filled-with-excellent-options-but-several-stand-as-must-starts/)), though he drew only 3 targets in week 3. |
+| D/ST Texans | **Sit** | Ranked 19th of 32 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)), against a 22.5 implied total and a QB who threw 40 times in week 3. |
+
+**Searched for and not found:**
+
+- Dallas pace and pass rate.
+- Week 1-2 snap shares for either team.
+- Targets for Ferguson and Flournoy.
+- A roof decision.
+
+The Cowboys.com box score showed no individual stats and a different final
+score (34-26 against 34-31 elsewhere). The CBS BAL@DAL gametracker listed
+players who do not match the Cowboys' snap list. Neither page is cited.
