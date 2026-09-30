@@ -14,8 +14,9 @@ rows O1-O2. Format and evidence-strength rule:
 [#108's standard step](104-social-proof-approaches.md#5-recommendation-the-standard-step),
 unchanged.
 
-**Status:** run 1 of 3. DRAFT - O2 and the brand sections are still being
-gathered; this line goes when they land.
+**Status:** run 1 of 3, complete for what this runtime can reach. Every
+fetch was made on 2026-09-30, and the load-bearing pages were fetched a
+second time while writing (see "Verified, inferred, assumed").
 
 **Constraints, not guesses:** no fetch of `zappos.com`, `reddit.com`,
 TikTok, Instagram, LTK or ShopMy pages - those appear here as **search
@@ -26,6 +27,47 @@ is added here. J.Crew and ECCO are carried from
 **Guess in the issue:** that designer shoes over $695 have little public
 review data. For O1 it was right, and more so than expected: no reviews
 anywhere, not even retailer ones.
+
+## Headline
+
+| Pick | Exact, non-paid items | Sibling items (not counted) | Longest exact wear found | Evidence strength |
+|---|---|---|---|---|
+| O1 The Row Fay II Ballerina Flat | 0; **no retailer reviews either** | 3 (Ava, Elastic Ballet YouTube titles) | none | **thin** |
+| O2 Tod's Penny Loafer, Nero | 0 + 2 Nordstrom reviews (one with text) | 3+ (Gommino videos; an LTK sibling) | none stated | **thin** |
+
+Evidence strength uses [#112's rule](110-social-proof-under-and-mid-tier.md#headline):
+thin is fewer than 3 exact-model, non-paid creator or editorial items.
+
+**One verdict per brand:**
+
+| Brand | Verdict | Reputable test exists? | What it rests on |
+|---|---|---|---|
+| Madewell | **fine for the price** | no | leather upper, rubber sole at $98; a five-month blog wear; 4 sources on early lining or leather failure; make not stated |
+| MARGAUX | **fine for the price** | one long wear test (PureWow) | five years' wear, resoled at about $80; chipped outsoles; **a flimsier sole on later pairs** |
+| Jamie Haller | **worth investing in** | one long wear test (Town & Country) | nearly three years' wear, ageing well, resoled; handmade in Italy per WWD; test is on the Oxblood sibling and predates the brand's 2025-26 expansion |
+| Alexandre Birman | **fine for the price** | no | an established Brazilian factory with Italian soles (FashionUnited); a sole that appears cemented; part of the line planned for Italy in 2023 |
+| The Row | **skip** | no | the brand's own listing: $920 for unprotected lambskin on a synthetic rubber-coated sole, construction unstated |
+| Tod's | **skip** | two hands-on reviews, of the Gommino | the signature sole "wears out very quickly" (2 reviewers); a 2025 criminal probe into subcontracted footwear labour |
+| BY FAR (wishlist) | **fine for the price** | no | a named Bulgarian factory; leather claims dropped from the site; glued heels and soles failing (consumer); where it is made now unsettled |
+| Dear Frances (wishlist) | **fine for the price** | no | Italian-made per 2016 trade press; full-leather build per the brand; one week's editorial wear |
+| J.Crew | **fine for the price** | no | carried from [#107 §4](104-social-proof-and-brand-verdicts.md#4-against-the-wishlist-tier-quality-per-dollar) |
+| ECCO | **fine for the price** | no (not for a dress flat) | carried from [#107 §4](104-social-proof-and-brand-verdicts.md#4-against-the-wishlist-tier-quality-per-dollar) |
+
+1. **Both over-$695 picks are thin evidence, and O1 has nothing at all.**
+   Nobody - creator, editor or retailer reviewer - has said anything about
+   the Fay II under either of its names. The pattern #112 found holds all
+   the way up: the more a shoe costs, the less anyone has said about it.
+2. **The most expensive tier is where the brand evidence is worst.** Both
+   over-$695 brands come out **skip**: Tod's on the only hands-on reviews
+   found, The Row on materials per dollar, with no test at all.
+3. **Jamie Haller is the only "worth investing in"**, and on one test. It
+   is also the only brand whose product appears in all three places: a
+   $400-$695 pick (M1), a wishlist item, and a multi-year wear test.
+4. **Only one brand has a reported recent quality change: MARGAUX**, from
+   one tester ("later iterations have a flimsier sole"). BY FAR and
+   Alexandre Birman may have changed where they make shoes; Tod's is under
+   investigation over who makes them. Nothing was found for the rest.
+5. **Seven of the ten verdicts rest on no reputable test.** Each says so.
 
 ## O1. The Row, "Fay II Ballerina Flat", Black - $920
 
@@ -350,7 +392,7 @@ carried from #101.
 |---|---|---|---|
 | Materials | Topo Bootie: "Nappa leather upper", "Leather lined", "Buffed leather outsole", lacquered 4.5 cm heel; "finest Italian leathers", tannery not named | [dearfrances.com, Topo Bootie](https://dearfrances.com/products/topo-bootie-black), fetched; [Italian craftsmanship](https://dearfrances.com/pages/italian-craftsmanship), fetched | opinion (brand's own claim) |
 | Construction | "Made by hand", "age-old techniques"; **method not stated** (Blake, sacchetto or cemented; resoleable or not) | product page, as above | opinion (brand's own claim); method **not found** |
-| Where made | "Produced in Italy in the same factory where Frances honed her design skills", in **Vigevano**; boots then $550 | [Fashion Week Daily, Paige Reddinger, 2016-03-01](https://fashionweekdaily.com/british-footwear-dear-frances-us-launch/), fetched | reputable report (trade press) for the town, **old** and in the founder's words |
+| Where made | "Produced in Italy in the same factory where Frances honed her design skills"; "the line ranges from $340 for a slide to $550 for boots". The first read also named the town as **Vigevano**; the re-fetch quoted no town, so the town is **unconfirmed**. | [Fashion Week Daily, Paige Reddinger, 2016-03-01](https://fashionweekdaily.com/british-footwear-dear-frances-us-launch/), fetched twice | reputable report (trade press), **old** and in the founder's words |
 | Where made | "Made in Italy and designed in London", "a multi-generational artisan factory in Italy" | [dearfrances.com, About](https://dearfrances.com/pages/about-the-brand), fetched | opinion (brand's own claim) |
 | Durability | Harlow Pump worn "a week straight": "moulded to my foot", "genuinely comfortable", runs wide | [Marie Claire Australia, Maddison Hockey, 2023-05-31](https://www.marieclaire.com.au/fashion/dear-frances-review/), fetched | opinion (one-week try-on, affiliate; not a durability test) |
 | Durability | Park Boots fine after two years; sandal leather peeling after a couple of months | Trustpilot, Thingtesting, search snippets | opinion (consumer, split) |
@@ -363,10 +405,11 @@ search). **Unreachable:** PurseForum "Dear Frances boots opinions"
 (HTTP 403).
 
 **Verdict: fine for the price** - weakly, and **no reputable test of Dear
-Frances shoes exists**. For it: an Italian origin that trade press tied to
-Vigevano, and a full-leather build per the brand. Against it: that press
-is from 2016, the construction method is unstated, and the only editorial
-wear was a week.
+Frances shoes exists**. For it: an Italian origin that trade press
+reported at launch, and a full-leather build (leather outsole included)
+per the brand. Against it: that press is from 2016 and in the founder's
+words, the construction method is unstated, and the only editorial wear
+was a week.
 
 ### The Row
 
@@ -440,3 +483,115 @@ exists.
 |---|---|---|---|
 | J.Crew | **fine for the price** | [#107 §3.1](104-social-proof-and-brand-verdicts.md#31-jcrew-footwear) and [§4](104-social-proof-and-brand-verdicts.md#4-against-the-wishlist-tier-quality-per-dollar) | Italian leather stated; where CH288 is made not stated; a documented 2014-15 history of moving shoes out of Italy at the same price (Racked, Refinery29); no reputable construction test of any J.Crew women's shoe found. |
 | ECCO | **fine for the price** | [#107 §3.2](104-social-proof-and-brand-verdicts.md#32-ecco) and [§4](104-social-proof-and-brand-verdicts.md#4-against-the-wishlist-tier-quality-per-dollar) | Owns its tanneries and factories (verified); injected PU soles can hydrolyse and cannot be resoled; Slovak factory closed 2025; no reputable test covers a dress flat. |
+
+## Stop rule, per pick
+
+| Pick | Step 1 | Step 2 | Step 3 | Step 4 | Searches / fetches | What stopped it |
+|---|---|---|---|---|---|---|
+| O1 | ran (Nordstrom; the brand's name "Fay Flat Two" found) | ran; no reviews on Nordstrom or therow.com | ran, 6 queries (4 fixed + 2 under the brand's name) | not run: no creator post | 6 / 2 (+2 re-fetches) | two consecutive queries with no new exact item; the rest run to cover the second name |
+| O2 | ran (2 identity searches; tods.com **403**) | ran; 2 Nordstrom reviews | ran, 4 fixed queries | not run: no post that could be the exact model | 6 / 2 (+1 re-fetch) | two consecutive queries with no new exact item |
+
+Neither pick reached #108's cap of 8 searches and 6 fetches. Brand
+research sits outside #108's step and had its own budget of about 8
+searches and 6 fetches per brand; BY FAR (8 fetches, two on one redirect
+chain) and Tod's (9) ran over it.
+
+## Not reachable
+
+- **tods.com** product page (XXW59C0DD40MRKB999) and craftsmanship page:
+  **HTTP 403**. So O2's Tod's article code is unknown.
+- **businessoffashion.com** (Tod's take-private), **permanentstyle.com**
+  (2012 Gommino piece), **streetinsider.com** (Reuters on the Tod's probe):
+  **HTTP 403**; cited from search snippets.
+- **wwd.com / footwearnews.com** (The Row's debut shoes; BY FAR; a Birman
+  factory feature): **HTTP 307** to `tollbit.wwd.com`, a bot gate, not
+  followed.
+- **kinsights.capital.bg** (BY FAR production, 2021): **HTTP 403**.
+- **investedluxury.com** (The Row guide): **HTTP 429** twice.
+- **91lane.substack.com**, **styleandsenses.com** (The Row wear): **HTTP
+  403**.
+- **forum.purseblog.com** (Birman, Dear Frances threads): **HTTP 403**.
+- **CNN Underscored** (best flats): **HTTP 451**.
+- **fastcompany.com** (Jamie Haller): not retried, 403 for #107.
+- **madewell.com ESG report 2023** (PDF): over the fetch size limit.
+- **Not fetched, by rule:** zappos.com, reddit.com, TikTok, Instagram, LTK
+  and ShopMy pages. Zappos and Trustpilot review summaries appear above as
+  search snippets and are labelled so.
+
+## Searches that came back empty
+
+- Any creator, editorial or blog item naming "Fay II" or "Fay Flat Two"
+  (6 queries). Any naming the Tod's women's Penny Loafer (4 queries).
+- A cut-in-half, cobbler or construction teardown of **any** of the eight
+  brands researched here (at least one query per brand, including
+  `Rose Anvil Tod's loafer`, `The Row shoes cut in half teardown
+  construction`, `"Alexandre Birman" shoes cobbler OR "cut in half" OR
+  resole OR "cemented"`, `Madewell shoes quality declined cemented sole
+  cobbler teardown`).
+- A Wirecutter or Strategist test of Jamie Haller, Margaux, Dear Frances or
+  Tod's (Fast Company's claim that Wirecutter praised Jamie Haller could
+  not be traced to a Wirecutter page).
+- An investment or ownership change at BY FAR (3 queries).
+- The name or region of Margaux's Spanish factory, or Dear Frances's
+  factory (2 queries each).
+- Trade-press coverage of Madewell's footwear sourcing (2 queries).
+
+## Verified, inferred, assumed
+
+- **Verified (fetched 2026-09-30, and fetched again while writing):** the
+  Nordstrom O1 and O2 pages (price, style number, reviews, fit notes);
+  therow.com Fay Flat Two; PureWow's Margaux quotes and disclosure; Town &
+  Country's Jamie Haller quotes and disclosure; Gentleman's Gazette and He
+  Spoke Style on Tod's; France 24 on the Tod's probe; FashionUnited on
+  Birman; Fashion Week Daily on Dear Frances; the Bulgarian Development
+  Bank page on INGILIZ.
+- **Verified once (fetched, not re-fetched):** the Madewell, Margaux,
+  Jamie Haller, Alexandre Birman, BY FAR and Dear Frances brand pages;
+  Good On You; The Zoe Report; FashionNetwork; Wallpaper; Metal Magazine;
+  Endeavor; Marie Claire Australia; Wit & Whimsy; Styleforum.
+- **Search snippet only:** every row marked so above.
+- **Inferred:** that Birman's soles are cemented; that BY FAR's production
+  moved beyond one Bulgarian factory; that XXW59C0DD40MRKB999 is Tod's 59C
+  sibling and not O2; that Nordstrom's "leather sole" and The Row's
+  "rubber-coated sole" are the same sole.
+- **Assumed, load-bearing:** that a brand's hands-on reviews of one model
+  (Tod's Gommino, Jamie Haller Oxblood, Margaux Demi and Pointe) say
+  something about the brand's other shoes. Brand verdicts are brand-level
+  by design; the per-pick counts above never use them.
+
+## Recommendation
+
+**Treat both over-$695 picks as "thin evidence - try in store first", and
+do not spend the top tier on either brand as it stands.** On what is
+published, the money is better placed one tier down: Jamie Haller (M1,
+$625) is the only brand here with a multi-year wear test, a resoled sole
+and trade-press confirmation of where it is made. For O1, the owner is
+choosing on the brand's own description, with nothing else to go on. For
+O2, the durability evidence against Tod's is about a different sole.
+
+**Strongest argument against, looked for:** *"Skipping The Row on
+materials is judging a $920 shoe by its spec sheet. Luxury ballet flats
+are often rubber-soled and unprotected lambskin is the point; the price
+buys the last and the cut, which no test measures."* That is fair, and it
+is why The Row's verdict says it rests on no test. I looked for the
+evidence that would answer it - a wear report, a teardown, a cobbler's
+view, a trade piece on where The Row's shoes are made - and found none;
+three of the pages that might have had it returned 403 or 429. The same
+argument applies with less force to Tod's, where two people who wore the
+shoe said the sole does not last.
+
+**The argument against Jamie Haller's verdict**, also looked for: one test,
+uncritical, affiliate, of a different colour, from before the brand added
+ready-to-wear, bags, jewellery and sneakers in eighteen months. If quality
+slipped with that growth, nothing published yet would show it.
+
+**What would flip it:**
+- **The Row to "fine for the price":** any wear report past a season on the
+  Fay or a sibling, or a cobbler confirming the sole can be replaced.
+- **Tod's to "fine for the price":** a wear report on a rubber-crepe Tod's
+  loafer (not a Gommino) that holds up.
+- **Jamie Haller down to "fine for the price":** a sizing or durability
+  complaint pattern on post-2025 pairs.
+- **MARGAUX down to "skip":** a second source for the flimsier sole.
+- **Either over-$695 pick off "thin":** an owner-pasted Reddit thread, or a
+  review on either retailer page with a wear duration.
