@@ -1,13 +1,84 @@
 # NFL 2026 week 4 sit/start deep dive - games 1-8
 
-**Status: revision round 1, in progress.** Steelers at Browns is complete.
-Games 2-8, the week synthesis and the game-time decision list are still
-being written. If this line is still here, the run ended before it finished
-them.
-
 **Scoring:** 12-team, half-PPR, one-QB, starting QB / 2 RB / 2-3 WR / TE /
 FLEX / D/ST. Where a call would flip in full PPR or superflex, the reason
 says so in one clause.
+
+## Week synthesis
+
+The week's so-what: **start from the game environment.** These eight games
+split into one shootout, a couple of middling games, and some low-total games
+with backup QBs. The injury picture for Sunday is still blank.
+
+**The one shootout.** Jaguars at Bengals has a 51.5 total, the highest here,
+and it is where the ceiling is. Start Ja'Marr Chase, Tee Higgins, Joe Burrow
+and Chase Brown with no hesitation (game 4).
+
+**The strongest starts elsewhere** are usage plays:
+
+- Jaylen Warren played 90% of snaps with Rico Dowdle out (game 1).
+- James Cook had 24 carries as a 6.5-point home favorite (game 2).
+- CeeDee Lamb had 112 yards on 8 targets, and his own team's depleted
+  secondary should keep Dallas throwing (game 5).
+- Davante Adams drew 13 targets (game 7).
+- Harold Fannin Jr. drew a 30% target share from a QB who throws short
+  (game 1).
+
+**The riskiest sits** are players with a big week 3 in a bad setting:
+
+- Aaron Rodgers threw 3 TDs, but in the slate's lowest-total game (game 1).
+- Case Keenum accounted for 3 TDs but has not been named the starter
+  (game 3).
+- Mike Gesicki scored, but on 3 targets (game 4).
+
+**Backup and struggling QBs make defenses the quiet edge.**
+
+- Jalon Daniels makes his first start for Tampa, behind a line that allowed 6
+  sacks. That makes the **Packers D/ST** a sleeper despite its 14th rank
+  (game 8).
+- Jameis Winston's 5.7 air yards drag on Malik Nabers (game 6).
+- Drake Maye's 6 interceptions feed the Bills D/ST (game 2).
+
+**Other sleepers:**
+
+- Kenyon Sadiq, 8 targets with Mason Taylor out (game 3).
+- Tyler Higbee, 11 targets with two Rams TEs hurt (game 7).
+- Jakobi Meyers, who led Jacksonville with 8 targets (game 4).
+
+**Likely busts** are players whose name outruns their current usage:
+
+- DK Metcalf's target rate fell from 23.8% to 13.5% (game 1).
+- David Montgomery ran for 33 yards and lost the goal-line carry (game 5).
+- D'Andre Swift faces the defense 2nd in yards allowed (game 3).
+- DeVonta Smith faces the league leader in passes defended (game 7).
+
+Dalton Kincaid is the week's split call. His usage says start. SI says sit,
+because New England allows the fewest TE points (game 2).
+
+**What will move before kickoff.** No Sunday Wednesday report was posted when
+this was read. Collins, Nacua, Hall and the Bears' QB choice each move another
+call (list below). Recheck Dowdle before locking Warren in.
+
+## Game-time decisions
+
+Final statuses land Wednesday or Thursday for game 1 and Friday for games 2-8.
+Each row gives the status as read and the pivot to use.
+
+| Player | Call | Status as read (source, date) | Pivot |
+|---|---|---|---|
+| RB Rico Dowdle (PIT) | Sit | Toe, DNP Mon and Tue ([Steelers.com](https://www.steelers.com/team/injury-report/), report dated 2026-09-29, read 2026-09-30) | If he plays, keep him benched. Jaylen Warren moves from Start to a low RB2 but stays in lineups. |
+| RB Braelon Allen (NYJ) | Start | Rests on Breece Hall (quad/thigh), week-to-week ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-nfl-week-4-injury-report-achane-acl-baker-thumb-jefferson-ankle-breece-hall-quad-and-more), 2026-09-29) | If Hall is active, Allen drops to Flex. Isaiah Davis is not a pivot. |
+| WR Adonai Mitchell (NYJ) | Sit | Finger, missed week 3 (NBC, 2026-09-29) | Isaiah Williams, also a Sit. Garrett Wilson stays Start either way. |
+| QB Case Keenum (CHI) | Sit (superflex start) | No starter named; Caleb Williams (hamstring) expected out ([Sun-Times](https://chicago.suntimes.com/bears/2026/09/29/bears-3rd-string-case-keenum-leaves-no-doubt-he-should-start-vs-jets-even-with-tyson-bagent-healthy), read 2026-09-30) | If Tyson Bagent is named, sit Keenum everywhere. The Burden and Odunze calls hold. |
+| WR Dohnte Meyers (CIN) | Sit | Rests on Colbie Young (knee), "not expected to play" ([Yahoo](https://sports.yahoo.com/articles/bengals-rookie-receiver-ruled-week-195300099.html), 2026-09-28) | If Young plays, Meyers stays Sit with less upside. |
+| WR Nico Collins (HOU) | Flex | Hamstring, missed weeks 2-3 without practicing, Ryans "hopeful" ([Yahoo](https://sports.yahoo.com/articles/nico-collins-hamstring-gives-texans-145959867.html), 2026-09-29) | If Collins is out, Xavier Hutchinson moves to Flex. If Collins is limited, he stays Flex only. |
+| WR Xavier Hutchinson (HOU) | Sit | Rests on Collins, as above | Flex if Collins is out. |
+| WR Puka Nacua (LAR) | Flex | Questionable, hip/groin, missed two games ([Yahoo](https://sports.yahoo.com/articles/injuries-taking-toll-rams-head-172129263.html), 2026-09-29) | If out, Konata Mumpfield moves to Flex. Adams stays Start. |
+| WR Konata Mumpfield (LAR) | Sit | Rests on Nacua, as above | Flex if Nacua is ruled out. |
+| TE Tyler Higbee (LAR) | Start | Rests on TE Colby Parkinson (AC joint, questionable) and TE Terrance Ferguson (ankle, out) (Yahoo, 2026-09-29) | If Parkinson plays fully, Higbee drops to TE2. Use Isaiah Likely or Tucker Kraft. |
+| QB Jalen Hurts (PHI) | Start | Concussion evaluation in week 3, returned; no listed status ([Inquirer](https://www.inquirer.com/eagles/live/eagles-news-injury-report-next-game-jalen-hurts-20260929.html), 2026-09-30) | Matthew Stafford. |
+| RB Bucky Irving (TB) | Flex | Possible lower-body injury in week 3; Bowles: "not on the team's injury report" ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/bucky-irving-gets-dinged-up-in-week-3-loss), 2026-09-27) | Kenneth Gainwell, full PPR only. |
+| WR Skyy Moore (GB) | Sit | Rests on Jayden Reed, questionable and "likely" headed to IR ([Yahoo/APC](https://sports.yahoo.com/articles/packers-snap-counts-week-3-041054752.html), 2026-09-25) | None. Neither Moore nor Reed is a start. |
 
 **Dates.** Everything was read on 2026-09-30 unless a line says otherwise.
 Final statuses are not out yet: for Thursday they land Wednesday, and for
