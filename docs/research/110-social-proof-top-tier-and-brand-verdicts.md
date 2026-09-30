@@ -92,10 +92,12 @@ name did not surface anything, and none did. **Evidence strength: thin** -
 
 Nordstrom item **10552926**, "Penny Loafer (Women)", Nero, $825, leather
 upper and lining, rubber-crepe sole with embossed-pebbled detailing, made
-in Italy; **2 reviews, 5.0 average**; fit summary "true to size"
+in Italy; **2 reviews, 5.0 average**, both "Verified Purchase"; fit note
+"The brand says this runs true to size"
 ([nordstrom.com](https://www.nordstrom.com/s/penny-loafer-women/8050088),
-fetched). The fetch gave a style number "333333LSV5", which does not look
-like a Tod's code and is treated as possibly misread.
+fetched twice, the second time while writing). One fetch also returned a
+style number "333333LSV5", which does not look like a Tod's code; the
+second returned none, so it is not used.
 
 **Tod's own article code: not established.** A search scoped to
 `tods.com` returned three black women's leather loafer codes, none tied to
@@ -160,6 +162,152 @@ could be the exact model). **What stopped it:** the tiktok/instagram and
 YouTube queries both returned nothing new, which met the stop rule; the
 LTK/ShopMy query, already issued, added nothing. **Evidence strength:
 thin** - 0 exact, non-paid items.
+
+## Brand reputation
+
+Labels, as in [#107 §3](104-social-proof-and-brand-verdicts.md#3-brand-reputation):
+**reputable test/review** means someone examined or wore-tested the
+product, or a reputable publication reported a verifiable fact.
+**Opinion** means a consumer, fan, forum, promotional or founder-relayed
+claim. A brand's own page is marked **opinion (brand's own claim)**:
+usable for what the brand says it does, never as proof it does it. Vendor
+listicles, shops selling the brand, content farms and affiliate "best of"
+roundups are **not evidence**. Each brand lists what was discarded.
+"Search snippet" means the claim was read in a search result and not on
+the page.
+
+**Brand set** (from [#111](110-round-3-picks.md)): the picks' brands
+Madewell, MARGAUX, Jamie Haller, Alexandre Birman, The Row and Tod's; the
+wishlist brands BY FAR and Dear Frances, which appear in #111's "Wishlist
+items" (Jamie Haller is both); and J.Crew and ECCO, carried from #107.
+Brands #111 names only as rejected (Lanvin, Gianvito Rossi, Ferragamo,
+Khaite and others) are not in the set.
+
+### Madewell
+
+| Topic | Claim | Source | Label |
+|---|---|---|---|
+| Materials | Greta: "100% leather" upper and lining, "man-made rubber" sole, "MWL Cloudlift Lite padding"; leather from a Leather Working Group-certified tannery. The same page warns that the "unlined construction" can wrinkle, which contradicts the listed lining. | [madewell.com NN044](https://www.madewell.com/p/womens/shoes/flats-loafers/ballet-flats/the-greta-ballet-flat/NN044/), fetched 2026-09-30 | opinion (brand's own claim) |
+| Materials / sourcing | Madewell "doesn't appear to trace any animal products, even to the first stage of production"; Fashion Transparency Index score 11-20% | [Good On You](https://goodonyou.eco/how-ethical-is-madewell/), rating dated October 2020, fetched | reputable report (a ratings body on **transparency, not quality**, and **old**) |
+| Construction | **Not found.** No teardown or cobbler assessment of any Madewell shoe. Whether the Greta's sole is cemented or stitched, and whether it can be resoled, is unknown. | - | - |
+| Where made | "Imported"; no country given | Greta page, as above | opinion (brand's own claim) |
+| Where made | Some Madewell flats are said to be made in China and some boots in Italy | [PurseForum](https://forum.purseblog.com/threads/madewell-shoes-and-clothes.783001/), search snippet | opinion (forum) |
+| Durability | About five months of near-daily wear, including 10,000+ step days; sole intact, lining affected by sweat | [There She Goes Again](https://thereshegoesagain.org/madewell-greta-review/), undated, fetched | opinion (personal blog, affiliate - see [#112 U1](110-social-proof-under-and-mid-tier.md#u1-creators-who-wore-it-steps-3-4)) |
+| Durability | Early leather or lining failure: 4 independent sources, including Madewell's own note of "a defective lining" on an early model | [#112 U1 long-term wear](110-social-proof-under-and-mid-tier.md#u1-long-term-wear) | opinion (retailer reviews and a blog), and the brand's own admission |
+| Quality changed recently | A February 2024 "brand reset" made the collection "more refined": positioning, not shoe build | Retail Dive / Yahoo Finance, search snippet | reputable publication, **not about quality** |
+| Quality changed recently | **Not found** for footwear. One Nordstrom reviewer says the Greta's leather is "cheaper than it used to be" ([#112](110-social-proof-under-and-mid-tier.md#u1-long-term-wear)). | - | opinion (one consumer) |
+
+**Discarded:** CNN Underscored and Forbes Vetted "best flats" roundups that
+name the Greta (affiliate roundups, as #107 treated them; CNN also returned
+**HTTP 451**); a Zappos review summary seen in search (not fetched, by
+rule); iamandco.com (shop blog); whomakethis.com, allamerican.org and six
+sourcing sites (content farms); theeverymom.com (listicle).
+
+**Verdict: fine for the price.** At $98 it is a leather upper on a rubber
+sole, and one blogger wore it five months with the sole intact. Against
+that: its most-repeated complaint is the lining or leather failing early
+(4 sources), and its construction and country of make are not stated.
+**No reputable test of Madewell footwear exists** in what this run found,
+so "worth investing in" cannot be shown; nothing found shows it is
+overpriced for what it is, so not "skip".
+
+### MARGAUX
+
+| Topic | Claim | Source | Label |
+|---|---|---|---|
+| Materials | "We source the best leathers and highest-quality components"; "premium Italian leather" appears in search snippets of founder interviews | [margauxny.com, Our Story](https://margauxny.com/pages/our-story), fetched | opinion (brand's own claim) |
+| Materials | 5 mm of foam padding in the footbed | [PureWow, Marissa Wu, updated 2026-05-24](https://www.purewow.com/fashion/margaux-shoes-review), fetched | reputable test/review (restating the brand's figure) |
+| Construction | "Handmade sacchetto construction... slipper-like fit" | [margauxny.com, James Loafer](https://margauxny.com/products/the-james-loafer-black-nappa), fetched | opinion (brand's own claim) |
+| Construction | **Resoleable in practice**: the tester had several pairs resoled by a cobbler after three to four years of heavy wear, about $80 a pair | PureWow, as above | reputable test/review (editor's own long wear) |
+| Where made | "Designed in New York - handmade in Spain" at a "family-owned factory we've been working with since day one". Neither the factory nor the region is named. | Our Story, as above | opinion (brand's own claim) |
+| Durability | Nearly five years' wear since 2021, "hundreds of miles" in New York: the Demi's "outsole chipped away", the Pointe's toe box chipped and needed a cobbler | PureWow, as above | reputable test/review (one editor's long wear; affiliate outlet, see [#112 U2](110-social-proof-under-and-mid-tier.md#u2-creators-who-wore-it)) |
+| Durability | "Several of my pairs are years old... held up remarkably well"; advises a cobbler's protective sole before first wear | [Wit & Whimsy, 2026-06-25](https://witwhimsy.com/margaux-shoes-review/), fetched | opinion (fan blog) |
+| **Quality changed recently** | Early pairs felt "super stiff" and well made; "later iterations have a flimsier sole", and the shoes "have seemed less sturdy over the years". Store staff put it down to complaints about stiffness, or possibly cost. | PureWow, as above | reputable test/review (one tester's observation, not a measurement) |
+
+**Discarded:** thefashionhousemom.com, sasforshort.com, sarah-tucker.com,
+newinspired.com, mademois-elle.com (affiliate lifestyle blogs);
+margauxny.com's own curated review page and its "Vogue called it" line
+(brand self-report); a Forbes Vetted review and a Who What Wear piece (seen
+in search, not read); a Glossy founder podcast (the brand's own account,
+not read); cbinsights and dnb.com (directories). **Not found:** any
+trade-press (BoF, WWD, Footwear News) piece on where or how Margaux's shoes
+are made; the factory's name or region.
+
+**Verdict: fine for the price.** The one long test (PureWow, five years)
+says the shoes last with care and can be resoled for about $80. The same
+test reports outsoles and toe boxes chipping, and **a flimsier sole on
+later pairs**: the only recent quality change reported for any brand in
+this document, from one tester. Everything about leather and factory is
+the brand's own word. **No teardown or cobbler assessment exists**, so
+"worth investing in" at $375-$395 is not shown.
+
+### Jamie Haller
+
+| Topic | Claim | Source | Label |
+|---|---|---|---|
+| Materials | Penny Loafer: leather upper, lining and insole, "leather sole with anti slip rubber injection" | [shop-jamiehaller.com, Penny Loafer in Oxblood](https://shop-jamiehaller.com/products/the-penny-loafer-in-oxblood), fetched | opinion (brand's own claim) |
+| Materials | Heeled Penny Loafer (wishlist item 2): "handmade in Italian Bufalini" (buffalo leather), lamb lining, hand-waxed, 2¼" heel | [shop-jamiehaller.com, Heeled Penny Loafer](https://shop-jamiehaller.com/products/the-heeled-penny-loafer-in-oxblood), fetched | opinion (brand's own claim) |
+| Materials | The signature loafers are buffalo leather | [WWD, 2025](https://wwd.com/accessories-news/handbags/jamie-haller-handbags-launch-1238124821/), search snippet | reputable report (trade press) |
+| Construction | "Old world Sacchetto construction for a glove like fit"; the lining is stitched to the insole, and the toe and heel stiffeners are removed | brand page as above; [The Zoe Report, 2026-02-10](https://www.thezoereport.com/fashion/jamie-haller-new-categories), fetched | opinion (brand's claim, and a profile relaying the founder) |
+| Construction | **Resoleable in practice**: the tester has the leather sole replaced when it wears. The brand does no repairs and refers owners to "a qualified cobbler". | [Town & Country via AOL, Roxanne Adamiyatt, 2024-08-24](https://www.aol.com/does-iykyk-loafer-live-hype-150000993.html), fetched; brand page | reputable test/review; opinion (brand's own claim) |
+| Construction | **Not found:** whether the sole is Blake-stitched or cemented; any cobbler or cut-in-half teardown | - | - |
+| Where made | Footwear "handmade in Italy" since the 2020 debut | WWD, as above, search snippet | reputable report (trade press) |
+| Where made | "Handmade in Tuscany… old world family style factory"; factory not named | brand pages, fetched; Zoe Report, fetched | opinion (brand's own claim) |
+| Durability | Oxblood Penny Loafer worn nearly three years: "signs of use, but just get better and better over time". No criticism in the piece. | Town & Country, as above | reputable test/review (one editor's long wear; affiliate outlet; **sibling colourway**, see [#112 M1](110-social-proof-under-and-mid-tier.md#m1-creators-who-wore-it)) |
+| Durability | Said to have been praised by Wirecutter | [Fast Company, 2026](https://www.fastcompany.com/91486082/jamie-haller-loafers-are-fashion-lore-can-she-do-the-same-for-sneakers), search snippet (HTTP 403 for #107; not retried). **No Wirecutter page was found.** | opinion (second-hand, unverified) |
+| Durability | Sizing "seems to vary wildly"; Shopbop "Runs small" | [#112 M1 long-term wear](110-social-proof-under-and-mid-tier.md#m1-long-term-wear) | opinion (consumer) |
+| **Quality changed recently** | **Not found either way.** The brand has scaled fast since 2024: ready-to-wear (fall 2024), a Montecito store (summer 2025), handbags (September 2025), jewellery (November 2025), sneakers (February 2026). The only wear test predates most of it. | Zoe Report, 2026-02-10, fetched | opinion (promotional profile; the launch dates are checkable) |
+
+**Discarded:** editorialist.com, therealreal.com, shopbop.com,
+net-a-porter.com and other stockists (shops selling the brand); an AOL "15
+most comfortable loafers" roundup (listicle); jamiehaller.substack.com
+(the brand's own); TikTok results (not fetched, by rule); puck.news
+(paywalled, not read); a Marie Claire launch piece (fetched, came back
+truncated).
+
+**Verdict: worth investing in**, on narrow evidence. It is the only brand
+here with a named publication's multi-year wear test that reports the shoe
+aging well and being resoled - the evidence
+[#107 said](104-social-proof-and-brand-verdicts.md#what-would-flip-it) a
+brand would need to earn this verdict - and with trade press (WWD) on
+where it is made and in what leather. **What it does not rest on:** a
+construction teardown (none exists), or any test of the black buffalo
+Penny Loafer or the Heeled Penny Loafer. The one test is uncritical,
+affiliate, from 2024, and on the Oxblood sibling. The case against is
+under "Recommendation".
+
+### Alexandre Birman
+
+| Topic | Claim | Source | Label |
+|---|---|---|---|
+| Materials | Birman's soles are imported from Italy; every other component is made in Brazil | [FashionUnited, factory visit, 2023-02-13](https://fashionunited.uk/news/business/inside-arezzo-the-50-year-old-brazilian-shoe-factory/2023021367869), fetched | reputable report (trade press, factory visit) |
+| Materials | Clarita Ballerina Mary Jane: "leather and textile upper", which part is textile not stated | [#111 M2](110-round-3-picks.md#400-695), from the Nordstrom page | opinion (retailer's listing) |
+| Construction | Straps and trims are assembled largely by hand, then shoes go "through heating machines for sole attachment". **Inference:** a heat-activated cemented sole; the article does not name the method. | FashionUnited, as above | reputable report; the method is an **inference** |
+| Construction | **Not found:** resoleability, stitching method, any teardown | - | - |
+| Where made | Arezzo&Co's production headquarters outside Porto Alegre, Rio Grande do Sul, about 800 workers | FashionUnited, as above | reputable report |
+| Where made | "Each pair of shoes is handcrafted in Brazil" | [alexandrebirman.com, Artisanal Production](https://alexandrebirman.com/pages/artisanal-production), fetched | opinion (brand's own claim) |
+| **Quality changed recently** | Arezzo&Co bought Paris Texas's factory in Monza, Italy, in 2023; Birman said it would "produce at least a third of the Alexandre Birman line in the coming months". Whether that happened, and for which styles, **was not found**; it conflicts with the brand's "handcrafted in Brazil". | [FashionNetwork, Roxanne Robinson, 2023-03-03](https://us.fashionnetwork.com/news/Arezzo-co-acquires-paris-texas-shoe-brand,1492865.html), fetched | reputable report (the production share is the CEO's stated plan) |
+| Quality changed recently | Arezzo&Co merged with Grupo Soma in 2024 into Azzas 2154; the share price has since fallen and a split is being explored. **Nothing links this to shoe quality.** | Rio Times, FashionNetwork, Modaes, search snippets | reputable report (financial, not about quality) |
+| Durability | Clarita **sandal** reviewers: leather "stretches", "not good quality and can't take much wear and tear", runs small | Zappos review summary, search snippet (not fetched, by rule) | opinion (consumer; **sibling**, not the flat) |
+| Durability | **Not found:** any reputable wear test, cobbler view or teardown of any Birman shoe | - | - |
+
+**Discarded:** stilettowoman.com, reviewsbird.com, myprosandcons.com,
+tenereteam.com (content farms); Bloomingdale's, Shopbop, Net-a-Porter,
+Farfetch, Bergdorf, Neiman Marcus, ModeSens and other stockists (shops
+selling the brand); a 1stdibs Q&A (marketplace); a YouTube Clarita
+**sandal** try-on (sibling); @alexandrebirman TikTok (brand's own, not
+fetched); Glassdoor (employer reviews). **Unreachable:** a WWD/Footwear News
+feature on Birman's Brazilian production redirected to a bot paywall
+(`tollbit.wwd.com`, HTTP 307, not followed); PurseForum "Alexandre Birman
+thoughts" (HTTP 403).
+
+**Verdict: fine for the price** - and **no reputable test of Birman shoes
+exists**, so this is not a quality finding. It rests on trade coverage of
+a large, established factory with hand finishing and Italian soles, against
+a sole attachment that appears to be cemented (inference) and no evidence
+of resoling. At $625 for a cemented flat with a partly textile upper, "worth
+investing in" is not shown. "Skip" would need the consumer durability
+complaints confirmed, and those are about sandal siblings.
 
 ## J.Crew and ECCO: verdicts carried from #107, not re-researched
 
