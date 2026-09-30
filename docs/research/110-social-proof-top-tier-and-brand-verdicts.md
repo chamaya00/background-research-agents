@@ -282,7 +282,7 @@ under "Recommendation".
 |---|---|---|---|
 | Materials | Birman's soles are imported from Italy; every other component is made in Brazil | [FashionUnited, factory visit, 2023-02-13](https://fashionunited.uk/news/business/inside-arezzo-the-50-year-old-brazilian-shoe-factory/2023021367869), fetched | reputable report (trade press, factory visit) |
 | Materials | Clarita Ballerina Mary Jane: "leather and textile upper", which part is textile not stated | [#111 M2](110-round-3-picks.md#400-695), from the Nordstrom page | opinion (retailer's listing) |
-| Construction | Straps and trims are assembled largely by hand, then shoes go "through heating machines for sole attachment". **Inference:** a heat-activated cemented sole; the article does not name the method. | FashionUnited, as above | reputable report; the method is an **inference** |
+| Construction | Straps and trims are assembled largely by hand; "after affixing soles... workers place them in bins to pass through machines like baggage through the airport scanner" (quoted on re-fetch; the first read summarised these as heating machines). **Inference:** a cemented sole set by machine; the article does not name the method, and the passage is about stiletto sandals. | FashionUnited, as above | reputable report; the method is an **inference** |
 | Construction | **Not found:** resoleability, stitching method, any teardown | - | - |
 | Where made | Arezzo&Co's production headquarters outside Porto Alegre, Rio Grande do Sul, about 800 workers | FashionUnited, as above | reputable report |
 | Where made | "Each pair of shoes is handcrafted in Brazil" | [alexandrebirman.com, Artisanal Production](https://alexandrebirman.com/pages/artisanal-production), fetched | opinion (brand's own claim) |
@@ -367,6 +367,70 @@ Frances shoes exists**. For it: an Italian origin that trade press tied to
 Vigevano, and a full-leather build per the brand. Against it: that press
 is from 2016, the construction method is unstated, and the only editorial
 wear was a week.
+
+### The Row
+
+| Topic | Claim | Source | Label |
+|---|---|---|---|
+| Materials | Fay Flat Two: "100% Lambskin Leather", plongé nappa; "synthetic" sole, "flexible rubber-coated"; the leather "lacks a protective finish and absorbs liquids easily" - avoid water, heat and friction | [therow.com](https://www.therow.com/products/fay-flat-two-black), fetched twice | opinion (brand's own claim) |
+| Materials | The line in general: "genuinely good leather", leather lining and insole, rubber or crepe soles | [Invested Luxury](https://investedluxury.com/fashion/shoes/the-row-shoes-guide), search snippet (**HTTP 429** twice) | opinion (affiliate blog) |
+| Construction | **Not found.** No teardown, cobbler write-up or brand statement says whether the flats are cemented, Blake-stitched or sacchetto, or resoleable. | - | - |
+| Where made | "Made in Italy" | therow.com, as above | opinion (brand's own claim) |
+| Where made | The debut shoe collection was made in Italy, $850-$1,350; the Olsens had worked with Manolo Blahnik, Barbara Shaum and Enzo Bonafè. **No factory named.** | [Footwear News / WWD](https://wwd.com/footwear-news/shoe-features/mary-kate-ashley-olsen-the-row-shoes-photos-1237700118/), search snippet (HTTP 307 to `tollbit.wwd.com`, not followed) | reputable report (trade press), snippet only |
+| Durability | **No reputable test found.** Bloggers report near-daily summer wear since 2021, thin support, or "couldn't speak for durability" | 91lane.substack.com and styleandsenses.com, search snippets (both **HTTP 403**) | opinion |
+| Quality changed recently | September 2024: a minority stake to the Wertheimer and Bettencourt Meyers family offices and others at about a $1bn valuation; the Olsens keep control. **No reported production change.** | Bloomberg, 2024-09-12; FashionUnited, 2024-09-13 - search snippets | reputable report (ownership fact, not quality) |
+| Quality changed recently | Shoppers say newer belts use thinner leather and a winter-2025 line lower-grade fabric - **neither is a shoe** | [Trustpilot](https://www.trustpilot.com/review/www.therow.com), search snippet | opinion (consumer; not footwear) |
+
+**Discarded:** Nordstrom, Moda Operandi, Neiman Marcus, Bergdorf, Harrods,
+Hirshleifers and resale sites (stockists); Hypebeast, LUXUO and others
+repeating the Bloomberg story; a Medium "affordable alternatives" dupe
+listicle; content-farm pages; Who What Wear and Marie Claire trend pieces
+(no testing); PurseForum threads (sizing only).
+
+**Verdict: skip** - on materials per dollar, **not** on a test: **no
+reputable test of The Row's footwear exists**. It rests on the brand's own
+listing: $920 buys an unprotected lambskin upper the brand itself warns
+against friction and water, on a synthetic rubber-coated sole, with no
+stated construction and no resoling route. #107's bar for "skip" was
+evidence that the shoes fail **or that the price is out of line with the
+materials**
+([#107 §4](104-social-proof-and-brand-verdicts.md#4-against-the-wishlist-tier-quality-per-dollar));
+this is the second, set against Jamie Haller at $625 with a leather sole
+that has been resoled on record. It is the verdict in this document most
+likely to move, and what would move it is under "Recommendation".
+
+### Tod's
+
+| Topic | Claim | Source | Label |
+|---|---|---|---|
+| Materials | O2: leather upper and lining, "rubber sole" ("rubber-crepe sole with embossed-pebbled detailing" per #111), made in Italy | [nordstrom.com](https://www.nordstrom.com/s/penny-loafer-women/8050088), fetched | opinion (retailer listing) |
+| Materials | On a Laccetto Gommino: undyed leather lining "that doesn't color off"; the leather "really nothing special" for the price | [Gentleman's Gazette, Sven Raphael Schneider, 2019-03-08](https://www.gentlemansgazette.com/tods-mocs-is-it-worth-it/), fetched twice | reputable test/review (hands-on; affiliate, and the site sells its own shoes) |
+| Construction | Gommino: leather sole with rubber pebbles, "super flexible but it also wears out very quickly"; "can't be repaired once there's a hole in your sole" | Gentleman's Gazette, as above | reputable test/review (**sibling: Gommino**, a different sole from O2's crepe) |
+| Construction | Pebble nubs are set through the leather with an internal rubber layer | [Permanent Style, 2012](https://www.permanentstyle.com/2012/01/how-great-things-age-tods-driving-shoes.html), search snippet (**HTTP 403**) | reputable test/review, snippet only, **old** |
+| Construction | Heel wear can be repaired: "they can wrap the heel in rubber or they can replace the worn leather" | [He Spoke Style, Brian Sacawa, 2017-05-23](https://hespokestyle.com/tods-shoes-worth-the-money/), fetched twice | reputable test/review (owner of two pairs) |
+| Construction | Resoling said impossible or poor | [Styleforum, 2010](https://www.styleforum.net/threads/tods-sole-replacement.212092/), fetched | opinion (forum), **old** |
+| Where made | "Done by hand in the brand's Italian factories in Casette d'Ete in the Marche region" | [Wallpaper, Jack Moss, updated 2022-10-09](https://www.wallpaper.com/fashion/tods-iconic-products), fetched | reputable report (editorial, repeating the brand's account) |
+| **Where made, recent** | Milan prosecutors are investigating Tod's and three executives, alleging it acted with "full awareness" of the exploitation of 53 mostly Chinese workers at six subcontractors making "luxury leather moccasins and footwear". Italy's top court rejected judicial administration; Diego Della Valle defended the company. | [France 24 / AFP, 2025-11-20](https://www.france24.com/en/live-news/20251120-italy-probes-tod-s-executives-over-labour-exploitation), fetched twice | reputable report (news agency) |
+| Durability | "Not a shoe that will last me 15 or 20 years if I regularly wear it"; "should retail more at a 200 to 250 dollar price range and not at a 500 dollar" | Gentleman's Gazette, as above | reputable test/review (sibling: Gommino) |
+| Durability | "My Tod's shoes seem to wear out much more quickly than any other pair I've had... always on the heel" | He Spoke Style, as above | reputable test/review (Gommino) |
+| Quality changed recently | L Catterton took Tod's private from February 2024 (about €1.4bn; the Della Valles keep about 54%, LVMH 10%) | Bloomberg, 2024-02-10; BoF (**HTTP 403**); Fashion Dive - search snippets | reputable report (ownership fact). **Nothing ties it to a production or quality change.** |
+| Quality changed recently | Older, pre-"China era" Tod's said to be sturdier | Styleforum / Trustpilot, search snippets | opinion |
+
+**Discarded:** italiandesignervault.com, lxrynow, thevou, violetluxury and
+similar (content farms); ShopSimon, Net-a-Porter, eBay and repair-service
+sellers (shops); Marie Claire UK, The Rake and Bespoke Magazine
+(brand-partnership pieces); gracieopulanza.com (fan blog). **Not found:**
+any Rose Anvil, Put This On, Die Workwear, Stitchdown or Strategist piece
+on Tod's; any cut-in-half teardown.
+
+**Verdict: skip.** Two hands-on reviewers, fetched and re-read, found the
+signature Tod's sole wears out fast, one of them pricing the shoe at half
+its retail; the brand's Italian-made story is under a live 2025 criminal
+investigation into subcontracted footwear labour. **The honest limit:**
+both tests are of the Gommino driver, from 2017 and 2019, and O2 has a
+rubber-crepe sole rather than nubs, so the durability evidence is brand
+evidence, not this shoe's. No reputable test of the women's Penny Loafer
+exists.
 
 ## J.Crew and ECCO: verdicts carried from #107, not re-researched
 
