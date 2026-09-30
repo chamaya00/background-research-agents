@@ -69,7 +69,7 @@ Sibling evidence, in its own table and **not counted**:
 | Creator | Link | What they said | Label | Model match |
 |---|---|---|---|---|
 | @pamelamvaldez (TikTok) | [video](https://www.tiktok.com/@pamelamvaldez/video/7456243490922646830) | "they're the Winona lug-sole penny loafers in spazzolato leather and they're on sale!!!" (caption, via oEmbed in #108) | organic (as disclosed) | sibling: Winona lug-sole BT893 |
-| @kitkeenan (TikTok) | [video](https://www.tiktok.com/@kitkeenan) (URL as in #108) | "Linked on my ltk 👏🏻 these are elite" | affiliate | sibling: Winona lug-sole |
+| @kitkeenan (TikTok) | [video 7293953077734804779](https://www.tiktok.com/@kitkeenan/video/7293953077734804779) | "Linked on my ltk 👏🏻 these are elite 💛 #loafersoutfit #comfortablewalkingshoes" (search result title, this run; oEmbed in #108) | affiliate | sibling: Winona lug-sole |
 | Footwear News via Yahoo, 2024-04-01 | [article](https://www.yahoo.com/lifestyle/tiktok-famous-j-crew-penny-173956205.html) | Re-quotes two anonymous J.Crew shopper reviews; the author does not say they wore it | affiliate ("may receive a commission") | sibling: original BA190 and croc |
 
 **Thin evidence: creator proof is sibling-only.** Zero exact, non-paid
@@ -175,13 +175,17 @@ the end of the section.
 | **Materials:** CH288's upper is "Italian spazzolato leather". Lining, sole, heel height and country of manufacture are not stated on the page as read. | [jcrew.com CH288](https://www.jcrew.com/p/womens/categories/shoes/flats/new-winona-penny-loafers-in-italian-spazzolato-leather/CH288), fetched 2026-09-30 | primary (seller's own) |
 | **Where made:** unknown for CH288. jcrew.com's women's "Made in Italy" shoe filter returned **"zero results"** on 2026-09-30, so no current women's shoe is sold as Italian-made there. "Italian leather" is the material's origin, not the shoe's. | [jcrew.com made-in-italy](https://www.jcrew.com/plp/womens/categories/shoes/made-in-italy), fetched 2026-09-30 | primary; the conclusion that CH288 is **not** made in Italy is an **inference** |
 | **Quality changed:** J.Crew moved flats (the Cece) and loafers (the Cleo, to Brazil) out of Italy while keeping the price. | [Racked, 2014-12-30](https://www.racked.com/2014/12/30/7562971/jcrew-ballet-flats) - **read via search snippet only**, the fetch returned HTTP 500 | reputable report (trade press, citing J.Crew's own product descriptions), **old** |
+| **Same story, and J.Crew's answer:** the Cece moved from Italy to Brazil at the same price; J.Crew said it only removed "a seam by the heel" and used "the same materials and same fit as the original". A shopper: "excessive width… my heel slipping in and out". | [Refinery29, Gina Marinelli, 2015-01-06](https://www.refinery29.com/en-us/2015/01/80365/jcrew-cece-flats-quality-complaints), fetched 2026-09-30; also [StyleCaster](https://stylecaster.com/fashion/fashion/335892/jcrew-quality-cece-ballet-flat/), [Philadelphia Magazine](https://www.phillymag.com/shoppist/2015/01/08/j-crew-scamming-ballet-flats/) (search only) | reputable report (editorial); the shopper quote is opinion. **The case against the "decline" reading:** the brand says only the origin changed, not the make. **Old** - 2014-15 |
 | **Quality changed:** long-time buyers say older Italian-made, leather-soled J.Crew shoes were better than the current ones. | [J.Crew Aficionada, 2009](http://jcrewaficionada.blogspot.com/2009/01/jcrew-quality-up-or-down-and-why.html), [2011](http://jcrewaficionada.blogspot.com/2011/02/made-in-italy-about-jcrew-shoe.html); [PurseForum thread](https://forum.purseblog.com/threads/quality-of-j-crew-shoes.253270/) - search snippets, not fetched | opinion (fan blog, forum) |
 | **Quality changed, recently:** J.Crew's revival since 2020 is credited to its women's creative director; quality of clothing is said to have "never been better". Nothing specific to shoes. | [WWD, 2025](https://wwd.com/business-news/retail/j-crew-libby-wadle-olympia-gayot-women-in-power-2025-1238133540/) and a [Substack](https://bethanyaholmes.substack.com/p/the-new-j-crew-in-soho) - search snippets, not fetched | opinion (company profile and a fan post) |
 | **Durability, CH288:** one leather split after four wears among three reviews read; 4.2 average over 118. | jcrew.com CH288 | opinion (retailer reviews, unverified) |
 | **Construction:** not found. No cut-in-half or construction review of any J.Crew **women's** shoe. The nearest is the men's Ludlow, Goodyear-welted, where one reviewer found a pair "cut through entirely in two spots". | [100wears, Ludlow](https://100wears.com/j-crew-ludlow-penny-loafers-still-a-value-king/) - search snippet, not fetched | opinion; **not the same category of shoe** |
 
 **Reading:** the brand's footwear reputation, in every source found, is
-"used to be Italian-made; now, often not, at the same price". The one
+"used to be Italian-made; now, often not, at the same price". J.Crew's own
+answer in 2015 was that only the origin changed, and no source found
+tested whether it did more. Every dated source is 2014-15 or earlier:
+**nothing found says whether J.Crew footwear quality changed recently**. The one
 current fact that bears on it - no women's shoe in the Made-in-Italy filter
 - is consistent with that, but I did not find where CH288 is made.
 
@@ -292,6 +296,33 @@ marketing, the gap narrows further.
   flat footbed. The next round should then run #108's step on one of those
   roundup flats sold on a named known retailer (Madewell Greta on
   `madewell.com`, or the Felicia on `nordstrom.com`) before offering it.
+
+### The strongest argument against, looked for
+
+*"Try in store first" is a non-answer: both shoes can be bought online and
+returned, so the store trip adds nothing a return would not.* It is
+partly right for the Winona - its reviews are about fit, and a return
+settles fit too. It is weaker for the Margot, where the open question is
+the footbed and width, which a store's range of sizes and neighbouring
+models (the Plain, the Mary Jane) settles in one visit and a return in
+several. I looked for the case that would make either a clean **buy**: a
+long-term organic wear report on either model (none), a construction test
+of either brand's dress shoes (none), and a regret report on either exact
+model (only Khaylee's split). The absence cuts both ways, so neither is a
+buy on evidence.
+
+### What would flip it
+
+- **Winona to buy:** the jcrew.com reviews beyond the three read show no
+  second split and a fit consensus. **To swap:** a second early split, or
+  a stated origin plus a construction a reviewer tested below the price.
+- **Margot to swap:** the try-on confirms narrow or flat, or us.ecco.com
+  becomes readable and shows a cemented sole or a thin review record. **To
+  buy:** us.ecco.com shows a substantial review count on the Bow with wear
+  durations.
+- **Either brand to "worth investing in":** a reputable construction test
+  (a cut-in-half review, or a publication's long-term wear test) of that
+  brand's women's dress shoes. None exists in what this run could find.
 
 ## Not reachable
 
