@@ -1,8 +1,22 @@
 # NFL 2026 week 4 sit/start - games 9-16 (incl. Monday Falcons at Saints)
 
-> **In progress.** Games 1-6 are complete below. Games 7-8, the week synthesis and the full game-time decision list are being filled in on this branch, in kickoff order.
-
 **Scoring assumption:** 12-team, half-PPR, one-QB; starting QB / 2 RB / 2-3 WR / TE / FLEX / D/ST. Where a call flips in full PPR or superflex, the reason says so in one clause.
+
+## Week synthesis
+
+This half of week 4 splits on where the points are. Lions at Panthers (50.5), Chiefs at Raiders (48.5) and Falcons at Saints (48.5) are the games to want players from. Dolphins at Vikings (38.5) and Titans at Ravens (43.5) are the two lopsided lines, Minnesota -10 and Baltimore -11.5, where the home running back and defense start and most of the visiting offense sits. Every status here was read on Wednesday 2026-09-30, before any official practice report for these eight games was posted, so the game-time decision list matters as much as the calls.
+
+**Strongest starts.** Derrick Henry (game 2): 301 rushing yards and 6 TDs in three games, as an 11.5-point home favorite. Amon-Ra St. Brown (game 7): a 32.4% target share in the highest-total game, against a secondary without Jaycee Horn. Bijan Robinson (game 8): 29 carries for 194 yards in week 3, against a defense allowing 27.7 points a game. Vikings D/ST (game 3): NBC's #1, facing a Miami offense implied for 14.25.
+
+**Riskiest sits.** Justin Herbert (game 5): QB22 and QB26 in weeks 1-2 and 8 sacks taken, now on an 18.5 implied total against the #2 D/ST. Kirk Cousins (game 4): an NFL-high 9 TD passes, but a Kansas City defense 4th in points allowed. Kyle Pitts Sr. (game 8): the matchup looks good, but he drew 2 targets in week 3 on a 76% route share.
+
+**Sleepers.** Jacory Croskey-Merritt (game 1): 20 touches in week 3, and Rachaad White sat out Wednesday. Oronde Gadsden (game 5): the Chargers' TE by default, his snaps climbing 18%, 44%, 57%. Devaughn Vele (game 8): 22 targets on 88-96% of snaps in the league's second-busiest offense.
+
+**Likely busts.** Mark Andrews (game 2): 3 catches for 24 yards in a three-way TE split, and a hand injury. Kyler Murray (game 3): 168 yards in week 3 on the league's lowest pass rate. Xavier Worthy (game 4): targets falling 6, 7, 2 while Rashee Rice's rise. Alvin Kamara (game 8): the named replacement for the injured Travis Etienne Jr., but he played 32% of snaps last week.
+
+**Before lineups lock.** Justin Jefferson (game 3), Mike Evans (game 6), Brock Bowers (game 4) and Jayden Daniels (game 1) carry the biggest swings, and each has a pivot on the list below. Monday's statuses are not final until Saturday 2026-10-03, after every Sunday game has been set.
+
+## How this was read
 
 **Date read:** every line, status and number below was read on 2026-09-30, the Wednesday of week 4. The official [NFL.com week 4 injury report](https://www.nfl.com/injuries/league/2026/reg4) (full page, read 2026-09-30) had entries only for Thursday's Steelers at Browns when read; no Wednesday practice report for any game in this document was posted yet. Statuses therefore come from the freshest team or news item, each dated and linked.
 
