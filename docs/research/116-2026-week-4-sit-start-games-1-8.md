@@ -500,3 +500,255 @@ for Sunday was found.
 The Cowboys.com box score showed no individual stats and a different final
 score (34-26 against 34-31 elsewhere). The CBS BAL@DAL gametracker listed
 players who do not match the Cowboys' snap list. Neither page is cited.
+
+## 6. Cardinals at Giants - Sun 2026-10-04, 1:00 PM ET, CBS
+
+**Line (CBS/DraftKings, full, read 2026-09-30):** Cardinals -1 (road
+favorite), total 44.5. **Implied totals:** Cardinals 22.75, Giants 21.75.
+[4for4's every-game preview](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)
+**(full)**, dated 2026-09-30, quotes ARI -1.5 with the same total, which gives
+23.0 and 21.5.
+
+**Pace and tilt (4for4, full):** Arizona threw to 47 team targets in week 3
+and ran 87 offensive snaps. That is its most snaps since 2022, per
+[azcardinals.com](https://www.azcardinals.com/news/so-many-snaps-for-so-many-cardinals-on-offense-2026-49ers)
+**(full)**, dated 2026-09-28. The Giants passed 19.4% below expectation, with
+21 targets against 32 carries. Jameis Winston's 5.7 air yards per attempt
+were the league's lowest in week 3.
+
+**Injuries.** The Wednesday report was not yet posted. The latest injury list
+is [SI's week 4 preview](https://www.si.com/betting/cardinals-vs-giants-prediction-odds-spread-injuries-trends-for-nfl-week-4-2026)
+**(full)**, dated 2026-09-29.
+
+- Cardinals: no fantasy-relevant injuries.
+- Giants:
+  - QB Jaxson Dart is on IR after knee surgery
+    ([giants.com](https://www.giants.com/news/instant-analysis-giants-defeat-titans-12-7),
+    full).
+  - Edge Brian Burns is out with a torn ACL
+    ([Big Blue Interactive](https://bigblueinteractive.com/2026/09/29/game-review-new-york-giants-12-tennessee-titans-7/)
+    **(full)**, 2026-09-29).
+  - RB Devin Singletary is questionable (SI).
+  - WR Malik Nabers dislocated his shoulder in week 2 and was taken off the
+    report before week 3
+    ([NBC injury report](https://www.nbcsports.com/fantasy/football/news/2026-nfl-week-4-injury-report-achane-acl-baker-thumb-jefferson-ankle-breece-hall-quad-and-more),
+    full).
+
+**Usage.**
+
+- Arizona's week 3 snaps come from
+  [Yahoo/Cardinals Wire](https://sports.yahoo.com/articles/arizona-cardinals-week-3-offensive-030118143.html)
+  **(full)**, dated 2026-09-29.
+- The Giants' week 3 stats come from Big Blue Interactive **(full)** and NBC
+  player notes **(full)**, with snap splits from 4for4 **(full)**.
+- The two sources disagree on Michael Wilson's week 3 targets: Yahoo says 17,
+  4for4 says 16.
+
+**Weather:** 65°F at kickoff, 28% chance of rain, wind 8 mph **(summary)**,
+from a search that surfaced
+[RotoWire's weather page](https://www.rotowire.com/football/weather.php).
+No calls rest on it.
+
+### Cardinals
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Jacoby Brissett | **Sit** | 38 of 52 for 280 yards and 2 TDs in week 3 ([Yahoo](https://sports.yahoo.com/articles/arizona-cardinals-week-3-offensive-030118143.html)), but a 22.75 implied total ([CBS](https://www.cbssports.com/betting/news/week-4-nfl-betting-odds-lines-totals-spreads/)) is a QB2 outcome in one-QB leagues. In superflex he is a start on the volume. |
+| RB Jeremiyah Love | **Start** | He had 21 carries to Allgeier's 2, plus 5 targets, on 64% of snaps ([Fantasy Six Pack](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/)), and the Giants allow the 13th-most RB fantasy points ([FantasyPros](https://www.fantasypros.com/nfl/notes/444783/jeremiyah-love-2026-week-4-outlook.php)). |
+| RB Tyler Allgeier | **Sit** | 2 carries on 36% of snaps in week 3 ([Fantasy Six Pack](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/)); his path is the goal line, where he has 6 of the 9 snaps this season ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)). |
+| WR Michael Wilson | **Start** | 17 targets, 11 catches, 89 yards and a TD on 93% of snaps in week 3 ([Yahoo](https://sports.yahoo.com/articles/arizona-cardinals-week-3-offensive-030118143.html); 4for4 counts 16 targets), against a Giants defense with no takeaways ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)). |
+| WR Marvin Harrison Jr. | **Flex** | 77% of snaps but 5 targets in week 3 ([Yahoo](https://sports.yahoo.com/articles/arizona-cardinals-week-3-offensive-030118143.html)), under 80% of snaps for a third straight game ([azcardinals.com](https://www.azcardinals.com/news/so-many-snaps-for-so-many-cardinals-on-offense-2026-49ers)); the team's 47-target volume keeps him in range. |
+| WR Kendrick Bourne | **Sit** | 55% of snaps as the WR3 ([Yahoo](https://sports.yahoo.com/articles/arizona-cardinals-week-3-offensive-030118143.html)), behind two pass catchers who drew 28 targets between them. |
+| TE Trey McBride | **Start** | 11 targets, 9 catches for 75 yards on 91% of snaps in week 3 ([Yahoo](https://sports.yahoo.com/articles/arizona-cardinals-week-3-offensive-030118143.html)). |
+| D/ST Cardinals | **Sit** | Ranked 16th of 32 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)), and Arizona allows the most yards per play in the league ([SI](https://www.si.com/betting/cardinals-vs-giants-prediction-odds-spread-injuries-trends-for-nfl-week-4-2026)). |
+
+### Giants
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Jameis Winston | **Sit** | 14 of 22 for 118 yards and 0 TDs in his first start for Dart ([Big Blue Interactive](https://bigblueinteractive.com/2026/09/29/game-review-new-york-giants-12-tennessee-titans-7/)), with the league's lowest air yards per attempt in week 3, 5.7 ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)). Still a sit in superflex. |
+| RB Cam Skattebo | **Start** | 76.6% of snaps, 20 carries for 60 yards and 3 catches for 40 in week 3 ([SI](https://www.si.com/betting/cardinals-vs-giants-prediction-odds-spread-injuries-trends-for-nfl-week-4-2026)), 49 snaps to Harris's 14 ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)). |
+| RB Najee Harris | **Sit** | 9 carries for 52 yards ([giants.com](https://www.giants.com/news/instant-analysis-giants-defeat-titans-12-7)) on 14 snaps ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)), a change-of-pace role. |
+| WR Malik Nabers | **Flex** | A team-high 27% target share, but 5 catches for 26 yards ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/nabers-goes-5-26-in-quiet-week-3-performance)) on a 0.9-yard average depth of target ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)). In full PPR the short volume plays up. |
+| WR Malachi Fields | **Sit** | 2 catches for 19 yards ([Big Blue Interactive](https://bigblueinteractive.com/2026/09/29/game-review-new-york-giants-12-tennessee-titans-7/)); his 44 snaps and 2 targets are **(summary)** only, from a search that did not name its page. |
+| WR Darnell Mooney | **Sit** | 2 catches on 3 targets for 26 yards, and "exactly two catches in each of his first three games" ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/mooney-catches-two-passes-for-20-yards-in-week-3)). |
+| TE Isaiah Likely | **Start** | 5 targets for a 23% share in week 3 ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/likely-cools-off-with-two-catches-vs-titans)) on a 91% route rate, top-5 among TEs ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)), after 13 catches in weeks 1-2. |
+| D/ST Giants | **Sit** | Ranked 24th of 32 with no takeaways all season ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)), and now without Brian Burns. |
+
+**Searched for and not found:**
+
+- A full Giants week 3 snap table: FantasyPros returned no table, the Yahoo
+  Giants Wire article was an image, and Athlon returned 403.
+- Bourne's week 3 targets.
+- Arizona's red-zone split beyond 4for4's goal-line figure.
+
+## 7. Rams at Eagles - Sun 2026-10-04, 1:00 PM ET, FOX
+
+**Line (CBS/DraftKings, full, read 2026-09-30):** Rams -3 (road favorite),
+total 44. **Implied totals:** Rams 23.5, Eagles 20.5. 4for4 **(full)** quotes
+a total of 43.5, which gives 23.25 and 20.25.
+
+**Pace and tilt (4for4, full):**
+
+- The Rams passed 5.9% above expectation in week 3, with 48 targets against
+  21 carries.
+- The Eagles ran 47 plays from scrimmage in week 3 while Chicago held the ball
+  37 minutes to 23
+  ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-28/makai-lemon-quiet-again-in-week-3-loss-to-bears),
+  full).
+- The Rams' defense ranks 1st in completion percentage over expected
+  allowed.
+
+**Injuries.** The Wednesday report was not yet posted, so these are the
+latest statuses from news pages.
+
+- Rams, per
+  [Yahoo/Rams Wire](https://sports.yahoo.com/articles/injuries-taking-toll-rams-head-172129263.html)
+  **(full)**, 2026-09-29:
+  - WR Puka Nacua (hip/groin) is questionable after missing two games.
+    McVay says "there's optimism that he'll be able to play this week."
+    He did not practice the week before
+    ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-28/mcvay-hopeful-puka-nacua-will-play-in-week-4),
+    full, 2026-09-28).
+  - TE Terrance Ferguson (ankle) is out.
+  - TE Colby Parkinson (AC joint) is uncertain.
+  - CB Jaylen Watson (dislocated shoulder) is out.
+- Eagles:
+  - QB Jalen Hurts had a concussion evaluation in week 3 and "quickly
+    returned"
+    ([Inquirer](https://www.inquirer.com/eagles/live/eagles-news-injury-report-next-game-jalen-hurts-20260929.html)
+    **(full)**, 2026-09-30).
+  - TE Dallas Goedert (MCL sprain) is "expected to miss a few weeks" (NBC
+    injury report, full).
+  - WR Hollywood Brown (ankle) was out in week 3.
+
+**Usage.**
+
+- Rams snap shares:
+  [Yahoo/Rams Wire](https://sports.yahoo.com/articles/rams-week-3-snap-counts-203053088.html)
+  **(full)**, 2026-09-28.
+- Eagles snap shares:
+  [Yahoo/Eagles Wire](https://sports.yahoo.com/articles/eagles-snap-counts-vs-bears-130754670.html)
+  **(full)**, 2026-09-28.
+- Rams targets: Fantasy Six Pack and 4for4, both **(full)**.
+- Stafford's week 3 yardage is 390 per NBC and 403 per an NFL.com video
+  title. The document uses 390.
+
+**Weather:** 87°F with a 43% chance of rain **(summary)**. The temperature is
+implausible for Philadelphia in October and no page read confirmed it, so
+treat it as unverified. No calls rest on it.
+
+### Rams
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Matthew Stafford | **Start** | 30 of 55 for 390 yards and 2 TDs in week 3 ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-28/stafford-rams-fall-just-short-in-wild-finish)), with a 23.5 implied total ([CBS](https://www.cbssports.com/betting/news/week-4-nfl-betting-odds-lines-totals-spreads/)) against a defense with no takeaways ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)). |
+| RB Kyren Williams | **Start** | 71% of snaps ([Yahoo](https://sports.yahoo.com/articles/rams-week-3-snap-counts-203053088.html)), 15 carries for 88 yards and 6 catches for 70 in week 3, and Corum has no red-zone carry all season ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-28/another-rb1-outing-for-kyren-williams-in-loss)). |
+| RB Blake Corum | **Sit** | 29% of snaps ([Yahoo](https://sports.yahoo.com/articles/rams-week-3-snap-counts-203053088.html)) and 6 carries for 15 yards, with zero red-zone carries through three weeks ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-28/another-rb1-outing-for-kyren-williams-in-loss)). |
+| WR Davante Adams | **Start** | 13 targets and 137 yards on 83% of snaps in week 3 ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it); [Yahoo](https://sports.yahoo.com/articles/rams-week-3-snap-counts-203053088.html)), with a 34% target share in Footballguys' free table ([Footballguys](https://www.footballguys.com/article/2026-the-targets-report-week03)). |
+| WR Puka Nacua | **Flex** | Questionable (hip/groin) after two missed games and no practice the week before ([Yahoo](https://sports.yahoo.com/articles/injuries-taking-toll-rams-head-172129263.html), 2026-09-29); a first game back can come with a snap limit. **Game-time decision.** |
+| WR Konata Mumpfield | **Sit** | 8 targets on 73% of snaps in week 3 ([Fantasy Six Pack](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/); [Yahoo](https://sports.yahoo.com/articles/rams-week-3-snap-counts-203053088.html)) came with Nacua out. **Depends on Nacua.** |
+| TE Tyler Higbee | **Start** | 11 targets on 71% of snaps in week 3, after 2 in weeks 1-2 ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it); [Yahoo](https://sports.yahoo.com/articles/rams-week-3-snap-counts-203053088.html)), with Ferguson out and Parkinson uncertain. **Depends on Parkinson.** |
+| D/ST Rams | **Sit** | Ranked 15th of 32 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)), and without starting CB Jaylen Watson. |
+
+### Eagles
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Jalen Hurts | **Start** | His rushing TD saved a week 3 of 16 of 25 for 153 yards and 1 INT ([Yahoo](https://sports.yahoo.com/articles/eagles-snap-counts-vs-bears-130754670.html)), and a 20.5 implied total against the league's best CPOE-allowed defense ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)) makes him a low-end QB1 on the legs. |
+| RB Saquon Barkley | **Start** | 72% of snaps and 15 carries for 82 yards in week 3 ([Yahoo](https://sports.yahoo.com/articles/eagles-snap-counts-vs-bears-130754670.html)), with every RB carry ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)). |
+| RB Will Shipley | **Sit** | 26% of snaps in week 3 ([Yahoo](https://sports.yahoo.com/articles/eagles-snap-counts-vs-bears-130754670.html)), behind a back who took every RB carry. |
+| WR DeVonta Smith | **Flex** | 100% of snaps, 6 catches for 85 yards ([Yahoo](https://sports.yahoo.com/articles/eagles-snap-counts-vs-bears-130754670.html)) and 8 of the team's 24 targets ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)), but the Rams lead the league in passes defended at 4.33 a game ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)). In full PPR he is a start. |
+| WR Dontayvion Wicks | **Sit** | 88% of snaps ([Yahoo](https://sports.yahoo.com/articles/eagles-snap-counts-vs-bears-130754670.html)) in an offense that ran 47 plays; his 5 targets are **(summary)** only. |
+| WR Makai Lemon | **Sit** | 3 catches on 4 targets for 29 yards on 70% of snaps ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-28/makai-lemon-quiet-again-in-week-3-loss-to-bears); [Yahoo](https://sports.yahoo.com/articles/eagles-snap-counts-vs-bears-130754670.html)). |
+| TE Johnny Mundt | **Sit** | He led a three-way committee at 52% of snaps against Ertz's 38% and Jenkins's 26% with Goedert out ([Yahoo](https://sports.yahoo.com/articles/eagles-snap-counts-vs-bears-130754670.html)). |
+| D/ST Eagles | **Sit** | Ranked 18th of 32 with no takeaways through three games ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)), against a 23.5 implied total. |
+
+**Searched for and not found:**
+
+- Week 3 targets for Eagles pass catchers other than Smith and Lemon.
+- Hurts's week 3 rushing line.
+- Fantasy points allowed by position for either defense.
+- A Kyren Williams page on SI turned out to be dated 2025 and is not cited.
+
+## 8. Packers at Buccaneers - Sun 2026-10-04, 1:00 PM ET, FOX
+
+**Line (CBS/DraftKings, full, read 2026-09-30):** Packers -4 (road
+favorite), total 39.5. **Implied totals:** Packers 21.75, Buccaneers 17.75.
+4for4 **(full)** quotes GB -3.5, which gives 21.5 and 18.0.
+
+**Pace and tilt (4for4, full):** Green Bay passed 11.6% above expectation in
+week 3, 7th in the league. It had 48 targets against 9 carries, and its backs
+took 8 of those carries.
+[SI](https://www.si.com/betting/packers-vs-buccaneers-prediction-odds-spread-injuries-trends-for-nfl-week-4-2026)
+**(full)**, about 2026-09-29, has three more numbers:
+
+- Green Bay averages 3.0 yards per carry, the league's worst.
+- Tampa Bay's offense is last in EPA per play.
+- Tampa Bay's defense is 6th in EPA per play and top-10 against the run.
+
+**Injuries.** The Wednesday report was not yet posted, so these are the
+latest statuses from news pages.
+
+- **Packers**
+  - RB Josh Jacobs is on the Commissioner's Exempt List (SI).
+  - WR Jayden Reed is questionable, and "likely to go on the injured reserve"
+    ([Yahoo/Acme Packing Company](https://sports.yahoo.com/articles/packers-snap-counts-week-3-041054752.html)
+    **(full)**, 2026-09-25).
+- **Buccaneers**
+  - QB Baker Mayfield (dislocated thumb) is out for "a minimum of three
+    weeks," and undrafted rookie Jalon Daniels starts
+    ([NFL.com](https://www.nfl.com/news/buccaneers-qb-baker-mayfield-thumb-out-at-least-three-weeks-jalon-daniels)
+    **(full)**, 2026-09-28).
+  - WR Jalen McMillan is on IR
+    ([buccaneers.com](https://www.buccaneers.com/news/bucs-lose-minnesota-vikings-week-3-2026-score-23-16),
+    full).
+  - RB Bucky Irving missed much of the fourth quarter with a possible
+    lower-body injury, but Bowles says he "is not on the team's injury
+    report"
+    ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/bucky-irving-gets-dinged-up-in-week-3-loss),
+    full, 2026-09-27).
+
+**Usage.**
+
+- Packers week 3 snaps: [Yahoo/APC](https://sports.yahoo.com/articles/packers-snap-counts-week-3-041054752.html)
+  **(full)**. The team ran 63 offensive snaps in a Thursday game.
+- Bucs week 3 snaps: [Pewter Report](https://www.pewterreport.com/week-3-snap-count-analysis-bucs-vs-vikings/)
+  **(full)**, 2026-09-28. It gives counts, not percentages.
+
+**Weather:** two search-summary forecasts conflict, 1% and 73% chance of rain
+**(summary)**. No calls rest on either.
+
+### Packers
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Jordan Love | **Start** | 28 of 53 for 312 yards and 2 TDs in week 3 ([packers.com](https://www.packers.com/news/in-game-updates-week-3-falcons-2026)), in an offense 7th in pass rate over expectation, against a defense opponents pass on at the 5th-highest rate over expectation ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)); the 39.5 total caps his ceiling. |
+| RB Chris Brooks | **Sit** | The most RB snaps, 26 of 63 ([Yahoo](https://sports.yahoo.com/articles/packers-snap-counts-week-3-041054752.html)), in a backfield with 8 carries between them, against a top-10 run defense ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)). |
+| RB Kaleb Johnson | **Sit** | 22 of 63 snaps ([Yahoo](https://sports.yahoo.com/articles/packers-snap-counts-week-3-041054752.html)) for a team averaging a league-worst 3.0 yards per carry ([SI](https://www.si.com/betting/packers-vs-buccaneers-prediction-odds-spread-injuries-trends-for-nfl-week-4-2026)). |
+| WR Christian Watson | **Start** | 7 catches on 10 targets for 96 yards and a TD, his 4th TD in three games ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-24/christian-watson-scores-again-in-blowout-loss)), on 51 of 63 snaps ([Yahoo](https://sports.yahoo.com/articles/packers-snap-counts-week-3-041054752.html)). |
+| WR Matthew Golden | **Start** | 5 catches for 100 yards and a TD in week 3 ([packers.com](https://www.packers.com/news/in-game-updates-week-3-falcons-2026)) on 51 of 63 snaps ([Yahoo](https://sports.yahoo.com/articles/packers-snap-counts-week-3-041054752.html)), and the team lead in targets over three weeks ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-24/christian-watson-scores-again-in-blowout-loss)). |
+| WR Skyy Moore | **Sit** | 32 of 63 snaps as the WR3 ([Yahoo](https://sports.yahoo.com/articles/packers-snap-counts-week-3-041054752.html)), behind two receivers who take the volume. |
+| TE Tucker Kraft | **Start** | 8 targets on 49 of 63 snaps in week 3 ([Footballguys](https://www.footballguys.com/article/2026-what-you-need-to-know-week04); [Yahoo](https://sports.yahoo.com/articles/packers-snap-counts-week-3-041054752.html)), though they produced only 4 catches for 26 yards. |
+| D/ST Packers | **Start** | Only ranked 14th of 32 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)), but they face an undrafted rookie making his first start, who went 0 for 3 with an INT in relief ([NFL.com](https://www.nfl.com/news/buccaneers-qb-baker-mayfield-thumb-out-at-least-three-weeks-jalon-daniels)), behind a line that allowed 6 sacks in week 3 ([buccaneers.com](https://www.buccaneers.com/news/bucs-lose-minnesota-vikings-week-3-2026-score-23-16)), and a 17.75 implied total. |
+
+### Buccaneers
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Jalon Daniels | **Sit** | This is his first NFL start, after going 0 for 3 with an INT in relief ([NFL.com](https://www.nfl.com/news/buccaneers-qb-baker-mayfield-thumb-out-at-least-three-weeks-jalon-daniels)), and his team's 17.75 implied total is the lowest of these 16 teams ([CBS](https://www.cbssports.com/betting/news/week-4-nfl-betting-odds-lines-totals-spreads/)). He is still a sit in superflex. |
+| RB Bucky Irving | **Flex** | 15 carries for 46 yards and 2 catches in week 3 ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/bucky-irving-gets-dinged-up-in-week-3-loss)), but only 36 snaps to Gainwell's 32 ([Pewter Report](https://www.pewterreport.com/week-3-snap-count-analysis-bucs-vs-vikings/)), and he sat much of the fourth quarter. **Game-time decision.** |
+| RB Kenneth Gainwell | **Sit** | 32 snaps ([Pewter Report](https://www.pewterreport.com/week-3-snap-count-analysis-bucs-vs-vikings/)); his 2 catches on 5 targets are **(summary)** only. In full PPR he is a deep-league flex if Irving sits. |
+| WR Emeka Egbuka | **Flex** | 9 targets, the team high, and 5 catches for 62 yards on 51 snaps ([Pewter Report](https://www.pewterreport.com/week-3-snap-count-analysis-bucs-vs-vikings/)), now catching from a rookie in his first start. |
+| WR Ted Hurst III | **Sit** | A team-high 52 WR snaps ([Pewter Report](https://www.pewterreport.com/week-3-snap-count-analysis-bucs-vs-vikings/)), but his 40-yard TD was his only catch, on 3 targets. The 1-for-3 figure is **(summary)** only; the TD is confirmed by [buccaneers.com](https://www.buccaneers.com/news/bucs-lose-minnesota-vikings-week-3-2026-score-23-16). |
+| WR Chris Godwin Jr. | **Sit** | 3 catches for 25 yards on 43 snaps, with a TD called back ([Pewter Report](https://www.pewterreport.com/week-3-snap-count-analysis-bucs-vs-vikings/)). |
+| TE Cade Otton | **Sit** | 94% of snaps ([Pewter Report](https://www.pewterreport.com/week-3-snap-count-analysis-bucs-vs-vikings/)) turned into 3 catches on 6 targets, most of the yardage on one 37-yard catch ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/three-grabs-56-yards-for-cade-otton)), with Mayfield out. In full PPR he is a streaming TE2. |
+| D/ST Buccaneers | **Start** | Ranked 11th of 32 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers)) and 6th in defensive EPA per play ([SI](https://www.si.com/betting/packers-vs-buccaneers-prediction-odds-spread-injuries-trends-for-nfl-week-4-2026)), against a line that allowed 15 quick pressures in week 3 ([4for4](https://www.4for4.com/2026/w4/fantasy-football-week-4-start-em-sit-em-every-game-previewed-hoopes-there-it)). |
+
+**Searched for and not found:**
+
+- Golden's exact week 3 targets. 4for4 says only "8+", so no number is used.
+- Packers week 3 carries by back.
+- Bucs snap percentages.
+- Red-zone splits for either team.
+- Mike Evans, who is not mentioned on any Bucs page read.
