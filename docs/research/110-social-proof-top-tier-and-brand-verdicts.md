@@ -309,6 +309,65 @@ of resoling. At $625 for a cemented flat with a partly textile upper, "worth
 investing in" is not shown. "Skip" would need the consumer durability
 complaints confirmed, and those are about sandal siblings.
 
+### BY FAR (wishlist)
+
+| Topic | Claim | Source | Label |
+|---|---|---|---|
+| Materials | "conscious Italian materials" and "dead stock leather for your handmade shoes" | [Metal Magazine, Nicole Sijbers](https://metalmagazine.eu/en/post/by-far-conscious-made-shoes-that-will-last-in-style), undated, fetched | opinion (brand-sourced interview) |
+| Materials | The current About page makes neither claim; it says only "crafted in Europe with an uncompromising focus on quality" | [byfar.com, About](https://www.byfar.com/pages/about), fetched | opinion (brand's own claim) |
+| Construction | **Method not found.** The factory's own account mentions switching to "water-based adhesives", which shows glue is used and not that the sole is only glued | [Bulgarian Development Bank case study](https://bbr.bg/en/about-us/successful-projects-bbr/from-peshtera-to-hollywood-a-journey-of-success/), undated, fetched | opinion (a lender's profile of its borrower) |
+| Construction | A Dima sandal's heel came off after minimal wear, "minimal traces of glue and only on the edges"; another buyer calls a sole "flimsy, plastic like", "beaten up after a few days" | [Trustpilot](https://www.trustpilot.com/review/www.byfar.com), search snippet | opinion (consumer; not the Prudence) |
+| Where made | Factory **INGILIZ**, Peshtera, Bulgaria, family-run, making "molds, uppers, soles, and insoles" in-house; BY FAR is its best-known client | Bulgarian Development Bank, as above | reputable report, weak (a state bank naming its borrower's client; undated) |
+| Where made | Founding story with a Peshtera shoe factory | [Endeavor Bulgaria, 2019-10-07](https://bulgaria.endeavor.org/our-favorite-story-by-far/), fetched | opinion (brand-sourced profile) |
+| **Quality changed recently** | "Today their collections are produced in small factories throughout Europe" (2021). Set against 2019's Bulgaria-only story and today's "crafted in Europe", this fits production moving beyond one Bulgarian factory. **Inference, not confirmed.** | [Capital, 2021-11-08](https://kinsights.capital.bg/economy/2021/11/08/4276660_textiles_clothing_footwear_virus_in_the_model/), **HTTP 403**, search snippet | reputable report (Bulgarian business weekly) if the snippet is right; the change is an **inference** |
+| Durability | **No independent test found.** Consumer reports above are the only durability evidence. | - | - |
+
+**Discarded:** Farfetch, LN-CC, Bona Drag, shoppreservation.com
+(stockists); growyourclothingbrand.com (content farm); directory pages;
+ingiliz.com (the factory's own, not read). **Unreachable:** Footwear News,
+"Bulgaria's Best New Footwear Brand Is Powered by Instagram"
+([footwearnews.com](https://footwearnews.com/business/business/by-far-shoes-brand-bulgaria-instagram-social-influencers-266739/)),
+redirected via wwd.com to `tollbit.wwd.com` (HTTP 307, not followed).
+**Not found:** any investment or ownership change (three queries).
+
+**Verdict: fine for the price** - weakly, and **no reputable test of BY
+FAR shoes exists**. For it: a real, named, vertically integrated factory
+(if the bank's account is current). Against it: the Italian and dead-stock
+leather claims are the brand's own and are no longer on its site, the only
+construction clue is glue, the only durability reports are glued heels and
+soles failing, and where the shoes are made now is unsettled. At about
+$695, "worth investing in" is not shown; "skip" would need the failures
+shown on the shoes the owner wants rather than on sandals.
+
+### Dear Frances (wishlist)
+
+**Price correction:** the Topo Bootie is **$695** on
+[dearfrances.com](https://dearfrances.com/products/topo-bootie-black)
+(fetched 2026-09-30), not the $400 [#107 §4](104-social-proof-and-brand-verdicts.md#4-against-the-wishlist-tier-quality-per-dollar)
+carried from #101.
+
+| Topic | Claim | Source | Label |
+|---|---|---|---|
+| Materials | Topo Bootie: "Nappa leather upper", "Leather lined", "Buffed leather outsole", lacquered 4.5 cm heel; "finest Italian leathers", tannery not named | [dearfrances.com, Topo Bootie](https://dearfrances.com/products/topo-bootie-black), fetched; [Italian craftsmanship](https://dearfrances.com/pages/italian-craftsmanship), fetched | opinion (brand's own claim) |
+| Construction | "Made by hand", "age-old techniques"; **method not stated** (Blake, sacchetto or cemented; resoleable or not) | product page, as above | opinion (brand's own claim); method **not found** |
+| Where made | "Produced in Italy in the same factory where Frances honed her design skills", in **Vigevano**; boots then $550 | [Fashion Week Daily, Paige Reddinger, 2016-03-01](https://fashionweekdaily.com/british-footwear-dear-frances-us-launch/), fetched | reputable report (trade press) for the town, **old** and in the founder's words |
+| Where made | "Made in Italy and designed in London", "a multi-generational artisan factory in Italy" | [dearfrances.com, About](https://dearfrances.com/pages/about-the-brand), fetched | opinion (brand's own claim) |
+| Durability | Harlow Pump worn "a week straight": "moulded to my foot", "genuinely comfortable", runs wide | [Marie Claire Australia, Maddison Hockey, 2023-05-31](https://www.marieclaire.com.au/fashion/dear-frances-review/), fetched | opinion (one-week try-on, affiliate; not a durability test) |
+| Durability | Park Boots fine after two years; sandal leather peeling after a couple of months | Trustpilot, Thingtesting, search snippets | opinion (consumer, split) |
+| **Quality changed recently** | **Not found.** Boot prices rose from $550 (2016) to $695 (2026); nothing says whether the factory or make changed. | Fashion Week Daily; product page | reputable report for the two prices |
+
+**Discarded:** honestbrandreviews.com, collected.reviews (content farms);
+Garmentory, 1stdibs, Fashiola (stockists); dearfrances.com's own reviews
+page; Refinery29 and Who What Wear collection pieces (promotion, seen in
+search). **Unreachable:** PurseForum "Dear Frances boots opinions"
+(HTTP 403).
+
+**Verdict: fine for the price** - weakly, and **no reputable test of Dear
+Frances shoes exists**. For it: an Italian origin that trade press tied to
+Vigevano, and a full-leather build per the brand. Against it: that press
+is from 2016, the construction method is unstated, and the only editorial
+wear was a week.
+
 ## J.Crew and ECCO: verdicts carried from #107, not re-researched
 
 **No query or fetch was run for either brand in this document.**
