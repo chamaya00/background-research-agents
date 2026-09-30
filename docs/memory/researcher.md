@@ -26,6 +26,8 @@ Delete any lesson that has graduated into a test, a lint rule, or a type.
   the list from what you cited - #21 did this in its revision round and found
   that `hpcwire.com` 403s, so an item it had cited as corroboration had never
   been read. A citation list records what you meant to read; only a re-fetch
-  records what you got.
+  records what you got. Re-fetch load-bearing quotes too: in #113 a second
+  fetch of the same page dropped a factory town, a style number and a
+  "heating machines" detail the first summary had supplied.
 - Reddit is unreachable from a run - WebSearch rejects `allowed_domains: reddit.com` and WebFetch refuses `reddit.com` and `redditinc.com` (#106) - so do not plan an approach on it; say so once and ask for owner-pasted threads.
 - When a run needs a file from the web and `curl` is refused, WebFetch saves binary responses (images) to a local path that Read can open - #86 ran its vision test that way; do not report "cannot test on an image" before trying it.
