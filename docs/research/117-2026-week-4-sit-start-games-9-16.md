@@ -1,6 +1,6 @@
 # NFL 2026 week 4 sit/start - games 9-16 (incl. Monday Falcons at Saints)
 
-> **In progress.** Games 1-4 are complete below. Games 5-8, the week synthesis and the full game-time decision list are being filled in on this branch, in kickoff order.
+> **In progress.** Games 1-6 are complete below. Games 7-8, the week synthesis and the full game-time decision list are being filled in on this branch, in kickoff order.
 
 **Scoring assumption:** 12-team, half-PPR, one-QB; starting QB / 2 RB / 2-3 WR / TE / FLEX / D/ST. Where a call flips in full PPR or superflex, the reason says so in one clause.
 
@@ -27,6 +27,8 @@ Every player below has a call that depends on a status not yet final as of 2026-
 | Caleb Douglas (MIA, WR) | 3 | Ankle; missed week 3; no week 4 practice status - same NBC report (full page) | Malik Washington (10 targets in week 3 without Douglas). |
 | Brock Bowers (LV, TE) | 4 | Meniscus trim 2026-09-08; limited and questionable last week, then played; no week 4 practice status - [FFC news](https://fantasyfootballcalculator.com/players/brock-bowers/news) (full page) | Michael Mayer (81-87% of snaps, 15.9% target share before Bowers returned). |
 | Ashton Jeanty (LV, RB) | 4 | Ankle "questionable for Week 4" per one NBC line; unconfirmed by any injury report - [NBC D/ST rankings, 2026-09-29](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers) (full page) | Another team's RB; neither Heyward nor Washington Jr. is startable. |
+| Jadarian Price (SEA, RB) | 5 | Shoulder, left week 3 early; "He'll practice this week"; no designation - [Seahawks.com](https://www.seahawks.com/news/updates-on-sam-darnold-jadarian-price-other-seahawks-injuries) (search summary) | Emanuel Wilson, same team (9 carries in week 3), though no Seattle back is a start. |
+| Mike Evans (SF, WR) | 6 | Rib strain, day-to-day, not ruled out; SI lists questionable - [49ers Webzone, 2026-09-28](https://www.49erswebzone.com/articles/203712-injury-updates-williams-others-shanahan/) (full page) | George Kittle or Deebo Samuel Sr., same team, whose targets rise if Evans sits. |
 
 ## Schedule
 
@@ -289,3 +291,125 @@ The Raiders' WR3 is close: Cody White out-snapped Bech in week 3 (21% to 16%) an
 - 2026 red-zone shares. A search summary carried red-zone numbers for Rice, Worthy and Kelce but could not be tied to 2026 (it calls Worthy the "WR2 behind Kelce"), so it was not used.
 - Rush shares as a table: the Footballguys rushing pages returned 404, so carry counts come from news items.
 - Any confirmed week 4 Jeanty ankle issue beyond NBC's D/ST line.
+
+### 5. Chargers at Seahawks
+
+**Kickoff:** Sun 2026-10-04, 4:25 PM ET, CBS.
+
+**Line:** Seahawks -6.5, total 43.5; implied Seahawks 25.0, Chargers 18.5 (computed). [Sportsbook Review](https://www.sportsbookreview.com/picks/nfl/week-4-odds-betting-lines-2026/), bet365, page dated 2026-09-28, read 2026-09-30 (full page).
+
+**Injuries and practice status** (read 2026-09-30; no Wednesday report was posted for either team, so these are Monday and Tuesday items):
+
+- **Charlie Kolar (LAC, TE):** forearm surgery, not placed on IR; the Chargers hope for a return before the week 7 bye, so he is effectively out - [NBC Sports week 4 injury report, 2026-09-29](https://www.nbcsports.com/fantasy/football/news/2026-nfl-week-4-injury-report-achane-acl-baker-thumb-jefferson-ankle-breece-hall-quad-and-more) (full page); timeline from [ESPN](https://www.espn.com/nfl/story/_/id/50014963/in-reversal-chargers-not-placing-tight-end-charlie-kolar-injured-reserve) (search summary). The Chargers' [unofficial depth chart, 2026-09-29](https://www.chargers.com/news/depth-chart-2026-season) (full page) still lists him as the starter; he played 0 snaps in week 3, so that listing is stale.
+- **David Njoku (LAC, TE):** on IR since week 3 (fibula). **Brenen Thompson (LAC, WR):** hip, out in week 3, no week 4 update. Both from the same NBC report (full page).
+- **Chargers' line:** Trey Pipkins III placed on IR - [NBC](https://www.nbcsports.com/fantasy/football/news/2026-nfl-week-4-injury-report-achane-acl-baker-thumb-jefferson-ankle-breece-hall-quad-and-more) (search summary); NBC's D/ST piece says the line is "missing starters" - [NBC D/ST rankings](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers) (full page).
+- **Jadarian Price (SEA, RB):** shoulder, left week 3 early; Macdonald on 2026-09-28: "He'll practice this week." No designation yet - [Seahawks.com](https://www.seahawks.com/news/updates-on-sam-darnold-jadarian-price-other-seahawks-injuries) (search summary). The full [Seahawks.com 2026-09-28 update](https://www.seahawks.com/news/julian-love-day-to-day-other-seahawks-injury-updates) (full page) does not mention him.
+- **Seahawks, other:** S Julian Love (calf) day-to-day; S Ty Okada (hamstring) too soon to say; RB Zach Charbonnet on PUP and ineligible until after week 4 - same full Seahawks.com update. QB Sam Darnold (glute) returned in week 3 and played 67 of 67 snaps - [Footballguys, SEA snaps](https://www.footballguys.com/stats/snap-counts/teams?team=SEA&year=2026) (full page).
+
+**Usage, weeks 1-3:**
+
+- **Chargers snaps** ([Footballguys, LAC](https://www.footballguys.com/stats/snap-counts/teams?team=LAC&year=2026), full page): Quentin Johnston 78/81/87%, Tre' Harris 75/82/58%, Ladd McConkey 49/46/88%. TE Oronde Gadsden 18/44/57% as Kolar went from 62% to 0. Omarion Hampton 58/63/42%.
+- **Chargers week 3:** targets Harris 7 (6-76), Johnston 6 (3-40), McConkey 5 (4-66) on 32 routes, tied for the team lead - [DraftSharks](https://www.draftsharks.com/fantasy-football-news/82945/ladd-mcconkeys-all-the-way-back-minus-production) (full page). Hampton 15 carries for 56 yards and 1 target on 6 routes; Keaton Mitchell ran 14 routes, Kimani Vidal 13 - [DraftSharks](https://www.draftsharks.com/fantasy-football-news/82948/chargers-spread-backfield-work-to-annoying-degree) (full page). Mitchell 8-52 and a 1-yard receiving TD; 1 TD on 4 red-zone trips - [Chargers.com](https://www.chargers.com/news/seahawks-week-4-fantasy-2026) (full page).
+- **Herbert to McConkey** through week 2: 8 of 10 for 117 yards - [Sharp week 3 Chargers-Bills worksheet](https://www.sharpfootballanalysis.com/fantasy/chargers-bills-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/) (full page).
+- **Seahawks passing:** Jaxon Smith-Njigba averages 9.0 catches, 135.0 yards and 2.0 TDs per game, with 14 targets (10-128-2) in week 3 - [Yahoo](https://sports.yahoo.com/articles/jaxon-smith-njigba-totals-128-012740709.html) (full page). Darnold 31 of 45, 379 yards, 4 TDs, 2 INTs in week 3 - [Seahawks.com](https://www.seahawks.com/news/sam-darnold-throws-for-career-high-379-yards-in-return-laments-turnovers-in-loss-to-commanders) (search summary). Week 3 snaps: AJ Barner 91%, JSN 87%, Cooper Kupp 67%, Rashid Shaheed 46% - [SI](https://www.si.com/nfl/seahawks/onsi/seahawks-week-3-snap-counts-offense-heavy-defense-relies-starters) (full page).
+- **Seahawks backfield,** a three-way committee: season snaps Price 67, George Holani 65, Emanuel Wilson 56 - [Footballguys, SEA](https://www.footballguys.com/stats/snap-counts/teams?team=SEA&year=2026) (full page). Week 3: Wilson 9-14, Price 5-15 with his second lost fumble in two games, Holani 3-10 plus 5-48 receiving - [RotoWire](https://www.rotowire.com/football/headlines/emanuel-wilson-news-struggles-as-rusher-vs-washington-639925) (search summary).
+
+**Matchup:**
+
+- **Seahawks defense:** NBC's #2 D/ST - "first in first downs allowed per game ... third in points per game, and third in pressure rate"; Chargers D/ST #22 - [NBC D/ST rankings](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers) (full page). Seattle has allowed the fourth-fewest PPR points to WRs - [SI](https://www.si.com/onsi/fantasy/start-em-sit-em/cleveland-browns-and-3-other-week-4-fantasy-football-must-start-defenses) (search summary).
+- **Seattle through week 2:** 3.8 yards per play allowed (1st), 8.5 points allowed per game (2nd), no plays of 20+ yards; 53.9% rush rate (2nd) at 57.5 plays per game (22nd) - [Sharp week 3 Seahawks-Commanders worksheet](https://www.sharpfootballanalysis.com/fantasy/seahawks-commanders-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/) (full page). Darnold's return makes that rush rate less reliable.
+- **Chargers through week 2:** 14.0 points per game (29th), 56.5 plays per game (24th), 53.1% pass rate, 26.0 points allowed per game - [Sharp Chargers-Bills worksheet](https://www.sharpfootballanalysis.com/fantasy/chargers-bills-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/) (full page). Herbert has been sacked 8 times in three games - [NBC player news](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/herbert-has-another-mediocre-game-in-week-3-loss) (search summary).
+
+**Weather:** Lumen Field is open-air; 64°F, 0% precipitation, light wind - [RotoWire weather](https://www.rotowire.com/football/weather.php) (full page). Not a factor.
+
+**Calls**
+
+| Player | Team | Pos | Call | Reason |
+|---|---|---|---|---|
+| Justin Herbert | LAC | QB | **Sit** | He finished QB22 and QB26 in weeks 1-2 ([Sharp](https://www.sharpfootballanalysis.com/fantasy/chargers-bills-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), full page) and has taken 8 sacks ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/herbert-has-another-mediocre-game-in-week-3-loss), search summary), now on an 18.5 implied total against the #2 D/ST; a reluctant QB2 in superflex. |
+| Omarion Hampton | LAC | RB | **Flex** | He still leads the carries (15 in week 3) but his snaps fell to 42% on 6 routes ([DraftSharks](https://www.draftsharks.com/fantasy-football-news/82948/chargers-spread-backfield-work-to-annoying-degree), full page), against a defense allowing 3.8 yards per play ([Sharp](https://www.sharpfootballanalysis.com/fantasy/seahawks-commanders-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), full page). |
+| Keaton Mitchell | LAC | RB | **Sit** | He ran 14 routes and scored in week 3 ([DraftSharks](https://www.draftsharks.com/fantasy-football-news/82948/chargers-spread-backfield-work-to-annoying-degree), full page) but three backs split an 18.5-point offense; a deep flex in full PPR. |
+| Ladd McConkey | LAC | WR | **Flex** | His snaps jumped to 88% in week 3 ([Footballguys](https://www.footballguys.com/stats/snap-counts/teams?team=LAC&year=2026), full page) and Herbert was 8 of 10 to him for 117 yards through week 2 ([Sharp](https://www.sharpfootballanalysis.com/fantasy/chargers-bills-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), full page). |
+| Quentin Johnston | LAC | WR | **Sit** | Despite 87% of snaps he caught 3 for 40 on 6 targets in week 3 ([DraftSharks](https://www.draftsharks.com/fantasy-football-news/82945/ladd-mcconkeys-all-the-way-back-minus-production), full page), and Seattle has allowed the fourth-fewest PPR points to WRs ([SI](https://www.si.com/onsi/fantasy/start-em-sit-em/cleveland-browns-and-3-other-week-4-fantasy-football-must-start-defenses), search summary). |
+| Tre' Harris | LAC | WR | **Sit** | He led the team with 7 targets in week 3 but his snaps fell from 82% to 58% ([Footballguys](https://www.footballguys.com/stats/snap-counts/teams?team=LAC&year=2026), full page), and Seattle allowed no 20+ yard plays through week 2 ([Sharp](https://www.sharpfootballanalysis.com/fantasy/seahawks-commanders-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), full page). |
+| Oronde Gadsden | LAC | TE | **Start** | With Njoku on IR and Kolar out after surgery ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-nfl-week-4-injury-report-achane-acl-baker-thumb-jefferson-ankle-breece-hall-quad-and-more), full page), his snaps have climbed 18%, 44%, 57% ([Footballguys](https://www.footballguys.com/stats/snap-counts/teams?team=LAC&year=2026), full page); a low-end TE1 on volume. |
+| Chargers D/ST | LAC | D/ST | **Sit** | NBC ranks them #22 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers), full page) and Seattle is implied for 25.0. |
+| Sam Darnold | SEA | QB | **Start** | He threw for 379 yards and 4 TDs in his week 3 return ([Seahawks.com](https://www.seahawks.com/news/sam-darnold-throws-for-career-high-379-yards-in-return-laments-turnovers-in-loss-to-commanders), search summary), at home on a 25.0 implied total against a defense allowing 26.0 points per game through week 2 ([Sharp](https://www.sharpfootballanalysis.com/fantasy/chargers-bills-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), full page). |
+| Jadarian Price | SEA | RB | **Sit** | His snaps fell 48%, 34%, 28% ([Footballguys](https://www.footballguys.com/stats/snap-counts/teams?team=SEA&year=2026), full page) and he lost a fumble in two straight games before hurting his shoulder ([RotoWire](https://www.rotowire.com/football/headlines/emanuel-wilson-news-struggles-as-rusher-vs-washington-639925), search summary). GTD - see list. |
+| George Holani | SEA | RB | **Sit** | He is the committee's receiving back, 5-48 on 5 targets in week 3 ([RotoWire](https://www.rotowire.com/football/headlines/emanuel-wilson-news-struggles-as-rusher-vs-washington-639925), search summary), on 36% of snaps ([SI](https://www.si.com/nfl/seahawks/onsi/seahawks-week-3-snap-counts-offense-heavy-defense-relies-starters), full page); a deep flex in full PPR. |
+| Jaxon Smith-Njigba | SEA | WR | **Start** | He averages 9.0 catches, 135.0 yards and 2.0 TDs per game and drew 14 targets in week 3 ([Yahoo](https://sports.yahoo.com/articles/jaxon-smith-njigba-totals-128-012740709.html), full page). |
+| Cooper Kupp | SEA | WR | **Flex** | His snaps rebounded to 67% with Darnold back ([SI](https://www.si.com/nfl/seahawks/onsi/seahawks-week-3-snap-counts-offense-heavy-defense-relies-starters), full page), but no target count was found for him and he is at best third in line behind JSN and Barner. |
+| Rashid Shaheed | SEA | WR | **Sit** | His snaps fell 66%, 56%, 46% ([Footballguys](https://www.footballguys.com/stats/snap-counts/teams?team=SEA&year=2026), full page); a boom-or-bust deep threat only. |
+| AJ Barner | SEA | TE | **Start** | He played 91% of snaps in week 3 and 161 of 187 on the season ([Footballguys](https://www.footballguys.com/stats/snap-counts/teams?team=SEA&year=2026), full page) in an offense implied for 25.0. |
+| Seahawks D/ST | SEA | D/ST | **Start** | NBC's #2 D/ST is third in pressure rate and faces a line missing starters ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers), full page), and Herbert has taken 8 sacks ([NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-09-27/herbert-has-another-mediocre-game-in-week-3-loss), search summary). |
+
+Seattle's backfield is a genuine three-way split: Wilson (56 season snaps) led it with 9 carries in week 3 and would take early downs if Price is limited. None of the three is a start.
+
+**Searched for and not found:**
+
+- Sharp's week 4 Chargers-Seahawks worksheet: listed on the [worksheet hub](https://www.sharpfootballanalysis.com/fantasy/the-worksheet/) (full page) without a link; the guessed URL returned 404.
+- Target counts or shares for Kupp, Shaheed and Barner, and red-zone targets for any Seahawks pass-catcher.
+- Fantasy points allowed by position for the Chargers' defense.
+- Chargers target shares for weeks 1-2, beyond the Herbert-to-McConkey line.
+
+### 6. Broncos at 49ers
+
+**Kickoff:** Sun 2026-10-04, 4:25 PM ET, CBS.
+
+**Line:** 49ers -2.5, total 46.5; implied 49ers 24.5, Broncos 22.0 (computed). [Sportsbook Review](https://www.sportsbookreview.com/picks/nfl/week-4-odds-betting-lines-2026/), bet365, page dated 2026-09-28, read 2026-09-30 (full page).
+
+**Injuries and practice status** (read 2026-09-30; no Wednesday report was found for either team, so these are 2026-09-28 and 2026-09-29 items):
+
+- **Mike Evans (SF, WR):** rib strain, left week 3 early, day-to-day. Shanahan: "It shouldn't be long-term. We've got to see how it goes throughout the week." - [49ers Webzone, 2026-09-28](https://www.49erswebzone.com/articles/203712-injury-updates-williams-others-shanahan/) (full page). "Might be able to return to practice later this week" - [PrizePicks, 2026-09-29](https://www.prizepicks.com/playbook-article/mike-evans-injury-update-is-49ers-wr-playing-this-week-vs-broncos) (full page). [SI's preview](https://www.si.com/betting/broncos-vs-49ers-prediction-odds-spread-injuries-trends-for-nfl-week-4-2026) (full page) lists him questionable. A PFT item headlined "Evans will not practice on Wednesday" is dated 2026-09-23, week 3, and is not this week's.
+- **Nick Bosa (SF, DE):** **out** for week 4 with a calf strain, expected to miss "a few weeks" - [CBS Sports, 2026-09-28](https://www.cbssports.com/fantasy/football/news/49ers-nick-bosa-ruled-out-for-week-4/) (full page). DT James Thompson Jr. is also out (high-ankle sprain) - [49ers Webzone](https://www.49erswebzone.com/articles/203712-injury-updates-williams-others-shanahan/) (full page).
+- **49ers WR depth:** Demarcus Robinson is on IR - [SI](https://www.si.com/betting/broncos-vs-49ers-prediction-odds-spread-injuries-trends-for-nfl-week-4-2026) (full page); Ricky Pearsall had season-ending knee surgery - [NBC](https://www.nbcsports.com/fantasy/football/player-news/2026-07-30/pearsall-knee-unlikely-to-contribute-in-2026) (search summary).
+- **Jonah Coleman (DEN, RB):** short-term IR (ankle), eligible to return mid-October - [NBC Sports week 4 injury report, 2026-09-29](https://www.nbcsports.com/fantasy/football/news/2026-nfl-week-4-injury-report-achane-acl-baker-thumb-jefferson-ankle-breece-hall-quad-and-more) (full page). **Marvin Mims Jr. (DEN, WR):** foot, inactive weeks 2-3; SI lists him questionable (full page).
+- **Christian McCaffrey and George Kittle:** no week 4 injury item found; both played 83-85% of snaps in week 3.
+
+**Usage, weeks 1-3:**
+
+- **Broncos snaps** ([Footballguys, DEN](https://www.footballguys.com/stats/snap-counts/teams?team=DEN&year=2026), full page): Bo Nix 100%. Courtland Sutton 76/73/87%, Jaylen Waddle 75/61/73%, Pat Bryant 59/66/70%, Evan Engram 63/52/60%. J.K. Dobbins 43/34/49%, RJ Harvey 51/0/36% (missed week 2).
+- **Broncos target share** through week 3: Waddle 23%, Sutton 18%, Harvey 13%, Bryant 10%, Engram 9%, Dobbins 2%. In week 3 Dobbins had 17 carries, Harvey 7 targets on 47% route participation - [RotoWire week 3 box-score breakdown, 2026-09-28](https://www.rotowire.com/football/article/nfl-box-score-breakdown-rams-broncos-recap-usage-stats-snf-137298) (full page).
+- **Broncos pace and tilt:** 53.0 plays per game (28th), 59.4% pass rate (9th); Sutton targeted on a career-low 15.8% of routes through week 2 - [Sharp week 3 Rams-Broncos worksheet](https://www.sharpfootballanalysis.com/fantasy/rams-broncos-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/) (full page).
+- **49ers snaps** ([Footballguys, SF](https://www.footballguys.com/stats/snap-counts/teams?team=SF&year=2026), full page): Brock Purdy 100/85/100%. McCaffrey 55/52/83%, Kaelon Black 43/33/15%. Kittle 46/48/85%. Deebo Samuel Sr. 42/60/76%, Evans 75/54/33% (hurt in week 3), KhaDarel Hodge 2/38/56%.
+- **49ers week 3:** McCaffrey 65% of carries plus 5 targets; Kittle 7 targets on 25 routes; Evans 6 targets on 12 routes before leaving; Hodge 13 routes, 0 targets - [Fantasy Six Pack week 3 usage report, 2026-09-29](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/) (full page). Season target share Evans 19.75%, Samuel 13.58% - [PrizePicks](https://www.prizepicks.com/playbook-article/mike-evans-injury-update-is-49ers-wr-playing-this-week-vs-broncos) (full page; other figures on that page disagree with each other, so treat these with caution).
+- **49ers pace and tilt:** 56.5 plays per game (24th), 49.6% pass rate (27th), league-best 53.4% success rate through week 2 - [Sharp week 3 Cardinals-49ers worksheet](https://www.sharpfootballanalysis.com/fantasy/cardinals-49ers-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/) (full page, paywalled after the intro).
+
+**Matchup:**
+
+- Both offenses are slow (28th and 24th in plays per game) and the total is 46.5: Denver passes more, San Francisco runs more - Sharp worksheets above (full page).
+- The 49ers' run defense has been "middling all year" and Bosa is out; Denver is 24th in EPA per play on offense. NBC ranks the 49ers D/ST 12th and the Broncos 23rd - [NBC D/ST rankings, 2026-09-29](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers) (full page).
+- San Francisco is 3-0 and first in EPA per play; Denver's defense is 10th in EPA per pass - [SI](https://www.si.com/betting/broncos-vs-49ers-prediction-odds-spread-injuries-trends-for-nfl-week-4-2026) (full page).
+
+**Weather:** Levi's Stadium is open-air; sunny, 82°F, 3% precipitation, light breeze - [RotoWire weather](https://www.rotowire.com/football/weather.php) (full page). Not a factor.
+
+**Calls**
+
+| Player | Team | Pos | Call | Reason |
+|---|---|---|---|---|
+| Brock Purdy | SF | QB | **Start** | San Francisco is implied for 24.5 ([SBR](https://www.sportsbookreview.com/picks/nfl/week-4-odds-betting-lines-2026/), full page) and led the league with a 53.4% success rate ([Sharp](https://www.sharpfootballanalysis.com/fantasy/cardinals-49ers-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), full page), even at a 49.6% pass rate. |
+| Christian McCaffrey | SF | RB | **Start** | He played 83% of snaps and took 65% of carries plus 5 targets in week 3 ([Fantasy Six Pack](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/), full page), with no week 4 injury item found. |
+| Kaelon Black | SF | RB | **Sit** | His snap share fell from 43% to 15% ([Footballguys](https://www.footballguys.com/stats/snap-counts/teams?team=SF&year=2026), full page). |
+| Deebo Samuel Sr. | SF | WR | **Flex** | His snaps rose to 76% in week 3 ([Footballguys](https://www.footballguys.com/stats/snap-counts/teams?team=SF&year=2026), full page) but a 13.58% target share ([PrizePicks](https://www.prizepicks.com/playbook-article/mike-evans-injury-update-is-49ers-wr-playing-this-week-vs-broncos), full page) on a run-leaning team caps him; he gains if Evans sits. |
+| Mike Evans | SF | WR | **Flex** | He had 6 targets on only 12 routes in week 3 before the rib strain left him day-to-day ([49ers Webzone](https://www.49erswebzone.com/articles/203712-injury-updates-williams-others-shanahan/), full page); a start if he practises fully by Friday. GTD - see list. |
+| KhaDarel Hodge | SF | WR | **Sit** | He ran 13 routes and drew 0 targets in week 3 ([Fantasy Six Pack](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/), full page). |
+| George Kittle | SF | TE | **Start** | He was back to 85% of snaps with 7 targets on 25 routes in week 3 ([Fantasy Six Pack](https://fantasysixpack.net/2026-fantasy-football-usage-report-week-3/), full page), and his role grows if Evans sits. |
+| 49ers D/ST | SF | D/ST | **Start** | A streaming start only: NBC ranks them 12th with Bosa out, but Denver is 24th in EPA per play ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers), full page). |
+| Bo Nix | DEN | QB | **Sit** | Denver is implied for 22.0 and 24th in EPA per play, and Nix had his worst completion rate of the season in week 3 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers), full page); a start in superflex. |
+| J.K. Dobbins | DEN | RB | **Flex** | He had 17 carries in week 3 but a 2% target share ([RotoWire](https://www.rotowire.com/football/article/nfl-box-score-breakdown-rams-broncos-recap-usage-stats-snf-137298), full page), so he is touchdown-dependent against a run defense missing Bosa. |
+| RJ Harvey | DEN | RB | **Flex** | He drew 7 targets on 47% route participation in week 3 and has a 13% target share ([RotoWire](https://www.rotowire.com/football/article/nfl-box-score-breakdown-rams-broncos-recap-usage-stats-snf-137298), full page); a solid flex in full PPR. |
+| Jaylen Waddle | DEN | WR | **Start** | His 23% target share leads the team ([RotoWire](https://www.rotowire.com/football/article/nfl-box-score-breakdown-rams-broncos-recap-usage-stats-snf-137298), full page) on a 59.4% pass rate ([Sharp](https://www.sharpfootballanalysis.com/fantasy/rams-broncos-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), full page), even after 10 yards in week 3. |
+| Courtland Sutton | DEN | WR | **Flex** | He played 87% of snaps with an 18% target share ([RotoWire](https://www.rotowire.com/football/article/nfl-box-score-breakdown-rams-broncos-recap-usage-stats-snf-137298), full page) but was targeted on a career-low 15.8% of routes ([Sharp](https://www.sharpfootballanalysis.com/fantasy/rams-broncos-week-3-fantasy-football-preview-nfl-worksheet-rich-hribar-2026/), full page). |
+| Pat Bryant | DEN | WR | **Sit** | He has a 10% target share and got 2 targets in week 3 despite 74% route participation ([RotoWire](https://www.rotowire.com/football/article/nfl-box-score-breakdown-rams-broncos-recap-usage-stats-snf-137298), full page). |
+| Evan Engram | DEN | TE | **Sit** | He has a 9% target share and 0 yards on 2 targets in week 3 ([RotoWire](https://www.rotowire.com/football/article/nfl-box-score-breakdown-rams-broncos-recap-usage-stats-snf-137298), full page). |
+| Broncos D/ST | DEN | D/ST | **Sit** | NBC ranks them 23rd at San Francisco, which is implied for 24.5 ([NBC](https://www.nbcsports.com/fantasy/football/news/2026-fantasy-football-week-4-defense-dst-rankings-and-streamers), full page). |
+
+San Francisco's WR3 is unsettled with Robinson on IR and Pearsall out: Hodge (56% of week 3 snaps), Jacob Cowing (31%) and Jordan Watkins (28%, 2-60 in week 3) are all candidates, and all Sits. Kyle Juszczyk played 56% of week 3 snaps as a fullback, so Black is the RB2 here.
+
+**Searched for and not found:**
+
+- Sharp's week 4 Broncos-49ers worksheet: listed on the [worksheet hub](https://www.sharpfootballanalysis.com/fantasy/the-worksheet/) (full page) without a link; the guessed URL returned 404.
+- A status for Mims beyond SI's "questionable".
+- Fantasy points allowed by position for either defense; the Sharp defense-vs-position table did not render.
+- Red-zone shares beyond one McCaffrey red-zone carry and one Evans end-zone target in week 3.
+- 49ers target shares from a source that is internally consistent.
