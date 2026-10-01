@@ -15,6 +15,8 @@ Real rows, copied byte for byte, from nflverse data releases, for #125's tests (
 | `injuries_2026.csv` | CLE and PIT rows, week 4 (10) | `releases/download/injuries/injuries_2026.csv` (106,657 bytes) | `408a873e9a80993f46e073697e7fd3f04894778b28ae23250090440e71106a07` |
 | `games.csv` | 2026 season, weeks 1-4 (64) | `releases/download/schedules/games.csv` (2,182,349 bytes) | `0a4b3a2d425bd3fa5b18302c27c3f380307d21c3779d759498654c799f439a49` |
 
+| `stats_player_week_2026.blank-player.csv` | The only 3 rows in the full file with an empty `player_id`, `player_display_name` and `position` (source rows 1118, 2225, 3339: SEA week 1, BUF week 2, ATL week 3). They are team-level rows carrying penalties, and one `def_safeties`. | same file as `stats_player_week_2026.csv` | same |
+
 Each fixture keeps the source file's header line unchanged.
 
 **Values the fixtures were checked to contain:**
