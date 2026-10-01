@@ -66,6 +66,43 @@ describe("usage table", () => {
     expect(fannin.last_week.snap_share).toBeCloseTo(0.8571, 4);
   });
 
+  describe("snap join fallback", () => {
+    const isFannin = (s: ParsedRows["snap_counts"][number]) =>
+      s.team === "CLE" && s.week === 3 && s.player.includes("Fannin");
+    const withSnaps = (rows: ParsedRows, snap_counts: ParsedRows["snap_counts"]): ParsedRows => ({ ...rows, snap_counts });
+    const fanninOf = (rows: ParsedRows) => buildUsage(rows, 2026, 4).find((u) => u.player_id === FANNIN)!;
+
+    it("matches on position and last name when the full name differs, and the game stays known", async () => {
+      const { rows } = await load();
+      const renamed = rows.snap_counts.map((s) => (isFannin(s) ? { ...s, player: "Hal Fannin" } : s));
+      const fannin = fanninOf(withSnaps(rows, renamed));
+      expect(fannin.last_week.snaps).toBe(60);
+      expect(fannin.last_week.team_snaps).toBe(70);
+      expect(fannin.last_week.snap_unmatched_games).toBe(0);
+    });
+
+    it("treats a game with no snap row as unknown, not zero", async () => {
+      const { rows } = await load();
+      const fannin = fanninOf(withSnaps(rows, rows.snap_counts.filter((s) => !isFannin(s))));
+      expect(fannin.pooled.snaps).toBe(92);
+      expect(fannin.pooled.team_snaps).toBe(109);
+      expect(fannin.pooled.snap_unmatched_games).toBe(1);
+      expect(fannin.last_week.snaps).toBe(0);
+      expect(fannin.last_week.team_snaps).toBe(0);
+      expect(fannin.last_week.snap_unmatched_games).toBe(1);
+    });
+
+    it("declines the fallback when two snap rows share the last name", async () => {
+      const { rows } = await load();
+      const original = rows.snap_counts.find(isFannin)!;
+      const renamed = rows.snap_counts.map((s) => (s === original ? { ...s, player: "Hal Fannin" } : s));
+      const twin = { ...original, player: "Other Fannin", pfr_player_id: "TwinXX00" };
+      const fannin = fanninOf(withSnaps(rows, [...renamed, twin]));
+      expect(fannin.last_week.snap_unmatched_games).toBe(1);
+      expect(fannin.last_week.snaps).toBe(0);
+    });
+  });
+
   it("skips team-level rows with no player", async () => {
     const { rows } = await load();
     const blank = parseInputs([

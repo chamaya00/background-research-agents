@@ -25,6 +25,7 @@ export interface Usage {
   snaps: number;
   team_snaps: number;
   snap_share: number | null;
+  snap_unmatched_games: number;
   receptions: number;
   half_ppr_points: number;
 }
@@ -92,6 +93,8 @@ export const nameKey = (name: string | null): string =>
     .filter((w) => w !== "" && !["jr", "sr", "ii", "iii", "iv", "v"].includes(w))
     .join(" ");
 
+const lastWord = (key: string): string => key.split(" ").pop() ?? "";
+
 const round = (n: number, dp = 4): number => Math.round(n * 10 ** dp) / 10 ** dp;
 const share = (n: number, d: number): number | null => (d > 0 ? round(n / d) : null);
 
@@ -119,12 +122,16 @@ export function buildUsage(rows: ParsedRows, season: number, week: number): Usag
   // Team snaps for a game: the maximum offense_snaps among that team's rows.
   const teamSnaps = new Map<string, number>();
   const snapsByPlayer = new Map<string, number>();
+  const snapsByRole = new Map<string, number[]>();
   for (const s of rows.snap_counts) {
     if (s.week >= week || !s.game_id.startsWith(`${season}_`)) continue;
     const tk = `${s.game_id}|${s.team}`;
     teamSnaps.set(tk, Math.max(teamSnaps.get(tk) ?? 0, s.offense_snaps));
     // The join to stats is by name: snap counts carry no gsis player id.
     snapsByPlayer.set(`${tk}|${nameKey(s.player)}`, s.offense_snaps);
+    // Fallback for nicknames ("Kenny" / "Kenneth"): same game, team, position and last word of the name.
+    const fk = `${tk}|${s.position ?? ""}|${lastWord(nameKey(s.player))}`;
+    snapsByRole.set(fk, [...(snapsByRole.get(fk) ?? []), s.offense_snaps]);
   }
 
   const byPlayer = new Map<string, StatsPlayerRow[]>();
@@ -134,7 +141,7 @@ export function buildUsage(rows: ParsedRows, season: number, week: number): Usag
   }
 
   const usageOf = (games: StatsPlayerRow[]): Usage => {
-    const u = { t: 0, tt: 0, a: 0, ta: 0, c: 0, tc: 0, s: 0, ts: 0, rec: 0, pts: 0 };
+    const u = { t: 0, tt: 0, a: 0, ta: 0, c: 0, tc: 0, s: 0, ts: 0, um: 0, rec: 0, pts: 0 };
     for (const r of games) {
       const tk = `${r.game_id}|${r.team}`;
       u.t += r.targets;
@@ -143,8 +150,20 @@ export function buildUsage(rows: ParsedRows, season: number, week: number): Usag
       u.ta += teamAir.get(tk) ?? 0;
       u.c += r.carries;
       u.tc += teamCarries.get(tk) ?? 0;
-      u.s += snapsByPlayer.get(`${tk}|${nameKey(r.player_display_name)}`) ?? 0;
-      u.ts += teamSnaps.get(tk) ?? 0;
+      const key = nameKey(r.player_display_name);
+      let snaps = snapsByPlayer.get(`${tk}|${key}`);
+      if (snaps === undefined) {
+        // Only an unambiguous fallback match counts.
+        const cands = snapsByRole.get(`${tk}|${r.position ?? ""}|${lastWord(key)}`);
+        if (cands?.length === 1) snaps = cands[0];
+      }
+      if (snaps === undefined) {
+        // Unknown, not zero: the game adds nothing to snaps or team_snaps.
+        u.um += 1;
+      } else {
+        u.s += snaps;
+        u.ts += teamSnaps.get(tk) ?? 0;
+      }
       u.rec += r.receptions;
       u.pts += halfPpr(r);
     }
@@ -161,6 +180,7 @@ export function buildUsage(rows: ParsedRows, season: number, week: number): Usag
       snaps: u.s,
       team_snaps: u.ts,
       snap_share: share(u.s, u.ts),
+      snap_unmatched_games: u.um,
       receptions: u.rec,
       half_ppr_points: round(u.pts, 2),
     };

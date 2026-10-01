@@ -39,8 +39,12 @@ allowed; their targets, carries and air yards are 0, so team totals are unaffect
 gsis id, so snaps join to stats on (`game_id`, `team`, name). Names are compared
 lowercased, without punctuation and without a generational suffix, because the
 files disagree ("Harold Fannin" in snaps, "Harold Fannin Jr." in stats). A
-player with a stats row and no matching snap row gets 0 snaps; a snap row with no
-stats row is not listed in the usage table.
+name still misses nicknames ("Kenny" / "Kenneth" Gainwell), so when it misses the
+join falls back to (`game_id`, `team`, `position`, last word of the name) and uses
+that only when exactly one snap row matches. A game with no match from either
+join is unknown, not zero: it adds nothing to `snaps` or `team_snaps`, and is
+counted in `snap_unmatched_games`. A snap row with no stats row is not listed in
+the usage table.
 
 **Tables.**
 
@@ -48,7 +52,7 @@ stats row is not listed in the usage table.
    blocks, `pooled` (weeks 1..W-1) and `last_week` (week W-1 alone, plus `week`),
    each holding `targets`, `team_targets`, `target_share`, `air_yards`,
    `team_air_yards`, `air_yards_share`, `carries`, `team_carries`, `rush_share`,
-   `snaps`, `team_snaps`, `snap_share`, `receptions`, `half_ppr_points`.
+   `snaps`, `team_snaps`, `snap_share`, `snap_unmatched_games`, `receptions`, `half_ppr_points`.
 2. `points-allowed.json` rows: `defense`, `position` (QB, RB, WR, TE), `games`,
    `points_allowed`, `per_game`, `rank` (1 = most allowed per game; ties share a
    rank). A defense's games are every game it appears in, so a game without a
@@ -74,7 +78,8 @@ FTN-derived is read (the `ftn` column of `games.csv` is not kept by the schema).
 ## Consequences
 
 - A table is reproducible from the listed inputs: same SHA-256s, same output.
-- The name join can mismatch on players whose names differ in more than a suffix;
-  such a player shows 0 snaps. The driver's live run is where that would show.
+- A player whose name matches neither join (or whose fallback is ambiguous) has
+  that game left out of his snap share rather than counted as 0; a report can see
+  how many games through `snap_unmatched_games`.
 - The `rank` is among the defenses that appear in the stats file, which is 32 on
   full files and fewer on fixture slices.
