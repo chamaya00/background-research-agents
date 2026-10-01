@@ -67,10 +67,11 @@ const optNum = z
   .transform((s) => (s === "" || s === "NA" ? null : Number(s)))
   .pipe(z.number().finite().nullable());
 
+// Team-level rows (penalties, safeties) have no player; #128 skips them for usage.
 export const statsPlayerRow = z.object({
-  player_id: text,
-  player_display_name: text,
-  position: text,
+  player_id: optText,
+  player_display_name: optText,
+  position: optText,
   season: num,
   week: num,
   season_type: text,
@@ -81,6 +82,19 @@ export const statsPlayerRow = z.object({
   rushing_yards: num,
   rushing_tds: num,
   targets: num,
+  receptions: num,
+  receiving_yards: num,
+  receiving_tds: num,
+  receiving_air_yards: num,
+  receiving_2pt_conversions: num,
+  rushing_2pt_conversions: num,
+  receiving_fumbles_lost: num,
+  rushing_fumbles_lost: num,
+  passing_yards: num,
+  passing_tds: num,
+  passing_interceptions: num,
+  fantasy_points: num,
+  fantasy_points_ppr: num,
   target_share: optNum,
   air_yards_share: optNum,
 });
@@ -89,7 +103,9 @@ export const snapCountsRow = z.object({
   game_id: text,
   player: text,
   pfr_player_id: text,
+  position: text,
   team: text,
+  opponent: text,
   week: num,
   offense_snaps: num,
   offense_pct: num,
@@ -109,8 +125,14 @@ export const gamesRow = z.object({
   game_id: text,
   season: num,
   week: num,
+  gameday: text,
+  // Empty on 1999 rows of the all-seasons file; set on every 2026 row.
+  gametime: optText,
   home_team: text,
   away_team: text,
+  // Empty until the game is played.
+  home_score: optNum,
+  away_score: optNum,
   spread_line: optNum,
   total_line: optNum,
   roof: optText,

@@ -115,4 +115,32 @@ describe("parsing", () => {
       [3, 9],
     ]);
   });
+
+  it("keeps the fields the weekly tables need on Fannin's week 3 row", () => {
+    const week3 = parseCsv("stats_player", textOf("stats_player")).find(
+      (r) => r.player_id === "00-0040663" && r.week === 3,
+    );
+    expect(week3?.receiving_air_yards).toBe(75);
+    expect((week3!.fantasy_points + week3!.fantasy_points_ppr) / 2).toBeCloseTo(20.6, 6);
+  });
+
+  it("parses team-level rows with no player to a null player_id", () => {
+    const blank = readFileSync(new URL("stats_player_week_2026.blank-player.csv", DIR), "utf8");
+    const rows = parseCsv("stats_player", blank);
+    expect(rows).toHaveLength(3);
+    for (const row of rows) {
+      expect(row.player_id).toBeNull();
+      expect(row.player_display_name).toBeNull();
+      expect(row.position).toBeNull();
+    }
+  });
+
+  it("accepts a game with no kickoff time, as the 1999 rows have", () => {
+    const [header, first, ...rest] = textOf("games").split("\n");
+    const col = header!.split(",").indexOf("gametime");
+    const cells = first!.split(",");
+    cells[col] = "";
+    const games = parseCsv("games", [header, cells.join(","), ...rest].join("\n"));
+    expect(games[0]?.gametime).toBeNull();
+  });
 });
