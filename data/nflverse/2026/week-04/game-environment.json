@@ -1,0 +1,230 @@
+{
+  "attribution": {
+    "source": "nflverse",
+    "url": "https://github.com/nflverse/nflverse-data",
+    "license": "CC-BY 4.0",
+    "notice": "Data © the nflverse project, used under CC-BY 4.0. Derived values; snap counts originate at Pro-Football-Reference."
+  },
+  "inputs": [
+    {
+      "file": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+      "fetchedAt": "2026-10-01T08:16:12.535Z",
+      "sha256": "e293e213908f746db982cd9112f5016125a42eeeec16c4773b35c6cc5edf6327"
+    },
+    {
+      "file": "snap_counts",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
+      "fetchedAt": "2026-10-01T08:16:12.692Z",
+      "sha256": "c5868527b1052ae572b2d8f34a7bb777675a5e762ceaeb25f72f10d1c59846d5"
+    },
+    {
+      "file": "injuries",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
+      "fetchedAt": "2026-10-01T08:16:12.750Z",
+      "sha256": "408a873e9a80993f46e073697e7fd3f04894778b28ae23250090440e71106a07"
+    },
+    {
+      "file": "games",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
+      "fetchedAt": "2026-10-01T08:16:12.898Z",
+      "sha256": "0a4b3a2d425bd3fa5b18302c27c3f380307d21c3779d759498654c799f439a49"
+    }
+  ],
+  "season": 2026,
+  "target_week": 4,
+  "rows": [
+    {
+      "game_id": "2026_04_PIT_CLE",
+      "week": 4,
+      "home_team": "CLE",
+      "away_team": "PIT",
+      "spread_line": -2.5,
+      "total_line": 38.5,
+      "home_implied_total": 18,
+      "away_implied_total": 20.5,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_IND_WAS",
+      "week": 4,
+      "home_team": "WAS",
+      "away_team": "IND",
+      "spread_line": -3.5,
+      "total_line": 47.5,
+      "home_implied_total": 22,
+      "away_implied_total": 25.5,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_TEN_BAL",
+      "week": 4,
+      "home_team": "BAL",
+      "away_team": "TEN",
+      "spread_line": 11.5,
+      "total_line": 42.5,
+      "home_implied_total": 27,
+      "away_implied_total": 15.5,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_NE_BUF",
+      "week": 4,
+      "home_team": "BUF",
+      "away_team": "NE",
+      "spread_line": 6.5,
+      "total_line": 48.5,
+      "home_implied_total": 27.5,
+      "away_implied_total": 21,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_NYJ_CHI",
+      "week": 4,
+      "home_team": "CHI",
+      "away_team": "NYJ",
+      "spread_line": 3.5,
+      "total_line": 43.5,
+      "home_implied_total": 23.5,
+      "away_implied_total": 20,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_JAX_CIN",
+      "week": 4,
+      "home_team": "CIN",
+      "away_team": "JAX",
+      "spread_line": 2.5,
+      "total_line": 51.5,
+      "home_implied_total": 27,
+      "away_implied_total": 24.5,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_DAL_HOU",
+      "week": 4,
+      "home_team": "HOU",
+      "away_team": "DAL",
+      "spread_line": 3,
+      "total_line": 48.5,
+      "home_implied_total": 25.75,
+      "away_implied_total": 22.75,
+      "roof": null,
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_ARI_NYG",
+      "week": 4,
+      "home_team": "NYG",
+      "away_team": "ARI",
+      "spread_line": -2.5,
+      "total_line": 44.5,
+      "home_implied_total": 21,
+      "away_implied_total": 23.5,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_LA_PHI",
+      "week": 4,
+      "home_team": "PHI",
+      "away_team": "LA",
+      "spread_line": -3,
+      "total_line": 43.5,
+      "home_implied_total": 20.25,
+      "away_implied_total": 23.25,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_GB_TB",
+      "week": 4,
+      "home_team": "TB",
+      "away_team": "GB",
+      "spread_line": -3.5,
+      "total_line": 38.5,
+      "home_implied_total": 17.5,
+      "away_implied_total": 21,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_MIA_MIN",
+      "week": 4,
+      "home_team": "MIN",
+      "away_team": "MIA",
+      "spread_line": 10.5,
+      "total_line": 38.5,
+      "home_implied_total": 24.5,
+      "away_implied_total": 14,
+      "roof": "dome",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_KC_LV",
+      "week": 4,
+      "home_team": "LV",
+      "away_team": "KC",
+      "spread_line": -4.5,
+      "total_line": 47.5,
+      "home_implied_total": 21.5,
+      "away_implied_total": 26,
+      "roof": "dome",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_LAC_SEA",
+      "week": 4,
+      "home_team": "SEA",
+      "away_team": "LAC",
+      "spread_line": 7,
+      "total_line": 42.5,
+      "home_implied_total": 24.75,
+      "away_implied_total": 17.75,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_DEN_SF",
+      "week": 4,
+      "home_team": "SF",
+      "away_team": "DEN",
+      "spread_line": 3,
+      "total_line": 47.5,
+      "home_implied_total": 25.25,
+      "away_implied_total": 22.25,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_DET_CAR",
+      "week": 4,
+      "home_team": "CAR",
+      "away_team": "DET",
+      "spread_line": -3.5,
+      "total_line": 51.5,
+      "home_implied_total": 24,
+      "away_implied_total": 27.5,
+      "roof": "outdoors",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    },
+    {
+      "game_id": "2026_04_ATL_NO",
+      "week": 4,
+      "home_team": "NO",
+      "away_team": "ATL",
+      "spread_line": 2.5,
+      "total_line": 47.5,
+      "home_implied_total": 25,
+      "away_implied_total": 22.5,
+      "roof": "dome",
+      "games_read_at": "2026-10-01T08:16:12.898Z"
+    }
+  ]
+}
