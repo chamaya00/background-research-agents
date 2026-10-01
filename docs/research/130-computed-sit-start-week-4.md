@@ -204,6 +204,72 @@ Bengals 27 `game-environment.json:home_implied_total`, Jaguars 24.5
 | TE Mike Gesicki | **Flex** | 27.5 `usage.json:pooled.half_ppr_points` over 2 `usage.json:games`, target share 0.1408 `usage.json:pooled.target_share` and air-yards share 0.1959 `usage.json:pooled.air_yards_share`, on snap share 0.4132 `usage.json:pooled.snap_share` (snap share stands in for routes); Jacksonville allows 6.5 to TEs, rank 26 `points-allowed.json:per_game,rank`. TD-dependent. |
 | D/ST Bengals | **Sit** | Jacksonville is implied for 24.5 `game-environment.json:away_implied_total`; Lawrence has 52.04 `usage.json:pooled.half_ppr_points` in three games; the spread is only 2.5 `game-environment.json:spread_line`. |
 
+### 5. Cowboys at Texans - Sun 13:00 ET [#118 game 5]
+
+Row `2026_04_DAL_HOU`: Texans -3 `game-environment.json:spread_line`, total
+48.5 `game-environment.json:total_line`; Texans 25.75
+`game-environment.json:home_implied_total`, Cowboys 22.75
+`game-environment.json:away_implied_total`. `roof` is null in the table.
+
+**Cowboys**
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Dak Prescott | **Start** | 63.1 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (21.0 a game) against Houston's 19.91 to QBs, rank 7 `points-allowed.json:per_game,rank`, on a 22.75 `game-environment.json:away_implied_total`. |
+| RB Javonte Williams | **Start** | Rush share 0.6232 `usage.json:pooled.rush_share` on 0.754 `usage.json:pooled.snap_share`, 45.5 `usage.json:pooled.half_ppr_points` over 3 games; volume over Houston's 10.33 to RBs, rank 31 `points-allowed.json:per_game,rank`, which makes him an RB2 rather than an RB1. |
+| RB Tyler Goodson | **Sit** | One game: rush share 0.2 `usage.json:pooled.rush_share`, snap share 0.1486 `usage.json:pooled.snap_share`, 2.2 `usage.json:pooled.half_ppr_points`. |
+| WR CeeDee Lamb | **Start** | Target share 0.2475 `usage.json:pooled.target_share`, air-yards share 0.4103 `usage.json:pooled.air_yards_share`, against Houston's 33.8 to WRs, rank 3 `points-allowed.json:per_game,rank`. |
+| WR George Pickens | **Start** | Target share 0.2475 `usage.json:pooled.target_share`, 0.275 `usage.json:last_week.target_share`, air-yards share 0.3522 `usage.json:pooled.air_yards_share`, in the same rank-3 WR matchup. |
+| WR Ryan Flournoy | **Sit** | Target share 0.1782 `usage.json:pooled.target_share` on 0.7059 `usage.json:pooled.snap_share` has produced 11.2 `usage.json:pooled.half_ppr_points` in three games. |
+| TE Jake Ferguson | **Flex** | Target share 0.1089 `usage.json:pooled.target_share` on 0.6845 `usage.json:pooled.snap_share` (snap share stands in for routes), 27.7 `usage.json:pooled.half_ppr_points` over 3 games; Houston allows 10.17 to TEs, rank 16 `points-allowed.json:per_game,rank`. Fourth in line for targets behind two WRs at 0.2475. |
+| D/ST Cowboys | **Sit** | Houston's 25.75 `game-environment.json:home_implied_total`; Dallas allows 23.51 to QBs, rank 3 `points-allowed.json:per_game,rank`; Dallas is a 3-point underdog `game-environment.json:spread_line`. |
+
+**Texans**
+
+| Player | Call | Reason |
+|---|---|---|
+| QB C.J. Stroud | **Start** | Dallas allows 23.51 to QBs, rank 3 `points-allowed.json:per_game,rank`, and Houston has the game's higher total, 25.75 `game-environment.json:home_implied_total`; his own 45.16 `usage.json:pooled.half_ppr_points` over 3 games makes him a low QB1. |
+| RB David Montgomery | **Flex** | Rush share 0.5211 `usage.json:pooled.rush_share` on 0.5399 `usage.json:pooled.snap_share`, but 5.8 `usage.json:last_week.half_ppr_points`; Dallas allows 23 to RBs, rank 8 `points-allowed.json:per_game,rank`. |
+| RB Woody Marks | **Sit** | Rush share 0.3099 `usage.json:pooled.rush_share`, target share 0.0714 `usage.json:pooled.target_share`, 19.1 `usage.json:pooled.half_ppr_points` over 3 games. |
+| WR Nico Collins | **Flex** | One game: target share 0.2703 `usage.json:pooled.target_share`, air-yards share 0.4068 `usage.json:pooled.air_yards_share`; Limited `injuries.json:practice_status`. Dallas allows 24.27 to WRs, rank 20 `points-allowed.json:per_game,rank`. On the game-time list. |
+| WR Xavier Hutchinson | **Sit** | Target share 0.24 `usage.json:last_week.target_share` and air-yards share 0.4353 `usage.json:last_week.air_yards_share` without Collins, but 16.9 `usage.json:pooled.half_ppr_points` over 3 games. Flex if Collins is out - on the game-time list. |
+| WR Kayshon Boutte | **Sit** | Snap share 0.615 `usage.json:pooled.snap_share` but target share 0.0804 `usage.json:pooled.target_share` and 3.1 `usage.json:last_week.half_ppr_points`. |
+| TE Dalton Schultz | **Start** | Target share 0.2232 `usage.json:pooled.target_share` on 0.6338 `usage.json:pooled.snap_share` (snap share stands in for routes) against Dallas's 14.43 to TEs, rank 6 `points-allowed.json:per_game,rank`. Limited `injuries.json:practice_status` - on the game-time list. |
+| D/ST Texans | **Sit** | Dallas is implied for 22.75 `game-environment.json:away_implied_total`; Prescott has 63.1 `usage.json:pooled.half_ppr_points` in three games; Houston allows 19.91 to QBs, rank 7 `points-allowed.json:per_game,rank`. |
+
+### 6. Cardinals at Giants - Sun 13:00 ET [#118 game 6]
+
+Row `2026_04_ARI_NYG`: Cardinals -2.5 `game-environment.json:spread_line`,
+total 44.5 `game-environment.json:total_line`; Cardinals 23.5
+`game-environment.json:away_implied_total`, Giants 21
+`game-environment.json:home_implied_total`.
+
+**Cardinals**
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Jacoby Brissett | **Flex** | 48.58 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (16.2 a game) and 25.6 `usage.json:last_week.half_ppr_points`; the Giants allow 16.94 to QBs, rank 16 `points-allowed.json:per_game,rank`. |
+| RB Jeremiyah Love | **Start** | Rush share 0.5256 `usage.json:pooled.rush_share`, up to 0.7778 `usage.json:last_week.rush_share`, on 0.6437 `usage.json:last_week.snap_share`; the Giants allow 19.87 to RBs, rank 10 `points-allowed.json:per_game,rank`. |
+| RB Tyler Allgeier | **Sit** | Rush share fell to 0.0741 `usage.json:last_week.rush_share` from 0.3077 `usage.json:pooled.rush_share`; 2.9 `usage.json:last_week.half_ppr_points`. |
+| WR Michael Wilson | **Start** | Target share 0.2743 `usage.json:pooled.target_share`, 0.34 `usage.json:last_week.target_share`, air-yards share 0.4208 `usage.json:pooled.air_yards_share`; the Giants allow 29.73 to WRs, rank 9 `points-allowed.json:per_game,rank`. |
+| WR Marvin Harrison Jr. | **Sit** | Snap share 0.7689 `usage.json:pooled.snap_share` and air-yards share 0.2268 `usage.json:pooled.air_yards_share` have produced target share 0.0796 `usage.json:pooled.target_share` and 9.3 `usage.json:pooled.half_ppr_points` in three games. |
+| WR Kendrick Bourne | **Sit** | Target share 0.1239 `usage.json:pooled.target_share`, 0.06 `usage.json:last_week.target_share`, 3.2 `usage.json:last_week.half_ppr_points`. |
+| TE Trey McBride | **Start** | Target share 0.3009 `usage.json:pooled.target_share` on 0.8632 `usage.json:pooled.snap_share` (snap share stands in for routes), 46.1 `usage.json:pooled.half_ppr_points` over 3 games; the Giants allow 9.6 to TEs, rank 19 `points-allowed.json:per_game,rank`. |
+| D/ST Cardinals | **Flex** | The Giants are implied for 21 `game-environment.json:home_implied_total`, and Winston has 8.66 `usage.json:pooled.half_ppr_points` over 2 `usage.json:games` and 6.12 `usage.json:last_week.half_ppr_points`. |
+
+**Giants**
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Jameis Winston | **Sit** | 8.66 `usage.json:pooled.half_ppr_points` over 2 games; Arizona's 21.98 to QBs, rank 4 `points-allowed.json:per_game,rank`, does not lift a 21 `game-environment.json:home_implied_total`. |
+| RB Cam Skattebo | **Start** | Rush share 0.5495 `usage.json:pooled.rush_share`, target share 0.1905 `usage.json:last_week.target_share`, on 0.7656 `usage.json:last_week.snap_share`; Arizona allows 15.4 to RBs, rank 22 `points-allowed.json:per_game,rank`. An RB2. |
+| RB Najee Harris | **Sit** | Rush share 0.2407 `usage.json:pooled.rush_share` on snap share 0.1803 `usage.json:pooled.snap_share`, target share 0 `usage.json:pooled.target_share`. |
+| WR Malik Nabers | **Flex** | Target share 0.2317 `usage.json:pooled.target_share` but air-yards share 0.042 `usage.json:last_week.air_yards_share` and 15.6 `usage.json:pooled.half_ppr_points` over 3 games; Arizona allows 34.2 to WRs, rank 2 `points-allowed.json:per_game,rank`. |
+| WR Malachi Fields | **Sit** | Air-yards share 0.3021 `usage.json:pooled.air_yards_share` on target share 0.1463 `usage.json:pooled.target_share`, 2.9 `usage.json:last_week.half_ppr_points`. |
+| WR Darnell Mooney | **Sit** | Target share 0.0976 `usage.json:pooled.target_share`, snap share 0.4375 `usage.json:last_week.snap_share`, 3.9 `usage.json:last_week.half_ppr_points`. |
+| TE Isaiah Likely | **Start** | Target share 0.2805 `usage.json:pooled.target_share` on 0.8438 `usage.json:last_week.snap_share` (snap share stands in for routes), against Arizona's 14.93 to TEs, rank 5 `points-allowed.json:per_game,rank`. |
+| D/ST Giants | **Sit** | Arizona is implied for 23.5 `game-environment.json:away_implied_total`; Brissett has 48.58 `usage.json:pooled.half_ppr_points` in three games; the Giants are 2.5-point underdogs `game-environment.json:spread_line`. |
+
 ## Comparison with #118 and #119
 
 _To be written once the game sections are in._
