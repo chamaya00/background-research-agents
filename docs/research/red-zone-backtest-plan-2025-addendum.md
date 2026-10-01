@@ -30,7 +30,7 @@ Additions, by section of the plan:
 | Plan section | Addition | Where here |
 |---|---|---|
 | 6 (Folds) | The 2025 fold list, replacing the 2026 list for this season only | B |
-| 4 (Decision rule) | The same verdict computed per week block, and per volume stratum within a block | C, D |
+| 4 (Decision rule) | The same verdict computed per week block, and per volume stratum (cut within each fold, pooled by block) | C, D |
 | 4 (Multiplicity) | The count of verdicts, and a binding on the write-up | E |
 | 5 (Labels) | An all-field label for context, and a per-fold disagreement count | F |
 | 7 (Change rule) | Carried over, covering the new values | G |
@@ -91,19 +91,35 @@ never week-W outcomes):
   plus carries, the plan's look definition.
 - **(b) `team_rz_looks_per_game(T)`**: the plan's section 1 definition.
 
-**Strata.** Running totals rise with the calendar, so a single cut on (a) would
-only split early weeks from late ones. Week is held apart from volume by
-stratifying **within each block of C**, never across blocks:
+**Strata.** Running totals rise with the calendar, and inside a block they
+still climb from fold to fold (in block 1 a W=2 team has one game of looks and
+a W=5 team four). A cut pooled over the block would put the late folds in High
+and the early folds in Low, so week is held apart from volume by cutting
+**within each fold**:
 
-- For each measure and block, the threshold is the **median of that measure
-  over all team-folds in the block** (every team that played week W in a fold of
-  the block, one value per team per fold, computed from features only).
-- A team-fold is **High** if its value is `>=` the block's median, otherwise
-  **Low**. Players take their team's stratum. Thresholds are computed by the
-  run from features, written to the output, and are not chosen by anyone.
+- For each measure and fold W, the threshold is the **median of that measure
+  over the teams that played week W**, from weeks `< W` only (one value per
+  team, computed from features, never from week-W outcomes).
+- A team-fold is **High** if its value is `>=` its own fold's median, otherwise
+  **Low**. Players take their team's stratum.
+- A block's High stratum **pools the High team-folds of the block's four
+  folds**, and its Low stratum pools the Low ones. Stratum verdicts are for
+  these pooled strata, per block.
+- The thresholds are computed by the run, **the per-fold medians are written to
+  the output** (so the write-up can say what a given total was in looks), and
+  nobody chooses them.
 - The same bootstrap, readings, eligibility and n < 30 rule apply per stratum,
   resampling team-weeks within the stratum. A stratum with fewer than 30 scored
   player-weeks for a position is inconclusive.
+
+**What (a) and (b) are, once week is fixed.** Within one fold, a team's running
+total equals its looks per game times its games played, and games played
+differs only by a bye. So (a) and (b) give nearly the same split inside a fold,
+and (a) is expected to agree with (b). (a) is kept because the person asked
+about the running total; the write-up reports where the two disagree, for
+example teams just past a bye. For #150's question 2: a larger running total
+that comes from **more weeks** is question 1; one that comes from **more volume
+per game** is question 2, read under (b).
 
 **A volume threshold matters** for a measure, position and baseline if the
 combined verdict is **"beats" in the High stratum and not "beats" in the Low
@@ -148,7 +164,7 @@ chance produces. **The findings must state "of 252 verdicts" next to every
 ## G. Change rule
 
 As in section 7 of the plan: nothing is tuned after results, **including the
-block boundaries, the volume thresholds (medians) and k.** If a definition
+block boundaries, the volume thresholds (per-fold medians) and k.** If a definition
 proves unworkable, it changes only in a new commit whose message says why, and
 the write-up reports both the original and the amended reading. A result that
 disagrees with expectation is reported as is.
