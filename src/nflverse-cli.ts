@@ -78,7 +78,13 @@ export async function run(argv: string[], collect: Collect = (s) => collectInput
       for (const fold of out.folds) {
         const uses = { target_week: fold.week, uses_weeks: "1.." + String(fold.week - 1) };
         write("backtest", `fold-${pad(fold.week)}-predictions.json`, { ...uses, rows: fold.rows });
-        write("backtest", `fold-${pad(fold.week)}-team-flags.json`, { ...uses, rows: fold.flags, next_week: fold.next_week });
+        write("backtest", `fold-${pad(fold.week)}-team-flags.json`, {
+          ...uses,
+          rows: fold.flags,
+          next_week: fold.next_week,
+          volume_medians: fold.volume.medians,
+          volume: fold.volume.teams,
+        });
       }
       write("backtest", "summary.json", out.summary);
       write(`week-${pad(out.forward_week)}`, "red-zone-ranking.json", {

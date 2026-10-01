@@ -8,12 +8,18 @@ import {
   BOOTSTRAP_RESAMPLES,
   BOOTSTRAP_SEED,
   MIN_SCORED,
+  BLOCK_STARTS,
+  blockOf,
   combine,
   mae,
+  median,
   pairedBootstrap,
+  settlingWeek,
   spearman,
   topNHits,
   verdict,
+  VOLUME_K,
+  volumeMatters,
   wilson,
   type Interval,
   type MethodScores,
@@ -190,6 +196,79 @@ export function teamFlags(plays: PlayByPlayRow[], season: number, week: number, 
     });
 }
 
+/** A team's flag with the all-field context fields. Context only: no verdict is ever attached to them. */
+export interface TeamFlagWithAllField extends TeamFlag {
+  all_field_pass_rate: number | null;
+  all_field_plays: number;
+  all_field_label: FlagLabel;
+}
+
+const isAllFieldPlay = (p: PlayByPlayRow): boolean =>
+  (p.play_type === "pass" || p.play_type === "run") &&
+  (p.qb_kneel ?? 0) === 0 &&
+  (p.qb_spike ?? 0) === 0 &&
+  (p.two_point_attempt ?? 0) === 0;
+
+/** Addendum section F: pass / (pass + rush) at any field position over weeks before `week`, labelled with the red-zone cut-offs. */
+export function withAllField(flags: TeamFlag[], plays: PlayByPlayRow[], season: number, week: number): TeamFlagWithAllField[] {
+  const acc = new Map<string, { plays: number; pass: number }>();
+  for (const p of regular(plays, season, (w) => w < week)) {
+    if (!isAllFieldPlay(p)) continue;
+    const a = acc.get(p.posteam) ?? { plays: 0, pass: 0 };
+    acc.set(p.posteam, a);
+    a.plays += 1;
+    if (p.pass === 1) a.pass += 1;
+  }
+  return flags.map((t) => {
+    const a = acc.get(t.team) ?? { plays: 0, pass: 0 };
+    const rate = a.plays > 0 ? a.pass / a.plays : null;
+    return { ...t, all_field_pass_rate: r4(rate), all_field_plays: a.plays, all_field_label: labelOf(rate, a.plays) };
+  });
+}
+
+export const VOLUME_MEASURES = ["team_rz_total", "team_rz_looks_per_game"] as const;
+export type VolumeMeasure = (typeof VOLUME_MEASURES)[number];
+export const STRATA = ["High", "Low"] as const;
+export type Stratum = (typeof STRATA)[number];
+
+export interface TeamVolume {
+  team: string;
+  team_rz_total: number;
+  team_rz_looks_per_game: number | null;
+  stratum_team_rz_total: Stratum;
+  stratum_team_rz_looks_per_game: Stratum;
+}
+
+export interface FoldVolume {
+  /** Medians over the teams that played week W, from weeks < W only; null when no team played. */
+  medians: Record<VolumeMeasure, number | null>;
+  teams: TeamVolume[];
+}
+
+/** Addendum section D: per-fold medians of both volume measures over the teams that played week W, and each team's stratum (>= median is High). */
+export function foldVolume(plays: PlayByPlayRow[], season: number, week: number): FoldVolume {
+  const f = features(plays, season, week);
+  const playing = [...new Set(regular(plays, season, (w) => w === week).map((p) => p.posteam))].sort();
+  const raw = playing.map((team) => {
+    const total = (f.teamTargets.get(team) ?? 0) + (f.teamCarries.get(team) ?? 0);
+    const games = f.teamGames.get(team) ?? 0;
+    return { team, total, perGame: games > 0 ? total / games : null };
+  });
+  const medTotal = median(raw.map((t) => t.total));
+  const medPer = median(raw.flatMap((t) => (t.perGame === null ? [] : [t.perGame])));
+  const side = (v: number | null, m: number | null): Stratum => (v !== null && m !== null && v >= m ? "High" : "Low");
+  return {
+    medians: { team_rz_total: medTotal === null ? null : round(medTotal), team_rz_looks_per_game: medPer === null ? null : round(medPer) },
+    teams: raw.map((t) => ({
+      team: t.team,
+      team_rz_total: t.total,
+      team_rz_looks_per_game: t.perGame === null ? null : round(t.perGame, 2),
+      stratum_team_rz_total: side(t.total, medTotal),
+      stratum_team_rz_looks_per_game: side(t.perGame, medPer),
+    })),
+  };
+}
+
 // ---------------------------------------------------------------- predictions (no week-W data)
 
 export interface Candidate {
@@ -310,7 +389,8 @@ export interface FoldResult {
   week: number;
   rows: ScoredRow[];
   exclusions: Exclusions;
-  flags: TeamFlag[];
+  flags: TeamFlagWithAllField[];
+  volume: FoldVolume;
   next_week: NextWeekFlag[];
   recompute_max_abs_diff: number;
 }
@@ -412,7 +492,8 @@ export function scoreFold(rows: ParsedRows, season: number, week: number, fold =
     week,
     rows: scored,
     exclusions,
-    flags: fold.flags,
+    flags: withAllField(fold.flags, rows.play_by_play, season, week),
+    volume: foldVolume(rows.play_by_play, season, week),
     next_week: nextWeek,
     recompute_max_abs_diff: recomputeCheck(rows.play_by_play, season, week),
   };
@@ -525,6 +606,16 @@ function sumExclusions(folds: FoldResult[]): Record<string, Exclusions> {
   return Object.fromEntries(folds.map((f) => [`weeks_1_to_${f.week - 1}__target_${f.week}`, f.exclusions]));
 }
 
+/** Context only (addendum F): red-zone and all-field labels side by side. Nothing here is tested against week-W behaviour. */
+export function labelDisagreements(flags: TeamFlagWithAllField[]) {
+  const both = flags.filter((t) => t.label !== "too_few_plays" && t.all_field_label !== "too_few_plays");
+  return {
+    both_labelled: both.length,
+    differ: both.filter((t) => t.label !== t.all_field_label).length,
+    red_zone_only: flags.filter((t) => t.label !== "too_few_plays" && t.all_field_label === "too_few_plays").length,
+  };
+}
+
 function flagSummary(folds: FoldResult[]) {
   const group = (label: "pass_first" | "run_first") => {
     const rs = folds.flatMap((f) => f.next_week.filter((n) => n.label === label));
@@ -562,6 +653,7 @@ function flagSummary(folds: FoldResult[]) {
       run_first: f.flags.filter((t) => t.label === "run_first").length,
       sacks_in_numerator: f.flags.reduce((s, t) => s + t.rz_sacks, 0),
       rz_pass_plays: f.flags.reduce((s, t) => s + t.rz_pass_plays, 0),
+      label_disagreements: labelDisagreements(f.flags),
     })),
     pass_first: pf,
     run_first: rf,
@@ -571,18 +663,84 @@ function flagSummary(folds: FoldResult[]) {
   };
 }
 
+type Baseline = (typeof BASELINES)[number];
+type PositionReading = ReturnType<typeof positionReading>;
+
+/** Both readings and the combined verdicts for one position over exactly the given player-weeks. */
+function positionReading(rows: ScoredRow[], pos: Position) {
+  const all = rows.filter((r) => r.position === pos);
+  const seen = evaluateReading(all.filter((r) => r.seen), pos);
+  const sensitivity = evaluateReading(all, pos);
+  const combined = Object.fromEntries(BASELINES.map((b) => [b, combine(seen.verdicts[b], sensitivity.verdicts[b])])) as Record<Baseline, Verdict>;
+  return { top_n: TOP_N[pos], seen_rule: seen, sensitivity_unseen_as_zero: sensitivity, combined_verdicts: combined };
+}
+
+const readAll = (rows: ScoredRow[]): Record<Position, PositionReading> =>
+  Object.fromEntries(POSITIONS.map((pos) => [pos, positionReading(rows, pos)])) as Record<Position, PositionReading>;
+
+/** Every combined verdict a set of readings produced: the unit the addendum's multiplicity count is in. */
+const verdictsIn = (r: Record<Position, PositionReading>): Verdict[] => POSITIONS.flatMap((p) => BASELINES.map((b) => r[p].combined_verdicts[b]));
+
 export function summarise(folds: FoldResult[]) {
-  const positions = Object.fromEntries(
-    POSITIONS.map((pos) => {
-      const all = folds.flatMap((f) => f.rows.filter((r) => r.position === pos));
-      const seen = evaluateReading(all.filter((r) => r.seen), pos);
-      const sensitivity = evaluateReading(all, pos);
-      const combined = Object.fromEntries(
-        BASELINES.map((b) => [b, combine(seen.verdicts[b], sensitivity.verdicts[b])]),
-      );
-      return [pos, { top_n: TOP_N[pos], seen_rule: seen, sensitivity_unseen_as_zero: sensitivity, combined_verdicts: combined }];
-    }),
+  const positions = readAll(folds.flatMap((f) => f.rows));
+  const produced = [...verdictsIn(positions)];
+
+  // Addendum C: week blocks.
+  const blockNumbers = [...new Set(folds.flatMap((f) => blockOf(f.week) ?? []))].sort((a, b) => a - b);
+  const blockFolds = (b: number): FoldResult[] => folds.filter((f) => blockOf(f.week) === b);
+  const blockReadings = new Map(blockNumbers.map((b) => [b, readAll(blockFolds(b).flatMap((f) => f.rows))]));
+  const blocks = Object.fromEntries(
+    blockNumbers.map((b) => [String(b), { weeks: blockFolds(b).map((f) => f.week), positions: blockReadings.get(b)! }]),
   );
+  for (const r of blockReadings.values()) produced.push(...verdictsIn(r));
+  const fourBlocks = BLOCK_STARTS.every((_, i) => blockReadings.has(i + 1));
+  const settling_week = fourBlocks
+    ? Object.fromEntries(
+        POSITIONS.map((p) => [
+          p,
+          Object.fromEntries(BASELINES.map((b) => [b, settlingWeek(BLOCK_STARTS.map((_, i) => blockReadings.get(i + 1)![p].combined_verdicts[b]))])),
+        ]),
+      )
+    : null;
+
+  // Addendum D: strata cut at each fold's own median, pooled by block.
+  const stratumOf = (f: FoldResult, team: string, m: VolumeMeasure): Stratum | undefined =>
+    f.volume.teams.find((t) => t.team === team)?.[`stratum_${m}`];
+  const volume = Object.fromEntries(
+    VOLUME_MEASURES.map((m) => [
+      m,
+      Object.fromEntries(
+        blockNumbers.map((b) => [
+          String(b),
+          Object.fromEntries(
+            STRATA.map((s) => {
+              const reading = readAll(blockFolds(b).flatMap((f) => f.rows.filter((r) => stratumOf(f, r.team, m) === s)));
+              produced.push(...verdictsIn(reading));
+              return [s, reading];
+            }),
+          ),
+        ]),
+      ),
+    ]),
+  ) as Record<VolumeMeasure, Record<string, Record<Stratum, Record<Position, PositionReading>>>>;
+  const volume_matters = Object.fromEntries(
+    VOLUME_MEASURES.map((m) => [
+      m,
+      Object.fromEntries(
+        POSITIONS.map((p) => [
+          p,
+          Object.fromEntries(
+            BASELINES.map((b) => {
+              if (!fourBlocks) return [b, null];
+              const per = (s: Stratum): Verdict[] => blockNumbers.map((n) => volume[m][String(n)]![s][p].combined_verdicts[b]);
+              return [b, volumeMatters(per("High"), per("Low"))];
+            }),
+          ),
+        ]),
+      ),
+    ]),
+  );
+
   return {
     folds: folds.map((f) => f.week),
     plan: "docs/research/red-zone-backtest-plan.md",
@@ -600,6 +758,18 @@ export function summarise(folds: FoldResult[]) {
     },
     positions,
     team_flags: flagSummary(folds),
+    blocks,
+    settling_week,
+    ...(fourBlocks ? {} : { settling_week_reason: "fewer than four blocks" }),
+    volume_thresholds: {
+      note: "Per-fold medians over the teams that played week W, from weeks < W only. A team-fold is High when its value is >= its own fold's median.",
+      per_fold: folds.map((f) => ({ fold: f.week, teams: f.volume.teams.length, ...f.volume.medians })),
+    },
+    volume,
+    volume_matters,
+    volume_matters_rule: `combined verdict "beats" in High and not "beats" in Low in at least ${VOLUME_K} of the 4 blocks; null with fewer than four blocks`,
+    verdict_count: produced.length,
+    beats_count: produced.filter((v) => v === "beats").length,
   };
 }
 
