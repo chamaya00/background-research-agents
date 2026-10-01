@@ -1,0 +1,365 @@
+{
+  "attribution": {
+    "source": "nflverse",
+    "url": "https://github.com/nflverse/nflverse-data",
+    "license": "CC-BY 4.0",
+    "notice": "Data © the nflverse project, used under CC-BY 4.0. Derived values; snap counts originate at Pro-Football-Reference."
+  },
+  "inputs": [
+    {
+      "file": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+      "fetchedAt": "2026-10-01T08:46:11.059Z",
+      "sha256": "e293e213908f746db982cd9112f5016125a42eeeec16c4773b35c6cc5edf6327"
+    },
+    {
+      "file": "snap_counts",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
+      "fetchedAt": "2026-10-01T08:46:11.201Z",
+      "sha256": "c5868527b1052ae572b2d8f34a7bb777675a5e762ceaeb25f72f10d1c59846d5"
+    },
+    {
+      "file": "injuries",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
+      "fetchedAt": "2026-10-01T08:46:11.351Z",
+      "sha256": "408a873e9a80993f46e073697e7fd3f04894778b28ae23250090440e71106a07"
+    },
+    {
+      "file": "games",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
+      "fetchedAt": "2026-10-01T08:46:11.440Z",
+      "sha256": "0a4b3a2d425bd3fa5b18302c27c3f380307d21c3779d759498654c799f439a49"
+    },
+    {
+      "file": "play_by_play",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz",
+      "fetchedAt": "2026-10-01T08:46:11.630Z",
+      "sha256": "321433f8c3cab61e7577f49dc2f22f8216de8a5eb84baa432f1cf3d60d0b705a"
+    }
+  ],
+  "season": 2026,
+  "target_week": 4,
+  "uses_weeks": "1..3",
+  "rows": [
+    {
+      "team": "ARI",
+      "games": 3,
+      "plays": 196,
+      "plays_per_game": 65.33,
+      "pass_rate": 0.6276,
+      "neutral_plays": 91,
+      "neutral_pass_rate": 0.5824,
+      "pass_rate_over_expected": 0.5316
+    },
+    {
+      "team": "ATL",
+      "games": 3,
+      "plays": 189,
+      "plays_per_game": 63,
+      "pass_rate": 0.4815,
+      "neutral_plays": 91,
+      "neutral_pass_rate": 0.4176,
+      "pass_rate_over_expected": -11.8826
+    },
+    {
+      "team": "BAL",
+      "games": 3,
+      "plays": 173,
+      "plays_per_game": 57.67,
+      "pass_rate": 0.5087,
+      "neutral_plays": 92,
+      "neutral_pass_rate": 0.4565,
+      "pass_rate_over_expected": -8.0131
+    },
+    {
+      "team": "BUF",
+      "games": 3,
+      "plays": 180,
+      "plays_per_game": 60,
+      "pass_rate": 0.5667,
+      "neutral_plays": 98,
+      "neutral_pass_rate": 0.5306,
+      "pass_rate_over_expected": -1.1608
+    },
+    {
+      "team": "CAR",
+      "games": 3,
+      "plays": 195,
+      "plays_per_game": 65,
+      "pass_rate": 0.6769,
+      "neutral_plays": 96,
+      "neutral_pass_rate": 0.6146,
+      "pass_rate_over_expected": 2.3769
+    },
+    {
+      "team": "CHI",
+      "games": 3,
+      "plays": 206,
+      "plays_per_game": 68.67,
+      "pass_rate": 0.5534,
+      "neutral_plays": 113,
+      "neutral_pass_rate": 0.5398,
+      "pass_rate_over_expected": -2.0299
+    },
+    {
+      "team": "CIN",
+      "games": 3,
+      "plays": 176,
+      "plays_per_game": 58.67,
+      "pass_rate": 0.642,
+      "neutral_plays": 74,
+      "neutral_pass_rate": 0.6757,
+      "pass_rate_over_expected": 4.4366
+    },
+    {
+      "team": "CLE",
+      "games": 3,
+      "plays": 164,
+      "plays_per_game": 54.67,
+      "pass_rate": 0.6341,
+      "neutral_plays": 80,
+      "neutral_pass_rate": 0.6125,
+      "pass_rate_over_expected": -0.4305
+    },
+    {
+      "team": "DAL",
+      "games": 3,
+      "plays": 178,
+      "plays_per_game": 59.33,
+      "pass_rate": 0.6629,
+      "neutral_plays": 97,
+      "neutral_pass_rate": 0.6082,
+      "pass_rate_over_expected": 4.5598
+    },
+    {
+      "team": "DEN",
+      "games": 3,
+      "plays": 164,
+      "plays_per_game": 54.67,
+      "pass_rate": 0.6159,
+      "neutral_plays": 89,
+      "neutral_pass_rate": 0.6067,
+      "pass_rate_over_expected": -1.5306
+    },
+    {
+      "team": "DET",
+      "games": 3,
+      "plays": 197,
+      "plays_per_game": 65.67,
+      "pass_rate": 0.6142,
+      "neutral_plays": 75,
+      "neutral_pass_rate": 0.56,
+      "pass_rate_over_expected": 0.6718
+    },
+    {
+      "team": "GB",
+      "games": 3,
+      "plays": 180,
+      "plays_per_game": 60,
+      "pass_rate": 0.7333,
+      "neutral_plays": 82,
+      "neutral_pass_rate": 0.5732,
+      "pass_rate_over_expected": 2.5187
+    },
+    {
+      "team": "HOU",
+      "games": 3,
+      "plays": 200,
+      "plays_per_game": 66.67,
+      "pass_rate": 0.67,
+      "neutral_plays": 119,
+      "neutral_pass_rate": 0.5966,
+      "pass_rate_over_expected": -2.0698
+    },
+    {
+      "team": "IND",
+      "games": 3,
+      "plays": 187,
+      "plays_per_game": 62.33,
+      "pass_rate": 0.5775,
+      "neutral_plays": 99,
+      "neutral_pass_rate": 0.5455,
+      "pass_rate_over_expected": -4.6071
+    },
+    {
+      "team": "JAX",
+      "games": 3,
+      "plays": 167,
+      "plays_per_game": 55.67,
+      "pass_rate": 0.521,
+      "neutral_plays": 60,
+      "neutral_pass_rate": 0.5833,
+      "pass_rate_over_expected": -3.8702
+    },
+    {
+      "team": "KC",
+      "games": 3,
+      "plays": 191,
+      "plays_per_game": 63.67,
+      "pass_rate": 0.5707,
+      "neutral_plays": 124,
+      "neutral_pass_rate": 0.5806,
+      "pass_rate_over_expected": 3.7471
+    },
+    {
+      "team": "LA",
+      "games": 3,
+      "plays": 192,
+      "plays_per_game": 64,
+      "pass_rate": 0.6198,
+      "neutral_plays": 81,
+      "neutral_pass_rate": 0.5926,
+      "pass_rate_over_expected": -0.8105
+    },
+    {
+      "team": "LAC",
+      "games": 3,
+      "plays": 177,
+      "plays_per_game": 59,
+      "pass_rate": 0.5876,
+      "neutral_plays": 114,
+      "neutral_pass_rate": 0.4474,
+      "pass_rate_over_expected": -8.4563
+    },
+    {
+      "team": "LV",
+      "games": 3,
+      "plays": 184,
+      "plays_per_game": 61.33,
+      "pass_rate": 0.5543,
+      "neutral_plays": 96,
+      "neutral_pass_rate": 0.5938,
+      "pass_rate_over_expected": -2.6039
+    },
+    {
+      "team": "MIA",
+      "games": 3,
+      "plays": 173,
+      "plays_per_game": 57.67,
+      "pass_rate": 0.6185,
+      "neutral_plays": 76,
+      "neutral_pass_rate": 0.5263,
+      "pass_rate_over_expected": -8.659
+    },
+    {
+      "team": "MIN",
+      "games": 3,
+      "plays": 165,
+      "plays_per_game": 55,
+      "pass_rate": 0.5394,
+      "neutral_plays": 105,
+      "neutral_pass_rate": 0.4476,
+      "pass_rate_over_expected": -5.9555
+    },
+    {
+      "team": "NE",
+      "games": 3,
+      "plays": 178,
+      "plays_per_game": 59.33,
+      "pass_rate": 0.5955,
+      "neutral_plays": 78,
+      "neutral_pass_rate": 0.5513,
+      "pass_rate_over_expected": -2.2261
+    },
+    {
+      "team": "NO",
+      "games": 3,
+      "plays": 222,
+      "plays_per_game": 74,
+      "pass_rate": 0.6622,
+      "neutral_plays": 118,
+      "neutral_pass_rate": 0.5932,
+      "pass_rate_over_expected": 1.595
+    },
+    {
+      "team": "NYG",
+      "games": 3,
+      "plays": 177,
+      "plays_per_game": 59,
+      "pass_rate": 0.5254,
+      "neutral_plays": 63,
+      "neutral_pass_rate": 0.4286,
+      "pass_rate_over_expected": -8.9708
+    },
+    {
+      "team": "NYJ",
+      "games": 3,
+      "plays": 194,
+      "plays_per_game": 64.67,
+      "pass_rate": 0.6186,
+      "neutral_plays": 103,
+      "neutral_pass_rate": 0.5728,
+      "pass_rate_over_expected": -0.9735
+    },
+    {
+      "team": "PHI",
+      "games": 3,
+      "plays": 170,
+      "plays_per_game": 56.67,
+      "pass_rate": 0.6235,
+      "neutral_plays": 113,
+      "neutral_pass_rate": 0.5044,
+      "pass_rate_over_expected": -6.7423
+    },
+    {
+      "team": "PIT",
+      "games": 3,
+      "plays": 184,
+      "plays_per_game": 61.33,
+      "pass_rate": 0.6793,
+      "neutral_plays": 102,
+      "neutral_pass_rate": 0.6078,
+      "pass_rate_over_expected": 4.1496
+    },
+    {
+      "team": "SEA",
+      "games": 3,
+      "plays": 178,
+      "plays_per_game": 59.33,
+      "pass_rate": 0.5674,
+      "neutral_plays": 102,
+      "neutral_pass_rate": 0.5294,
+      "pass_rate_over_expected": -2.6759
+    },
+    {
+      "team": "SF",
+      "games": 3,
+      "plays": 160,
+      "plays_per_game": 53.33,
+      "pass_rate": 0.5563,
+      "neutral_plays": 58,
+      "neutral_pass_rate": 0.5345,
+      "pass_rate_over_expected": 4.5986
+    },
+    {
+      "team": "TB",
+      "games": 3,
+      "plays": 177,
+      "plays_per_game": 59,
+      "pass_rate": 0.6893,
+      "neutral_plays": 97,
+      "neutral_pass_rate": 0.5773,
+      "pass_rate_over_expected": -0.5649
+    },
+    {
+      "team": "TEN",
+      "games": 3,
+      "plays": 157,
+      "plays_per_game": 52.33,
+      "pass_rate": 0.6306,
+      "neutral_plays": 74,
+      "neutral_pass_rate": 0.527,
+      "pass_rate_over_expected": -10.2054
+    },
+    {
+      "team": "WAS",
+      "games": 3,
+      "plays": 198,
+      "plays_per_game": 66,
+      "pass_rate": 0.5859,
+      "neutral_plays": 92,
+      "neutral_pass_rate": 0.5109,
+      "pass_rate_over_expected": -3.4765
+    }
+  ]
+}
