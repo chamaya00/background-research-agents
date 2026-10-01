@@ -165,7 +165,7 @@ come Friday for Sunday games and Saturday for Monday's.
 | RB Chuba Hubbard (CAR) | 14 | Did Not Participate | Start | If out, AJ Dillon moves to Flex. Sunday night: set an earlier pivot (Croskey-Merritt, game 1) if Hubbard is questionable. |
 | WR Jalen Coker (CAR) | 14 | Did Not Participate | Flex | If out, Brycen Tremayne moves to Flex. |
 | WR Xavier Legette (CAR) | 14 | Did Not Participate | Sit | None needed. |
-| TE Darren Waller (CAR) | 14 | Did Not Participate | Flex | If out, a TE from an earlier game: Mark Andrews (game 9). |
+| TE Darren Waller (CAR) | 14 | Did Not Participate | Flex | If out, a TE from an earlier game: Mike Gesicki (game 4). |
 | RB Alvin Kamara (NO) | 15 | no New Orleans rows | Sit | Monday. The tables hold no New Orleans status for any back; set a Sunday flex rather than wait for Saturday's report. |
 
 Five teams had no rows when fetched - ATL, CHI, NO, PHI and SEA - so any
@@ -442,17 +442,20 @@ Row `2026_04_GB_TB`: Packers -3.5 `game-environment.json:spread_line`, total
 21 `game-environment.json:away_implied_total`, Buccaneers 17.5
 `game-environment.json:home_implied_total`.
 
+Pace: Packers 60 `team-pace.json:plays_per_game` and 0.5732
+`team-pace.json:neutral_pass_rate`; Buccaneers 59 and 0.5773.
+
 **Packers**
 
 | Player | Call | Reason |
 |---|---|---|
 | QB Jordan Love | **Flex** | 51.76 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (17.3 a game), but a 21 `game-environment.json:away_implied_total` in a 38.5 total and Tampa Bay's 14.77 to QBs, rank 24 `points-allowed.json:per_game,rank`. |
-| RB Chris Brooks | **Sit** | Rush share 0.2292 `usage.json:pooled.rush_share`, 0 `usage.json:last_week.rush_share`, 6.9 `usage.json:pooled.half_ppr_points` over 3 games. MarShawn Lloyd, not on #118's list, leads at 0.4792 `usage.json:pooled.rush_share`. |
-| RB Kaleb Johnson | **Sit** | Rush share 0.4444 `usage.json:last_week.rush_share` but snap share 0.3636 `usage.json:last_week.snap_share` and 5.3 `usage.json:pooled.half_ppr_points` over 3 games. |
-| WR Christian Watson | **Start** | Target share 0.2417 `usage.json:pooled.target_share`, air-yards share 0.2825 `usage.json:pooled.air_yards_share`, 60.9 `usage.json:pooled.half_ppr_points` over 3 games; Tampa Bay allows 22.7 to WRs, rank 26 `points-allowed.json:per_game,rank`. |
-| WR Matthew Golden | **Start** | Target share 0.25 `usage.json:pooled.target_share`, air-yards share 0.4901 `usage.json:last_week.air_yards_share`, 38.8 `usage.json:pooled.half_ppr_points` over 3 games. |
-| WR Skyy Moore | **Sit** | Target share 0.0917 `usage.json:pooled.target_share`, snap share 0.3057 `usage.json:pooled.snap_share`, 6.2 `usage.json:pooled.half_ppr_points`. |
-| TE Tucker Kraft | **Flex** | Snap share 0.7927 `usage.json:pooled.snap_share` (snap share stands in for routes) and target share 0.1417 `usage.json:pooled.target_share`, but 15.1 `usage.json:pooled.half_ppr_points` over 3 games; Tampa Bay allows 12.93 to TEs, rank 11 `points-allowed.json:per_game,rank`. |
+| RB Chris Brooks | **Sit** | Rush share 0.2292 `usage.json:pooled.rush_share`, 0 `usage.json:last_week.rush_share`, 6.9 `usage.json:pooled.half_ppr_points` over 3 games. MarShawn Lloyd, not on #118's list, leads at 0.4792 `usage.json:pooled.rush_share`. Red-zone carry share 0.3636 `red-zone.json:rz_carry_share` (4 of 11), behind Lloyd's 0.5455 in the same column. |
+| RB Kaleb Johnson | **Sit** | Rush share 0.4444 `usage.json:last_week.rush_share` but snap share 0.3636 `usage.json:last_week.snap_share` and 5.3 `usage.json:pooled.half_ppr_points` over 3 games; no red-zone touches. |
+| WR Christian Watson | **Start** | Target share 0.2417 `usage.json:pooled.target_share`, air-yards share 0.2825 `usage.json:pooled.air_yards_share`, 60.9 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.3333 `red-zone.json:rz_target_share` (6 of 18); Tampa Bay allows 22.7 to WRs, rank 26 `points-allowed.json:per_game,rank`. |
+| WR Matthew Golden | **Start** | Target share 0.25 `usage.json:pooled.target_share`, air-yards share 0.4901 `usage.json:last_week.air_yards_share`, 38.8 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.2222 `red-zone.json:rz_target_share` (4 of 18). |
+| WR Skyy Moore | **Sit** | Target share 0.0917 `usage.json:pooled.target_share`, snap share 0.3057 `usage.json:pooled.snap_share`, 6.2 `usage.json:pooled.half_ppr_points`, red-zone target share 0.1667 `red-zone.json:rz_target_share` (3 of 18). |
+| TE Tucker Kraft | **Sit** | Snap share 0.7927 `usage.json:pooled.snap_share` (snap share stands in for routes) and target share 0.1417 `usage.json:pooled.target_share`, but 15.1 `usage.json:pooled.half_ppr_points` over 3 games and red-zone target share 0.0556 `red-zone.json:rz_target_share` (1 of 18), tied for sixth on the team; Tampa Bay allows 12.93 to TEs, rank 11 `points-allowed.json:per_game,rank`. Moved down from Flex in v2: with no red-zone role, a 38.5 total leaves no touchdown path. |
 | D/ST Packers | **Start** | Tampa Bay is implied for 17.5 `game-environment.json:home_implied_total`; Baker Mayfield Did Not Participate `injuries.json:practice_status`; Jalon Daniels has -1.1 `usage.json:pooled.half_ppr_points` on snap share 0.058 `usage.json:pooled.snap_share`. |
 
 **Buccaneers**
@@ -460,32 +463,35 @@ Row `2026_04_GB_TB`: Packers -3.5 `game-environment.json:spread_line`, total
 | Player | Call | Reason |
 |---|---|---|
 | QB Jalon Daniels | **Sit** | -1.1 `usage.json:pooled.half_ppr_points` on snap share 0.058 `usage.json:pooled.snap_share`, a 17.5 `game-environment.json:home_implied_total`. Mayfield Did Not Participate `injuries.json:practice_status`; on the game-time list. |
-| RB Bucky Irving | **Start** | Rush share 0.6061 `usage.json:pooled.rush_share`, target share 0.1579 `usage.json:pooled.target_share`, against Green Bay's 29.17 to RBs, the most, rank 1 `points-allowed.json:per_game,rank`. Limited `injuries.json:practice_status` - on the game-time list. |
-| RB Kenny Gainwell | **Sit** | Rush share 0.1515 `usage.json:pooled.rush_share`, target share 0.1053 `usage.json:pooled.target_share`, 7.3 `usage.json:pooled.half_ppr_points` over 3 games. |
-| WR Emeka Egbuka | **Flex** | Target share 0.2105 `usage.json:pooled.target_share`, 0.2571 `usage.json:last_week.target_share`, against Green Bay's 29.7 to WRs, rank 10 `points-allowed.json:per_game,rank`, on a 17.5 implied total. |
-| WR Ted Hurst III | **Sit** | Air-yards share 0.2838 `usage.json:pooled.air_yards_share` but target share 0.1368 `usage.json:pooled.target_share`, 0.0857 `usage.json:last_week.target_share`. |
-| WR Chris Godwin Jr. | **Sit** | Target share 0.1158 `usage.json:pooled.target_share`, air-yards share 0.059 `usage.json:pooled.air_yards_share`; Did Not Participate `injuries.json:practice_status`. |
-| TE Cade Otton | **Sit** | Snap share 0.9372 `usage.json:pooled.snap_share` (snap share stands in for routes) and target share 0.1789 `usage.json:pooled.target_share`, but 17.5 `usage.json:pooled.half_ppr_points` over 3 games with a backup QB; Green Bay allows 9.37 to TEs, rank 20 `points-allowed.json:per_game,rank`. |
+| RB Bucky Irving | **Start** | Rush share 0.6061 `usage.json:pooled.rush_share`, target share 0.1579 `usage.json:pooled.target_share`, against Green Bay's 29.17 to RBs, the most, rank 1 `points-allowed.json:per_game,rank`. Red-zone carry share 0.6 `red-zone.json:rz_carry_share` (3 of 5) and target share 0.2857 `red-zone.json:rz_target_share` (4 of 14). Limited `injuries.json:practice_status` - on the game-time list. |
+| RB Kenny Gainwell | **Sit** | Rush share 0.1515 `usage.json:pooled.rush_share`, target share 0.1053 `usage.json:pooled.target_share`, 7.3 `usage.json:pooled.half_ppr_points` over 3 games, red-zone carry share 0.2 `red-zone.json:rz_carry_share` (1 of 5). |
+| WR Emeka Egbuka | **Flex** | Target share 0.2105 `usage.json:pooled.target_share`, 0.2571 `usage.json:last_week.target_share`, red-zone target share 0.1429 `red-zone.json:rz_target_share` (2 of 14), against Green Bay's 29.7 to WRs, rank 10 `points-allowed.json:per_game,rank`, on a 17.5 implied total. |
+| WR Ted Hurst III | **Sit** | Air-yards share 0.2838 `usage.json:pooled.air_yards_share` but target share 0.1368 `usage.json:pooled.target_share`, 0.0857 `usage.json:last_week.target_share`, red-zone target share 0.1429 `red-zone.json:rz_target_share` (2 of 14). |
+| WR Chris Godwin Jr. | **Sit** | Target share 0.1158 `usage.json:pooled.target_share`, air-yards share 0.059 `usage.json:pooled.air_yards_share`, no red-zone touches; Did Not Participate `injuries.json:practice_status`. |
+| TE Cade Otton | **Sit** | Snap share 0.9372 `usage.json:pooled.snap_share` (snap share stands in for routes) and target share 0.1789 `usage.json:pooled.target_share`, but 17.5 `usage.json:pooled.half_ppr_points` over 3 games with a backup QB and red-zone target share 0.1429 `red-zone.json:rz_target_share` (2 of 14); Green Bay allows 9.37 to TEs, rank 20 `points-allowed.json:per_game,rank`. |
 | D/ST Buccaneers | **Flex** | Green Bay is implied for 21 `game-environment.json:away_implied_total` in a 38.5 `game-environment.json:total_line`; Tampa Bay allows 14.77 to QBs, rank 24 `points-allowed.json:per_game,rank`. |
 
 ### 9. Titans at Ravens - Sun 13:00 ET [#119 game 2]
 
-Row `2026_04_TEN_BAL`: Ravens -11.5 `game-environment.json:spread_line`, total
-42.5 `game-environment.json:total_line`; Ravens 27
-`game-environment.json:home_implied_total`, Titans 15.5
+Row `2026_04_TEN_BAL`: 11.5 `game-environment.json:spread_line` (positive =
+home favored: Ravens by 11.5), total 42.5 `game-environment.json:total_line`;
+Ravens 27 `game-environment.json:home_implied_total`, Titans 15.5
 `game-environment.json:away_implied_total`.
+
+Pace: Titans 52.33 `team-pace.json:plays_per_game`, the league's fewest, and
+0.527 `team-pace.json:neutral_pass_rate`; Ravens 57.67 and 0.4565.
 
 **Titans**
 
 | Player | Call | Reason |
 |---|---|---|
 | QB Cam Ward | **Sit** | 41.16 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games`, 9.44 `usage.json:last_week.half_ppr_points`, on a 15.5 `game-environment.json:away_implied_total`. |
-| RB Tony Pollard | **Flex** | Rush share 0.8095 `usage.json:last_week.rush_share`, 0.5938 `usage.json:pooled.rush_share`, against Baltimore's 18.2 to RBs, rank 16 `points-allowed.json:per_game,rank`, but an 11.5-point underdog script. Did Not Participate `injuries.json:practice_status` - on the game-time list. |
-| RB Tyjae Spears | **Sit** | Rush share 0.2031 `usage.json:pooled.rush_share`, 0.5 `usage.json:last_week.half_ppr_points`; Did Not Participate `injuries.json:practice_status`. |
-| WR Wan'Dale Robinson | **Flex** | Target share 0.225 `usage.json:pooled.target_share`, 0.3143 `usage.json:last_week.target_share`, against Baltimore's 29.63 to WRs, rank 12 `points-allowed.json:per_game,rank`; a trailing script adds volume. |
-| WR Carnell Tate | **Flex** | Target share 0.25 `usage.json:pooled.target_share` and air-yards share 0.4345 `usage.json:pooled.air_yards_share` on 0.8405 `usage.json:pooled.snap_share` - the team's most-used WR - though 18.8 `usage.json:pooled.half_ppr_points` over 3 games shows the 15.5 implied total biting. |
-| WR Elic Ayomanor | **Sit** | Target share 0.1125 `usage.json:pooled.target_share`, 0.0857 `usage.json:last_week.target_share`, 1.6 `usage.json:last_week.half_ppr_points`. |
-| TE Gunnar Helm | **Sit** | Snap share 0.816 `usage.json:pooled.snap_share` (snap share stands in for routes) but 9.5 `usage.json:pooled.half_ppr_points` over 3 games; Baltimore allows 10.1 to TEs, rank 17 `points-allowed.json:per_game,rank`. |
+| RB Tony Pollard | **Flex** | Rush share 0.8095 `usage.json:last_week.rush_share`, 0.5938 `usage.json:pooled.rush_share`, against Baltimore's 18.2 to RBs, rank 16 `points-allowed.json:per_game,rank`, but an 11.5-point underdog script. Red-zone carry share 0.6667 `red-zone.json:rz_carry_share` (8 of 12). Did Not Participate `injuries.json:practice_status` - on the game-time list. |
+| RB Tyjae Spears | **Sit** | Rush share 0.2031 `usage.json:pooled.rush_share`, 0.5 `usage.json:last_week.half_ppr_points`, red-zone carry share 0.0833 `red-zone.json:rz_carry_share` (1 of 12); Did Not Participate `injuries.json:practice_status`. |
+| WR Wan'Dale Robinson | **Flex** | Target share 0.225 `usage.json:pooled.target_share`, 0.3143 `usage.json:last_week.target_share`, red-zone target share 0.25 `red-zone.json:rz_target_share` (3 of 12), against Baltimore's 29.63 to WRs, rank 12 `points-allowed.json:per_game,rank`; a trailing script adds volume. |
+| WR Carnell Tate | **Sit** | Target share 0.25 `usage.json:pooled.target_share` and air-yards share 0.4345 `usage.json:pooled.air_yards_share` on 0.8405 `usage.json:pooled.snap_share` - the team's most-used WR - but red-zone target share 0.0833 `red-zone.json:rz_target_share` (1 of 12) on the league's slowest offense, 52.33 `team-pace.json:plays_per_game`, and 18.8 `usage.json:pooled.half_ppr_points` over 3 games shows the 15.5 implied total biting. Moved down from Flex in v2: the volume is real but has no touchdown path. |
+| WR Elic Ayomanor | **Sit** | Target share 0.1125 `usage.json:pooled.target_share`, 0.0857 `usage.json:last_week.target_share`, 1.6 `usage.json:last_week.half_ppr_points`. Red-zone target share 0.4167 `red-zone.json:rz_target_share` is the team's highest, but on 5 of 12 targets and not enough to start him. |
+| TE Gunnar Helm | **Sit** | Snap share 0.816 `usage.json:pooled.snap_share` (snap share stands in for routes) but 9.5 `usage.json:pooled.half_ppr_points` over 3 games; red-zone target share 0.25 `red-zone.json:rz_target_share` (3 of 12); Baltimore allows 10.1 to TEs, rank 17 `points-allowed.json:per_game,rank`. |
 | D/ST Titans | **Sit** | Baltimore is implied for 27 `game-environment.json:home_implied_total`; Lamar Jackson has 60.2 `usage.json:pooled.half_ppr_points` in three games with rush share 0.1753 `usage.json:pooled.rush_share`. |
 
 **Ravens**
@@ -493,12 +499,12 @@ Row `2026_04_TEN_BAL`: Ravens -11.5 `game-environment.json:spread_line`, total
 | Player | Call | Reason |
 |---|---|---|
 | QB Lamar Jackson | **Start** | 60.2 `usage.json:pooled.half_ppr_points` over 3 games, a 27 `game-environment.json:home_implied_total`; Tennessee's 10.53 to QBs, rank 31 `points-allowed.json:per_game,rank`, trims the ceiling, not the call. Limited `injuries.json:practice_status` - on the game-time list. |
-| RB Derrick Henry | **Start** | Rush share 0.6804 `usage.json:pooled.rush_share`, 72.4 `usage.json:pooled.half_ppr_points` over 3 games, as an 11.5-point favorite `game-environment.json:spread_line`. |
-| RB Justice Hill | **Sit** | Rush share 0.134 `usage.json:pooled.rush_share`, target share 0.0411 `usage.json:pooled.target_share`, 3.3 `usage.json:last_week.half_ppr_points`. |
-| WR Zay Flowers | **Start** | Target share 0.2727 `usage.json:pooled.target_share` over 2 `usage.json:games`, 0.3 `usage.json:last_week.target_share` on a snap share of only 0.3281 `usage.json:last_week.snap_share` in his return; Tennessee allows 26.6 to WRs, rank 16 `points-allowed.json:per_game,rank`. Limited `injuries.json:practice_status` - on the game-time list. |
-| WR Rashod Bateman | **Sit** | Snap share 0.8579 `usage.json:pooled.snap_share` but target share 0.1781 `usage.json:pooled.target_share`, 4.7 `usage.json:last_week.half_ppr_points`. Flex if Flowers sits. |
-| WR Chris Moore | **Sit** | Target share 0.0822 `usage.json:pooled.target_share`, 0.05 `usage.json:last_week.target_share`; Limited `injuries.json:practice_status`. |
-| TE Mark Andrews | **Flex** | Target share 0.2466 `usage.json:pooled.target_share` on 0.6474 `usage.json:pooled.snap_share` (snap share stands in for routes), but 18.7 `usage.json:pooled.half_ppr_points` over 3 games; Tennessee allows 5.53 to TEs, rank 29 `points-allowed.json:per_game,rank`. Full `injuries.json:practice_status`. |
+| RB Derrick Henry | **Start** | Rush share 0.6804 `usage.json:pooled.rush_share`, 72.4 `usage.json:pooled.half_ppr_points` over 3 games, as an 11.5-point favorite `game-environment.json:spread_line`, with red-zone carry share 0.8333 `red-zone.json:rz_carry_share` (20 of 24). |
+| RB Justice Hill | **Sit** | Rush share 0.134 `usage.json:pooled.rush_share`, target share 0.0411 `usage.json:pooled.target_share`, 3.3 `usage.json:last_week.half_ppr_points`; no red-zone touches. |
+| WR Zay Flowers | **Start** | Target share 0.2727 `usage.json:pooled.target_share` over 2 `usage.json:games`, 0.3 `usage.json:last_week.target_share` on a snap share of only 0.3281 `usage.json:last_week.snap_share` in his return, red-zone target share 0.2 `red-zone.json:rz_target_share` (2 of 10); Tennessee allows 26.6 to WRs, rank 16 `points-allowed.json:per_game,rank`. Limited `injuries.json:practice_status` - on the game-time list. |
+| WR Rashod Bateman | **Sit** | Snap share 0.8579 `usage.json:pooled.snap_share` but target share 0.1781 `usage.json:pooled.target_share`, 4.7 `usage.json:last_week.half_ppr_points`, red-zone target share 0.2 `red-zone.json:rz_target_share` (2 of 10). Flex if Flowers sits. |
+| WR Chris Moore | **Sit** | Target share 0.0822 `usage.json:pooled.target_share`, 0.05 `usage.json:last_week.target_share`, red-zone target share 0.1 `red-zone.json:rz_target_share` (1 of 10); Limited `injuries.json:practice_status`. |
+| TE Mark Andrews | **Sit** | Target share 0.2466 `usage.json:pooled.target_share` on 0.6474 `usage.json:pooled.snap_share` (snap share stands in for routes), but 18.7 `usage.json:pooled.half_ppr_points` over 3 games and red-zone target share 0.1 `red-zone.json:rz_target_share` (1 of 10): Baltimore's red zone runs through Henry, 20 of 24 carries, on a 0.4565 `team-pace.json:neutral_pass_rate`. Tennessee allows 5.53 to TEs, rank 29 `points-allowed.json:per_game,rank`. Full `injuries.json:practice_status`. Moved down from Flex in v2. |
 | D/ST Ravens | **Start** | Tennessee is implied for 15.5 `game-environment.json:away_implied_total`, the week's second-lowest, as an 11.5-point underdog `game-environment.json:spread_line`; Ward has 41.16 `usage.json:pooled.half_ppr_points` in three games. |
 
 ### 10. Dolphins at Vikings - Sun 16:05 ET [#119 game 3]
