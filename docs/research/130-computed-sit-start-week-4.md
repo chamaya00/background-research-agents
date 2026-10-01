@@ -623,4 +623,95 @@ tables.
 
 ## Comparison with #118 and #119
 
-_To be written once the game sections are in._
+Two halves: calls that changed, and quoted numbers the tables contradict.
+#118 is `docs/research/116-2026-week-4-sit-start-games-1-8.md`, #119 is
+`docs/research/117-2026-week-4-sit-start-games-9-16.md`. Both were read on
+2026-09-30, a day before the tables were built.
+
+### Calls that differ
+
+39 of the 240 calls differ: 21 against #118, 18 against #119. Every other
+player keeps the same call.
+
+| Player | Game here | Baseline call | Call here | Computed numbers that moved it |
+|---|---|---|---|---|
+| QB Daniel Jones | 1 | #119 Start | Flex | 28.34 `usage.json:pooled.half_ppr_points` over 3 games; 7.9 `usage.json:last_week.half_ppr_points`. #119 leaned on a quoted matchup stat; the table agrees on the matchup (rank 2) but his own output is a streamer's. |
+| QB Jayden Daniels | 1 | #119 Sit | Flex | Limited `injuries.json:practice_status` - practising; 32.4 `usage.json:pooled.half_ppr_points` over 2 games. A start if active, so not a flat Sit. |
+| QB Geno Smith | 3 | #118 Sit | Flex | 50.92 `usage.json:pooled.half_ppr_points` over 3 games; Chicago's rank 17 to QBs `points-allowed.json:rank`. |
+| RB Braelon Allen | 3 | #118 Start | Flex | Rush share 0.2235 `usage.json:pooled.rush_share`; Hall's status is DNP, not Out `injuries.json:practice_status`. |
+| TE Kenyon Sadiq | 3 | #118 Start | Flex | Snap share 0.4493 `usage.json:pooled.snap_share`; Limited himself `injuries.json:practice_status`; Chicago rank 27 to TEs `points-allowed.json:rank`. |
+| RB D'Andre Swift | 3 | #118 Flex | Start | 52.1 `usage.json:pooled.half_ppr_points`; the Jets rank 9 to RBs `points-allowed.json:rank` - #118 quoted "2nd in yards allowed", which is not what fantasy points show. |
+| WR Kalif Raymond | 3 | #118 Sit | Flex | Target share 0.2333 `usage.json:pooled.target_share`, 36.9 `usage.json:pooled.half_ppr_points`. #118 read one week and one long TD. |
+| D/ST Bears | 3 | #118 Start | Flex | Geno Smith's 50.92 `usage.json:pooled.half_ppr_points`; Jets implied 20 `game-environment.json:away_implied_total`. |
+| RB Bhayshul Tuten | 4 | #118 Start | Flex | Snap share 0.4944 `usage.json:pooled.snap_share`, target share 0.0658 `usage.json:pooled.target_share`; Cincinnati rank 20 to RBs `points-allowed.json:rank`. |
+| D/ST Jaguars | 4 | #118 Start | Sit | Cincinnati implied 27 `game-environment.json:home_implied_total`; Burrow 52.92 `usage.json:pooled.half_ppr_points`. |
+| TE Mike Gesicki | 4 | #118 Sit | Flex | 27.5 `usage.json:pooled.half_ppr_points` over 2 games; Jacksonville rank 26 to TEs `points-allowed.json:rank`. |
+| TE Jake Ferguson | 5 | #118 Start | Flex | Target share 0.1089 `usage.json:pooled.target_share`; Houston rank 16 to TEs `points-allowed.json:rank`. |
+| QB Jacoby Brissett | 6 | #118 Sit | Flex | 48.58 `usage.json:pooled.half_ppr_points`, 25.6 `usage.json:last_week.half_ppr_points`. |
+| WR Marvin Harrison Jr. | 6 | #118 Flex | Sit | Target share 0.0796 `usage.json:pooled.target_share`, 9.3 `usage.json:pooled.half_ppr_points`. |
+| D/ST Cardinals | 6 | #118 Sit | Flex | Winston 8.66 `usage.json:pooled.half_ppr_points` over 2 games; Giants implied 21 `game-environment.json:home_implied_total`. |
+| TE Tyler Higbee | 7 | #118 Start | Flex | Philadelphia rank 31 to TEs `points-allowed.json:rank`; target share 0.1711 `usage.json:pooled.target_share` over 2 games. |
+| RB Saquon Barkley | 7 | #118 Start | Flex | 19.5 `usage.json:pooled.half_ppr_points` over 3 games, rush share 0.4474 `usage.json:pooled.rush_share`; the Rams rank 26 to RBs `points-allowed.json:rank`. |
+| WR DeVonta Smith | 7 | #118 Flex | Start | Target share 0.3333 `usage.json:pooled.target_share`, air-yards share 0.4771 `usage.json:pooled.air_yards_share`. #118 quoted a defense stat over his usage. |
+| WR Dontayvion Wicks | 7 | #118 Sit | Flex | Target share 0.1852 `usage.json:pooled.target_share`, 28.4 `usage.json:pooled.half_ppr_points`. |
+| QB Jordan Love | 8 | #118 Start | Flex | Tampa Bay rank 24 to QBs `points-allowed.json:rank`; 38.5 `game-environment.json:total_line`. |
+| TE Tucker Kraft | 8 | #118 Start | Flex | 15.1 `usage.json:pooled.half_ppr_points` over 3 games. |
+| RB Bucky Irving | 8 | #118 Flex | Start | Rush share 0.6061 `usage.json:pooled.rush_share`; Green Bay rank 1 to RBs `points-allowed.json:rank`. |
+| D/ST Buccaneers | 8 | #118 Start | Flex | Green Bay implied 21 `game-environment.json:away_implied_total`; Tampa Bay rank 24 to QBs `points-allowed.json:rank`. |
+| WR Carnell Tate | 9 | #119 Sit | Flex | Target share 0.25 `usage.json:pooled.target_share`, air-yards share 0.4345 `usage.json:pooled.air_yards_share`. |
+| TE Mark Andrews | 9 | #119 Start | Flex | 18.7 `usage.json:pooled.half_ppr_points` over 3 games; Tennessee rank 29 to TEs `points-allowed.json:rank`. |
+| WR Justin Jefferson | 10 | #119 Start | Flex | Did Not Participate `injuries.json:practice_status`; 0.1186 `usage.json:last_week.snap_share`. |
+| WR Xavier Worthy | 11 | #119 Flex | Sit | Target share 0.087 `usage.json:last_week.target_share`; Las Vegas rank 30 to WRs `points-allowed.json:rank`. |
+| D/ST Chiefs | 11 | #119 Start | Flex | Cousins 56.24 `usage.json:pooled.half_ppr_points`; Raiders implied 21.5 `game-environment.json:home_implied_total`. |
+| TE Oronde Gadsden II | 12 | #119 Start | Sit | Target share 0.0814 `usage.json:pooled.target_share`, 0 `usage.json:last_week.half_ppr_points`. |
+| WR Cooper Kupp | 12 | #119 Flex | Sit | Target share 0.1053 `usage.json:pooled.target_share`. |
+| TE AJ Barner | 12 | #119 Start | Flex | 19.1 `usage.json:pooled.half_ppr_points` over 3 games; Chargers rank 18 to TEs `points-allowed.json:rank`. |
+| RB J.K. Dobbins | 13 | #119 Flex | Sit | 13 `usage.json:pooled.half_ppr_points` over 3 games, target share 0.023 `usage.json:pooled.target_share`. |
+| WR Jaylen Waddle | 13 | #119 Start | Flex | 23.9 `usage.json:pooled.half_ppr_points` over 3 games; San Francisco rank 25 to WRs `points-allowed.json:rank`. |
+| WR Courtland Sutton | 13 | #119 Flex | Sit | 12.2 `usage.json:pooled.half_ppr_points` over 3 games. |
+| D/ST 49ers | 13 | #119 Start | Flex | Denver implied 22.25 `game-environment.json:away_implied_total`. |
+| WR Jameson Williams | 14 | #119 Flex | Sit | Target share 0.1574 `usage.json:pooled.target_share`; Carolina rank 31 to WRs `points-allowed.json:rank`. |
+| D/ST Lions | 14 | #119 Start | Sit | Carolina implied 24 `game-environment.json:home_implied_total`; Bryce Young 69.16 `usage.json:pooled.half_ppr_points`. |
+| QB Michael Penix Jr. | 15 | #119 Start | Flex | One game, 14.04 `usage.json:pooled.half_ppr_points`. |
+| RB Alvin Kamara | 15 | #119 Flex | Sit | Snap share 0.3099 `usage.json:pooled.snap_share`; Atlanta rank 30 to RBs `points-allowed.json:rank`. |
+
+**The pattern.** The tables moved calls in two directions. They cooled
+tight ends and D/STs that #118 and #119 started on a name or a matchup
+quote (Higbee, Kraft, Andrews, Gadsden, Barner; five D/STs), and they warmed
+players whose pooled shares the quoted pages had not printed (Swift,
+DeVonta Smith, Irving, Raymond, Tate).
+
+### Quoted numbers the tables contradict
+
+Only numbers the tables can check are listed. Where a quote matched, it is
+listed once at the end so the check is visible.
+
+| Quoted in | Player or game | Quoted value (source) | Table value | Note |
+|---|---|---|---|---|
+| #119 game 1 | Washington pass defense | "league-high 24.8 passing fantasy points per game" (Sharp) | 27.38 to QBs, rank 2 `points-allowed.json:per_game,rank` (WAS, QB); Detroit is rank 1 at 30.02 | Different scoring, but not league-high on these tables. |
+| #119 game 1 | Jacory Croskey-Merritt | 58.5% of snaps in week 3 (Sharp) | 0.5652 `usage.json:last_week.snap_share` | Footballguys' 57% in the same document is closer. |
+| #119 game 6 | RJ Harvey | 13% target share (RotoWire) | 0.1897 `usage.json:pooled.target_share`; 0.2258 `usage.json:last_week.target_share` | Contradicted. |
+| #119 game 6 | Christian McCaffrey | "no week 4 injury item found" | Did Not Participate `injuries.json:practice_status` | The table post-dates #119's read. |
+| #118 game 2 | Bills defense vs QBs | "seventh-most points to QBs" (SI) | 19.66, rank 8 `points-allowed.json:per_game,rank` (BUF, QB) | Off by one rank. |
+| #118 game 4 | Chase Brown | 68% of snaps (full page) | 0.7018 `usage.json:last_week.snap_share` | Contradicted by two points. |
+| #118 game 6 | Malik Nabers | "team-high 27% target share" (NBC) | 0.2317 `usage.json:pooled.target_share`; Isaiah Likely 0.2805 `usage.json:pooled.target_share` | Not team-high pooled; week 3 was 0.2857 `usage.json:last_week.target_share`. |
+| #118 game 7 | Davante Adams | 34% target share (Footballguys) | 0.2736 `usage.json:pooled.target_share`; 0.2653 `usage.json:last_week.target_share` | Contradicted. |
+| #118 game 7 | DeVonta Smith | 8 of the team's 24 targets | 0.32 `usage.json:last_week.target_share` = 8 of 25 `usage.json:last_week.team_targets` | Team count off by one. |
+| #118 game 3 | Jets at Bears line | Bears -3, total 43, Bears 23.0 / Jets 20.0 (CBS) | -3.5 / 43.5, 23.5 / 20 `game-environment.json` | Line moved a day later; not an error. |
+| #118 game 5 | Cowboys at Texans line | Texans -2.5, total 47.5, 25.0 / 22.5 | 3 / 48.5, 25.75 / 22.75 `game-environment.json` | Moved. |
+| #118 game 6 | Cardinals at Giants line | Cardinals -1, total 44.5, 22.75 / 21.75 | -2.5 / 44.5, 23.5 / 21 `game-environment.json` | Moved. |
+| #118 game 7 | Rams at Eagles line | Rams -3, total 44 (CBS); 43.5 (4for4) | -3 / 43.5 `game-environment.json` | 4for4's matches. |
+| #118 game 8 | Packers at Buccaneers line | Packers -4, total 39.5 (CBS); -3.5 (4for4) | -3.5 / 38.5 `game-environment.json` | Moved. |
+| #119 games 2-8 | Lines | TEN-BAL 43.5; MIA-MIN -10, MIA 14.25; KC-LV 48.5; LAC-SEA -6.5/43.5; DEN-SF -2.5/46.5; DET-CAR 50.5; ATL-NO 48.5 (bet365, 2026-09-28) | 42.5; -10.5, 14; 47.5; -7/42.5; -3/47.5; 51.5; 47.5 `game-environment.json:spread_line,total_line` | bet365 two days earlier vs the games file at 08:16Z on 2026-10-01; movement, not error. |
+
+**Quotes the tables confirm** (week 3 snaps unless noted): #118's Hollins
+76%, Henry 70%, Stevenson 52%, Henderson 37%, Cook 67%, DJ Moore 10 of 26
+targets on 64%, Kincaid 21% target share on 68%, Swift 69%, Burden 25%
+share, Odunze 15% share, Javonte Williams 76%, Lamb 82%, Pickens 85%,
+Skattebo 76.6%, McBride 91%, Barkley 72%, Wicks 88% (and its summary-only
+"5 targets" = 0.2 of 25), Otton 94%, and Dallas allowing the 3rd-most to QBs
+(rank 3). #119's Warren 23.4% share, Allen 25.7%, McLaurin 30%, St. Brown
+32.4%, Walker and Kelce 19.8%, Jeanty 18.2% on 84%, Tucker 17.0%, Thornton
+7.7% on 46%, Deebo 13.58% on 76%, McCaffrey 83% and 65% of carries, Addison
+98%, Gordon 84%, Kamara 32%, the Colts allowing the 5th-most to QBs (rank 5),
+and Seattle the 4th-fewest to WRs (rank 29).
