@@ -1,10 +1,11 @@
 import { createHash } from "node:crypto";
+import { gunzipSync } from "node:zlib";
 import { parse } from "csv-parse/sync";
 import { z } from "zod";
 
 const BASE = "https://github.com/nflverse/nflverse-data/releases/download";
 
-export type NflverseFile = "stats_player" | "snap_counts" | "injuries" | "games";
+export type NflverseFile = "stats_player" | "snap_counts" | "injuries" | "games" | "play_by_play";
 
 export type FetchLike = (url: string) => Promise<Pick<Response, "status" | "arrayBuffer">>;
 
@@ -25,10 +26,12 @@ export function nflverseUrls(season: number): Record<NflverseFile, string> {
     snap_counts: `${BASE}/snap_counts/snap_counts_${season}.csv`,
     injuries: `${BASE}/injuries/injuries_${season}.csv`,
     games: `${BASE}/schedules/games.csv`,
+    // The release tag is pbp, not play_by_play; the asset is gzipped.
+    play_by_play: `${BASE}/pbp/play_by_play_${season}.csv.gz`,
   };
 }
 
-/** Fetches the four files. Throws, naming the file and status, on any non-200. */
+/** Fetches the five files. Throws, naming the file and status, on any non-200. */
 export async function collectInputs(
   season: number,
   fetchFn: FetchLike = (url) => fetch(url),
@@ -139,23 +142,49 @@ export const gamesRow = z.object({
   roof: optText,
 });
 
+// One play. Missing values are empty strings in this file. Only the columns the derived tables read are kept.
+export const playByPlayRow = z.object({
+  game_id: text,
+  season: num,
+  week: num,
+  season_type: text,
+  posteam: optText,
+  play_type: optText,
+  pass: optNum,
+  rush: optNum,
+  yardline_100: optNum,
+  two_point_attempt: optNum,
+  qb_kneel: optNum,
+  qb_spike: optNum,
+  down: optNum,
+  wp: optNum,
+  pass_oe: optNum,
+  receiver_player_id: optText,
+  receiver_player_name: optText,
+  rusher_player_id: optText,
+  rusher_player_name: optText,
+});
+
 const SCHEMAS = {
   stats_player: statsPlayerRow,
   snap_counts: snapCountsRow,
   injuries: injuriesRow,
   games: gamesRow,
+  play_by_play: playByPlayRow,
 };
 
 export type StatsPlayerRow = z.infer<typeof statsPlayerRow>;
 export type SnapCountsRow = z.infer<typeof snapCountsRow>;
 export type InjuriesRow = z.infer<typeof injuriesRow>;
 export type GamesRow = z.infer<typeof gamesRow>;
+export type PlayByPlayRow = z.infer<typeof playByPlayRow>;
 
 export interface ParsedRows {
   stats_player: StatsPlayerRow[];
   snap_counts: SnapCountsRow[];
   injuries: InjuriesRow[];
   games: GamesRow[];
+  play_by_play: PlayByPlayRow[];
 }
 
 /** Parses one file's CSV text; a bad row throws naming the file, row and field. */
@@ -175,7 +204,9 @@ export function parseCsv<F extends NflverseFile>(file: F, csv: string): z.infer<
 export function parseInputs(inputs: FetchedInput[]): ParsedRows {
   const rows: Record<string, unknown> = {};
   for (const input of inputs) {
-    rows[input.file] = parseCsv(input.file, new TextDecoder().decode(input.bytes));
+    // The hash covers the compressed bytes; only the parse sees the decompressed ones.
+    const bytes = input.file === "play_by_play" ? gunzipSync(input.bytes) : input.bytes;
+    rows[input.file] = parseCsv(input.file, new TextDecoder().decode(bytes));
   }
   return rows as unknown as ParsedRows;
 }

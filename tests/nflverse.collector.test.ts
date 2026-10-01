@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 import { describe, expect, it } from "vitest";
 import { parse } from "csv-parse/sync";
 import {
@@ -17,9 +18,11 @@ const FILES: Record<NflverseFile, string> = {
   snap_counts: "snap_counts_2026.csv",
   injuries: "injuries_2026.csv",
   games: "games.csv",
+  play_by_play: "play_by_play_2026.csv.gz",
 };
 const bytesOf = (file: NflverseFile): Buffer => readFileSync(new URL(FILES[file], DIR));
-const textOf = (file: NflverseFile): string => bytesOf(file).toString("utf8");
+const textOf = (file: NflverseFile): string =>
+  (file === "play_by_play" ? gunzipSync(bytesOf(file)) : bytesOf(file)).toString("utf8");
 
 const urls = nflverseUrls(2026);
 const byUrl = new Map(Object.entries(urls).map(([file, url]) => [url, file as NflverseFile]));
@@ -33,7 +36,7 @@ const stubFetch =
   };
 
 describe("collector", () => {
-  it("requests exactly the four URLs and records url, fetch time and sha256", async () => {
+  it("requests exactly the five URLs and records url, fetch time and sha256", async () => {
     const requested: string[] = [];
     const now = new Date("2026-10-01T07:30:00Z");
     const inputs = await collectInputs(2026, stubFetch(requested), () => now);
@@ -44,9 +47,10 @@ describe("collector", () => {
         "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
         "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
         "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
+        "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz",
       ].sort(),
     );
-    expect(inputs).toHaveLength(4);
+    expect(inputs).toHaveLength(5);
     for (const input of inputs) {
       expect(input.url).toBe(urls[input.file]);
       expect(input.fetchedAt).toBe("2026-10-01T07:30:00.000Z");
@@ -87,6 +91,18 @@ describe("parsing", () => {
     expect(rows.snap_counts).toHaveLength(142);
     expect(rows.injuries).toHaveLength(10);
     expect(rows.games).toHaveLength(64);
+    expect(rows.play_by_play).toHaveLength(513);
+  });
+
+  it("decompresses the play-by-play file with zlib while its sha256 stays that of the compressed bytes", async () => {
+    const inputs = await collectInputs(2026, stubFetch());
+    const pbp = inputs.find((i) => i.file === "play_by_play")!;
+    const compressed = bytesOf("play_by_play");
+    expect(pbp.sha256).toBe(createHash("sha256").update(compressed).digest("hex"));
+    expect(pbp.sha256).not.toBe(createHash("sha256").update(gunzipSync(compressed)).digest("hex"));
+    // Gzip magic bytes: the input is still compressed, and parsing decompresses it.
+    expect([pbp.bytes[0], pbp.bytes[1]]).toEqual([0x1f, 0x8b]);
+    expect(parseInputs([pbp]).play_by_play).toHaveLength(513);
   });
 
   // Renaming a required column's header leaves every row missing that field.

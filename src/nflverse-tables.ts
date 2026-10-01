@@ -1,4 +1,4 @@
-import type { FetchedInput, GamesRow, InputRecord, InjuriesRow, ParsedRows, StatsPlayerRow } from "./nflverse.js";
+import type { FetchedInput, GamesRow, InputRecord, InjuriesRow, ParsedRows, PlayByPlayRow, StatsPlayerRow } from "./nflverse.js";
 
 export const ATTRIBUTION = {
   source: "nflverse",
@@ -71,7 +71,32 @@ export interface InjuryRow {
   report_primary_injury: string | null;
 }
 
+export interface RedZoneRow {
+  player_id: string;
+  player: string;
+  team: string;
+  rz_targets: number;
+  team_rz_targets: number;
+  rz_target_share: number | null;
+  rz_carries: number;
+  team_rz_carries: number;
+  rz_carry_share: number | null;
+}
+
+export interface TeamPaceRow {
+  team: string;
+  games: number;
+  plays: number;
+  plays_per_game: number;
+  pass_rate: number | null;
+  neutral_plays: number;
+  neutral_pass_rate: number | null;
+  pass_rate_over_expected: number | null;
+}
+
 export interface Tables {
+  redZone: RedZoneRow[];
+  teamPace: TeamPaceRow[];
   usage: UsageRow[];
   pointsAllowed: PointsAllowedRow[];
   environment: EnvironmentRow[];
@@ -292,9 +317,105 @@ export function buildInjuries(injuries: InjuriesRow[], season: number, week: num
     }));
 }
 
+/** Regular-season plays of weeks before the target week that belong to an offense. */
+function priorPlays(plays: PlayByPlayRow[], season: number, week: number): (PlayByPlayRow & { posteam: string })[] {
+  return plays.filter(
+    (p): p is PlayByPlayRow & { posteam: string } =>
+      p.season === season && p.season_type === "REG" && p.week < week && p.posteam !== null,
+  );
+}
+
+/** Targets and carries inside the 20 (`yardline_100 <= 20`), two-point tries excluded, with the team's totals. */
+export function buildRedZone(plays: PlayByPlayRow[], season: number, week: number): RedZoneRow[] {
+  const players = new Map<string, RedZoneRow & { lastWeek: number }>();
+  const teamTargets = new Map<string, number>();
+  const teamCarries = new Map<string, number>();
+  const bump = (m: Map<string, number>, k: string): void => void m.set(k, (m.get(k) ?? 0) + 1);
+  const touch = (id: string, name: string | null, p: PlayByPlayRow & { posteam: string }): RedZoneRow & { lastWeek: number } => {
+    let row = players.get(id);
+    if (!row) {
+      row = {
+        player_id: id,
+        player: name ?? id,
+        team: p.posteam,
+        rz_targets: 0,
+        team_rz_targets: 0,
+        rz_target_share: null,
+        rz_carries: 0,
+        team_rz_carries: 0,
+        rz_carry_share: null,
+        lastWeek: p.week,
+      };
+      players.set(id, row);
+    }
+    // A player who changed team reports the latest one, and the shares use that team's totals.
+    if (p.week >= row.lastWeek) {
+      row.lastWeek = p.week;
+      row.team = p.posteam;
+      row.player = name ?? row.player;
+    }
+    return row;
+  };
+  for (const p of priorPlays(plays, season, week)) {
+    if (p.yardline_100 === null || p.yardline_100 > 20 || (p.two_point_attempt ?? 0) === 1) continue;
+    if (p.pass === 1 && p.receiver_player_id !== null) {
+      touch(p.receiver_player_id, p.receiver_player_name, p).rz_targets += 1;
+      bump(teamTargets, p.posteam);
+    }
+    if (p.rush === 1 && p.rusher_player_id !== null) {
+      touch(p.rusher_player_id, p.rusher_player_name, p).rz_carries += 1;
+      bump(teamCarries, p.posteam);
+    }
+  }
+  return [...players.values()]
+    .map(({ lastWeek: _lastWeek, ...row }) => {
+      const tt = teamTargets.get(row.team) ?? 0;
+      const tc = teamCarries.get(row.team) ?? 0;
+      return {
+        ...row,
+        team_rz_targets: tt,
+        rz_target_share: share(row.rz_targets, tt),
+        team_rz_carries: tc,
+        rz_carry_share: share(row.rz_carries, tc),
+      };
+    })
+    .sort((a, b) => a.player_id.localeCompare(b.player_id));
+}
+
+const mean = (xs: number[]): number | null => (xs.length > 0 ? round(xs.reduce((a, b) => a + b, 0) / xs.length) : null);
+
+/** Per offense: plays per game, pass rate, neutral pass rate and pass rate over expected, weeks before the target week. */
+export function buildTeamPace(plays: PlayByPlayRow[], season: number, week: number): TeamPaceRow[] {
+  const byTeam = new Map<string, PlayByPlayRow[]>();
+  for (const p of priorPlays(plays, season, week)) {
+    // Only scrimmage plays: kneels, spikes, no_play (penalties), punts and the rest are not plays here.
+    if (p.play_type !== "pass" && p.play_type !== "run") continue;
+    if ((p.qb_kneel ?? 0) === 1 || (p.qb_spike ?? 0) === 1) continue;
+    byTeam.set(p.posteam!, [...(byTeam.get(p.posteam!) ?? []), p]);
+  }
+  const out: TeamPaceRow[] = [];
+  for (const [team, ps] of byTeam) {
+    const games = new Set(ps.map((p) => p.game_id)).size;
+    const neutral = ps.filter((p) => p.wp !== null && p.wp >= 0.2 && p.wp <= 0.8 && (p.down === 1 || p.down === 2));
+    out.push({
+      team,
+      games,
+      plays: ps.length,
+      plays_per_game: round(ps.length / games, 2),
+      pass_rate: mean(ps.map((p) => p.pass ?? 0)),
+      neutral_plays: neutral.length,
+      neutral_pass_rate: mean(neutral.map((p) => p.pass ?? 0)),
+      pass_rate_over_expected: mean(ps.flatMap((p) => (p.pass_oe === null ? [] : [p.pass_oe]))),
+    });
+  }
+  return out.sort((a, b) => a.team.localeCompare(b.team));
+}
+
 export function buildTables(inputs: FetchedInput[], rows: ParsedRows, season: number, week: number): Tables {
   const gamesInput = inputs.find((i) => i.file === "games");
   return {
+    redZone: buildRedZone(rows.play_by_play, season, week),
+    teamPace: buildTeamPace(rows.play_by_play, season, week),
     usage: buildUsage(rows, season, week),
     pointsAllowed: buildPointsAllowed(rows, season, week),
     environment: buildEnvironment(rows.games, season, week, gamesInput?.fetchedAt ?? ""),

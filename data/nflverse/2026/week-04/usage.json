@@ -9,26 +9,32 @@
     {
       "file": "stats_player",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
-      "fetchedAt": "2026-10-01T08:16:12.535Z",
+      "fetchedAt": "2026-10-01T08:46:11.059Z",
       "sha256": "e293e213908f746db982cd9112f5016125a42eeeec16c4773b35c6cc5edf6327"
     },
     {
       "file": "snap_counts",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
-      "fetchedAt": "2026-10-01T08:16:12.692Z",
+      "fetchedAt": "2026-10-01T08:46:11.201Z",
       "sha256": "c5868527b1052ae572b2d8f34a7bb777675a5e762ceaeb25f72f10d1c59846d5"
     },
     {
       "file": "injuries",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
-      "fetchedAt": "2026-10-01T08:16:12.750Z",
+      "fetchedAt": "2026-10-01T08:46:11.351Z",
       "sha256": "408a873e9a80993f46e073697e7fd3f04894778b28ae23250090440e71106a07"
     },
     {
       "file": "games",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
-      "fetchedAt": "2026-10-01T08:16:12.898Z",
+      "fetchedAt": "2026-10-01T08:46:11.440Z",
       "sha256": "0a4b3a2d425bd3fa5b18302c27c3f380307d21c3779d759498654c799f439a49"
+    },
+    {
+      "file": "play_by_play",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz",
+      "fetchedAt": "2026-10-01T08:46:11.630Z",
+      "sha256": "321433f8c3cab61e7577f49dc2f22f8216de8a5eb84baa432f1cf3d60d0b705a"
     }
   ],
   "season": 2026,
