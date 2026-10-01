@@ -142,8 +142,44 @@ export const gamesRow = z.object({
   roof: optText,
 });
 
+// Columns added for the backtest (#142). Optional so a file or fixture without them still parses.
+const optCol = z
+  .string()
+  .optional()
+  .transform((s) => (s === undefined || s === "" ? null : s));
+const optNumCol = z
+  .string()
+  .optional()
+  .transform((s) => (s === undefined || s === "" || s === "NA" ? null : Number(s)))
+  .pipe(z.number().finite().nullable());
+
+/** Every `*_player_id` column of the file other than receiver and rusher: a player in any of them was on the field (plan section 6, "seen"). */
+export const SEEN_ID_COLUMNS = [
+  "td_player_id", "passer_player_id", "lateral_receiver_player_id", "lateral_rusher_player_id",
+  "lateral_sack_player_id", "interception_player_id", "lateral_interception_player_id",
+  "punt_returner_player_id", "lateral_punt_returner_player_id", "kickoff_returner_player_id",
+  "lateral_kickoff_returner_player_id", "punter_player_id", "kicker_player_id",
+  "own_kickoff_recovery_player_id", "blocked_player_id", "tackle_for_loss_1_player_id",
+  "tackle_for_loss_2_player_id", "qb_hit_1_player_id", "qb_hit_2_player_id",
+  "forced_fumble_player_1_player_id", "forced_fumble_player_2_player_id", "solo_tackle_1_player_id",
+  "solo_tackle_2_player_id", "assist_tackle_1_player_id", "assist_tackle_2_player_id",
+  "assist_tackle_3_player_id", "assist_tackle_4_player_id", "tackle_with_assist_1_player_id",
+  "tackle_with_assist_2_player_id", "pass_defense_1_player_id", "pass_defense_2_player_id",
+  "fumbled_1_player_id", "fumbled_2_player_id", "fumble_recovery_1_player_id",
+  "fumble_recovery_2_player_id", "sack_player_id", "half_sack_1_player_id", "half_sack_2_player_id",
+  "penalty_player_id", "safety_player_id", "fantasy_player_id",
+] as const;
+const seenIds = Object.fromEntries(SEEN_ID_COLUMNS.map((c) => [c, optCol])) as Record<
+  (typeof SEEN_ID_COLUMNS)[number],
+  typeof optCol
+>;
+
 // One play. Missing values are empty strings in this file. Only the columns the derived tables read are kept.
 export const playByPlayRow = z.object({
+  ...seenIds,
+  complete_pass: optNumCol,
+  sack: optNumCol,
+  touchdown: optNumCol,
   game_id: text,
   season: num,
   week: num,
