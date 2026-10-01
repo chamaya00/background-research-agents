@@ -18,7 +18,7 @@ function flags(args: string[]): Record<string, string> {
 
 /**
  * `fetch` prints the manifest (URL, fetch time, SHA-256 per input) and row counts as JSON.
- * `tables` writes the four derived tables, each with attribution and the manifest, to --out.
+ * `tables` writes the six derived tables, each with attribution and the manifest, to --out.
  * Returns the exit code.
  */
 export async function run(argv: string[], collect: Collect = (s) => collectInputs(s)): Promise<number> {
@@ -55,6 +55,8 @@ export async function run(argv: string[], collect: Collect = (s) => collectInput
       const through = { uses_weeks: "1.." + String(week - 1) };
       write("usage.json", through, tables.usage);
       write("points-allowed.json", through, tables.pointsAllowed);
+      write("red-zone.json", through, tables.redZone);
+      write("team-pace.json", through, tables.teamPace);
       write("game-environment.json", {}, tables.environment);
       write("injuries.json", { note: "One status per player for the week, not a day-by-day trend." }, tables.injuries);
       return 0;

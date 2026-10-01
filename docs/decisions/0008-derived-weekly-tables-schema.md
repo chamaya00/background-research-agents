@@ -75,6 +75,37 @@ FTN-derived is read (the `ftn` column of `games.csv` is not kept by the schema).
 
 `injuriesRow` gains `full_name` so the injury table can name the player.
 
+## Amendment: play-by-play tables (#129)
+
+A fifth input, `play_by_play`, is fetched from
+`releases/download/pbp/play_by_play_<season>.csv.gz` (the tag is `pbp`; the path
+`play_by_play/` returns 404). It is decompressed with `zlib.gunzipSync` at parse
+time; the recorded SHA-256 is of the compressed bytes, as fetched. Only the
+columns the tables read are kept by the schema. `tables` now writes six files:
+the four above plus `red-zone.json` and `team-pace.json`, each with
+`uses_weeks: "1..W-1"` and the same attribution and manifest (five inputs).
+Regular-season plays of weeks 1..W-1 with a `posteam` only.
+
+5. `red-zone.json` rows, one per player: `player_id`, `player`, `team` (latest),
+   `rz_targets`, `team_rz_targets`, `rz_target_share`, `rz_carries`,
+   `team_rz_carries`, `rz_carry_share`. A red-zone target is a play with
+   `yardline_100 <= 20`, `pass = 1`, `two_point_attempt = 0` and a
+   `receiver_player_id`, keyed on it; a carry is the same with `rush = 1` keyed
+   on `rusher_player_id` (QB scrambles count). Team totals are the same counts
+   summed over the offense (`posteam`), so a pass with no receiver is in neither
+   side. Shares are rounded to 4 dp, `null` when the team total is 0.
+6. `team-pace.json` rows, one per offense: `team`, `games`, `plays`,
+   `plays_per_game`, `pass_rate`, `neutral_plays`, `neutral_pass_rate`,
+   `pass_rate_over_expected`. **Plays** are rows with `play_type` in {pass, run},
+   excluding `qb_kneel = 1` and `qb_spike = 1`; `no_play` (penalty-only), punts,
+   kicks and the rest are not plays. Two-point tries carry `play_type` pass/run
+   and are counted; the criteria do not exclude them. `pass_rate` is the mean of
+   `pass` over plays. **Neutral** restricts those plays to `wp` between 0.2 and
+   0.8 inclusive and `down` in {1, 2}; a play with no `wp` or `down` is not
+   neutral. `pass_rate_over_expected` is the mean of `pass_oe` (percentage
+   points, as nflverse gives it) over plays that have one. Rates are rounded to
+   4 dp; `plays_per_game` to 2.
+
 ## Consequences
 
 - A table is reproducible from the listed inputs: same SHA-256s, same output.
