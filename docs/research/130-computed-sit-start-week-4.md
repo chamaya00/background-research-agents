@@ -581,23 +581,26 @@ Pace: Chiefs 63.67 `team-pace.json:plays_per_game` and 0.5806
 
 ### 12. Chargers at Seahawks - Sun 16:25 ET [#119 game 5]
 
-Row `2026_04_LAC_SEA`: Seahawks -7 `game-environment.json:spread_line`, total
-42.5 `game-environment.json:total_line`; Seahawks 24.75
-`game-environment.json:home_implied_total`, Chargers 17.75
+Row `2026_04_LAC_SEA`: 7 `game-environment.json:spread_line` (positive =
+home favored: Seahawks by 7), total 42.5 `game-environment.json:total_line`;
+Seahawks 24.75 `game-environment.json:home_implied_total`, Chargers 17.75
 `game-environment.json:away_implied_total`. Seattle had no rows in
 `injuries.json` when fetched.
+
+Pace: Chargers 59 `team-pace.json:plays_per_game` and 0.4474
+`team-pace.json:neutral_pass_rate`; Seahawks 59.33 and 0.5294.
 
 **Chargers**
 
 | Player | Call | Reason |
 |---|---|---|
 | QB Justin Herbert | **Sit** | 33.88 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games`, a 17.75 `game-environment.json:away_implied_total`, and Seattle's 12.25 to QBs, rank 28 `points-allowed.json:per_game,rank`. |
-| RB Omarion Hampton | **Flex** | Rush share 0.6173 `usage.json:pooled.rush_share` on 0.5417 `usage.json:pooled.snap_share`, but target share 0.0349 `usage.json:pooled.target_share` and Seattle's 13.9 to RBs, rank 28 `points-allowed.json:per_game,rank`. |
-| RB Keaton Mitchell | **Sit** | Rush share 0.2099 `usage.json:pooled.rush_share`, snap share 0.3125 `usage.json:pooled.snap_share`; 12.2 `usage.json:last_week.half_ppr_points` was a one-week spike. |
-| WR Ladd McConkey | **Flex** | Air-yards share 0.2518 `usage.json:pooled.air_yards_share`, snap share up to 0.8841 `usage.json:last_week.snap_share`, target share 0.1744 `usage.json:pooled.target_share`; Seattle allows 18.67 to WRs, rank 29 `points-allowed.json:per_game,rank`. |
-| WR Quentin Johnston | **Sit** | Target share 0.1977 `usage.json:pooled.target_share` on 0.8229 `usage.json:pooled.snap_share` has produced 10.1 `usage.json:pooled.half_ppr_points` in three games. |
-| WR Tre Harris | **Sit** | Target share 0.186 `usage.json:pooled.target_share`, 19.9 `usage.json:pooled.half_ppr_points` over 3 games, against Seattle's 18.67 to WRs, rank 29 `points-allowed.json:per_game,rank`. |
-| TE Oronde Gadsden II | **Sit** | Snap share 0.5652 `usage.json:last_week.snap_share` (snap share stands in for routes) but target share 0.0814 `usage.json:pooled.target_share` and 0 `usage.json:last_week.half_ppr_points`; Seattle allows 9 to TEs, rank 21 `points-allowed.json:per_game,rank`. |
+| RB Omarion Hampton | **Flex** | Rush share 0.6173 `usage.json:pooled.rush_share` on 0.5417 `usage.json:pooled.snap_share`, but target share 0.0349 `usage.json:pooled.target_share` and Seattle's 13.9 to RBs, rank 28 `points-allowed.json:per_game,rank`. Red-zone carry share 0.6667 `red-zone.json:rz_carry_share` (10 of 15) on a run-leaning offense, 0.4474 `team-pace.json:neutral_pass_rate`. |
+| RB Keaton Mitchell | **Sit** | Rush share 0.2099 `usage.json:pooled.rush_share`, snap share 0.3125 `usage.json:pooled.snap_share`, red-zone carry share 0.2 `red-zone.json:rz_carry_share` (3 of 15); 12.2 `usage.json:last_week.half_ppr_points` was a one-week spike. |
+| WR Ladd McConkey | **Flex** | Air-yards share 0.2518 `usage.json:pooled.air_yards_share`, snap share up to 0.8841 `usage.json:last_week.snap_share`, target share 0.1744 `usage.json:pooled.target_share`, red-zone target share 0.2 `red-zone.json:rz_target_share` (2 of 10); Seattle allows 18.67 to WRs, rank 29 `points-allowed.json:per_game,rank`. |
+| WR Quentin Johnston | **Sit** | Target share 0.1977 `usage.json:pooled.target_share` on 0.8229 `usage.json:pooled.snap_share` has produced 10.1 `usage.json:pooled.half_ppr_points` in three games, with no red-zone touches. |
+| WR Tre Harris | **Sit** | Target share 0.186 `usage.json:pooled.target_share`, 19.9 `usage.json:pooled.half_ppr_points` over 3 games, against Seattle's 18.67 to WRs, rank 29 `points-allowed.json:per_game,rank`. Red-zone target share 0.3 `red-zone.json:rz_target_share` is the team's highest, but 3 of 10 targets is too few to start him on. |
+| TE Oronde Gadsden II | **Sit** | Snap share 0.5652 `usage.json:last_week.snap_share` (snap share stands in for routes) but target share 0.0814 `usage.json:pooled.target_share` and 0 `usage.json:last_week.half_ppr_points`; red-zone target share 0.2 `red-zone.json:rz_target_share` (2 of 10); Seattle allows 9 to TEs, rank 21 `points-allowed.json:per_game,rank`. |
 | D/ST Chargers | **Sit** | Seattle is implied for 24.75 `game-environment.json:home_implied_total`; Darnold scored 27.66 `usage.json:last_week.half_ppr_points`; the Chargers are 7-point underdogs `game-environment.json:spread_line`. |
 
 **Seahawks**
@@ -605,32 +608,36 @@ Row `2026_04_LAC_SEA`: Seahawks -7 `game-environment.json:spread_line`, total
 | Player | Call | Reason |
 |---|---|---|
 | QB Sam Darnold | **Start** | 27.66 `usage.json:last_week.half_ppr_points` as the week 3 starter, a 24.75 `game-environment.json:home_implied_total`, and the Chargers' 17.89 to QBs, rank 12 `points-allowed.json:per_game,rank`. Seattle had no injury rows; Drew Lock started two games (34.18 `usage.json:pooled.half_ppr_points`). |
-| RB Jadarian Price | **Sit** | Rush share 0.35 `usage.json:pooled.rush_share`, 0.2778 `usage.json:last_week.rush_share`, 0.7 `usage.json:last_week.half_ppr_points`. Emanuel Wilson, not on #119's list, led at 0.5 `usage.json:last_week.rush_share`. |
-| RB George Holani | **Sit** | Rush share 0.1875 `usage.json:pooled.rush_share`, target share 0.0737 `usage.json:pooled.target_share`, snap share 0.3476 `usage.json:pooled.snap_share`. |
-| WR Jaxon Smith-Njigba | **Start** | Target share 0.3789 `usage.json:pooled.target_share`, air-yards share 0.5186 `usage.json:pooled.air_yards_share`, 90.56 `usage.json:pooled.half_ppr_points` over 3 games, the week's most by a WR here. |
-| WR Cooper Kupp | **Sit** | Target share 0.1053 `usage.json:pooled.target_share`, 0.1111 `usage.json:last_week.target_share`, 20.1 `usage.json:pooled.half_ppr_points` over 3 games; the Chargers allow 27.43 to WRs, rank 14 `points-allowed.json:per_game,rank`. |
-| WR Rashid Shaheed | **Sit** | Target share 0.1263 `usage.json:pooled.target_share`, 0.0667 `usage.json:last_week.target_share`, 8.7 `usage.json:pooled.half_ppr_points` over 3 games. |
-| TE AJ Barner | **Flex** | Snap share 0.861 `usage.json:pooled.snap_share` (snap share stands in for routes), target share 0.2 `usage.json:last_week.target_share`, but 19.1 `usage.json:pooled.half_ppr_points` over 3 games; the Chargers allow 9.73 to TEs, rank 18 `points-allowed.json:per_game,rank`. |
+| RB Jadarian Price | **Sit** | Rush share 0.35 `usage.json:pooled.rush_share`, 0.2778 `usage.json:last_week.rush_share`, 0.7 `usage.json:last_week.half_ppr_points`, red-zone carry share 0.15 `red-zone.json:rz_carry_share` (3 of 20). Emanuel Wilson, not on #119's list, led at 0.5 `usage.json:last_week.rush_share`. |
+| RB George Holani | **Sit** | Rush share 0.1875 `usage.json:pooled.rush_share`, target share 0.0737 `usage.json:pooled.target_share`, snap share 0.3476 `usage.json:pooled.snap_share`, red-zone carry share 0.3 `red-zone.json:rz_carry_share` (6 of 20), behind Emanuel Wilson's 0.45 (9 of 20) in the same column. |
+| WR Jaxon Smith-Njigba | **Start** | Target share 0.3789 `usage.json:pooled.target_share`, air-yards share 0.5186 `usage.json:pooled.air_yards_share`, 90.56 `usage.json:pooled.half_ppr_points` over 3 games, the week's most by a WR here, and red-zone target share 0.5 `red-zone.json:rz_target_share` (9 of 18). |
+| WR Cooper Kupp | **Sit** | Target share 0.1053 `usage.json:pooled.target_share`, 0.1111 `usage.json:last_week.target_share`, 20.1 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.0556 `red-zone.json:rz_target_share` (1 of 18); the Chargers allow 27.43 to WRs, rank 14 `points-allowed.json:per_game,rank`. |
+| WR Rashid Shaheed | **Sit** | Target share 0.1263 `usage.json:pooled.target_share`, 0.0667 `usage.json:last_week.target_share`, 8.7 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0 `red-zone.json:rz_target_share` (0 of 18). |
+| TE AJ Barner | **Flex** | Snap share 0.861 `usage.json:pooled.snap_share` (snap share stands in for routes), target share 0.2 `usage.json:last_week.target_share`, red-zone target share 0.2222 `red-zone.json:rz_target_share` (4 of 18), but 19.1 `usage.json:pooled.half_ppr_points` over 3 games; the Chargers allow 9.73 to TEs, rank 18 `points-allowed.json:per_game,rank`. |
 | D/ST Seahawks | **Start** | The Chargers are implied for 17.75 `game-environment.json:away_implied_total` as 7-point underdogs `game-environment.json:spread_line`; Herbert has 33.88 `usage.json:pooled.half_ppr_points` in three games. |
 
 ### 13. Broncos at 49ers - Sun 16:25 ET [#119 game 6]
 
-Row `2026_04_DEN_SF`: 49ers -3 `game-environment.json:spread_line`, total 47.5
-`game-environment.json:total_line`; 49ers 25.25
-`game-environment.json:home_implied_total`, Broncos 22.25
+Row `2026_04_DEN_SF`: 3 `game-environment.json:spread_line` (positive = home
+favored: 49ers by 3), total 47.5 `game-environment.json:total_line`; 49ers
+25.25 `game-environment.json:home_implied_total`, Broncos 22.25
 `game-environment.json:away_implied_total`.
+
+Pace: Broncos 54.67 `team-pace.json:plays_per_game` and 0.6067
+`team-pace.json:neutral_pass_rate`; 49ers 53.33 and 0.5345. Both are among
+the league's slowest four.
 
 **Broncos**
 
 | Player | Call | Reason |
 |---|---|---|
 | QB Bo Nix | **Sit** | 43.7 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (14.6 a game) against San Francisco's 14.53 to QBs, rank 25 `points-allowed.json:per_game,rank`; 24.14 `usage.json:last_week.half_ppr_points` is the outlier. |
-| RB J.K. Dobbins | **Sit** | Rush share 0.5147 `usage.json:pooled.rush_share` but snap share 0.4222 `usage.json:pooled.snap_share`, target share 0.023 `usage.json:pooled.target_share`, and 13 `usage.json:pooled.half_ppr_points` in three games. |
-| RB RJ Harvey | **Flex** | Target share 0.1897 `usage.json:pooled.target_share`, 0.2258 `usage.json:last_week.target_share`, on 0.4237 `usage.json:pooled.snap_share`; San Francisco allows 19.83 to RBs, rank 11 `points-allowed.json:per_game,rank`. Better in full PPR. |
-| WR Jaylen Waddle | **Flex** | Target share 0.2299 `usage.json:pooled.target_share`, air-yards share 0.4379 `usage.json:pooled.air_yards_share`, but 23.9 `usage.json:pooled.half_ppr_points` in three games and San Francisco's 22.73 to WRs, rank 25 `points-allowed.json:per_game,rank`. |
-| WR Courtland Sutton | **Sit** | Target share 0.1839 `usage.json:pooled.target_share` and air-yards share 0.273 `usage.json:pooled.air_yards_share` have produced 12.2 `usage.json:pooled.half_ppr_points` in three games. |
-| WR Pat Bryant | **Sit** | Target share 0.1034 `usage.json:pooled.target_share`, 0.0645 `usage.json:last_week.target_share`; 13.4 `usage.json:last_week.half_ppr_points` came on that small share. |
-| TE Evan Engram | **Sit** | Target share 0.092 `usage.json:pooled.target_share` on 0.5778 `usage.json:pooled.snap_share` (snap share stands in for routes); San Francisco allows 7.73 to TEs, rank 24 `points-allowed.json:per_game,rank`. |
+| RB J.K. Dobbins | **Sit** | Rush share 0.5147 `usage.json:pooled.rush_share` but snap share 0.4222 `usage.json:pooled.snap_share`, target share 0.023 `usage.json:pooled.target_share`, and 13 `usage.json:pooled.half_ppr_points` in three games. Red-zone carry share 0.5455 `red-zone.json:rz_carry_share` (6 of 11) is a touchdown chance, not a reason to start him. |
+| RB RJ Harvey | **Flex** | Target share 0.1897 `usage.json:pooled.target_share`, 0.2258 `usage.json:last_week.target_share`, on 0.4237 `usage.json:pooled.snap_share`; red-zone carry share 0 `red-zone.json:rz_carry_share` (0 of 11) and target share 0.125 `red-zone.json:rz_target_share` (2 of 16); San Francisco allows 19.83 to RBs, rank 11 `points-allowed.json:per_game,rank`. Better in full PPR. |
+| WR Jaylen Waddle | **Flex** | Target share 0.2299 `usage.json:pooled.target_share`, air-yards share 0.4379 `usage.json:pooled.air_yards_share`, but 23.9 `usage.json:pooled.half_ppr_points` in three games, red-zone target share 0.0625 `red-zone.json:rz_target_share` (1 of 16), and San Francisco's 22.73 to WRs, rank 25 `points-allowed.json:per_game,rank`. |
+| WR Courtland Sutton | **Sit** | Target share 0.1839 `usage.json:pooled.target_share` and air-yards share 0.273 `usage.json:pooled.air_yards_share` have produced 12.2 `usage.json:pooled.half_ppr_points` in three games. Red-zone target share 0.3125 `red-zone.json:rz_target_share` (5 of 16) is the team's highest, but 5 targets in three games have not lifted his points; a dart, not a start. |
+| WR Pat Bryant | **Sit** | Target share 0.1034 `usage.json:pooled.target_share`, 0.0645 `usage.json:last_week.target_share`, red-zone target share 0.0625 `red-zone.json:rz_target_share` (1 of 16); 13.4 `usage.json:last_week.half_ppr_points` came on that small share. |
+| TE Evan Engram | **Sit** | Target share 0.092 `usage.json:pooled.target_share` on 0.5778 `usage.json:pooled.snap_share` (snap share stands in for routes), red-zone target share 0.0625 `red-zone.json:rz_target_share` (1 of 16); San Francisco allows 7.73 to TEs, rank 24 `points-allowed.json:per_game,rank`. |
 | D/ST Broncos | **Sit** | San Francisco is implied for 25.25 `game-environment.json:home_implied_total`; Purdy has 80.86 `usage.json:pooled.half_ppr_points` in three games; Denver allows 26 to RBs, rank 4 `points-allowed.json:per_game,rank`. |
 
 **49ers**
@@ -638,12 +645,12 @@ Row `2026_04_DEN_SF`: 49ers -3 `game-environment.json:spread_line`, total 47.5
 | Player | Call | Reason |
 |---|---|---|
 | QB Brock Purdy | **Start** | 80.86 `usage.json:pooled.half_ppr_points` over 3 games (27.0 a game), 31.28 `usage.json:last_week.half_ppr_points`, a 25.25 `game-environment.json:home_implied_total`. |
-| RB Christian McCaffrey | **Start** | Rush share 0.6522 `usage.json:last_week.rush_share`, target share 0.2099 `usage.json:pooled.target_share`, against Denver's 26 to RBs, rank 4 `points-allowed.json:per_game,rank`. Did Not Participate `injuries.json:practice_status` - on the game-time list. |
-| RB Kaelon Black | **Sit** | Rush share 0.3125 `usage.json:pooled.rush_share` falling to 0.1739 `usage.json:last_week.rush_share`; 1.7 `usage.json:last_week.half_ppr_points`. Flex if McCaffrey sits. |
-| WR Deebo Samuel Sr. | **Flex** | Target share 0.1358 `usage.json:pooled.target_share` but 0 `usage.json:last_week.target_share` on 0.7593 `usage.json:last_week.snap_share`, 35.4 `usage.json:pooled.half_ppr_points` over 3 games; rises if Evans sits. |
-| WR Mike Evans | **Flex** | Target share 0.1975 `usage.json:pooled.target_share`, air-yards share 0.2864 `usage.json:pooled.air_yards_share`; snap share 0.3333 `usage.json:last_week.snap_share` after the injury, and Did Not Participate `injuries.json:practice_status`. On the game-time list. |
-| WR KhaDarel Hodge | **Sit** | Target share 0.0123 `usage.json:pooled.target_share`, 2.3 `usage.json:pooled.half_ppr_points`; Did Not Participate `injuries.json:practice_status`. |
-| TE George Kittle | **Start** | Target share 0.2692 `usage.json:last_week.target_share` on 0.8519 `usage.json:last_week.snap_share` (snap share stands in for routes), 41.4 `usage.json:pooled.half_ppr_points` over 3 games; Denver allows 11.8 to TEs, rank 13 `points-allowed.json:per_game,rank`. |
+| RB Christian McCaffrey | **Start** | Rush share 0.6522 `usage.json:last_week.rush_share`, target share 0.2099 `usage.json:pooled.target_share`, against Denver's 26 to RBs, rank 4 `points-allowed.json:per_game,rank`. Red-zone carry share 0.6667 `red-zone.json:rz_carry_share` (8 of 12). Did Not Participate `injuries.json:practice_status` - on the game-time list. |
+| RB Kaelon Black | **Sit** | Rush share 0.3125 `usage.json:pooled.rush_share` falling to 0.1739 `usage.json:last_week.rush_share`; 1.7 `usage.json:last_week.half_ppr_points`; red-zone carry share 0.3333 `red-zone.json:rz_carry_share` (4 of 12). Flex if McCaffrey sits. |
+| WR Deebo Samuel Sr. | **Flex** | Target share 0.1358 `usage.json:pooled.target_share` but 0 `usage.json:last_week.target_share` on 0.7593 `usage.json:last_week.snap_share`, 35.4 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.1765 `red-zone.json:rz_target_share` (3 of 17); rises if Evans sits. |
+| WR Mike Evans | **Flex** | Target share 0.1975 `usage.json:pooled.target_share`, air-yards share 0.2864 `usage.json:pooled.air_yards_share`, red-zone target share 0.1176 `red-zone.json:rz_target_share` (2 of 17); snap share 0.3333 `usage.json:last_week.snap_share` after the injury, and Did Not Participate `injuries.json:practice_status`. On the game-time list. |
+| WR KhaDarel Hodge | **Sit** | Target share 0.0123 `usage.json:pooled.target_share`, 2.3 `usage.json:pooled.half_ppr_points`, no red-zone touches; Did Not Participate `injuries.json:practice_status`. |
+| TE George Kittle | **Start** | Target share 0.2692 `usage.json:last_week.target_share` on 0.8519 `usage.json:last_week.snap_share` (snap share stands in for routes), 41.4 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.2941 `red-zone.json:rz_target_share` (5 of 17), the team's highest; Denver allows 11.8 to TEs, rank 13 `points-allowed.json:per_game,rank`. |
 | D/ST 49ers | **Flex** | Denver is implied for 22.25 `game-environment.json:away_implied_total`; Nix has 43.7 `usage.json:pooled.half_ppr_points` in three games; San Francisco allows 14.53 to QBs, rank 25 `points-allowed.json:per_game,rank`. |
 
 ### 14. Lions at Panthers - Sun 20:20 ET [#119 game 7]
