@@ -224,7 +224,7 @@ For a sit/start or trade call. Each bullet names the verdict it rests on.
 
 Source: `n` under each reading in `summary.positions.<POS>`, and `summary.excluded_player_weeks.by_fold`.
 
-**Scored player-weeks, all 16 folds (seen / sensitivity):** WR **1983 / 2752**; TE **1024 / 1511**; RB **1257 / 1732**. Every block and stratum clears the 30 player-week minimum (the smallest stratum is block 1 Low WR, 95 / 128), so no verdict here is inconclusive for lack of sample.
+**Scored player-weeks, all 16 folds (seen / sensitivity):** WR **1983 / 2752**; TE **1024 / 1511**; RB **1257 / 1732**. Every block and stratum clears the 30 player-week minimum (the smallest stratum is block 1 Low TE under the running total, 95 / 128), so no verdict here is inconclusive for lack of sample.
 
 **Excluded player-weeks by reason, summed over the 16 folds** (sums of the committed per-fold counts; `null_share` is 0 in every fold):
 
