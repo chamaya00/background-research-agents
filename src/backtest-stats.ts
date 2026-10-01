@@ -164,3 +164,41 @@ export function verdict(
 
 /** Both readings must give the same verdict; otherwise inconclusive. */
 export const combine = (a: Verdict, b: Verdict): Verdict => (a === b ? a : "inconclusive");
+
+/** Median; the mean of the two middle values when the count is even. Null for no values. */
+export function median(xs: number[]): number | null {
+  if (xs.length === 0) return null;
+  const s = [...xs].sort((a, b) => a - b);
+  const m = s.length >> 1;
+  return s.length % 2 === 1 ? s[m]! : (s[m - 1]! + s[m]!) / 2;
+}
+
+/** First week of each addendum block (section C of the 2025 addendum): block 1 is W = 2-5, and so on. */
+export const BLOCK_STARTS = [2, 6, 10, 14] as const;
+export const BLOCK_SIZE = 4;
+/** Block number 1-4 for a target week, or null outside W = 2..17. */
+export const blockOf = (week: number): number | null => {
+  const b = Math.floor((week - 2) / BLOCK_SIZE) + 1;
+  return week >= 2 && b <= BLOCK_STARTS.length ? b : null;
+};
+
+/**
+ * Addendum section C: the first week of the earliest block from which the combined verdict is
+ * "beats" in that block and every later one; "none" if there is no such block. `byBlock` is the
+ * four blocks' combined verdicts in order.
+ */
+export function settlingWeek(byBlock: Verdict[]): number | "none" {
+  let start = byBlock.length;
+  while (start > 0 && byBlock[start - 1] === "beats") start--;
+  return start === byBlock.length ? "none" : BLOCK_STARTS[start]!;
+}
+
+export const VOLUME_K = 3;
+
+/**
+ * Addendum section D: a volume threshold matters when the combined verdict is "beats" in the High
+ * stratum and not "beats" in the Low stratum in at least `k` blocks. Both lists are per block, in order.
+ */
+export function volumeMatters(high: Verdict[], low: Verdict[], k = VOLUME_K): boolean {
+  return high.filter((h, i) => h === "beats" && low[i] !== "beats").length >= k;
+}

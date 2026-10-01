@@ -170,6 +170,51 @@ that player's latest red-zone play, falling back to the usage table's team.
 every `*_player_id` column (for the "seen" rule). They are optional, so a file
 without them still parses.
 
+## Amendment: blocks, volume strata and all-field labels for 2025 (#153)
+
+Implements `docs/research/red-zone-backtest-plan-2025-addendum.md` (#152), whose
+definitions are not restated or changed here. Only keys are added: `positions`,
+the existing `team_flags` keys and every `fold-<WW>-predictions.json` are as before,
+and the pooled reading, decision rule, bootstrap and forward ranking are untouched.
+
+**Location.** The 2025 run writes to `data/nflverse/2025/backtest/` only if a person
+chooses to commit it; the addendum runs it with `--out` outside `data/`. **No 2025
+forward ranking is committed under `data/`:** the `week-18/red-zone-ranking.json`
+the command writes stays out with the rest of the run.
+
+**New `summary.json` keys.**
+
+- `blocks.<1-4>`: `weeks` (fold target weeks in the block) and `positions.<pos>`,
+  each in the shape of top-level `positions.<pos>` (`seen_rule`,
+  `sensitivity_unseen_as_zero`, `combined_verdicts`) over that block's player-weeks.
+  Blocks with no fold in the run are omitted.
+- `settling_week.<pos>.<baseline>`: 2, 6, 10, 14 or `"none"`; `null`, with
+  `settling_week_reason: "fewer than four blocks"`, unless all four blocks are present.
+- `volume_thresholds.per_fold`: for each fold, the median of each volume measure over
+  the teams that played week W (weeks `< W` only) and the team count.
+- `volume.<team_rz_total|team_rz_looks_per_game>.<block>.<High|Low>.<pos>`: the same
+  shape as `positions.<pos>`, over the stratum's team-folds pooled across the block's
+  folds; the bootstrap resamples team-weeks within the stratum.
+- `volume_matters.<measure>.<pos>.<baseline>`: `true` when the combined verdict is
+  "beats" in High and not in Low in at least 3 of the 4 blocks, `false` otherwise,
+  `null` with fewer than four blocks.
+- `verdict_count` (pooled + block + stratum combined verdicts: 252 with four blocks)
+  and `beats_count` (how many of them are "beats").
+- `team_flags.per_fold[].label_disagreements`: `{ both_labelled, differ, red_zone_only }`.
+
+**New per-fold fields**, in `fold-<WW>-team-flags.json` (no new file): each team
+row gains `all_field_pass_rate`, `all_field_plays` and `all_field_label`, the rate
+being `pass / (pass + rush)` over all plays with `play_type` pass or run excluding
+kneels, spikes and two-point tries, from weeks `< W`, labelled with the red-zone
+cut-offs and minimum. The numerator is the `pass` flag, as in the red-zone rate, so
+sacks count as passes. The file also gains `volume_medians` (both measures' medians
+for the fold) and `volume`, one row per team that played week W with
+`team_rz_total`, `team_rz_looks_per_game` and `stratum_team_rz_total` /
+`stratum_team_rz_looks_per_game` (`High` when `>=` the fold's median).
+
+**The all-field label carries no verdict.** It is not tested against week-W
+behaviour, enters no "held up" test and is not a baseline.
+
 ## Consequences
 
 - A table is reproducible from the listed inputs: same SHA-256s, same output.
