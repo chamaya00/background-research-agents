@@ -1,0 +1,1063 @@
+{
+  "attribution": {
+    "source": "nflverse",
+    "url": "https://github.com/nflverse/nflverse-data",
+    "license": "CC-BY 4.0",
+    "notice": "Data © the nflverse project, used under CC-BY 4.0. Derived values; snap counts originate at Pro-Football-Reference."
+  },
+  "inputs": [
+    {
+      "file": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+      "fetchedAt": "2026-10-01T08:16:12.535Z",
+      "sha256": "e293e213908f746db982cd9112f5016125a42eeeec16c4773b35c6cc5edf6327"
+    },
+    {
+      "file": "snap_counts",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
+      "fetchedAt": "2026-10-01T08:16:12.692Z",
+      "sha256": "c5868527b1052ae572b2d8f34a7bb777675a5e762ceaeb25f72f10d1c59846d5"
+    },
+    {
+      "file": "injuries",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
+      "fetchedAt": "2026-10-01T08:16:12.750Z",
+      "sha256": "408a873e9a80993f46e073697e7fd3f04894778b28ae23250090440e71106a07"
+    },
+    {
+      "file": "games",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
+      "fetchedAt": "2026-10-01T08:16:12.898Z",
+      "sha256": "0a4b3a2d425bd3fa5b18302c27c3f380307d21c3779d759498654c799f439a49"
+    }
+  ],
+  "season": 2026,
+  "target_week": 4,
+  "uses_weeks": "1..3",
+  "rows": [
+    {
+      "defense": "DET",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 90.06,
+      "per_game": 30.02,
+      "rank": 1
+    },
+    {
+      "defense": "WAS",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 82.14,
+      "per_game": 27.38,
+      "rank": 2
+    },
+    {
+      "defense": "DAL",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 70.52,
+      "per_game": 23.51,
+      "rank": 3
+    },
+    {
+      "defense": "ARI",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 65.94,
+      "per_game": 21.98,
+      "rank": 4
+    },
+    {
+      "defense": "IND",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 65.62,
+      "per_game": 21.87,
+      "rank": 5
+    },
+    {
+      "defense": "PHI",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 62.16,
+      "per_game": 20.72,
+      "rank": 6
+    },
+    {
+      "defense": "HOU",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 59.74,
+      "per_game": 19.91,
+      "rank": 7
+    },
+    {
+      "defense": "BUF",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 58.98,
+      "per_game": 19.66,
+      "rank": 8
+    },
+    {
+      "defense": "MIA",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 58.02,
+      "per_game": 19.34,
+      "rank": 9
+    },
+    {
+      "defense": "CAR",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 56.92,
+      "per_game": 18.97,
+      "rank": 10
+    },
+    {
+      "defense": "ATL",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 54.7,
+      "per_game": 18.23,
+      "rank": 11
+    },
+    {
+      "defense": "LAC",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 53.66,
+      "per_game": 17.89,
+      "rank": 12
+    },
+    {
+      "defense": "NO",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 53.46,
+      "per_game": 17.82,
+      "rank": 13
+    },
+    {
+      "defense": "CLE",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 51.62,
+      "per_game": 17.21,
+      "rank": 14
+    },
+    {
+      "defense": "CIN",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 51.34,
+      "per_game": 17.11,
+      "rank": 15
+    },
+    {
+      "defense": "NYG",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 50.82,
+      "per_game": 16.94,
+      "rank": 16
+    },
+    {
+      "defense": "CHI",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 50.78,
+      "per_game": 16.93,
+      "rank": 17
+    },
+    {
+      "defense": "BAL",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 50.36,
+      "per_game": 16.79,
+      "rank": 18
+    },
+    {
+      "defense": "DEN",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 48.72,
+      "per_game": 16.24,
+      "rank": 19
+    },
+    {
+      "defense": "LA",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 48.58,
+      "per_game": 16.19,
+      "rank": 20
+    },
+    {
+      "defense": "GB",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 48.46,
+      "per_game": 16.15,
+      "rank": 21
+    },
+    {
+      "defense": "LV",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 48.38,
+      "per_game": 16.13,
+      "rank": 22
+    },
+    {
+      "defense": "NYJ",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 44.86,
+      "per_game": 14.95,
+      "rank": 23
+    },
+    {
+      "defense": "TB",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 44.3,
+      "per_game": 14.77,
+      "rank": 24
+    },
+    {
+      "defense": "SF",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 43.6,
+      "per_game": 14.53,
+      "rank": 25
+    },
+    {
+      "defense": "MIN",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 39.54,
+      "per_game": 13.18,
+      "rank": 26
+    },
+    {
+      "defense": "NE",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 37.36,
+      "per_game": 12.45,
+      "rank": 27
+    },
+    {
+      "defense": "SEA",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 36.74,
+      "per_game": 12.25,
+      "rank": 28
+    },
+    {
+      "defense": "PIT",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 36.32,
+      "per_game": 12.11,
+      "rank": 29
+    },
+    {
+      "defense": "JAX",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 33.28,
+      "per_game": 11.09,
+      "rank": 30
+    },
+    {
+      "defense": "TEN",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 31.58,
+      "per_game": 10.53,
+      "rank": 31
+    },
+    {
+      "defense": "KC",
+      "position": "QB",
+      "games": 3,
+      "points_allowed": 26.84,
+      "per_game": 8.95,
+      "rank": 32
+    },
+    {
+      "defense": "GB",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 87.5,
+      "per_game": 29.17,
+      "rank": 1
+    },
+    {
+      "defense": "CAR",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 84.6,
+      "per_game": 28.2,
+      "rank": 2
+    },
+    {
+      "defense": "MIA",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 81.3,
+      "per_game": 27.1,
+      "rank": 3
+    },
+    {
+      "defense": "DEN",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 78,
+      "per_game": 26,
+      "rank": 4
+    },
+    {
+      "defense": "IND",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 77.8,
+      "per_game": 25.93,
+      "rank": 5
+    },
+    {
+      "defense": "BUF",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 75,
+      "per_game": 25,
+      "rank": 6
+    },
+    {
+      "defense": "NO",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 74.6,
+      "per_game": 24.87,
+      "rank": 7
+    },
+    {
+      "defense": "DAL",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 69,
+      "per_game": 23,
+      "rank": 8
+    },
+    {
+      "defense": "NYJ",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 63.3,
+      "per_game": 21.1,
+      "rank": 9
+    },
+    {
+      "defense": "NYG",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 59.6,
+      "per_game": 19.87,
+      "rank": 10
+    },
+    {
+      "defense": "SF",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 59.5,
+      "per_game": 19.83,
+      "rank": 11
+    },
+    {
+      "defense": "PIT",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 57.8,
+      "per_game": 19.27,
+      "rank": 12
+    },
+    {
+      "defense": "TEN",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 57,
+      "per_game": 19,
+      "rank": 13
+    },
+    {
+      "defense": "NE",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 56.5,
+      "per_game": 18.83,
+      "rank": 14
+    },
+    {
+      "defense": "LAC",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 55.4,
+      "per_game": 18.47,
+      "rank": 15
+    },
+    {
+      "defense": "BAL",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 54.6,
+      "per_game": 18.2,
+      "rank": 16
+    },
+    {
+      "defense": "CHI",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 54.5,
+      "per_game": 18.17,
+      "rank": 17
+    },
+    {
+      "defense": "DET",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 51.6,
+      "per_game": 17.2,
+      "rank": 18
+    },
+    {
+      "defense": "KC",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 51.6,
+      "per_game": 17.2,
+      "rank": 18
+    },
+    {
+      "defense": "CIN",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 47.6,
+      "per_game": 15.87,
+      "rank": 20
+    },
+    {
+      "defense": "PHI",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 46.3,
+      "per_game": 15.43,
+      "rank": 21
+    },
+    {
+      "defense": "ARI",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 46.2,
+      "per_game": 15.4,
+      "rank": 22
+    },
+    {
+      "defense": "LV",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 45.4,
+      "per_game": 15.13,
+      "rank": 23
+    },
+    {
+      "defense": "CLE",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 44.2,
+      "per_game": 14.73,
+      "rank": 24
+    },
+    {
+      "defense": "TB",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 44,
+      "per_game": 14.67,
+      "rank": 25
+    },
+    {
+      "defense": "LA",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 43.2,
+      "per_game": 14.4,
+      "rank": 26
+    },
+    {
+      "defense": "JAX",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 42.8,
+      "per_game": 14.27,
+      "rank": 27
+    },
+    {
+      "defense": "SEA",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 41.7,
+      "per_game": 13.9,
+      "rank": 28
+    },
+    {
+      "defense": "MIN",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 32.6,
+      "per_game": 10.87,
+      "rank": 29
+    },
+    {
+      "defense": "ATL",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 31.4,
+      "per_game": 10.47,
+      "rank": 30
+    },
+    {
+      "defense": "HOU",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 31,
+      "per_game": 10.33,
+      "rank": 31
+    },
+    {
+      "defense": "WAS",
+      "position": "RB",
+      "games": 3,
+      "points_allowed": 30.8,
+      "per_game": 10.27,
+      "rank": 32
+    },
+    {
+      "defense": "WAS",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 116.96,
+      "per_game": 38.99,
+      "rank": 1
+    },
+    {
+      "defense": "ARI",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 102.6,
+      "per_game": 34.2,
+      "rank": 2
+    },
+    {
+      "defense": "HOU",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 101.4,
+      "per_game": 33.8,
+      "rank": 3
+    },
+    {
+      "defense": "DET",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 98,
+      "per_game": 32.67,
+      "rank": 4
+    },
+    {
+      "defense": "BUF",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 96.3,
+      "per_game": 32.1,
+      "rank": 5
+    },
+    {
+      "defense": "ATL",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 93.9,
+      "per_game": 31.3,
+      "rank": 6
+    },
+    {
+      "defense": "CLE",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 92.4,
+      "per_game": 30.8,
+      "rank": 7
+    },
+    {
+      "defense": "PHI",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 90,
+      "per_game": 30,
+      "rank": 8
+    },
+    {
+      "defense": "NYG",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 89.2,
+      "per_game": 29.73,
+      "rank": 9
+    },
+    {
+      "defense": "GB",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 89.1,
+      "per_game": 29.7,
+      "rank": 10
+    },
+    {
+      "defense": "IND",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 89,
+      "per_game": 29.67,
+      "rank": 11
+    },
+    {
+      "defense": "BAL",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 88.9,
+      "per_game": 29.63,
+      "rank": 12
+    },
+    {
+      "defense": "MIN",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 88.7,
+      "per_game": 29.57,
+      "rank": 13
+    },
+    {
+      "defense": "LAC",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 82.3,
+      "per_game": 27.43,
+      "rank": 14
+    },
+    {
+      "defense": "NE",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 80.2,
+      "per_game": 26.73,
+      "rank": 15
+    },
+    {
+      "defense": "TEN",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 79.8,
+      "per_game": 26.6,
+      "rank": 16
+    },
+    {
+      "defense": "LA",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 78.8,
+      "per_game": 26.27,
+      "rank": 17
+    },
+    {
+      "defense": "CIN",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 76.8,
+      "per_game": 25.6,
+      "rank": 18
+    },
+    {
+      "defense": "JAX",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 76.44,
+      "per_game": 25.48,
+      "rank": 19
+    },
+    {
+      "defense": "DAL",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 72.8,
+      "per_game": 24.27,
+      "rank": 20
+    },
+    {
+      "defense": "NO",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 72,
+      "per_game": 24,
+      "rank": 21
+    },
+    {
+      "defense": "NYJ",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 69.5,
+      "per_game": 23.17,
+      "rank": 22
+    },
+    {
+      "defense": "DEN",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 68.8,
+      "per_game": 22.93,
+      "rank": 23
+    },
+    {
+      "defense": "PIT",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 68.4,
+      "per_game": 22.8,
+      "rank": 24
+    },
+    {
+      "defense": "SF",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 68.2,
+      "per_game": 22.73,
+      "rank": 25
+    },
+    {
+      "defense": "TB",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 68.1,
+      "per_game": 22.7,
+      "rank": 26
+    },
+    {
+      "defense": "CHI",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 66,
+      "per_game": 22,
+      "rank": 27
+    },
+    {
+      "defense": "MIA",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 57.2,
+      "per_game": 19.07,
+      "rank": 28
+    },
+    {
+      "defense": "SEA",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 56,
+      "per_game": 18.67,
+      "rank": 29
+    },
+    {
+      "defense": "LV",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 54.8,
+      "per_game": 18.27,
+      "rank": 30
+    },
+    {
+      "defense": "CAR",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 54.5,
+      "per_game": 18.17,
+      "rank": 31
+    },
+    {
+      "defense": "KC",
+      "position": "WR",
+      "games": 3,
+      "points_allowed": 52.4,
+      "per_game": 17.47,
+      "rank": 32
+    },
+    {
+      "defense": "DET",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 85.6,
+      "per_game": 28.53,
+      "rank": 1
+    },
+    {
+      "defense": "WAS",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 57.2,
+      "per_game": 19.07,
+      "rank": 2
+    },
+    {
+      "defense": "LV",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 53.2,
+      "per_game": 17.73,
+      "rank": 3
+    },
+    {
+      "defense": "NO",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 49.5,
+      "per_game": 16.5,
+      "rank": 4
+    },
+    {
+      "defense": "ARI",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 44.8,
+      "per_game": 14.93,
+      "rank": 5
+    },
+    {
+      "defense": "DAL",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 43.3,
+      "per_game": 14.43,
+      "rank": 6
+    },
+    {
+      "defense": "ATL",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 42.6,
+      "per_game": 14.2,
+      "rank": 7
+    },
+    {
+      "defense": "IND",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 42.4,
+      "per_game": 14.13,
+      "rank": 8
+    },
+    {
+      "defense": "CIN",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 41.5,
+      "per_game": 13.83,
+      "rank": 9
+    },
+    {
+      "defense": "MIA",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 40.5,
+      "per_game": 13.5,
+      "rank": 10
+    },
+    {
+      "defense": "TB",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 38.8,
+      "per_game": 12.93,
+      "rank": 11
+    },
+    {
+      "defense": "CAR",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 36.1,
+      "per_game": 12.03,
+      "rank": 12
+    },
+    {
+      "defense": "DEN",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 35.4,
+      "per_game": 11.8,
+      "rank": 13
+    },
+    {
+      "defense": "CLE",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 35.3,
+      "per_game": 11.77,
+      "rank": 14
+    },
+    {
+      "defense": "KC",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 33.7,
+      "per_game": 11.23,
+      "rank": 15
+    },
+    {
+      "defense": "HOU",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 30.5,
+      "per_game": 10.17,
+      "rank": 16
+    },
+    {
+      "defense": "BAL",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 30.3,
+      "per_game": 10.1,
+      "rank": 17
+    },
+    {
+      "defense": "LAC",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 29.2,
+      "per_game": 9.73,
+      "rank": 18
+    },
+    {
+      "defense": "NYG",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 28.8,
+      "per_game": 9.6,
+      "rank": 19
+    },
+    {
+      "defense": "GB",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 28.1,
+      "per_game": 9.37,
+      "rank": 20
+    },
+    {
+      "defense": "SEA",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 27,
+      "per_game": 9,
+      "rank": 21
+    },
+    {
+      "defense": "BUF",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 24.6,
+      "per_game": 8.2,
+      "rank": 22
+    },
+    {
+      "defense": "MIN",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 23.3,
+      "per_game": 7.77,
+      "rank": 23
+    },
+    {
+      "defense": "SF",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 23.2,
+      "per_game": 7.73,
+      "rank": 24
+    },
+    {
+      "defense": "PIT",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 23,
+      "per_game": 7.67,
+      "rank": 25
+    },
+    {
+      "defense": "JAX",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 19.5,
+      "per_game": 6.5,
+      "rank": 26
+    },
+    {
+      "defense": "CHI",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 18.8,
+      "per_game": 6.27,
+      "rank": 27
+    },
+    {
+      "defense": "LA",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 18.2,
+      "per_game": 6.07,
+      "rank": 28
+    },
+    {
+      "defense": "TEN",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 16.6,
+      "per_game": 5.53,
+      "rank": 29
+    },
+    {
+      "defense": "NYJ",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 16.1,
+      "per_game": 5.37,
+      "rank": 30
+    },
+    {
+      "defense": "PHI",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 14.4,
+      "per_game": 4.8,
+      "rank": 31
+    },
+    {
+      "defense": "NE",
+      "position": "TE",
+      "games": 3,
+      "points_allowed": 13.6,
+      "per_game": 4.53,
+      "rank": 32
+    }
+  ]
+}
