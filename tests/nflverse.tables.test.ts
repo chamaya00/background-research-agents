@@ -28,6 +28,7 @@ const FILES: Record<NflverseFile, string> = {
   snap_counts: "snap_counts_2026.csv",
   injuries: "injuries_2026.csv",
   games: "games.csv",
+  play_by_play: "play_by_play_2026.csv.gz",
 };
 const urls = nflverseUrls(2026);
 const byUrl = new Map(Object.entries(urls).map(([file, url]) => [url, file as NflverseFile]));
@@ -186,12 +187,12 @@ describe("output", () => {
     log.mockRestore();
     expect(code).toBe(0);
     const { inputs } = await load();
-    for (const name of ["usage", "points-allowed", "game-environment", "injuries"]) {
+    for (const name of ["usage", "points-allowed", "red-zone", "team-pace", "game-environment", "injuries"]) {
       const doc = JSON.parse(readFileSync(join(out, `${name}.json`), "utf8"));
       expect(doc.attribution.source).toBe("nflverse");
       expect(doc.attribution.license).toBe("CC-BY 4.0");
       expect(doc.inputs).toEqual(provenance(inputs).inputs);
-      expect(doc.inputs).toHaveLength(4);
+      expect(doc.inputs).toHaveLength(5);
       for (const i of doc.inputs) {
         expect(i.url).toMatch(/^https:\/\//);
         expect(i.fetchedAt).toBe(NOW.toISOString());
