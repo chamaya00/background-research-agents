@@ -337,6 +337,72 @@ Row `2026_04_GB_TB`: Packers -3.5 `game-environment.json:spread_line`, total
 | TE Cade Otton | **Sit** | Snap share 0.9372 `usage.json:pooled.snap_share` (snap share stands in for routes) and target share 0.1789 `usage.json:pooled.target_share`, but 17.5 `usage.json:pooled.half_ppr_points` over 3 games with a backup QB; Green Bay allows 9.37 to TEs, rank 20 `points-allowed.json:per_game,rank`. |
 | D/ST Buccaneers | **Flex** | Green Bay is implied for 21 `game-environment.json:away_implied_total` in a 38.5 `game-environment.json:total_line`; Tampa Bay allows 14.77 to QBs, rank 24 `points-allowed.json:per_game,rank`. |
 
+### 9. Titans at Ravens - Sun 13:00 ET [#119 game 2]
+
+Row `2026_04_TEN_BAL`: Ravens -11.5 `game-environment.json:spread_line`, total
+42.5 `game-environment.json:total_line`; Ravens 27
+`game-environment.json:home_implied_total`, Titans 15.5
+`game-environment.json:away_implied_total`.
+
+**Titans**
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Cam Ward | **Sit** | 41.16 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games`, 9.44 `usage.json:last_week.half_ppr_points`, on a 15.5 `game-environment.json:away_implied_total`. |
+| RB Tony Pollard | **Flex** | Rush share 0.8095 `usage.json:last_week.rush_share`, 0.5938 `usage.json:pooled.rush_share`, against Baltimore's 18.2 to RBs, rank 16 `points-allowed.json:per_game,rank`, but an 11.5-point underdog script. Did Not Participate `injuries.json:practice_status` - on the game-time list. |
+| RB Tyjae Spears | **Sit** | Rush share 0.2031 `usage.json:pooled.rush_share`, 0.5 `usage.json:last_week.half_ppr_points`; Did Not Participate `injuries.json:practice_status`. |
+| WR Wan'Dale Robinson | **Flex** | Target share 0.225 `usage.json:pooled.target_share`, 0.3143 `usage.json:last_week.target_share`, against Baltimore's 29.63 to WRs, rank 12 `points-allowed.json:per_game,rank`; a trailing script adds volume. |
+| WR Carnell Tate | **Flex** | Target share 0.25 `usage.json:pooled.target_share` and air-yards share 0.4345 `usage.json:pooled.air_yards_share` on 0.8405 `usage.json:pooled.snap_share` - the team's most-used WR - though 18.8 `usage.json:pooled.half_ppr_points` over 3 games shows the 15.5 implied total biting. |
+| WR Elic Ayomanor | **Sit** | Target share 0.1125 `usage.json:pooled.target_share`, 0.0857 `usage.json:last_week.target_share`, 1.6 `usage.json:last_week.half_ppr_points`. |
+| TE Gunnar Helm | **Sit** | Snap share 0.816 `usage.json:pooled.snap_share` (snap share stands in for routes) but 9.5 `usage.json:pooled.half_ppr_points` over 3 games; Baltimore allows 10.1 to TEs, rank 17 `points-allowed.json:per_game,rank`. |
+| D/ST Titans | **Sit** | Baltimore is implied for 27 `game-environment.json:home_implied_total`; Lamar Jackson has 60.2 `usage.json:pooled.half_ppr_points` in three games with rush share 0.1753 `usage.json:pooled.rush_share`. |
+
+**Ravens**
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Lamar Jackson | **Start** | 60.2 `usage.json:pooled.half_ppr_points` over 3 games, a 27 `game-environment.json:home_implied_total`; Tennessee's 10.53 to QBs, rank 31 `points-allowed.json:per_game,rank`, trims the ceiling, not the call. Limited `injuries.json:practice_status` - on the game-time list. |
+| RB Derrick Henry | **Start** | Rush share 0.6804 `usage.json:pooled.rush_share`, 72.4 `usage.json:pooled.half_ppr_points` over 3 games, as an 11.5-point favorite `game-environment.json:spread_line`. |
+| RB Justice Hill | **Sit** | Rush share 0.134 `usage.json:pooled.rush_share`, target share 0.0411 `usage.json:pooled.target_share`, 3.3 `usage.json:last_week.half_ppr_points`. |
+| WR Zay Flowers | **Start** | Target share 0.2727 `usage.json:pooled.target_share` over 2 `usage.json:games`, 0.3 `usage.json:last_week.target_share` on a snap share of only 0.3281 `usage.json:last_week.snap_share` in his return; Tennessee allows 26.6 to WRs, rank 16 `points-allowed.json:per_game,rank`. Limited `injuries.json:practice_status` - on the game-time list. |
+| WR Rashod Bateman | **Sit** | Snap share 0.8579 `usage.json:pooled.snap_share` but target share 0.1781 `usage.json:pooled.target_share`, 4.7 `usage.json:last_week.half_ppr_points`. Flex if Flowers sits. |
+| WR Chris Moore | **Sit** | Target share 0.0822 `usage.json:pooled.target_share`, 0.05 `usage.json:last_week.target_share`; Limited `injuries.json:practice_status`. |
+| TE Mark Andrews | **Flex** | Target share 0.2466 `usage.json:pooled.target_share` on 0.6474 `usage.json:pooled.snap_share` (snap share stands in for routes), but 18.7 `usage.json:pooled.half_ppr_points` over 3 games; Tennessee allows 5.53 to TEs, rank 29 `points-allowed.json:per_game,rank`. Full `injuries.json:practice_status`. |
+| D/ST Ravens | **Start** | Tennessee is implied for 15.5 `game-environment.json:away_implied_total`, the week's second-lowest, as an 11.5-point underdog `game-environment.json:spread_line`; Ward has 41.16 `usage.json:pooled.half_ppr_points` in three games. |
+
+### 10. Dolphins at Vikings - Sun 16:05 ET [#119 game 3]
+
+Row `2026_04_MIA_MIN`: Vikings -10.5 `game-environment.json:spread_line`, total
+38.5 `game-environment.json:total_line`; Vikings 24.5
+`game-environment.json:home_implied_total`, Dolphins 14
+`game-environment.json:away_implied_total`, the week's lowest. Dome.
+
+**Dolphins**
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Malik Willis | **Sit** | 39.18 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games`, a 14 `game-environment.json:away_implied_total`, and Minnesota's 13.18 to QBs, rank 26 `points-allowed.json:per_game,rank`. |
+| RB Ollie Gordon II | **Flex** | Rush share 0.5484 `usage.json:last_week.rush_share` on 0.8356 `usage.json:last_week.snap_share` with De'Von Achane at 0.0548 `usage.json:last_week.snap_share`; Minnesota allows 10.87 to RBs, rank 29 `points-allowed.json:per_game,rank`. |
+| RB Jaylen Wright | **Sit** | Rush share 0.0638 `usage.json:pooled.rush_share`, snap share 0.0609 `usage.json:pooled.snap_share`; Limited `injuries.json:practice_status`. On the game-time list. |
+| WR Malik Washington | **Flex** | Target share 0.2706 `usage.json:pooled.target_share`, air-yards share 0.3209 `usage.json:pooled.air_yards_share`, against Minnesota's 29.57 to WRs, rank 13 `points-allowed.json:per_game,rank`, on a 14-point implied total. |
+| WR Chris Bell | **Sit** | Target share 0.1176 `usage.json:pooled.target_share`, 0.2 `usage.json:last_week.target_share`; Limited `injuries.json:practice_status`. |
+| WR Caleb Douglas | **Sit** | Target share 0.2 `usage.json:pooled.target_share` on 0.887 `usage.json:pooled.snap_share` over 2 games, no week 3 row, Did Not Participate `injuries.json:practice_status`. On the game-time list. |
+| TE Greg Dulcich | **Sit** | Target share 0.1412 `usage.json:pooled.target_share` on 0.6915 `usage.json:pooled.snap_share` (snap share stands in for routes), 13.5 `usage.json:pooled.half_ppr_points` over 3 games; Minnesota allows 7.77 to TEs, rank 23 `points-allowed.json:per_game,rank`. |
+| D/ST Dolphins | **Sit** | Minnesota is implied for 24.5 `game-environment.json:home_implied_total` as a 10.5-point favorite `game-environment.json:spread_line`; Miami allows 27.1 to RBs, rank 3 `points-allowed.json:per_game,rank`. |
+
+**Vikings**
+
+| Player | Call | Reason |
+|---|---|---|
+| QB Kyler Murray | **Sit** | 10.04 `usage.json:pooled.half_ppr_points` over 2 games, 10.42 `usage.json:last_week.half_ppr_points`; Miami's 19.34 to QBs, rank 9 `points-allowed.json:per_game,rank`, does not cover a run-first script as a 10.5-point favorite. |
+| RB Aaron Jones | **Start** | Rush share 0.7391 `usage.json:last_week.rush_share` and target share 0.24 `usage.json:last_week.target_share`, against Miami's 27.1 to RBs, rank 3 `points-allowed.json:per_game,rank`. Limited `injuries.json:practice_status` - on the game-time list. |
+| RB DeeJay Dallas | **Sit** | Rush share 0.0353 `usage.json:pooled.rush_share`, snap share 0.1307 `usage.json:pooled.snap_share`, 3.3 `usage.json:pooled.half_ppr_points`. Jordan Mason, not on #119's list, had 0.4412 `usage.json:pooled.rush_share` in his one game. |
+| WR Justin Jefferson | **Flex** | Target share 0.2537 `usage.json:pooled.target_share`, air-yards share 0.3339 `usage.json:pooled.air_yards_share`, but snap share 0.1186 `usage.json:last_week.snap_share` after his injury and Did Not Participate `injuries.json:practice_status`. Start if he practises fully - on the game-time list. |
+| WR Jordan Addison | **Start** | Target share 0.36 `usage.json:last_week.target_share`, air-yards share 0.6509 `usage.json:last_week.air_yards_share`, on 0.9831 `usage.json:last_week.snap_share`; Miami allows 19.07 to WRs, rank 28 `points-allowed.json:per_game,rank`. |
+| WR Jauan Jennings | **Sit** | Target share 0.0625 `usage.json:pooled.target_share` on 0.629 `usage.json:pooled.snap_share`, 0.6 `usage.json:pooled.half_ppr_points` over 2 games. |
+| TE T.J. Hockenson | **Flex** | Target share 0.194 `usage.json:pooled.target_share` on 0.733 `usage.json:pooled.snap_share` (snap share stands in for routes), against Miami's 13.5 to TEs, rank 10 `points-allowed.json:per_game,rank`; 2.1 `usage.json:last_week.half_ppr_points`. |
+| D/ST Vikings | **Start** | Miami is implied for 14 `game-environment.json:away_implied_total`, the week's lowest, as a 10.5-point underdog `game-environment.json:spread_line`; Willis has 39.18 `usage.json:pooled.half_ppr_points` in three games. |
+
 ## Comparison with #118 and #119
 
 _To be written once the game sections are in._
