@@ -116,6 +116,7 @@ export const injuriesRow = z.object({
   week: num,
   team: text,
   gsis_id: text,
+  full_name: optText,
   report_status: optText,
   practice_status: optText,
   report_primary_injury: optText,

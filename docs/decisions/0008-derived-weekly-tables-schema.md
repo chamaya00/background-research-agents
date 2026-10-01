@@ -1,0 +1,85 @@
+# ADR 0008: Derived weekly sit/start tables - schema, path, leakage, team totals, attribution
+
+Date: 2026-10-01
+Status: accepted
+
+## Context
+
+#125 needs the numbers a sit/start rationale cites, computed from the four
+nflverse files #127 collects. `docs/research/123-fantasy-data-collection-and-analysis.md`
+works the formulas through; the owner's answers on #123 are to commit derived
+tables only, with nflverse/CC-BY 4.0 attribution and each input's SHA-256, and
+nothing FTN-derived. This records what #128 built.
+
+## Decision
+
+**Command and output.** `node dist/nflverse-cli.js tables --season <yyyy> --week <W> --out <dir>`
+writes four JSON files to `<dir>`: `usage.json`, `points-allowed.json`,
+`game-environment.json`, `injuries.json`. Each is
+`{attribution, inputs, season, target_week, ..., rows}`, pretty-printed with two
+spaces and a trailing newline. Where the files live in the repository is the
+driving session's call when it commits real output; this change commits none.
+
+**Leakage rule.** For target week W, usage and points allowed read regular-season
+rows of weeks 1..W-1 only. Rows of week W or later never contribute. W must be at
+least 2.
+
+**Team-total rule.** Team targets, team air yards and team carries for a game are
+the sums over that team's rows in that `game_id` in the stats file. nflverse's
+own `target_share` and `air_yards_share` are not used: its `air_yards_share`
+implies a CLE week 3 air-yards total of 172 where the team's rows sum to 162.
+Team snaps for a game are the maximum `offense_snaps` among that team's rows in
+that `game_id`. A pooled share is Σ player / Σ team, over the games in which the
+player has a stats row (a game the player was absent from does not enter the
+denominator). Shares are rounded to 4 dp and are `null` when the denominator is 0.
+Team-level rows with no `player_id` are skipped for usage and positional points
+allowed; their targets, carries and air yards are 0, so team totals are unaffected.
+
+**Snap join is by name.** Snap counts carry only `pfr_player_id` and a name, no
+gsis id, so snaps join to stats on (`game_id`, `team`, name). Names are compared
+lowercased, without punctuation and without a generational suffix, because the
+files disagree ("Harold Fannin" in snaps, "Harold Fannin Jr." in stats). A
+name still misses nicknames ("Kenny" / "Kenneth" Gainwell), so when it misses the
+join falls back to (`game_id`, `team`, `position`, last word of the name) and uses
+that only when exactly one snap row matches. A game with no match from either
+join is unknown, not zero: it adds nothing to `snaps` or `team_snaps`, and is
+counted in `snap_unmatched_games`. A snap row with no stats row is not listed in
+the usage table.
+
+**Tables.**
+
+1. `usage.json` rows: `player_id`, `player`, `position`, `team`, `games`, and two
+   blocks, `pooled` (weeks 1..W-1) and `last_week` (week W-1 alone, plus `week`),
+   each holding `targets`, `team_targets`, `target_share`, `air_yards`,
+   `team_air_yards`, `air_yards_share`, `carries`, `team_carries`, `rush_share`,
+   `snaps`, `team_snaps`, `snap_share`, `snap_unmatched_games`, `receptions`, `half_ppr_points`.
+2. `points-allowed.json` rows: `defense`, `position` (QB, RB, WR, TE), `games`,
+   `points_allowed`, `per_game`, `rank` (1 = most allowed per game; ties share a
+   rank). A defense's games are every game it appears in, so a game without a
+   row at that position counts as 0.
+3. `game-environment.json` rows: `game_id`, `week`, `home_team`, `away_team`,
+   `spread_line`, `total_line`, `home_implied_total`, `away_implied_total`
+   ((total ± spread) / 2, positive spread meaning home favored), `roof`,
+   `games_read_at` (fetch time of the games file).
+4. `injuries.json` rows: `team`, `gsis_id`, `player`, `report_status`,
+   `practice_status`, `report_primary_injury`. One status per week, not a
+   day-by-day trend; the file says so in a `note`.
+
+**Half-PPR** is (`fantasy_points` + `fantasy_points_ppr`) / 2.
+
+**Attribution.** Every file carries `attribution` (`source: "nflverse"`,
+`license: "CC-BY 4.0"`, the project URL and a notice) and `inputs`: for each of
+the four files its URL, fetch time and SHA-256, taken from #127's manifest. The
+tables hold derived values only; no raw nflverse file is committed, and nothing
+FTN-derived is read (the `ftn` column of `games.csv` is not kept by the schema).
+
+`injuriesRow` gains `full_name` so the injury table can name the player.
+
+## Consequences
+
+- A table is reproducible from the listed inputs: same SHA-256s, same output.
+- A player whose name matches neither join (or whose fallback is ambiguous) has
+  that game left out of his snap share rather than counted as 0; a report can see
+  how many games through `snap_unmatched_games`.
+- The `rank` is among the defenses that appear in the stats file, which is 32 on
+  full files and fewer on fixture slices.
