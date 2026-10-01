@@ -1,0 +1,833 @@
+{
+  "attribution": {
+    "source": "nflverse",
+    "url": "https://github.com/nflverse/nflverse-data",
+    "license": "CC-BY 4.0",
+    "notice": "Data © the nflverse project, used under CC-BY 4.0. Derived values; snap counts originate at Pro-Football-Reference."
+  },
+  "inputs": [
+    {
+      "file": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv",
+      "fetchedAt": "2026-10-01T15:43:37.526Z",
+      "sha256": "e5e0615b3d96a3eaebfaee91e55afb4a4e7fe0caf057454177bcd7d6ad4bcfc2"
+    },
+    {
+      "file": "snap_counts",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2025.csv",
+      "fetchedAt": "2026-10-01T15:43:37.629Z",
+      "sha256": "3fc2deb0e9ad86d34d4578cb80bb21c95253e088ee22ca028adf46f7485eff1f"
+    },
+    {
+      "file": "injuries",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2025.csv",
+      "fetchedAt": "2026-10-01T15:43:37.756Z",
+      "sha256": "873ca1606dd575bd01152508a243ef6b3a0f8f97b90b707217e62ee8c7ceb735"
+    },
+    {
+      "file": "games",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
+      "fetchedAt": "2026-10-01T15:43:37.844Z",
+      "sha256": "b8b2ce5f596d5a423dc2b59c2896740eaf22126836eed0c3940cce50f410a549"
+    },
+    {
+      "file": "play_by_play",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2025.csv.gz",
+      "fetchedAt": "2026-10-01T15:43:38.172Z",
+      "sha256": "2f135887790a013fd004e609e37096bb4816d5cc80b9f19122e1bad478961978"
+    }
+  ],
+  "season": 2025,
+  "target_week": 6,
+  "uses_weeks": "1..5",
+  "rows": [
+    {
+      "team": "ARI",
+      "rz_plays": 39,
+      "rz_pass_plays": 22,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.5641,
+      "rz_looks": 37,
+      "rz_looks_per_game": 7.4,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6467,
+      "all_field_plays": 300,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "ATL",
+      "rz_plays": 36,
+      "rz_pass_plays": 16,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.4444,
+      "rz_looks": 33,
+      "rz_looks_per_game": 8.25,
+      "label": "run_first",
+      "all_field_pass_rate": 0.556,
+      "all_field_plays": 259,
+      "all_field_label": "neutral"
+    },
+    {
+      "team": "BAL",
+      "rz_plays": 34,
+      "rz_pass_plays": 16,
+      "rz_sacks": 6,
+      "rz_pass_rate": 0.4706,
+      "rz_looks": 28,
+      "rz_looks_per_game": 5.6,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6235,
+      "all_field_plays": 247,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "BUF",
+      "rz_plays": 65,
+      "rz_pass_plays": 36,
+      "rz_sacks": 2,
+      "rz_pass_rate": 0.5538,
+      "rz_looks": 57,
+      "rz_looks_per_game": 11.4,
+      "label": "neutral",
+      "all_field_pass_rate": 0.5783,
+      "all_field_plays": 313,
+      "all_field_label": "neutral"
+    },
+    {
+      "team": "CAR",
+      "rz_plays": 51,
+      "rz_pass_plays": 34,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.6667,
+      "rz_looks": 47,
+      "rz_looks_per_game": 9.4,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.6215,
+      "all_field_plays": 317,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "CHI",
+      "rz_plays": 40,
+      "rz_pass_plays": 23,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.575,
+      "rz_looks": 36,
+      "rz_looks_per_game": 9,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6245,
+      "all_field_plays": 245,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "CIN",
+      "rz_plays": 30,
+      "rz_pass_plays": 20,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.6667,
+      "rz_looks": 27,
+      "rz_looks_per_game": 5.4,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.6805,
+      "all_field_plays": 266,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "CLE",
+      "rz_plays": 49,
+      "rz_pass_plays": 24,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.4898,
+      "rz_looks": 46,
+      "rz_looks_per_game": 9.2,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6353,
+      "all_field_plays": 329,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "DAL",
+      "rz_plays": 49,
+      "rz_pass_plays": 28,
+      "rz_sacks": 2,
+      "rz_pass_rate": 0.5714,
+      "rz_looks": 46,
+      "rz_looks_per_game": 9.2,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6463,
+      "all_field_plays": 328,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "DEN",
+      "rz_plays": 40,
+      "rz_pass_plays": 20,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.5,
+      "rz_looks": 37,
+      "rz_looks_per_game": 7.4,
+      "label": "neutral",
+      "all_field_pass_rate": 0.612,
+      "all_field_plays": 317,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "DET",
+      "rz_plays": 71,
+      "rz_pass_plays": 28,
+      "rz_sacks": 0,
+      "rz_pass_rate": 0.3944,
+      "rz_looks": 70,
+      "rz_looks_per_game": 14,
+      "label": "run_first",
+      "all_field_pass_rate": 0.52,
+      "all_field_plays": 300,
+      "all_field_label": "neutral"
+    },
+    {
+      "team": "GB",
+      "rz_plays": 50,
+      "rz_pass_plays": 24,
+      "rz_sacks": 0,
+      "rz_pass_rate": 0.48,
+      "rz_looks": 46,
+      "rz_looks_per_game": 11.5,
+      "label": "neutral",
+      "all_field_pass_rate": 0.5469,
+      "all_field_plays": 245,
+      "all_field_label": "neutral"
+    },
+    {
+      "team": "HOU",
+      "rz_plays": 28,
+      "rz_pass_plays": 18,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.6429,
+      "rz_looks": 27,
+      "rz_looks_per_game": 5.4,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.6007,
+      "all_field_plays": 288,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "IND",
+      "rz_plays": 67,
+      "rz_pass_plays": 25,
+      "rz_sacks": 2,
+      "rz_pass_rate": 0.3731,
+      "rz_looks": 61,
+      "rz_looks_per_game": 12.2,
+      "label": "run_first",
+      "all_field_pass_rate": 0.5518,
+      "all_field_plays": 299,
+      "all_field_label": "neutral"
+    },
+    {
+      "team": "JAX",
+      "rz_plays": 54,
+      "rz_pass_plays": 29,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.537,
+      "rz_looks": 48,
+      "rz_looks_per_game": 9.6,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6006,
+      "all_field_plays": 308,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "KC",
+      "rz_plays": 55,
+      "rz_pass_plays": 38,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.6909,
+      "rz_looks": 46,
+      "rz_looks_per_game": 9.2,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.6861,
+      "all_field_plays": 309,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "LA",
+      "rz_plays": 50,
+      "rz_pass_plays": 30,
+      "rz_sacks": 0,
+      "rz_pass_rate": 0.6,
+      "rz_looks": 50,
+      "rz_looks_per_game": 10,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.6221,
+      "all_field_plays": 307,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "LAC",
+      "rz_plays": 37,
+      "rz_pass_plays": 21,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.5676,
+      "rz_looks": 35,
+      "rz_looks_per_game": 7,
+      "label": "neutral",
+      "all_field_pass_rate": 0.672,
+      "all_field_plays": 311,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "LV",
+      "rz_plays": 42,
+      "rz_pass_plays": 27,
+      "rz_sacks": 4,
+      "rz_pass_rate": 0.6429,
+      "rz_looks": 37,
+      "rz_looks_per_game": 7.4,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.604,
+      "all_field_plays": 303,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "MIA",
+      "rz_plays": 39,
+      "rz_pass_plays": 24,
+      "rz_sacks": 2,
+      "rz_pass_rate": 0.6154,
+      "rz_looks": 37,
+      "rz_looks_per_game": 7.4,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.6579,
+      "all_field_plays": 266,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "MIN",
+      "rz_plays": 40,
+      "rz_pass_plays": 28,
+      "rz_sacks": 3,
+      "rz_pass_rate": 0.7,
+      "rz_looks": 35,
+      "rz_looks_per_game": 7,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.6232,
+      "all_field_plays": 284,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "NE",
+      "rz_plays": 46,
+      "rz_pass_plays": 26,
+      "rz_sacks": 0,
+      "rz_pass_rate": 0.5652,
+      "rz_looks": 39,
+      "rz_looks_per_game": 7.8,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6438,
+      "all_field_plays": 292,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "NO",
+      "rz_plays": 46,
+      "rz_pass_plays": 30,
+      "rz_sacks": 0,
+      "rz_pass_rate": 0.6522,
+      "rz_looks": 42,
+      "rz_looks_per_game": 8.4,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.603,
+      "all_field_plays": 330,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "NYG",
+      "rz_plays": 59,
+      "rz_pass_plays": 34,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.5763,
+      "rz_looks": 49,
+      "rz_looks_per_game": 9.8,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6227,
+      "all_field_plays": 326,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "NYJ",
+      "rz_plays": 38,
+      "rz_pass_plays": 22,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.5789,
+      "rz_looks": 35,
+      "rz_looks_per_game": 7,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6376,
+      "all_field_plays": 298,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "PHI",
+      "rz_plays": 43,
+      "rz_pass_plays": 18,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.4186,
+      "rz_looks": 38,
+      "rz_looks_per_game": 7.6,
+      "label": "run_first",
+      "all_field_pass_rate": 0.5917,
+      "all_field_plays": 289,
+      "all_field_label": "neutral"
+    },
+    {
+      "team": "PIT",
+      "rz_plays": 38,
+      "rz_pass_plays": 16,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.4211,
+      "rz_looks": 36,
+      "rz_looks_per_game": 9,
+      "label": "run_first",
+      "all_field_pass_rate": 0.5817,
+      "all_field_plays": 208,
+      "all_field_label": "neutral"
+    },
+    {
+      "team": "SEA",
+      "rz_plays": 46,
+      "rz_pass_plays": 19,
+      "rz_sacks": 2,
+      "rz_pass_rate": 0.413,
+      "rz_looks": 43,
+      "rz_looks_per_game": 8.6,
+      "label": "run_first",
+      "all_field_pass_rate": 0.507,
+      "all_field_plays": 284,
+      "all_field_label": "neutral"
+    },
+    {
+      "team": "SF",
+      "rz_plays": 55,
+      "rz_pass_plays": 31,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.5636,
+      "rz_looks": 51,
+      "rz_looks_per_game": 10.2,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6224,
+      "all_field_plays": 339,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "TB",
+      "rz_plays": 39,
+      "rz_pass_plays": 24,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.6154,
+      "rz_looks": 37,
+      "rz_looks_per_game": 7.4,
+      "label": "pass_first",
+      "all_field_pass_rate": 0.6242,
+      "all_field_plays": 314,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "TEN",
+      "rz_plays": 26,
+      "rz_pass_plays": 14,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.5385,
+      "rz_looks": 23,
+      "rz_looks_per_game": 4.6,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6586,
+      "all_field_plays": 290,
+      "all_field_label": "pass_first"
+    },
+    {
+      "team": "WAS",
+      "rz_plays": 39,
+      "rz_pass_plays": 18,
+      "rz_sacks": 1,
+      "rz_pass_rate": 0.4615,
+      "rz_looks": 35,
+      "rz_looks_per_game": 7,
+      "label": "neutral",
+      "all_field_pass_rate": 0.6007,
+      "all_field_plays": 283,
+      "all_field_label": "pass_first"
+    }
+  ],
+  "next_week": [
+    {
+      "team": "ATL",
+      "label": "run_first",
+      "rz_pass_rate_prior": 0.4444,
+      "rz_pass_rate_next": 0.5556,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": true,
+      "pc_targets_next": 4,
+      "rz_looks_next": 9,
+      "pc_share_next": 0.4444
+    },
+    {
+      "team": "CAR",
+      "label": "pass_first",
+      "rz_pass_rate_prior": 0.6667,
+      "rz_pass_rate_next": 0.5,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": false,
+      "pc_targets_next": 2,
+      "rz_looks_next": 7,
+      "pc_share_next": 0.2857
+    },
+    {
+      "team": "CIN",
+      "label": "pass_first",
+      "rz_pass_rate_prior": 0.6667,
+      "rz_pass_rate_next": 0.8889,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": true,
+      "pc_targets_next": 4,
+      "rz_looks_next": 7,
+      "pc_share_next": 0.5714
+    },
+    {
+      "team": "DET",
+      "label": "run_first",
+      "rz_pass_rate_prior": 0.3944,
+      "rz_pass_rate_next": 0.4286,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": true,
+      "pc_targets_next": 3,
+      "rz_looks_next": 7,
+      "pc_share_next": 0.4286
+    },
+    {
+      "team": "IND",
+      "label": "run_first",
+      "rz_pass_rate_prior": 0.3731,
+      "rz_pass_rate_next": 0.6154,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": false,
+      "pc_targets_next": 7,
+      "rz_looks_next": 12,
+      "pc_share_next": 0.5833
+    },
+    {
+      "team": "KC",
+      "label": "pass_first",
+      "rz_pass_rate_prior": 0.6909,
+      "rz_pass_rate_next": 0.625,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": true,
+      "pc_targets_next": 5,
+      "rz_looks_next": 12,
+      "pc_share_next": 0.4167
+    },
+    {
+      "team": "LA",
+      "label": "pass_first",
+      "rz_pass_rate_prior": 0.6,
+      "rz_pass_rate_next": 0.6364,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": true,
+      "pc_targets_next": 5,
+      "rz_looks_next": 9,
+      "pc_share_next": 0.5556
+    },
+    {
+      "team": "LV",
+      "label": "pass_first",
+      "rz_pass_rate_prior": 0.6429,
+      "rz_pass_rate_next": 0.3846,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": false,
+      "pc_targets_next": 3,
+      "rz_looks_next": 12,
+      "pc_share_next": 0.25
+    },
+    {
+      "team": "MIA",
+      "label": "pass_first",
+      "rz_pass_rate_prior": 0.6154,
+      "rz_pass_rate_next": 0.7143,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": true,
+      "pc_targets_next": 4,
+      "rz_looks_next": 7,
+      "pc_share_next": 0.5714
+    },
+    {
+      "team": "NO",
+      "label": "pass_first",
+      "rz_pass_rate_prior": 0.6522,
+      "rz_pass_rate_next": 0.25,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": false,
+      "pc_targets_next": 2,
+      "rz_looks_next": 8,
+      "pc_share_next": 0.25
+    },
+    {
+      "team": "PHI",
+      "label": "run_first",
+      "rz_pass_rate_prior": 0.4186,
+      "rz_pass_rate_next": 0.5833,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": false,
+      "pc_targets_next": 6,
+      "rz_looks_next": 12,
+      "pc_share_next": 0.5
+    },
+    {
+      "team": "PIT",
+      "label": "run_first",
+      "rz_pass_rate_prior": 0.4211,
+      "rz_pass_rate_next": 0.5,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": true,
+      "pc_targets_next": 0,
+      "rz_looks_next": 2,
+      "pc_share_next": 0
+    },
+    {
+      "team": "SEA",
+      "label": "run_first",
+      "rz_pass_rate_prior": 0.413,
+      "rz_pass_rate_next": 0.2,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": true,
+      "pc_targets_next": 1,
+      "rz_looks_next": 9,
+      "pc_share_next": 0.1111
+    },
+    {
+      "team": "TB",
+      "label": "pass_first",
+      "rz_pass_rate_prior": 0.6154,
+      "rz_pass_rate_next": 0.2,
+      "league_rz_pass_rate_next": 0.5637,
+      "tendency_kept": false,
+      "pc_targets_next": 0,
+      "rz_looks_next": 5,
+      "pc_share_next": 0
+    }
+  ],
+  "volume_medians": {
+    "team_rz_total": 38.5,
+    "team_rz_looks_per_game": 8.5
+  },
+  "volume": [
+    {
+      "team": "ARI",
+      "team_rz_total": 37,
+      "team_rz_looks_per_game": 7.4,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "ATL",
+      "team_rz_total": 33,
+      "team_rz_looks_per_game": 8.25,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "BAL",
+      "team_rz_total": 28,
+      "team_rz_looks_per_game": 5.6,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "BUF",
+      "team_rz_total": 57,
+      "team_rz_looks_per_game": 11.4,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "CAR",
+      "team_rz_total": 47,
+      "team_rz_looks_per_game": 9.4,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "CHI",
+      "team_rz_total": 36,
+      "team_rz_looks_per_game": 9,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "CIN",
+      "team_rz_total": 27,
+      "team_rz_looks_per_game": 5.4,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "CLE",
+      "team_rz_total": 46,
+      "team_rz_looks_per_game": 9.2,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "DAL",
+      "team_rz_total": 46,
+      "team_rz_looks_per_game": 9.2,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "DEN",
+      "team_rz_total": 37,
+      "team_rz_looks_per_game": 7.4,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "DET",
+      "team_rz_total": 70,
+      "team_rz_looks_per_game": 14,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "GB",
+      "team_rz_total": 46,
+      "team_rz_looks_per_game": 11.5,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "IND",
+      "team_rz_total": 61,
+      "team_rz_looks_per_game": 12.2,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "JAX",
+      "team_rz_total": 48,
+      "team_rz_looks_per_game": 9.6,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "KC",
+      "team_rz_total": 46,
+      "team_rz_looks_per_game": 9.2,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "LA",
+      "team_rz_total": 50,
+      "team_rz_looks_per_game": 10,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "LAC",
+      "team_rz_total": 35,
+      "team_rz_looks_per_game": 7,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "LV",
+      "team_rz_total": 37,
+      "team_rz_looks_per_game": 7.4,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "MIA",
+      "team_rz_total": 37,
+      "team_rz_looks_per_game": 7.4,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "NE",
+      "team_rz_total": 39,
+      "team_rz_looks_per_game": 7.8,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "NO",
+      "team_rz_total": 42,
+      "team_rz_looks_per_game": 8.4,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "NYG",
+      "team_rz_total": 49,
+      "team_rz_looks_per_game": 9.8,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "NYJ",
+      "team_rz_total": 35,
+      "team_rz_looks_per_game": 7,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "PHI",
+      "team_rz_total": 38,
+      "team_rz_looks_per_game": 7.6,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "PIT",
+      "team_rz_total": 36,
+      "team_rz_looks_per_game": 9,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "SEA",
+      "team_rz_total": 43,
+      "team_rz_looks_per_game": 8.6,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "SF",
+      "team_rz_total": 51,
+      "team_rz_looks_per_game": 10.2,
+      "stratum_team_rz_total": "High",
+      "stratum_team_rz_looks_per_game": "High"
+    },
+    {
+      "team": "TB",
+      "team_rz_total": 37,
+      "team_rz_looks_per_game": 7.4,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "TEN",
+      "team_rz_total": 23,
+      "team_rz_looks_per_game": 4.6,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    },
+    {
+      "team": "WAS",
+      "team_rz_total": 35,
+      "team_rz_looks_per_game": 7,
+      "stratum_team_rz_total": "Low",
+      "stratum_team_rz_looks_per_game": "Low"
+    }
+  ]
+}
