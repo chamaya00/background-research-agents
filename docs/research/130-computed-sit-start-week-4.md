@@ -10,11 +10,54 @@ and is left out.
 half-PPR, one-QB lineup, with every call resting on numbers this repository
 computed rather than on numbers quoted from another site.
 
-**Status:** in progress. Game sections are added a game or two at a time.
+**Status:** complete for the tables as built at 2026-10-01T08:16Z. Red-zone
+share is absent because #129's tables are not on `main`; nothing else the
+issue lists is missing.
 
 ## Week synthesis
 
-_To be written once the game sections are in._
+The tables say what the quoted pages could not: who actually gets the ball,
+pooled over three weeks. Where that disagrees with a name or a matchup quote,
+the share wins. 39 of 242 calls differ from #118 and #119, and most of the
+changes cool tight ends and D/STs.
+
+**Strongest starts.** Volume in a good setting:
+
+- Jahmyr Gibbs (game 14): 0.7831 rush share against the defense allowing the second-most to RBs, in a 51.5 total.
+- Bijan Robinson (game 15): 0.6346 rush share and 0.2192 target share.
+- Josh Allen (game 2): 93.44 half-PPR points in three games and a 27.5 team total.
+- Jaxon Smith-Njigba (game 12): 0.3789 target share, 0.5186 air-yards share.
+- Josh Downs (game 1): 0.2553 target share against the defense allowing the most to WRs.
+- Trey McBride (game 6): 0.3009 target share at tight end.
+
+**Riskiest sits.** Good numbers in a bad spot:
+
+- Kirk Cousins (game 11): 56.24 points in three games, but Kansas City allows the fewest to QBs.
+- Marvin Harrison Jr. (game 6): 0.7689 snap share and a 0.0796 target share.
+- Oronde Gadsden II (game 12): a 0.0814 target share; #119 started him.
+- Alvin Kamara (game 15): 0.3099 snap share against the rank-30 RB defense.
+
+**Sleepers.** Shares the quoted pages missed:
+
+- Kalif Raymond (game 3): 0.2333 target share.
+- Carnell Tate (game 9): 0.25 target share and 0.4345 air-yards share.
+- Dontayvion Wicks (game 7): 0.1852 target share on 0.88 week 3 snaps.
+- Bucky Irving (game 8): 0.6061 rush share against the defense allowing the most to RBs.
+- Cardinals D/ST (game 6): Jameis Winston has 8.66 points in two games.
+
+**Likely busts.** Names ahead of usage:
+
+- Saquon Barkley (game 7): 19.5 points in three games.
+- Jaylen Waddle (game 13): 23.9 points in three games.
+- Mark Andrews (game 9): 18.7 points in three games.
+- Xavier Worthy (game 11): week 3 target share fell to 0.087.
+- Jameson Williams (game 14): 0.1574 target share against the rank-31 WR defense.
+
+**What moves before kickoff.** The injury table holds Wednesday's practice
+only. Davante Adams, Justin Jefferson, Christian McCaffrey, Chuba Hubbard
+and Mike Evans did not practise, and each has a pivot on the list below.
+Five teams - Atlanta, Chicago, New Orleans, Philadelphia and Seattle - had
+no rows at all, so their players can still appear on Friday's report.
 
 ## How to read a citation
 
@@ -171,7 +214,7 @@ Row `2026_04_NE_BUF`: Bills -6.5 `game-environment.json:spread_line`, total
 | WR Romeo Doubs | **Sit** | Target share 0.1341 `usage.json:pooled.target_share` and 0.1333 `usage.json:last_week.target_share`; 17.5 `usage.json:pooled.half_ppr_points` over three games. |
 | WR DeMario Douglas | **Sit** | Target share 0.1707 `usage.json:pooled.target_share` on 0.5661 `usage.json:pooled.snap_share`; 10.2 `usage.json:pooled.half_ppr_points` over three games. |
 | TE Hunter Henry | **Sit** | Target share 0.122 `usage.json:pooled.target_share`, 0.0667 `usage.json:last_week.target_share`, on 0.7831 `usage.json:pooled.snap_share` (snap share stands in for routes); Buffalo allows 8.2 to TEs, rank 22 `points-allowed.json:per_game,rank`. |
-| D/ST Patriots | **Sit** | Buffalo's 27.5 `game-environment.json:home_implied_total` is the game's high; Josh Allen has 93.44 `usage.json:pooled.half_ppr_points` in three games. |
+| D/ST Patriots | **Sit** | Buffalo's 27.5 `game-environment.json:home_implied_total` is the game's high, with New England a 6.5-point underdog `game-environment.json:spread_line`; Josh Allen has 93.44 `usage.json:pooled.half_ppr_points` in three games. |
 
 **Bills**
 
@@ -481,7 +524,7 @@ Row `2026_04_KC_LV`: Chiefs -4.5 `game-environment.json:spread_line`, total
 | RB Connor Heyward | **Sit** | Listed FB in the table: rush share 0.0215 `usage.json:pooled.rush_share`, target share 0 `usage.json:pooled.target_share`, 0.2 `usage.json:pooled.half_ppr_points`. |
 | WR Tre Tucker | **Sit** | Target share 0.1705 `usage.json:pooled.target_share`, 0.1333 `usage.json:last_week.target_share`, against the fewest WR points allowed, 17.47, rank 32 `points-allowed.json:per_game,rank`. |
 | WR Jalen Nailor | **Sit** | Target share 0.125 `usage.json:pooled.target_share`, 7.7 `usage.json:pooled.half_ppr_points` over 3 games, 2.1 `usage.json:last_week.half_ppr_points`. |
-| WR Jack Bech | **Sit** | Target share 0.1034 `usage.json:pooled.target_share` on 0.4656 `usage.json:pooled.snap_share` over 2 games, no week 3 row. |
+| WR Jack Bech | **Sit** | Target share 0.1034 `usage.json:pooled.target_share` on 0.4656 `usage.json:pooled.snap_share` over 2 games, 13.3 `usage.json:pooled.half_ppr_points`, no week 3 row. |
 | TE Brock Bowers | **Start** | One game: target share 0.4333 `usage.json:pooled.target_share`, air-yards share 0.4015 `usage.json:pooled.air_yards_share`, snap share 0.7857 `usage.json:pooled.snap_share` (snap share stands in for routes). Not on the injury report. |
 | D/ST Raiders | **Sit** | Kansas City is implied for 26 `game-environment.json:away_implied_total`; Mahomes has 66.58 `usage.json:pooled.half_ppr_points` in three games; the Raiders are 4.5-point underdogs `game-environment.json:spread_line`. |
 
@@ -502,7 +545,7 @@ Row `2026_04_LAC_SEA`: Seahawks -7 `game-environment.json:spread_line`, total
 | RB Keaton Mitchell | **Sit** | Rush share 0.2099 `usage.json:pooled.rush_share`, snap share 0.3125 `usage.json:pooled.snap_share`; 12.2 `usage.json:last_week.half_ppr_points` was a one-week spike. |
 | WR Ladd McConkey | **Flex** | Air-yards share 0.2518 `usage.json:pooled.air_yards_share`, snap share up to 0.8841 `usage.json:last_week.snap_share`, target share 0.1744 `usage.json:pooled.target_share`; Seattle allows 18.67 to WRs, rank 29 `points-allowed.json:per_game,rank`. |
 | WR Quentin Johnston | **Sit** | Target share 0.1977 `usage.json:pooled.target_share` on 0.8229 `usage.json:pooled.snap_share` has produced 10.1 `usage.json:pooled.half_ppr_points` in three games. |
-| WR Tre Harris | **Sit** | Target share 0.186 `usage.json:pooled.target_share`, 19.9 `usage.json:pooled.half_ppr_points` over 3 games, in the rank-29 WR matchup. |
+| WR Tre Harris | **Sit** | Target share 0.186 `usage.json:pooled.target_share`, 19.9 `usage.json:pooled.half_ppr_points` over 3 games, against Seattle's 18.67 to WRs, rank 29 `points-allowed.json:per_game,rank`. |
 | TE Oronde Gadsden II | **Sit** | Snap share 0.5652 `usage.json:last_week.snap_share` (snap share stands in for routes) but target share 0.0814 `usage.json:pooled.target_share` and 0 `usage.json:last_week.half_ppr_points`; Seattle allows 9 to TEs, rank 21 `points-allowed.json:per_game,rank`. |
 | D/ST Chargers | **Sit** | Seattle is implied for 24.75 `game-environment.json:home_implied_total`; Darnold scored 27.66 `usage.json:last_week.half_ppr_points`; the Chargers are 7-point underdogs `game-environment.json:spread_line`. |
 
@@ -581,10 +624,10 @@ Row `2026_04_DET_CAR`: Lions -3.5 `game-environment.json:spread_line`, total
 | RB AJ Dillon | **Sit** | Rush share 0.1791 `usage.json:pooled.rush_share`, snap share 0.109 `usage.json:pooled.snap_share`, 4.4 `usage.json:pooled.half_ppr_points`. Flex if Hubbard sits. |
 | WR Tetairoa McMillan | **Start** | Snap share 0.9481 `usage.json:last_week.snap_share`, target share 0.213 `usage.json:pooled.target_share`, against Detroit's 32.67 to WRs, rank 4 `points-allowed.json:per_game,rank`. |
 | WR Jalen Coker | **Flex** | Target share 0.2037 `usage.json:pooled.target_share`, 43.2 `usage.json:pooled.half_ppr_points` over 3 games, in the rank-4 WR matchup; Did Not Participate `injuries.json:practice_status`. On the game-time list. |
-| WR Xavier Legette | **Sit** | Target share 0.0909 `usage.json:pooled.target_share` over 2 games, no week 3 row; Did Not Participate `injuries.json:practice_status`. |
+| WR Xavier Legette | **Sit** | Target share 0.0909 `usage.json:pooled.target_share` on 0.5149 `usage.json:pooled.snap_share` over 2 games, no week 3 row; Did Not Participate `injuries.json:practice_status`. |
 | WR Brycen Tremayne | **Sit** | Snap share 0.8052 `usage.json:last_week.snap_share` with Legette out, but target share 0.0556 `usage.json:pooled.target_share`; 10.3 `usage.json:last_week.half_ppr_points` is all his output. Flex if Coker sits. |
 | TE Darren Waller | **Flex** | Detroit allows the most to TEs, 28.53, rank 1 `points-allowed.json:per_game,rank`; target share 0.1905 `usage.json:last_week.target_share` on snap share 0.436 `usage.json:pooled.snap_share` (snap share stands in for routes). Did Not Participate `injuries.json:practice_status` - on the game-time list. |
-| D/ST Panthers | **Sit** | Detroit is implied for 27.5 `game-environment.json:away_implied_total`, the week's joint-highest team total; Goff has 65.58 `usage.json:pooled.half_ppr_points` in three games. |
+| D/ST Panthers | **Sit** | Detroit is implied for 27.5 `game-environment.json:away_implied_total`, the week's joint-highest team total, with Carolina a 3.5-point underdog `game-environment.json:spread_line`; Goff has 65.58 `usage.json:pooled.half_ppr_points` in three games. |
 
 ### 15. Falcons at Saints - Mon 20:15 ET [#119 game 8]
 
@@ -614,7 +657,7 @@ tables.
 |---|---|---|
 | QB Tyler Shough | **Start** | 69.38 `usage.json:pooled.half_ppr_points` over 3 games (23.1 a game), rush share 0.175 `usage.json:pooled.rush_share`, a 25 `game-environment.json:home_implied_total`; Atlanta allows 18.23 to QBs, rank 11 `points-allowed.json:per_game,rank`. |
 | RB Alvin Kamara | **Sit** | Rush share 0.3273 `usage.json:pooled.rush_share` on snap share 0.3099 `usage.json:pooled.snap_share`, 9.3 `usage.json:pooled.half_ppr_points` over 2 games, against Atlanta's 10.47 to RBs, rank 30 `points-allowed.json:per_game,rank`. Etienne's 0.375 `usage.json:pooled.rush_share` is freed, but nothing in the tables says to whom. |
-| RB Kendre Miller | **Sit** | Rush share 0.2453 `usage.json:pooled.rush_share` over 2 games, 0.1429 `usage.json:last_week.rush_share`, in the rank-30 RB matchup. |
+| RB Kendre Miller | **Sit** | Rush share 0.2453 `usage.json:pooled.rush_share` over 2 games, 0.1429 `usage.json:last_week.rush_share`, against Atlanta's 10.47 to RBs, rank 30 `points-allowed.json:per_game,rank`. |
 | WR Chris Olave | **Start** | Target share 0.2903 `usage.json:pooled.target_share`, air-yards share 0.4891 `usage.json:pooled.air_yards_share`, against Atlanta's 31.3 to WRs, rank 6 `points-allowed.json:per_game,rank`. |
 | WR Devaughn Vele | **Flex** | Snap share 0.9138 `usage.json:pooled.snap_share`, target share 0.1774 `usage.json:pooled.target_share`, 30.7 `usage.json:pooled.half_ppr_points` over 3 games, in the rank-6 WR matchup. |
 | WR Bryce Lance | **Sit** | Snap share 0.7284 `usage.json:pooled.snap_share` but target share 0.0645 `usage.json:pooled.target_share` and 0 `usage.json:last_week.half_ppr_points`. |
@@ -630,7 +673,7 @@ Two halves: calls that changed, and quoted numbers the tables contradict.
 
 ### Calls that differ
 
-39 of the 240 calls differ: 21 against #118, 18 against #119. Every other
+39 of the 242 calls differ: 21 against #118, 18 against #119. Every other
 player keeps the same call.
 
 | Player | Game here | Baseline call | Call here | Computed numbers that moved it |
@@ -677,7 +720,7 @@ player keeps the same call.
 
 **The pattern.** The tables moved calls in two directions. They cooled
 tight ends and D/STs that #118 and #119 started on a name or a matchup
-quote (Higbee, Kraft, Andrews, Gadsden, Barner; five D/STs), and they warmed
+quote (Higbee, Kraft, Andrews, Gadsden, Barner; six D/STs), and they warmed
 players whose pooled shares the quoted pages had not printed (Swift,
 DeVonta Smith, Irving, Raymond, Tate).
 
