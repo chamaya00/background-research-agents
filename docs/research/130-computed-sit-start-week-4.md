@@ -327,22 +327,25 @@ most pass-heavy neutral offense.
 
 ### 5. Cowboys at Texans - Sun 13:00 ET [#118 game 5]
 
-Row `2026_04_DAL_HOU`: Texans -3 `game-environment.json:spread_line`, total
-48.5 `game-environment.json:total_line`; Texans 25.75
-`game-environment.json:home_implied_total`, Cowboys 22.75
+Row `2026_04_DAL_HOU`: 3 `game-environment.json:spread_line` (positive =
+home favored: Texans by 3), total 48.5 `game-environment.json:total_line`;
+Texans 25.75 `game-environment.json:home_implied_total`, Cowboys 22.75
 `game-environment.json:away_implied_total`. `roof` is null in the table.
+
+Pace: Cowboys 59.33 `team-pace.json:plays_per_game` and 0.6082
+`team-pace.json:neutral_pass_rate`; Texans 66.67 and 0.5966.
 
 **Cowboys**
 
 | Player | Call | Reason |
 |---|---|---|
 | QB Dak Prescott | **Start** | 63.1 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (21.0 a game) against Houston's 19.91 to QBs, rank 7 `points-allowed.json:per_game,rank`, on a 22.75 `game-environment.json:away_implied_total`. |
-| RB Javonte Williams | **Start** | Rush share 0.6232 `usage.json:pooled.rush_share` on 0.754 `usage.json:pooled.snap_share`, 45.5 `usage.json:pooled.half_ppr_points` over 3 games; volume over Houston's 10.33 to RBs, rank 31 `points-allowed.json:per_game,rank`, which makes him an RB2 rather than an RB1. |
-| RB Tyler Goodson | **Sit** | One game: rush share 0.2 `usage.json:pooled.rush_share`, snap share 0.1486 `usage.json:pooled.snap_share`, 2.2 `usage.json:pooled.half_ppr_points`. |
-| WR CeeDee Lamb | **Start** | Target share 0.2475 `usage.json:pooled.target_share`, air-yards share 0.4103 `usage.json:pooled.air_yards_share`, against Houston's 33.8 to WRs, rank 3 `points-allowed.json:per_game,rank`. |
-| WR George Pickens | **Start** | Target share 0.2475 `usage.json:pooled.target_share`, 0.275 `usage.json:last_week.target_share`, air-yards share 0.3522 `usage.json:pooled.air_yards_share`, in the same rank-3 WR matchup. |
-| WR Ryan Flournoy | **Sit** | Target share 0.1782 `usage.json:pooled.target_share` on 0.7059 `usage.json:pooled.snap_share` has produced 11.2 `usage.json:pooled.half_ppr_points` in three games. |
-| TE Jake Ferguson | **Flex** | Target share 0.1089 `usage.json:pooled.target_share` on 0.6845 `usage.json:pooled.snap_share` (snap share stands in for routes), 27.7 `usage.json:pooled.half_ppr_points` over 3 games; Houston allows 10.17 to TEs, rank 16 `points-allowed.json:per_game,rank`. Fourth in line for targets behind two WRs at 0.2475. |
+| RB Javonte Williams | **Start** | Rush share 0.6232 `usage.json:pooled.rush_share` on 0.754 `usage.json:pooled.snap_share`, 45.5 `usage.json:pooled.half_ppr_points` over 3 games; volume over Houston's 10.33 to RBs, rank 31 `points-allowed.json:per_game,rank`, which makes him an RB2 rather than an RB1. Red-zone carry share 0.7333 `red-zone.json:rz_carry_share` (11 of 15). |
+| RB Tyler Goodson | **Sit** | One game: rush share 0.2 `usage.json:pooled.rush_share`, snap share 0.1486 `usage.json:pooled.snap_share`, 2.2 `usage.json:pooled.half_ppr_points`, red-zone carry share 0.0667 `red-zone.json:rz_carry_share` (1 of 15). |
+| WR CeeDee Lamb | **Start** | Target share 0.2475 `usage.json:pooled.target_share`, air-yards share 0.4103 `usage.json:pooled.air_yards_share`, against Houston's 33.8 to WRs, rank 3 `points-allowed.json:per_game,rank`; red-zone target share 0.1667 `red-zone.json:rz_target_share` (3 of 18). |
+| WR George Pickens | **Start** | Target share 0.2475 `usage.json:pooled.target_share`, 0.275 `usage.json:last_week.target_share`, air-yards share 0.3522 `usage.json:pooled.air_yards_share`, in the same rank-3 WR matchup; red-zone target share 0.1667 `red-zone.json:rz_target_share` (3 of 18). |
+| WR Ryan Flournoy | **Sit** | Target share 0.1782 `usage.json:pooled.target_share` on 0.7059 `usage.json:pooled.snap_share` has produced 11.2 `usage.json:pooled.half_ppr_points` in three games, despite red-zone target share 0.2222 `red-zone.json:rz_target_share` (4 of 18). |
+| TE Jake Ferguson | **Flex** | Target share 0.1089 `usage.json:pooled.target_share` on 0.6845 `usage.json:pooled.snap_share` (snap share stands in for routes), 27.7 `usage.json:pooled.half_ppr_points` over 3 games; Houston allows 10.17 to TEs, rank 16 `points-allowed.json:per_game,rank`. Fourth in line for targets behind two WRs at 0.2475, but tied for the team's highest red-zone target share, 0.2222 `red-zone.json:rz_target_share` (4 of 18). |
 | D/ST Cowboys | **Sit** | Houston's 25.75 `game-environment.json:home_implied_total`; Dallas allows 23.51 to QBs, rank 3 `points-allowed.json:per_game,rank`; Dallas is a 3-point underdog `game-environment.json:spread_line`. |
 
 **Texans**
@@ -350,12 +353,12 @@ Row `2026_04_DAL_HOU`: Texans -3 `game-environment.json:spread_line`, total
 | Player | Call | Reason |
 |---|---|---|
 | QB C.J. Stroud | **Start** | Dallas allows 23.51 to QBs, rank 3 `points-allowed.json:per_game,rank`, and Houston has the game's higher total, 25.75 `game-environment.json:home_implied_total`; his own 45.16 `usage.json:pooled.half_ppr_points` over 3 games makes him a low QB1. |
-| RB David Montgomery | **Flex** | Rush share 0.5211 `usage.json:pooled.rush_share` on 0.5399 `usage.json:pooled.snap_share`, but 5.8 `usage.json:last_week.half_ppr_points`; Dallas allows 23 to RBs, rank 8 `points-allowed.json:per_game,rank`. |
-| RB Woody Marks | **Sit** | Rush share 0.3099 `usage.json:pooled.rush_share`, target share 0.0714 `usage.json:pooled.target_share`, 19.1 `usage.json:pooled.half_ppr_points` over 3 games. |
-| WR Nico Collins | **Flex** | One game: target share 0.2703 `usage.json:pooled.target_share`, air-yards share 0.4068 `usage.json:pooled.air_yards_share`; Limited `injuries.json:practice_status`. Dallas allows 24.27 to WRs, rank 20 `points-allowed.json:per_game,rank`. On the game-time list. |
-| WR Xavier Hutchinson | **Sit** | Target share 0.24 `usage.json:last_week.target_share` and air-yards share 0.4353 `usage.json:last_week.air_yards_share` without Collins, but 16.9 `usage.json:pooled.half_ppr_points` over 3 games. Flex if Collins is out - on the game-time list. |
-| WR Kayshon Boutte | **Sit** | Snap share 0.615 `usage.json:pooled.snap_share` but target share 0.0804 `usage.json:pooled.target_share` and 3.1 `usage.json:last_week.half_ppr_points`. |
-| TE Dalton Schultz | **Start** | Target share 0.2232 `usage.json:pooled.target_share` on 0.6338 `usage.json:pooled.snap_share` (snap share stands in for routes) against Dallas's 14.43 to TEs, rank 6 `points-allowed.json:per_game,rank`. Limited `injuries.json:practice_status` - on the game-time list. |
+| RB David Montgomery | **Flex** | Rush share 0.5211 `usage.json:pooled.rush_share` on 0.5399 `usage.json:pooled.snap_share`, but 5.8 `usage.json:last_week.half_ppr_points`; Dallas allows 23 to RBs, rank 8 `points-allowed.json:per_game,rank`. Red-zone carry share 0.7 `red-zone.json:rz_carry_share` (7 of 10). |
+| RB Woody Marks | **Sit** | Rush share 0.3099 `usage.json:pooled.rush_share`, target share 0.0714 `usage.json:pooled.target_share`, 19.1 `usage.json:pooled.half_ppr_points` over 3 games, red-zone carry share 0.3 `red-zone.json:rz_carry_share` (3 of 10). |
+| WR Nico Collins | **Flex** | One game: target share 0.2703 `usage.json:pooled.target_share`, air-yards share 0.4068 `usage.json:pooled.air_yards_share`, red-zone target share 0.1667 `red-zone.json:rz_target_share` (2 of 12); Limited `injuries.json:practice_status`. Dallas allows 24.27 to WRs, rank 20 `points-allowed.json:per_game,rank`. On the game-time list. |
+| WR Xavier Hutchinson | **Sit** | Target share 0.24 `usage.json:last_week.target_share` and air-yards share 0.4353 `usage.json:last_week.air_yards_share` without Collins, but 16.9 `usage.json:pooled.half_ppr_points` over 3 games and red-zone target share 0.0833 `red-zone.json:rz_target_share` (1 of 12). Flex if Collins is out - on the game-time list. |
+| WR Kayshon Boutte | **Sit** | Snap share 0.615 `usage.json:pooled.snap_share` but target share 0.0804 `usage.json:pooled.target_share` and 3.1 `usage.json:last_week.half_ppr_points`; red-zone target share 0.1667 `red-zone.json:rz_target_share` (2 of 12). |
+| TE Dalton Schultz | **Start** | Target share 0.2232 `usage.json:pooled.target_share` on 0.6338 `usage.json:pooled.snap_share` (snap share stands in for routes) against Dallas's 14.43 to TEs, rank 6 `points-allowed.json:per_game,rank`; red-zone target share only 0.0833 `red-zone.json:rz_target_share` (1 of 12). Limited `injuries.json:practice_status` - on the game-time list. |
 | D/ST Texans | **Sit** | Dallas is implied for 22.75 `game-environment.json:away_implied_total`; Prescott has 63.1 `usage.json:pooled.half_ppr_points` in three games; Houston allows 19.91 to QBs, rank 7 `points-allowed.json:per_game,rank`. |
 
 ### 6. Cardinals at Giants - Sun 13:00 ET [#118 game 6]
@@ -365,17 +368,21 @@ total 44.5 `game-environment.json:total_line`; Cardinals 23.5
 `game-environment.json:away_implied_total`, Giants 21
 `game-environment.json:home_implied_total`.
 
+Pace: Cardinals 65.33 `team-pace.json:plays_per_game` and 0.5824
+`team-pace.json:neutral_pass_rate`; Giants 59 and 0.4286, the league's
+lowest neutral pass rate.
+
 **Cardinals**
 
 | Player | Call | Reason |
 |---|---|---|
 | QB Jacoby Brissett | **Flex** | 48.58 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (16.2 a game) and 25.6 `usage.json:last_week.half_ppr_points`; the Giants allow 16.94 to QBs, rank 16 `points-allowed.json:per_game,rank`. |
-| RB Jeremiyah Love | **Start** | Rush share 0.5256 `usage.json:pooled.rush_share`, up to 0.7778 `usage.json:last_week.rush_share`, on 0.6437 `usage.json:last_week.snap_share`; the Giants allow 19.87 to RBs, rank 10 `points-allowed.json:per_game,rank`. |
-| RB Tyler Allgeier | **Sit** | Rush share fell to 0.0741 `usage.json:last_week.rush_share` from 0.3077 `usage.json:pooled.rush_share`; 2.9 `usage.json:last_week.half_ppr_points`. |
-| WR Michael Wilson | **Start** | Target share 0.2743 `usage.json:pooled.target_share`, 0.34 `usage.json:last_week.target_share`, air-yards share 0.4208 `usage.json:pooled.air_yards_share`; the Giants allow 29.73 to WRs, rank 9 `points-allowed.json:per_game,rank`. |
-| WR Marvin Harrison Jr. | **Sit** | Snap share 0.7689 `usage.json:pooled.snap_share` and air-yards share 0.2268 `usage.json:pooled.air_yards_share` have produced target share 0.0796 `usage.json:pooled.target_share` and 9.3 `usage.json:pooled.half_ppr_points` in three games. |
-| WR Kendrick Bourne | **Sit** | Target share 0.1239 `usage.json:pooled.target_share`, 0.06 `usage.json:last_week.target_share`, 3.2 `usage.json:last_week.half_ppr_points`. |
-| TE Trey McBride | **Start** | Target share 0.3009 `usage.json:pooled.target_share` on 0.8632 `usage.json:pooled.snap_share` (snap share stands in for routes), 46.1 `usage.json:pooled.half_ppr_points` over 3 games; the Giants allow 9.6 to TEs, rank 19 `points-allowed.json:per_game,rank`. |
+| RB Jeremiyah Love | **Start** | Rush share 0.5256 `usage.json:pooled.rush_share`, up to 0.7778 `usage.json:last_week.rush_share`, on 0.6437 `usage.json:last_week.snap_share`; the Giants allow 19.87 to RBs, rank 10 `points-allowed.json:per_game,rank`. Red-zone carry share 0.6 `red-zone.json:rz_carry_share` (9 of 15). |
+| RB Tyler Allgeier | **Sit** | Rush share fell to 0.0741 `usage.json:last_week.rush_share` from 0.3077 `usage.json:pooled.rush_share`; 2.9 `usage.json:last_week.half_ppr_points`; red-zone carry share 0.2667 `red-zone.json:rz_carry_share` (4 of 15). |
+| WR Michael Wilson | **Start** | Target share 0.2743 `usage.json:pooled.target_share`, 0.34 `usage.json:last_week.target_share`, air-yards share 0.4208 `usage.json:pooled.air_yards_share`, red-zone target share 0.25 `red-zone.json:rz_target_share` (5 of 20); the Giants allow 29.73 to WRs, rank 9 `points-allowed.json:per_game,rank`. |
+| WR Marvin Harrison Jr. | **Sit** | Snap share 0.7689 `usage.json:pooled.snap_share` and air-yards share 0.2268 `usage.json:pooled.air_yards_share` have produced target share 0.0796 `usage.json:pooled.target_share` and 9.3 `usage.json:pooled.half_ppr_points` in three games, and no red-zone touches. |
+| WR Kendrick Bourne | **Sit** | Target share 0.1239 `usage.json:pooled.target_share`, 0.06 `usage.json:last_week.target_share`, 3.2 `usage.json:last_week.half_ppr_points`, red-zone target share 0.1 `red-zone.json:rz_target_share` (2 of 20). |
+| TE Trey McBride | **Start** | Target share 0.3009 `usage.json:pooled.target_share` on 0.8632 `usage.json:pooled.snap_share` (snap share stands in for routes), 46.1 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.4 `red-zone.json:rz_target_share` (8 of 20); the Giants allow 9.6 to TEs, rank 19 `points-allowed.json:per_game,rank`. |
 | D/ST Cardinals | **Flex** | The Giants are implied for 21 `game-environment.json:home_implied_total`, and Winston has 8.66 `usage.json:pooled.half_ppr_points` over 2 `usage.json:games` and 6.12 `usage.json:last_week.half_ppr_points`. |
 
 **Giants**
@@ -383,12 +390,12 @@ total 44.5 `game-environment.json:total_line`; Cardinals 23.5
 | Player | Call | Reason |
 |---|---|---|
 | QB Jameis Winston | **Sit** | 8.66 `usage.json:pooled.half_ppr_points` over 2 games; Arizona's 21.98 to QBs, rank 4 `points-allowed.json:per_game,rank`, does not lift a 21 `game-environment.json:home_implied_total`. |
-| RB Cam Skattebo | **Start** | Rush share 0.5495 `usage.json:pooled.rush_share`, target share 0.1905 `usage.json:last_week.target_share`, on 0.7656 `usage.json:last_week.snap_share`; Arizona allows 15.4 to RBs, rank 22 `points-allowed.json:per_game,rank`. An RB2. |
-| RB Najee Harris | **Sit** | Rush share 0.2407 `usage.json:pooled.rush_share` on snap share 0.1803 `usage.json:pooled.snap_share`, target share 0 `usage.json:pooled.target_share`. |
-| WR Malik Nabers | **Flex** | Target share 0.2317 `usage.json:pooled.target_share` but air-yards share 0.042 `usage.json:last_week.air_yards_share` and 15.6 `usage.json:pooled.half_ppr_points` over 3 games; Arizona allows 34.2 to WRs, rank 2 `points-allowed.json:per_game,rank`. |
-| WR Malachi Fields | **Sit** | Air-yards share 0.3021 `usage.json:pooled.air_yards_share` on target share 0.1463 `usage.json:pooled.target_share`, 2.9 `usage.json:last_week.half_ppr_points`. |
-| WR Darnell Mooney | **Sit** | Target share 0.0976 `usage.json:pooled.target_share`, snap share 0.4375 `usage.json:last_week.snap_share`, 3.9 `usage.json:last_week.half_ppr_points`. |
-| TE Isaiah Likely | **Start** | Target share 0.2805 `usage.json:pooled.target_share` on 0.8438 `usage.json:last_week.snap_share` (snap share stands in for routes), against Arizona's 14.93 to TEs, rank 5 `points-allowed.json:per_game,rank`. |
+| RB Cam Skattebo | **Start** | Rush share 0.5495 `usage.json:pooled.rush_share`, target share 0.1905 `usage.json:last_week.target_share`, on 0.7656 `usage.json:last_week.snap_share`; Arizona allows 15.4 to RBs, rank 22 `points-allowed.json:per_game,rank`. Red-zone carry share 0.6923 `red-zone.json:rz_carry_share` (9 of 13) on the league's most run-leaning neutral offense, 0.4286 `team-pace.json:neutral_pass_rate`. An RB2. |
+| RB Najee Harris | **Sit** | Rush share 0.2407 `usage.json:pooled.rush_share` on snap share 0.1803 `usage.json:pooled.snap_share`, target share 0 `usage.json:pooled.target_share`, red-zone carry share 0.2308 `red-zone.json:rz_carry_share` (3 of 13). |
+| WR Malik Nabers | **Flex** | Target share 0.2317 `usage.json:pooled.target_share` but air-yards share 0.042 `usage.json:last_week.air_yards_share` and 15.6 `usage.json:pooled.half_ppr_points` over 3 games; red-zone target share 0.3333 `red-zone.json:rz_target_share` (3 of 9) on a team that throws the least in neutral downs, 0.4286 `team-pace.json:neutral_pass_rate`. Arizona allows 34.2 to WRs, rank 2 `points-allowed.json:per_game,rank`. |
+| WR Malachi Fields | **Sit** | Air-yards share 0.3021 `usage.json:pooled.air_yards_share` on target share 0.1463 `usage.json:pooled.target_share`, 2.9 `usage.json:last_week.half_ppr_points`; no red-zone touches. |
+| WR Darnell Mooney | **Sit** | Target share 0.0976 `usage.json:pooled.target_share`, snap share 0.4375 `usage.json:last_week.snap_share`, 3.9 `usage.json:last_week.half_ppr_points`; no red-zone touches. |
+| TE Isaiah Likely | **Start** | Target share 0.2805 `usage.json:pooled.target_share` on 0.8438 `usage.json:last_week.snap_share` (snap share stands in for routes), red-zone target share 0.4444 `red-zone.json:rz_target_share` (4 of 9), against Arizona's 14.93 to TEs, rank 5 `points-allowed.json:per_game,rank`. |
 | D/ST Giants | **Sit** | Arizona is implied for 23.5 `game-environment.json:away_implied_total`; Brissett has 48.58 `usage.json:pooled.half_ppr_points` in three games; the Giants are 2.5-point underdogs `game-environment.json:spread_line`. |
 
 ### 7. Rams at Eagles - Sun 13:00 ET [#118 game 7]
@@ -399,17 +406,20 @@ Row `2026_04_LA_PHI`: Rams -3 `game-environment.json:spread_line`, total 43.5
 `game-environment.json:home_implied_total`. Philadelphia had no rows in
 `injuries.json` when fetched.
 
+Pace: Rams 64 `team-pace.json:plays_per_game` and 0.5926
+`team-pace.json:neutral_pass_rate`; Eagles 56.67 and 0.5044.
+
 **Rams**
 
 | Player | Call | Reason |
 |---|---|---|
 | QB Matthew Stafford | **Start** | 51.98 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (17.3 a game), a 23.25 `game-environment.json:away_implied_total`, and Philadelphia's 20.72 to QBs, rank 6 `points-allowed.json:per_game,rank`. |
-| RB Kyren Williams | **Start** | Rush share 0.6522 `usage.json:last_week.rush_share` on 0.7093 `usage.json:last_week.snap_share`, 47.5 `usage.json:pooled.half_ppr_points` over 3 games; Philadelphia allows 15.43 to RBs, rank 21 `points-allowed.json:per_game,rank`. |
-| RB Blake Corum | **Sit** | Rush share 0.35 `usage.json:pooled.rush_share` falling to 0.2609 `usage.json:last_week.rush_share`; 2.5 `usage.json:last_week.half_ppr_points`. |
-| WR Davante Adams | **Start** | Target share 0.2736 `usage.json:pooled.target_share`, air-yards share 0.4495 `usage.json:pooled.air_yards_share`, 56.8 `usage.json:pooled.half_ppr_points` over 3 games; Philadelphia allows 30 to WRs, rank 8 `points-allowed.json:per_game,rank`. Did Not Participate `injuries.json:practice_status` - on the game-time list. |
-| WR Puka Nacua | **Flex** | One game: target share 0.3333 `usage.json:pooled.target_share`, air-yards share 0.444 `usage.json:pooled.air_yards_share`, then no week 3 row; Limited `injuries.json:practice_status`. On the game-time list. |
-| WR Konata Mumpfield | **Sit** | Target share 0.1633 `usage.json:last_week.target_share` and 17.3 `usage.json:last_week.half_ppr_points` without Nacua, but 0.1038 `usage.json:pooled.target_share`. Flex if Adams or Nacua is out - on the game-time list. |
-| TE Tyler Higbee | **Flex** | Target share 0.2245 `usage.json:last_week.target_share` on 0.7093 `usage.json:last_week.snap_share` (snap share stands in for routes), with Colby Parkinson and Terrance Ferguson both Did Not Participate `injuries.json:practice_status`; Philadelphia allows 4.8 to TEs, rank 31 `points-allowed.json:per_game,rank`. On the game-time list via Parkinson. |
+| RB Kyren Williams | **Start** | Rush share 0.6522 `usage.json:last_week.rush_share` on 0.7093 `usage.json:last_week.snap_share`, 47.5 `usage.json:pooled.half_ppr_points` over 3 games; Philadelphia allows 15.43 to RBs, rank 21 `points-allowed.json:per_game,rank`. Red-zone carry share 0.7273 `red-zone.json:rz_carry_share` (8 of 11). |
+| RB Blake Corum | **Sit** | Rush share 0.35 `usage.json:pooled.rush_share` falling to 0.2609 `usage.json:last_week.rush_share`; 2.5 `usage.json:last_week.half_ppr_points`; red-zone carry share 0 `red-zone.json:rz_carry_share` (0 of 11). |
+| WR Davante Adams | **Start** | Target share 0.2736 `usage.json:pooled.target_share`, air-yards share 0.4495 `usage.json:pooled.air_yards_share`, 56.8 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.1667 `red-zone.json:rz_target_share` (2 of 12); Philadelphia allows 30 to WRs, rank 8 `points-allowed.json:per_game,rank`. Did Not Participate `injuries.json:practice_status` - on the game-time list. |
+| WR Puka Nacua | **Flex** | One game: target share 0.3333 `usage.json:pooled.target_share`, air-yards share 0.444 `usage.json:pooled.air_yards_share`, then no week 3 row; red-zone target share 0.0833 `red-zone.json:rz_target_share` (1 of 12); Limited `injuries.json:practice_status`. On the game-time list. |
+| WR Konata Mumpfield | **Sit** | Target share 0.1633 `usage.json:last_week.target_share` and 17.3 `usage.json:last_week.half_ppr_points` without Nacua, but 0.1038 `usage.json:pooled.target_share` and red-zone target share 0.0833 `red-zone.json:rz_target_share` (1 of 12). Flex if Adams or Nacua is out - on the game-time list. |
+| TE Tyler Higbee | **Flex** | Target share 0.2245 `usage.json:last_week.target_share` on 0.7093 `usage.json:last_week.snap_share` (snap share stands in for routes), with Colby Parkinson and Terrance Ferguson both Did Not Participate `injuries.json:practice_status`; Philadelphia allows 4.8 to TEs, rank 31 `points-allowed.json:per_game,rank`. Red-zone target share 0.1667 `red-zone.json:rz_target_share` (2 of 12), level with Parkinson's. On the game-time list via Parkinson. |
 | D/ST Rams | **Sit** | Philadelphia is implied for 20.25 `game-environment.json:home_implied_total` but Hurts has 53.5 `usage.json:pooled.half_ppr_points` in three games with rush share 0.2105 `usage.json:pooled.rush_share`. |
 
 **Eagles**
@@ -417,12 +427,12 @@ Row `2026_04_LA_PHI`: Rams -3 `game-environment.json:spread_line`, total 43.5
 | Player | Call | Reason |
 |---|---|---|
 | QB Jalen Hurts | **Start** | 53.5 `usage.json:pooled.half_ppr_points` over 3 games with rush share 0.2105 `usage.json:pooled.rush_share`; the Rams allow 16.19 to QBs, rank 20 `points-allowed.json:per_game,rank`. The rushing floor carries a 20.25 `game-environment.json:home_implied_total`. |
-| RB Saquon Barkley | **Flex** | Rush share 0.7895 `usage.json:last_week.rush_share` but 0.4474 `usage.json:pooled.rush_share` on snap share 0.4807 `usage.json:pooled.snap_share`, and 19.5 `usage.json:pooled.half_ppr_points` in three games (6.5 a game); the Rams allow 14.4 to RBs, rank 26 `points-allowed.json:per_game,rank`. |
-| RB Will Shipley | **Sit** | Rush share 0.1184 `usage.json:pooled.rush_share`, 0 `usage.json:last_week.rush_share`, 1.6 `usage.json:last_week.half_ppr_points`. |
-| WR DeVonta Smith | **Start** | Target share 0.3333 `usage.json:pooled.target_share`, air-yards share 0.4771 `usage.json:pooled.air_yards_share`, snap share 0.9337 `usage.json:pooled.snap_share`; the Rams allow 26.27 to WRs, rank 17 `points-allowed.json:per_game,rank`. |
-| WR Dontayvion Wicks | **Flex** | Target share 0.1852 `usage.json:pooled.target_share` and air-yards share 0.2999 `usage.json:pooled.air_yards_share` on 0.88 `usage.json:last_week.snap_share`; 28.4 `usage.json:pooled.half_ppr_points` over 3 games. |
-| WR Makai Lemon | **Sit** | Target share 0.1111 `usage.json:pooled.target_share`, 6.8 `usage.json:pooled.half_ppr_points` over 3 games, 4.4 `usage.json:last_week.half_ppr_points`. |
-| TE Johnny Mundt | **Sit** | Target share 0.0678 `usage.json:pooled.target_share` on 0.5952 `usage.json:pooled.snap_share` (snap share stands in for routes); the Rams allow 6.07 to TEs, rank 28 `points-allowed.json:per_game,rank`. |
+| RB Saquon Barkley | **Flex** | Rush share 0.7895 `usage.json:last_week.rush_share` but 0.4474 `usage.json:pooled.rush_share` on snap share 0.4807 `usage.json:pooled.snap_share`, and 19.5 `usage.json:pooled.half_ppr_points` in three games (6.5 a game); the Rams allow 14.4 to RBs, rank 26 `points-allowed.json:per_game,rank`. Red-zone carry share 0.3571 `red-zone.json:rz_carry_share` (5 of 14) - not a goal-line monopoly. |
+| RB Will Shipley | **Sit** | Rush share 0.1184 `usage.json:pooled.rush_share`, 0 `usage.json:last_week.rush_share`, 1.6 `usage.json:last_week.half_ppr_points`; red-zone carry share 0.2857 `red-zone.json:rz_carry_share` (4 of 14). |
+| WR DeVonta Smith | **Start** | Target share 0.3333 `usage.json:pooled.target_share`, air-yards share 0.4771 `usage.json:pooled.air_yards_share`, snap share 0.9337 `usage.json:pooled.snap_share`, red-zone target share 0.2 `red-zone.json:rz_target_share` (2 of 10); the Rams allow 26.27 to WRs, rank 17 `points-allowed.json:per_game,rank`. |
+| WR Dontayvion Wicks | **Flex** | Target share 0.1852 `usage.json:pooled.target_share` and air-yards share 0.2999 `usage.json:pooled.air_yards_share` on 0.88 `usage.json:last_week.snap_share`; 28.4 `usage.json:pooled.half_ppr_points` over 3 games; red-zone target share 0.4 `red-zone.json:rz_target_share` (4 of 10), the team's highest. |
+| WR Makai Lemon | **Sit** | Target share 0.1111 `usage.json:pooled.target_share`, 6.8 `usage.json:pooled.half_ppr_points` over 3 games, 4.4 `usage.json:last_week.half_ppr_points`; no red-zone touches. |
+| TE Johnny Mundt | **Sit** | Target share 0.0678 `usage.json:pooled.target_share` on 0.5952 `usage.json:pooled.snap_share` (snap share stands in for routes), no red-zone touches; the Rams allow 6.07 to TEs, rank 28 `points-allowed.json:per_game,rank`. |
 | D/ST Eagles | **Sit** | The Rams are implied for 23.25 `game-environment.json:away_implied_total` as 3-point favorites `game-environment.json:spread_line`; Stafford has 51.98 `usage.json:pooled.half_ppr_points` in three games. |
 
 ### 8. Packers at Buccaneers - Sun 13:00 ET [#118 game 8]
