@@ -1,4 +1,4 @@
-# NFL 2026 week 4 sit/start from this repository's computed tables - Sunday and Monday games
+# NFL 2026 week 4 sit/start from this repository's computed tables - Sunday and Monday games (v2)
 
 **Week: 4, not 5.** The derived tables landed on `main` in #135 on
 2026-10-01, before Sunday's 09:30 ET kickoff, so this covers week 4's Sunday
@@ -10,63 +10,97 @@ and is left out.
 half-PPR, one-QB lineup, with every call resting on numbers this repository
 computed rather than on numbers quoted from another site.
 
-**Status:** complete for the tables as built at 2026-10-01T08:16Z. Red-zone
-share is absent because #129's tables are not on `main`; nothing else the
-issue lists is missing.
+**Status:** v2, complete for the tables as built at 2026-10-01T08:16Z plus
+#129's `red-zone.json` and `team-pace.json` (#138, #139). v2 adds a red-zone
+share to every RB, WR and TE call and both teams' pace to every game header,
+corrects how `spread_line` is cited, and removes two claims the tables did not
+support. Four calls changed; see "What changed in v2". Nothing the issue
+lists is missing.
 
 ## Week synthesis
 
 The tables say what the quoted pages could not: who actually gets the ball,
 pooled over three weeks. Where that disagrees with a name or a matchup quote,
-the share wins. 39 of 242 calls differ from #118 and #119, and most of the
-changes cool tight ends and D/STs.
+the share wins. 39 of 242 calls differ from #118 and #119, mostly cooling
+tight ends and D/STs. Red-zone share, new in v2, moved four calls.
 
 **Strongest starts.** Volume in a good setting:
 
-- Jahmyr Gibbs (game 14): 0.7831 rush share against the defense allowing the second-most to RBs, in a 51.5 total.
-- Bijan Robinson (game 15): 0.6346 rush share and 0.2192 target share.
+- Jahmyr Gibbs (game 14): 0.7831 rush share and 18 of 19 red-zone carries, against the defense allowing the second-most to RBs, in a 51.5 total.
+- Bijan Robinson (game 15): 0.6346 rush share, 0.2192 target share, 11 of 12 red-zone carries.
 - Josh Allen (game 2): 93.44 half-PPR points in three games and a 27.5 team total.
-- Jaxon Smith-Njigba (game 12): 0.3789 target share, 0.5186 air-yards share.
+- Jaxon Smith-Njigba (game 12): 0.3789 target share, 0.5186 air-yards share, half of Seattle's red-zone targets.
 - Josh Downs (game 1): 0.2553 target share against the defense allowing the most to WRs.
-- Trey McBride (game 6): 0.3009 target share at tight end.
+- Trey McBride (game 6): 0.3009 target share and 0.4 red-zone target share at tight end.
 
 **Riskiest sits.** Good numbers in a bad spot:
 
 - Kirk Cousins (game 11): 56.24 points in three games, but Kansas City allows the fewest to QBs.
-- Marvin Harrison Jr. (game 6): 0.7689 snap share and a 0.0796 target share.
+- Marvin Harrison Jr. (game 6): 0.7689 snap share, a 0.0796 target share and no red-zone touches.
 - Oronde Gadsden II (game 12): a 0.0814 target share; #119 started him.
-- Alvin Kamara (game 15): 0.3099 snap share against the rank-30 RB defense.
+- Carnell Tate (game 9): 0.25 target share, but 1 of 12 red-zone targets on the league's slowest offense.
 
 **Sleepers.** Shares the quoted pages missed:
 
+- Luther Burden III (game 3): 0.3333 red-zone target share on the second-fastest offense.
 - Kalif Raymond (game 3): 0.2333 target share.
-- Carnell Tate (game 9): 0.25 target share and 0.4345 air-yards share.
-- Dontayvion Wicks (game 7): 0.1852 target share on 0.88 week 3 snaps.
+- Dontayvion Wicks (game 7): 0.1852 target share on 0.88 week 3 snaps, and 4 of 10 red-zone targets.
 - Bucky Irving (game 8): 0.6061 rush share against the defense allowing the most to RBs.
 - Cardinals D/ST (game 6): Jameis Winston has 8.66 points in two games.
 
 **Likely busts.** Names ahead of usage:
 
-- Saquon Barkley (game 7): 19.5 points in three games.
+- Saquon Barkley (game 7): 19.5 points in three games, 5 of 14 red-zone carries.
 - Jaylen Waddle (game 13): 23.9 points in three games.
-- Mark Andrews (game 9): 18.7 points in three games.
+- Mark Andrews (game 9): 18.7 points; Derrick Henry takes 20 of Baltimore's 24 red-zone carries.
 - Xavier Worthy (game 11): week 3 target share fell to 0.087.
 - Jameson Williams (game 14): 0.1574 target share against the rank-31 WR defense.
 
 **What moves before kickoff.** The injury table holds Wednesday's practice
-only. Davante Adams, Justin Jefferson, Christian McCaffrey, Chuba Hubbard
-and Mike Evans did not practise, and each has a pivot on the list below.
-Five teams - Atlanta, Chicago, New Orleans, Philadelphia and Seattle - had
-no rows at all, so their players can still appear on Friday's report.
+only. Adams, Jefferson, McCaffrey, Hubbard and Evans did not practise; each
+has a pivot below. Atlanta, Chicago, New Orleans, Philadelphia and Seattle
+had no rows at all.
+
+## What changed in v2
+
+A call changed only where red-zone or pace numbers moved it. Every other
+call is v1's, now with a red-zone share added.
+
+| Player | Game | v1 call | v2 call | Numbers that moved it |
+|---|---|---|---|---|
+| WR Luther Burden III | 3 | Flex | **Start** | Red-zone target share 0.3333 `red-zone.json:rz_target_share` (6 of 18), double any other Bear's, on 68.67 `team-pace.json:plays_per_game`, second in the league. |
+| TE Tucker Kraft | 8 | Flex | **Sit** | Red-zone target share 0.0556 `red-zone.json:rz_target_share` (1 of 18), tied for sixth on the team, in a 38.5 `game-environment.json:total_line`. |
+| WR Carnell Tate | 9 | Flex | **Sit** | Red-zone target share 0.0833 `red-zone.json:rz_target_share` (1 of 12), on the league's slowest offense, 52.33 `team-pace.json:plays_per_game`. |
+| TE Mark Andrews | 9 | Flex | **Sit** | Red-zone target share 0.1 `red-zone.json:rz_target_share` (1 of 10), while Derrick Henry has 0.8333 `red-zone.json:rz_carry_share` (20 of 24), on a 0.4565 `team-pace.json:neutral_pass_rate`. |
+
+Not calls, but also changed:
+
+- **Spread citations.** `spread_line` is positive when the home team is
+  favored. v1 cited it betting-style in nine game headers ("Bills -6.5"
+  where the table holds 6.5), and the comparison set table spreads beside
+  quoted ones without saying which sign convention each used. Each now gives
+  the table's value and its meaning; the convention is under "How to read a
+  citation".
+- **Game 15.** v1 asserted that Travis Etienne Jr. was absent, but nothing
+  in the tables shows that: he has 3 games in `usage.json`, and New Orleans
+  had no injury rows. The claim is gone. Kamara is re-judged on the tables
+  alone, and the call stays Sit.
+- **Game 3.** The game-time row no longer speculates about Caleb Williams
+  returning, because the tables do not say who starts.
+- **Pivots.** Darren Waller's pivot is now Mike Gesicki (game 4), because
+  Andrews is a Sit.
 
 ## How to read a citation
 
 Every number is cited as a value followed by its table file and column, for
 example ``0.2451 `usage.json:pooled.target_share` ``: open `usage.json`, find
-the player's row, read `pooled.target_share`. All four tables are
-in [`data/nflverse/2026/week-04/`](../../data/nflverse/2026/week-04/), built
-from nflverse files fetched at 2026-10-01T08:16Z; their schema is
-[ADR 0008](../decisions/0008-derived-weekly-tables-schema.md).
+the player's row, read `pooled.target_share`. All six tables are
+in [`data/nflverse/2026/week-04/`](../../data/nflverse/2026/week-04/). The
+first four were built from nflverse files fetched at 2026-10-01T08:16Z, and
+`red-zone.json` and `team-pace.json` from play-by-play fetched at 08:46Z
+(#139). Their schema is
+[ADR 0008](../decisions/0008-derived-weekly-tables-schema.md) and its
+amendment.
 
 - `usage.json`: `pooled.*` is weeks 1-3 pooled (Σ player / Σ team over the
   games the player has a row in); `last_week.*` is week 3 alone. Shares are
@@ -107,8 +141,12 @@ bye. Each call is a judgement over the cited numbers, not a formula.
 
 **What the tables do not hold, and so stays out of the rationale:**
 
-- **Red zone and pace.** #129's tables are not on `main`. No call uses
-  red-zone share.
+- **Red zone and pace are now cited** (v2). Every RB, WR and TE call gives
+  its red-zone share from `red-zone.json`, or says "no red-zone touches" when
+  the player has no row. Every game header gives both teams' `plays_per_game`
+  and `neutral_pass_rate` from `team-pace.json`, and a rationale cites pace
+  only where it changes the reading. What the red-zone table does not hold is
+  touchdowns: a share says who is used near the goal line, not who scored.
 - **Routes.** Snap share (`snap_share`) stands in for route participation,
   and every tight-end call says so.
 - **Weather.** Not used in any call. No external forecast was read.
@@ -738,8 +776,10 @@ Two halves: calls that changed, and quoted numbers the tables contradict.
 
 ### Calls that differ
 
-39 of the 242 calls differ: 21 against #118, 18 against #119. Every other
-player keeps the same call.
+39 of the 242 calls differ: 22 against #118, 17 against #119. Every other
+player keeps the same call. v2 added Burden, now a Start against #118's Flex,
+and dropped Carnell Tate, whose v2 Sit matches #119. Kraft and Andrews were
+already on the list and now differ by more.
 
 | Player | Game here | Baseline call | Call here | Computed numbers that moved it |
 |---|---|---|---|---|
@@ -749,6 +789,7 @@ player keeps the same call.
 | RB Braelon Allen | 3 | #118 Start | Flex | Rush share 0.2235 `usage.json:pooled.rush_share`; Hall's status is DNP, not Out `injuries.json:practice_status`. |
 | TE Kenyon Sadiq | 3 | #118 Start | Flex | Snap share 0.4493 `usage.json:pooled.snap_share`; Limited himself `injuries.json:practice_status`; Chicago rank 27 to TEs `points-allowed.json:rank`. |
 | RB D'Andre Swift | 3 | #118 Flex | Start | 52.1 `usage.json:pooled.half_ppr_points`; the Jets rank 9 to RBs `points-allowed.json:rank` - #118 quoted "2nd in yards allowed", which is not what fantasy points show. |
+| WR Luther Burden III | 3 | #118 Flex | Start | Red-zone target share 0.3333 `red-zone.json:rz_target_share` (6 of 18); 68.67 `team-pace.json:plays_per_game`. New in v2. |
 | WR Kalif Raymond | 3 | #118 Sit | Flex | Target share 0.2333 `usage.json:pooled.target_share`, 36.9 `usage.json:pooled.half_ppr_points`. #118 read one week and one long TD. |
 | D/ST Bears | 3 | #118 Start | Flex | Geno Smith's 50.92 `usage.json:pooled.half_ppr_points`; Jets implied 20 `game-environment.json:away_implied_total`. |
 | RB Bhayshul Tuten | 4 | #118 Start | Flex | Snap share 0.4944 `usage.json:pooled.snap_share`, target share 0.0658 `usage.json:pooled.target_share`; Cincinnati rank 20 to RBs `points-allowed.json:rank`. |
@@ -763,11 +804,10 @@ player keeps the same call.
 | WR DeVonta Smith | 7 | #118 Flex | Start | Target share 0.3333 `usage.json:pooled.target_share`, air-yards share 0.4771 `usage.json:pooled.air_yards_share`. #118 quoted a defense stat over his usage. |
 | WR Dontayvion Wicks | 7 | #118 Sit | Flex | Target share 0.1852 `usage.json:pooled.target_share`, 28.4 `usage.json:pooled.half_ppr_points`. |
 | QB Jordan Love | 8 | #118 Start | Flex | Tampa Bay rank 24 to QBs `points-allowed.json:rank`; 38.5 `game-environment.json:total_line`. |
-| TE Tucker Kraft | 8 | #118 Start | Flex | 15.1 `usage.json:pooled.half_ppr_points` over 3 games. |
+| TE Tucker Kraft | 8 | #118 Start | Sit | 15.1 `usage.json:pooled.half_ppr_points` over 3 games; v2: red-zone target share 0.0556 `red-zone.json:rz_target_share` (1 of 18). |
 | RB Bucky Irving | 8 | #118 Flex | Start | Rush share 0.6061 `usage.json:pooled.rush_share`; Green Bay rank 1 to RBs `points-allowed.json:rank`. |
 | D/ST Buccaneers | 8 | #118 Start | Flex | Green Bay implied 21 `game-environment.json:away_implied_total`; Tampa Bay rank 24 to QBs `points-allowed.json:rank`. |
-| WR Carnell Tate | 9 | #119 Sit | Flex | Target share 0.25 `usage.json:pooled.target_share`, air-yards share 0.4345 `usage.json:pooled.air_yards_share`. |
-| TE Mark Andrews | 9 | #119 Start | Flex | 18.7 `usage.json:pooled.half_ppr_points` over 3 games; Tennessee rank 29 to TEs `points-allowed.json:rank`. |
+| TE Mark Andrews | 9 | #119 Start | Sit | 18.7 `usage.json:pooled.half_ppr_points` over 3 games; Tennessee rank 29 to TEs `points-allowed.json:rank`; v2: red-zone target share 0.1 `red-zone.json:rz_target_share` (1 of 10). |
 | WR Justin Jefferson | 10 | #119 Start | Flex | Did Not Participate `injuries.json:practice_status`; 0.1186 `usage.json:last_week.snap_share`. |
 | WR Xavier Worthy | 11 | #119 Flex | Sit | Target share 0.087 `usage.json:last_week.target_share`; Las Vegas rank 30 to WRs `points-allowed.json:rank`. |
 | D/ST Chiefs | 11 | #119 Start | Flex | Cousins 56.24 `usage.json:pooled.half_ppr_points`; Raiders implied 21.5 `game-environment.json:home_implied_total`. |
@@ -787,7 +827,8 @@ player keeps the same call.
 tight ends and D/STs that #118 and #119 started on a name or a matchup
 quote (Higbee, Kraft, Andrews, Gadsden, Barner; six D/STs), and they warmed
 players whose pooled shares the quoted pages had not printed (Swift,
-DeVonta Smith, Irving, Raymond, Tate).
+DeVonta Smith, Irving, Raymond, Burden). v2's red-zone shares pushed the same
+way: both tight ends it moved went down.
 
 ### Quoted numbers the tables contradict
 
