@@ -110,7 +110,14 @@ and a play-caller) with a 95% percentile interval.
 - **Loses**: the mirror image (Spearman interval entirely below 0).
 - **Inconclusive**: everything else. **An edge that sits inside the interval is
   inconclusive**, however large the point estimate. Also inconclusive: fewer
-  than 30 scored player-weeks for that position.
+  than 30 scored player-weeks for that position (counted in the scored
+  population of section 6, after every exclusion).
+- **Both readings must agree.** Every verdict above is computed twice: under
+  the primary "seen" rule of section 6, and under the sensitivity reading
+  there, where every player in the scored population on a non-bye team is
+  scored and an unseen player scores 0. Both are reported. **Where the two
+  readings give different verdicts for a position and baseline, the verdict is
+  inconclusive.** Only a verdict that is the same under both stands.
 
 The headline is stated per position as beats / inconclusive / loses against
 each of B1, B1b, B2, B3. No correction for four comparisons is applied; the
@@ -159,14 +166,24 @@ Neutral teams are reported, not tested.
   lateral, tackler, TD scorer, and so on). A player with a feature row and not
   seen is **excluded as not having played**. A seen player with zero looks is
   scored with 0. Known bias: a player on the field only as a blocker is not
-  seen and is excluded; a sensitivity reading that scores every non-bye-team
-  player as 0 is reported alongside, labelled as such and not used for the
-  verdict.
+  seen and is excluded, and so is a player who was on the field and got no
+  target or carry, which are exactly the misses (projection positive, actual 0),
+  so this rule flatters every method, the model most. The **sensitivity
+  reading** therefore scores every player in the scored population on a
+  non-bye team, unseen as 0. Both readings are reported and the section 4
+  decision rule requires them to agree.
 - **No history:** a player absent from the fold's `usage.json` (no stats row in
   weeks `< W`) has no position and no features, and is excluded.
+- **No target or carry before W:** only WR, TE and RB with at least one overall
+  target or carry in weeks `< W` are scored. This is the same set that defines
+  `k(T)` in B3, so the scored population and the B3 split agree. A returner or
+  blocker with none is excluded: every method projects 0 for them and nearly
+  all score 0, which would inflate every method's rank correlation and blur
+  the differences between them. Applies to both readings of the "didn't play"
+  rule.
 - Players with `rz_look_share = null` (team had no red-zone looks) are excluded.
 - **The write-up must report the excluded player-weeks**, per fold and
-  position, by reason: bye, not seen, no history, null share.
+  position, by reason: bye, not seen, no history, no target or carry before W, null share.
 - **Folds:** 1->2 (features week 1, outcomes week 2), 1-2->3, and 1-3->4. The
   last needs week 4 in the data (the committed `week-04` tables are features
   for week 4, not outcomes); until then it is not run and the write-up says so.
