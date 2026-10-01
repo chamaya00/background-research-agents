@@ -468,6 +468,34 @@ function methodMetrics(rows: ScoredRow[], position: Position, method: (typeof ME
   };
 }
 
+type SecondaryOutcome = "touches" | "tds" | "targets" | "carries";
+
+const SECONDARY: Record<SecondaryOutcome, { actual: (r: ScoredRow) => number; model: (r: ScoredRow) => number; model_projection: string }> = {
+  touches: { actual: (r) => r.actual_touches, model: PROJ.model, model_projection: "proj_looks" },
+  tds: { actual: (r) => r.actual_tds, model: PROJ.model, model_projection: "proj_looks" },
+  targets: { actual: (r) => r.actual_targets, model: (r) => r.proj_targets ?? 0, model_projection: "proj_targets" },
+  carries: { actual: (r) => r.actual_carries, model: (r) => r.proj_carries ?? 0, model_projection: "proj_carries" },
+};
+
+/** The plan's secondary outcomes against the projections as they stand. Reported only: no verdict, outside the decision rule. */
+function secondaryOutcomes(rows: ScoredRow[]) {
+  return Object.fromEntries(
+    (Object.keys(SECONDARY) as SecondaryOutcome[]).map((o) => {
+      const { actual, model, model_projection } = SECONDARY[o];
+      const act = rows.map(actual);
+      const pooled = (proj: number[]) => ({ spearman: num(spearman(proj, act)), mae: num(mae(proj, act)) });
+      return [
+        o,
+        {
+          n: rows.length,
+          projection: { model: model_projection, baselines: "same projection each baseline uses for looks (b1_proj, b1b_proj, b2_proj, b3_proj)" },
+          methods: Object.fromEntries(METHODS.map((m) => [m, pooled(rows.map(m === "model" ? model : PROJ[m]))])),
+        },
+      ];
+    }),
+  ) as Record<SecondaryOutcome, { n: number; projection: { model: string; baselines: string }; methods: Record<string, { spearman: number | null; mae: number | null }> }>;
+}
+
 function evaluateReading(rows: ScoredRow[], position: Position) {
   const metrics = Object.fromEntries(METHODS.map((m) => [m, methodMetrics(rows, position, m)])) as Record<
     (typeof METHODS)[number],
@@ -489,6 +517,7 @@ function evaluateReading(rows: ScoredRow[], position: Position) {
       BASELINES.map((b) => [b, { spearman_diff: ival(boot[b]!.spearman_diff), mae_diff: ival(boot[b]!.mae_diff) }]),
     ),
     verdicts,
+    secondary_outcomes: secondaryOutcomes(rows),
   };
 }
 

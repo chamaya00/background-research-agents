@@ -228,6 +228,34 @@ describe("backtest run", () => {
     expect(runBacktest(real, 2026, 3)).toEqual(out);
   });
 
+  it("reports secondary outcomes per position and reading with no verdict, leaving combined_verdicts as the primary verdicts give them", () => {
+    const out = runBacktest(real, 2026, 3);
+    for (const pos of ["WR", "TE", "RB"] as const) {
+      const p = out.summary.positions[pos]!;
+      for (const reading of [p.seen_rule, p.sensitivity_unseen_as_zero]) {
+        const so = reading.secondary_outcomes;
+        expect(Object.keys(so)).toEqual(["touches", "tds", "targets", "carries"]);
+        for (const o of Object.values(so)) {
+          expect(Object.keys(o.methods)).toEqual(["model", "b1", "b1b", "b2", "b3"]);
+          for (const m of Object.values(o.methods)) expect(Object.keys(m)).toEqual(["spearman", "mae"]);
+          expect(o).not.toHaveProperty("verdict");
+          expect(o).not.toHaveProperty("verdicts");
+        }
+        expect(so.touches.projection.model).toBe("proj_looks");
+        expect(so.tds.projection.model).toBe("proj_looks");
+        expect(so.targets.projection.model).toBe("proj_targets");
+        expect(so.carries.projection.model).toBe("proj_carries");
+      }
+      const recomputed = Object.fromEntries(
+        (["b1", "b1b", "b2", "b3"] as const).map((b) => {
+          const [a, c] = [p.seen_rule.verdicts[b], p.sensitivity_unseen_as_zero.verdicts[b]];
+          return [b, a === c ? a : "inconclusive"];
+        }),
+      );
+      expect(p.combined_verdicts).toEqual(recomputed);
+    }
+  });
+
   it("ranks per position by projected looks, so a one-target player on a no-volume team sits below a volume player", () => {
     const base = predictFold(real, 2026, 3).candidates[0]!;
     const mk = (id: string, position: Candidate["position"], over: Partial<Candidate>): Candidate => ({
