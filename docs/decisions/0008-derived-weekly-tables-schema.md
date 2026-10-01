@@ -138,7 +138,11 @@ the fixtures hold one team). Fewer than two completed weeks is an error.
   Wilson interval per method (pooled and per fold), the paired team-week bootstrap
   of model minus each baseline (2,000 resamples, seed 20261001), the verdict per
   baseline under each reading and `combined_verdicts` (inconclusive where they
-  disagree or n < 30); excluded player-weeks per fold, position and reason; the
+  disagree or n < 30); per position and reading, a `secondary_outcomes` block with
+  pooled Spearman and MAE for the model and each baseline against red-zone touches,
+  TDs, targets and carries (the model on `proj_looks` for touches and TDs, on
+  `proj_targets` and `proj_carries` for the last two; baselines on their looks
+  projection), which is outside the decision rule and carries no verdict; excluded player-weeks per fold, position and reason; the
   recompute check (largest absolute difference from `buildRedZone`'s shares);
   and the team-flag summary with the `pc_share` verdict.
 - `week-<WW>/red-zone-ranking.json`, beside the other weekly tables, for the week
