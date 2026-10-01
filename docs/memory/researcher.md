@@ -31,3 +31,4 @@ Delete any lesson that has graduated into a test, a lint rule, or a type.
   "heating machines" detail the first summary had supplied.
 - Reddit is unreachable from a run - WebSearch rejects `allowed_domains: reddit.com` and WebFetch refuses `reddit.com` and `redditinc.com` (#106) - so do not plan an approach on it; say so once and ask for owner-pasted threads.
 - When a run needs a file from the web and `curl` is refused, WebFetch saves binary responses (images) to a local path that Read can open - #86 ran its vision test that way; do not report "cannot test on an image" before trying it.
+- GitHub release assets come back as octet-stream, so WebFetch saves the whole file even when its text summary is truncated - #123 grepped full nflverse CSVs that way after `curl`, `gh api` and `zcat` were refused; follow the 302 to `release-assets.githubusercontent.com`, then use Grep (Read refuses `.bin`), and expect gzip to stay unreadable.
