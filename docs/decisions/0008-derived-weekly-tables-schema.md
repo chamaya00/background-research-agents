@@ -106,6 +106,66 @@ Regular-season plays of weeks 1..W-1 with a `posteam` only.
    points, as nflverse gives it) over plays that have one. Rates are rounded to
    4 dp; `plays_per_game` to 2.
 
+## Amendment: red-zone backtest, team flags and forward ranking (#142)
+
+`node dist/nflverse-cli.js backtest --season <yyyy> --out <season dir> [--through <W>]`
+runs the evaluation fixed by `docs/research/red-zone-backtest-plan.md`; every
+definition, baseline, metric and threshold is that plan's and is not restated or
+changed here. Typical use on live data: `--out data/nflverse/2026`, which writes
+fold 1->2, 1-2->3 and, once week 4 is in the play-by-play, 1-3->4, with no code
+change. Without `--through` the completed weeks are those, counted from week 1,
+whose every game in `games.csv` has regular-season plays; a half-played week ends
+the list. `--through` names the last completed week by hand (tests use it, since
+the fixtures hold one team). Fewer than two completed weeks is an error.
+
+**Files** under `--out` (each with `attribution` and the five `inputs` with SHA-256s):
+
+- `backtest/fold-<WW>-predictions.json`: one row per scored player-week for target
+  week W. Position (from `usage.json` on `player_id`), team, signals from weeks
+  `< W` (`rz_targets`, `rz_carries`, three shares, `team_rz_looks_per_game`),
+  `proj_looks`, `proj_targets`, `proj_carries`, the baselines `b1_proj`, `b1b_proj`,
+  `b2_proj`, `b3_proj`, and week-W actuals: looks, targets, carries, touches, TDs,
+  and team shares of looks, targets and carries. `seen` marks the section 6 rule;
+  rows with `seen: false` count only in the sensitivity reading, where their
+  actuals are 0.
+- `backtest/fold-<WW>-team-flags.json`: per team, red-zone plays, pass plays, sacks
+  (in the numerator), pass rate, looks, looks per game, label (`pass_first`,
+  `neutral`, `run_first`, `too_few_plays`); `next_week` holds, for labelled
+  pass-first and run-first teams that played W, the week-W pass rate against the
+  league's pooled rate, `tendency_kept`, and `pc_share_next`.
+- `backtest/summary.json`: per position, both readings (`seen_rule`,
+  `sensitivity_unseen_as_zero`) with n, Spearman, MAE and top-N hit rate with a
+  Wilson interval per method (pooled and per fold), the paired team-week bootstrap
+  of model minus each baseline (2,000 resamples, seed 20261001), the verdict per
+  baseline under each reading and `combined_verdicts` (inconclusive where they
+  disagree or n < 30); excluded player-weeks per fold, position and reason; the
+  recompute check (largest absolute difference from `buildRedZone`'s shares);
+  and the team-flag summary with the `pc_share` verdict.
+- `week-<WW>/red-zone-ranking.json`, beside the other weekly tables, for the week
+  after the last completed one: `ranking.WR`, `ranking.TE` and `ranking.RB`, each the
+  top 20 by `proj_looks` (red-zone look share x the team's red-zone looks per game,
+  the backtest's model), ties by red-zone targets then `player_id`. Each row carries
+  the counts, shares, projections, the team's flag, and `overall_target_share` with
+  `b1_proj` (the B1 projection) beside it. Eligibility is the backtest's: some
+  target or carry before W and a non-null share. `teams` holds every team's flag. It
+  comes from the same `predictFold` as the backtest rows; if `games.csv` lists that
+  week, teams not in it are left out.
+
+**Choices the plan leaves open.** The reason an excluded player-week is counted
+under is the first that applies, in the order bye, no target or carry, null share,
+not seen (the sensitivity reading scores that last group, so `not_seen` is a
+primary-reading reason only); `no_history` counts players with a week-W red-zone
+target or carry and no stats row before W, under position `unknown`. When a fold
+has fewer players at a position than N, top-N slots are the player count rather
+than N, and the hit rate is hits over slots. `pc_share` counts a target as a
+pass-catcher's by the position in the fold's `usage.json`; a player without
+history is in the denominator only. A team's red-zone look features use the team on
+that player's latest red-zone play, falling back to the usage table's team.
+
+**Schema.** `playByPlayRow` also keeps `complete_pass`, `touchdown`, `sack` and
+every `*_player_id` column (for the "seen" rule). They are optional, so a file
+without them still parses.
+
 ## Consequences
 
 - A table is reproducible from the listed inputs: same SHA-256s, same output.

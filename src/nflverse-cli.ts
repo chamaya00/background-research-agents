@@ -4,9 +4,12 @@ import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { collectInputs, parseInputs, type FetchedInput } from "./nflverse.js";
 import { buildTables, provenance } from "./nflverse-tables.js";
+import { runBacktest } from "./redzone-backtest.js";
 
 const USAGE =
-  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir>";
+  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir> | nflverse-cli backtest --season <yyyy> --out <dir> [--through <n>]";
+
+const pad = (week: number): string => String(week).padStart(2, "0");
 
 export type Collect = (season: number) => Promise<FetchedInput[]>;
 
@@ -19,6 +22,8 @@ function flags(args: string[]): Record<string, string> {
 /**
  * `fetch` prints the manifest (URL, fetch time, SHA-256 per input) and row counts as JSON.
  * `tables` writes the six derived tables, each with attribution and the manifest, to --out.
+ * `backtest` writes the red-zone folds, summary and forward ranking under --out (ADR 0008).
+ * --through <n> names the last completed week; without it the weeks come from the play-by-play.
  * Returns the exit code.
  */
 export async function run(argv: string[], collect: Collect = (s) => collectInputs(s)): Promise<number> {
@@ -59,6 +64,28 @@ export async function run(argv: string[], collect: Collect = (s) => collectInput
       write("team-pace.json", through, tables.teamPace);
       write("game-environment.json", {}, tables.environment);
       write("injuries.json", { note: "One status per player for the week, not a day-by-day trend." }, tables.injuries);
+      return 0;
+    }
+    if (command === "backtest" && validSeason && f["--out"] && (f["--through"] === undefined || /^\d{1,2}$/.test(f["--through"]))) {
+      const inputs = await collect(season);
+      const prov = provenance(inputs);
+      const out = runBacktest(parseInputs(inputs), season, f["--through"] === undefined ? undefined : Number(f["--through"]));
+      const dir = f["--out"];
+      const write = (sub: string, name: string, extra: Record<string, unknown>): void => {
+        mkdirSync(join(dir, sub), { recursive: true });
+        writeFileSync(join(dir, sub, name), JSON.stringify({ ...prov, season, ...extra }, null, 2) + "\n");
+      };
+      for (const fold of out.folds) {
+        const uses = { target_week: fold.week, uses_weeks: "1.." + String(fold.week - 1) };
+        write("backtest", `fold-${pad(fold.week)}-predictions.json`, { ...uses, rows: fold.rows });
+        write("backtest", `fold-${pad(fold.week)}-team-flags.json`, { ...uses, rows: fold.flags, next_week: fold.next_week });
+      }
+      write("backtest", "summary.json", out.summary);
+      write(`week-${pad(out.forward_week)}`, "red-zone-ranking.json", {
+        target_week: out.forward_week,
+        uses_weeks: "1.." + String(out.forward_week - 1),
+        ...out.forward,
+      });
       return 0;
     }
     console.error(USAGE);
