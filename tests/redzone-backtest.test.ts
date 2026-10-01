@@ -18,6 +18,8 @@ import {
   completedWeeks,
   features,
   predictFold,
+  rankPerPosition,
+  type Candidate,
   recomputeCheck,
   runBacktest,
   scoreFold,
@@ -218,9 +220,40 @@ describe("backtest run", () => {
       expect(p.sensitivity_unseen_as_zero.n).toBeLessThan(30);
       expect(Object.values(p.combined_verdicts)).toEqual(["inconclusive", "inconclusive", "inconclusive", "inconclusive"]);
     }
-    expect(out.forward.ranking.length).toBeGreaterThan(0);
-    expect(out.forward.ranking[0]).toHaveProperty("team_flag");
+    expect(Object.keys(out.forward.ranking)).toEqual(["WR", "TE", "RB"]);
+    const first = [...out.forward.ranking.WR, ...out.forward.ranking.TE, ...out.forward.ranking.RB][0];
+    expect(first).toHaveProperty("team_flag");
+    expect(first).toHaveProperty("b1_proj");
+    expect(first).toHaveProperty("overall_target_share");
     expect(runBacktest(real, 2026, 3)).toEqual(out);
+  });
+
+  it("ranks per position by projected looks, so a one-target player on a no-volume team sits below a volume player", () => {
+    const base = predictFold(real, 2026, 3).candidates[0]!;
+    const mk = (id: string, position: Candidate["position"], over: Partial<Candidate>): Candidate => ({
+      ...base,
+      player_id: id,
+      position,
+      overall_looks: 5,
+      rz_look_share: 0.2,
+      ...over,
+    });
+    const ranked = rankPerPosition(
+      [
+        mk("hooper", "TE", { rz_targets: 1, rz_target_share: 1, proj_looks: 0.33 }),
+        mk("volume", "TE", { rz_targets: 3, rz_target_share: 0.5, proj_looks: 2.5 }),
+        mk("tie-b", "TE", { rz_targets: 1, proj_looks: 1 }),
+        mk("tie-a", "TE", { rz_targets: 2, proj_looks: 1 }),
+        mk("wr", "WR", { rz_targets: 2, proj_looks: 0.5 }),
+        mk("no-history", "WR", { overall_looks: 0, proj_looks: 9 }),
+        mk("null-share", "WR", { rz_look_share: null, proj_looks: 9 }),
+      ],
+      20,
+    );
+    expect(ranked.TE.map((c) => c.player_id)).toEqual(["volume", "tie-a", "tie-b", "hooper"]);
+    expect(ranked.WR.map((c) => c.player_id)).toEqual(["wr"]);
+    expect(ranked.RB).toEqual([]);
+    expect(rankPerPosition(ranked.TE, 2).TE).toHaveLength(2);
   });
 
   it("refuses to run with fewer than two completed weeks", () => {

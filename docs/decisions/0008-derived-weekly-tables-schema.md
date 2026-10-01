@@ -142,8 +142,12 @@ the fixtures hold one team). Fewer than two completed weeks is an error.
   recompute check (largest absolute difference from `buildRedZone`'s shares);
   and the team-flag summary with the `pc_share` verdict.
 - `week-<WW>/red-zone-ranking.json`, beside the other weekly tables, for the week
-  after the last completed one: the top 30 WR, TE and RB by red-zone target share
-  (with counts, projected looks and the team's flag) and every team's flag. It
+  after the last completed one: `ranking.WR`, `ranking.TE` and `ranking.RB`, each the
+  top 20 by `proj_looks` (red-zone look share x the team's red-zone looks per game,
+  the backtest's model), ties by red-zone targets then `player_id`. Each row carries
+  the counts, shares, projections, the team's flag, and `overall_target_share` with
+  `b1_proj` (the B1 projection) beside it. Eligibility is the backtest's: some
+  target or carry before W and a non-null share. `teams` holds every team's flag. It
   comes from the same `predictFold` as the backtest rows; if `games.csv` lists that
   week, teams not in it are left out.
 

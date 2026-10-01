@@ -208,6 +208,8 @@ export interface Candidate {
   proj_looks: number | null;
   proj_targets: number | null;
   proj_carries: number | null;
+  /** Overall target share (usage.json pooled.target_share), the B1 input. */
+  overall_target_share: number | null;
   b1_proj: number | null;
   b1b_proj: number | null;
   b2_proj: number;
@@ -260,6 +262,7 @@ export function predictFold(rows: ParsedRows, season: number, week: number): Fol
       proj_looks: scale(lookShare),
       proj_targets: games > 0 && tt > 0 ? (targets / tt) * (tt / games) : null,
       proj_carries: games > 0 && tc > 0 ? (carries / tc) * (tc / games) : null,
+      overall_target_share: u.pooled.target_share,
       b1_proj: scale(u.pooled.target_share ?? 0),
       b1b_proj: scale(ratio(u.pooled.targets + u.pooled.carries, u.pooled.team_targets + u.pooled.team_carries) ?? 0),
       b2_proj: mine?.lastWeekLooks ?? 0,
@@ -573,34 +576,48 @@ export function summarise(folds: FoldResult[]) {
 
 // ---------------------------------------------------------------- forward ranking
 
-export function forwardRanking(rows: ParsedRows, season: number, week: number, top = 30) {
+/** Top `top` per position by projected looks (the backtest's model), ties by red-zone targets then player_id. */
+export function rankPerPosition(candidates: Candidate[], top = 20): Record<Position, Candidate[]> {
+  const byLooks = (a: Candidate, b: Candidate): number =>
+    (b.proj_looks ?? 0) - (a.proj_looks ?? 0) || b.rz_targets - a.rz_targets || a.player_id.localeCompare(b.player_id);
+  // The backtest's eligibility: some target or carry before W, and a non-null share.
+  const eligible = candidates.filter((c) => c.overall_looks > 0 && c.rz_look_share !== null);
+  return Object.fromEntries(POSITIONS.map((p) => [p, eligible.filter((c) => c.position === p).sort(byLooks).slice(0, top)])) as Record<
+    Position,
+    Candidate[]
+  >;
+}
+
+export function forwardRanking(rows: ParsedRows, season: number, week: number, top = 20) {
   const fold = predictFold(rows, season, week);
   const playing = new Set(rows.games.filter((g) => g.season === season && g.week === week).flatMap((g) => [g.home_team, g.away_team]));
   const flag = new Map(fold.flags.map((t) => [t.team, t]));
-  const ranked = fold.candidates
-    .filter((c) => c.rz_targets > 0 && (playing.size === 0 || playing.has(c.team)))
-    .sort(
-      (a, b) =>
-        (b.rz_target_share ?? 0) - (a.rz_target_share ?? 0) || b.rz_targets - a.rz_targets || a.player_id.localeCompare(b.player_id),
-    )
-    .slice(0, top)
-    .map((c) => ({
-      player_id: c.player_id,
-      player: c.player,
-      position: c.position,
-      team: c.team,
-      rz_targets: c.rz_targets,
-      rz_target_share: c.rz_target_share,
-      rz_carries: c.rz_carries,
-      rz_look_share: c.rz_look_share,
-      team_rz_looks_per_game: c.team_rz_looks_per_game,
-      proj_looks: r4(c.proj_looks),
-      proj_targets: r4(c.proj_targets),
-      proj_carries: r4(c.proj_carries),
-      team_flag: flag.get(c.team)?.label ?? "too_few_plays",
-      team_rz_pass_rate: flag.get(c.team)?.rz_pass_rate ?? null,
-    }));
-  return { ranking: ranked, teams: fold.flags.filter((t) => playing.size === 0 || playing.has(t.team)) };
+  const ranked = rankPerPosition(
+    fold.candidates.filter((c) => playing.size === 0 || playing.has(c.team)),
+    top,
+  );
+  const row = (c: Candidate) => ({
+    player_id: c.player_id,
+    player: c.player,
+    position: c.position,
+    team: c.team,
+    rz_targets: c.rz_targets,
+    rz_target_share: c.rz_target_share,
+    rz_carries: c.rz_carries,
+    rz_look_share: c.rz_look_share,
+    team_rz_looks_per_game: c.team_rz_looks_per_game,
+    proj_looks: r4(c.proj_looks),
+    proj_targets: r4(c.proj_targets),
+    proj_carries: r4(c.proj_carries),
+    overall_target_share: c.overall_target_share,
+    b1_proj: r4(c.b1_proj),
+    team_flag: flag.get(c.team)?.label ?? "too_few_plays",
+    team_rz_pass_rate: flag.get(c.team)?.rz_pass_rate ?? null,
+  });
+  return {
+    ranking: Object.fromEntries(POSITIONS.map((p) => [p, ranked[p].map(row)])) as Record<Position, ReturnType<typeof row>[]>,
+    teams: fold.flags.filter((t) => playing.size === 0 || playing.has(t.team)),
+  };
 }
 
 export interface BacktestOutput {
