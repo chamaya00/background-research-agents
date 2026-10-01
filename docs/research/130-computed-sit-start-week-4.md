@@ -660,17 +660,21 @@ Row `2026_04_DET_CAR`: Lions -3.5 `game-environment.json:spread_line`, total
 27.5 `game-environment.json:away_implied_total`, Panthers 24
 `game-environment.json:home_implied_total`.
 
+Pace: Lions 65.67 `team-pace.json:plays_per_game` and 0.56
+`team-pace.json:neutral_pass_rate`; Panthers 65 and 0.6146. Both are fast,
+and Carolina is the league's second most pass-heavy neutral offense.
+
 **Lions**
 
 | Player | Call | Reason |
 |---|---|---|
 | QB Jared Goff | **Start** | 65.58 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (21.9 a game), a 27.5 `game-environment.json:away_implied_total`, and Carolina's 18.97 to QBs, rank 10 `points-allowed.json:per_game,rank`. |
-| RB Jahmyr Gibbs | **Start** | Rush share 0.7831 `usage.json:pooled.rush_share`, target share 0.1944 `usage.json:pooled.target_share`, against Carolina's 28.2 to RBs, rank 2 `points-allowed.json:per_game,rank`. |
-| RB Sione Vaki | **Sit** | Rush share 0.1084 `usage.json:pooled.rush_share`, snap share 0.256 `usage.json:pooled.snap_share`, 9 `usage.json:pooled.half_ppr_points` over 3 games. |
-| WR Amon-Ra St. Brown | **Start** | Target share 0.3241 `usage.json:pooled.target_share`, air-yards share 0.3752 `usage.json:pooled.air_yards_share`, 64.3 `usage.json:pooled.half_ppr_points` over 3 games; volume over Carolina's 18.17 to WRs, rank 31 `points-allowed.json:per_game,rank`. |
-| WR Jameson Williams | **Sit** | Air-yards share 0.307 `usage.json:pooled.air_yards_share` on target share 0.1574 `usage.json:pooled.target_share`, 17.7 `usage.json:pooled.half_ppr_points` over 3 games, in the rank-31 WR matchup. |
-| WR Isaac TeSlaa | **Sit** | Target share 0.0833 `usage.json:pooled.target_share`, snap share 0.4769 `usage.json:last_week.snap_share`, 11.7 `usage.json:pooled.half_ppr_points` over 3 games. |
-| TE Sam LaPorta | **Start** | Snap share 0.8986 `usage.json:pooled.snap_share` (snap share stands in for routes), target share 0.1759 `usage.json:pooled.target_share`, against Carolina's 12.03 to TEs, rank 12 `points-allowed.json:per_game,rank`. |
+| RB Jahmyr Gibbs | **Start** | Rush share 0.7831 `usage.json:pooled.rush_share`, target share 0.1944 `usage.json:pooled.target_share`, against Carolina's 28.2 to RBs, rank 2 `points-allowed.json:per_game,rank`. Red-zone carry share 0.9474 `red-zone.json:rz_carry_share` (18 of 19), the highest of any back here, plus target share 0.2273 `red-zone.json:rz_target_share` (5 of 22). |
+| RB Sione Vaki | **Sit** | Rush share 0.1084 `usage.json:pooled.rush_share`, snap share 0.256 `usage.json:pooled.snap_share`, 9 `usage.json:pooled.half_ppr_points` over 3 games, red-zone carry share 0.0526 `red-zone.json:rz_carry_share` (1 of 19). |
+| WR Amon-Ra St. Brown | **Start** | Target share 0.3241 `usage.json:pooled.target_share`, air-yards share 0.3752 `usage.json:pooled.air_yards_share`, 64.3 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.4091 `red-zone.json:rz_target_share` (9 of 22); volume over Carolina's 18.17 to WRs, rank 31 `points-allowed.json:per_game,rank`. |
+| WR Jameson Williams | **Sit** | Air-yards share 0.307 `usage.json:pooled.air_yards_share` on target share 0.1574 `usage.json:pooled.target_share`, 17.7 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.0455 `red-zone.json:rz_target_share` (1 of 22), in the rank-31 WR matchup. |
+| WR Isaac TeSlaa | **Sit** | Target share 0.0833 `usage.json:pooled.target_share`, snap share 0.4769 `usage.json:last_week.snap_share`, 11.7 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.0909 `red-zone.json:rz_target_share` (2 of 22). |
+| TE Sam LaPorta | **Start** | Snap share 0.8986 `usage.json:pooled.snap_share` (snap share stands in for routes), target share 0.1759 `usage.json:pooled.target_share`, red-zone target share 0.2273 `red-zone.json:rz_target_share` (5 of 22), against Carolina's 12.03 to TEs, rank 12 `points-allowed.json:per_game,rank`. |
 | D/ST Lions | **Sit** | Carolina is implied for 24 `game-environment.json:home_implied_total` in a 51.5 total; Bryce Young has 69.16 `usage.json:pooled.half_ppr_points` in three games; Detroit allows the most to QBs, 30.02, rank 1 `points-allowed.json:per_game,rank`. |
 
 **Panthers**
@@ -678,13 +682,13 @@ Row `2026_04_DET_CAR`: Lions -3.5 `game-environment.json:spread_line`, total
 | Player | Call | Reason |
 |---|---|---|
 | QB Bryce Young | **Start** | Detroit allows the most to QBs, 30.02, rank 1 `points-allowed.json:per_game,rank`; 69.16 `usage.json:pooled.half_ppr_points` over 3 games; a 24 `game-environment.json:home_implied_total`. Full `injuries.json:practice_status`. |
-| RB Chuba Hubbard | **Start** | Rush share 0.8261 `usage.json:last_week.rush_share` on 0.8442 `usage.json:last_week.snap_share`, 48.6 `usage.json:pooled.half_ppr_points` over 3 games. Did Not Participate `injuries.json:practice_status` - on the game-time list. |
-| RB AJ Dillon | **Sit** | Rush share 0.1791 `usage.json:pooled.rush_share`, snap share 0.109 `usage.json:pooled.snap_share`, 4.4 `usage.json:pooled.half_ppr_points`. Flex if Hubbard sits. |
-| WR Tetairoa McMillan | **Start** | Snap share 0.9481 `usage.json:last_week.snap_share`, target share 0.213 `usage.json:pooled.target_share`, against Detroit's 32.67 to WRs, rank 4 `points-allowed.json:per_game,rank`. |
-| WR Jalen Coker | **Flex** | Target share 0.2037 `usage.json:pooled.target_share`, 43.2 `usage.json:pooled.half_ppr_points` over 3 games, in the rank-4 WR matchup; Did Not Participate `injuries.json:practice_status`. On the game-time list. |
-| WR Xavier Legette | **Sit** | Target share 0.0909 `usage.json:pooled.target_share` on 0.5149 `usage.json:pooled.snap_share` over 2 games, no week 3 row; Did Not Participate `injuries.json:practice_status`. |
-| WR Brycen Tremayne | **Sit** | Snap share 0.8052 `usage.json:last_week.snap_share` with Legette out, but target share 0.0556 `usage.json:pooled.target_share`; 10.3 `usage.json:last_week.half_ppr_points` is all his output. Flex if Coker sits. |
-| TE Darren Waller | **Flex** | Detroit allows the most to TEs, 28.53, rank 1 `points-allowed.json:per_game,rank`; target share 0.1905 `usage.json:last_week.target_share` on snap share 0.436 `usage.json:pooled.snap_share` (snap share stands in for routes). Did Not Participate `injuries.json:practice_status` - on the game-time list. |
+| RB Chuba Hubbard | **Start** | Rush share 0.8261 `usage.json:last_week.rush_share` on 0.8442 `usage.json:last_week.snap_share`, 48.6 `usage.json:pooled.half_ppr_points` over 3 games, red-zone carry share 0.6667 `red-zone.json:rz_carry_share` (6 of 9). Did Not Participate `injuries.json:practice_status` - on the game-time list. |
+| RB AJ Dillon | **Sit** | Rush share 0.1791 `usage.json:pooled.rush_share`, snap share 0.109 `usage.json:pooled.snap_share`, 4.4 `usage.json:pooled.half_ppr_points`, no red-zone touches. Flex if Hubbard sits. |
+| WR Tetairoa McMillan | **Start** | Snap share 0.9481 `usage.json:last_week.snap_share`, target share 0.213 `usage.json:pooled.target_share`, red-zone target share 0.25 `red-zone.json:rz_target_share` (5 of 20), against Detroit's 32.67 to WRs, rank 4 `points-allowed.json:per_game,rank`, on a 0.6146 `team-pace.json:neutral_pass_rate`. |
+| WR Jalen Coker | **Flex** | Target share 0.2037 `usage.json:pooled.target_share`, 43.2 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.25 `red-zone.json:rz_target_share` (5 of 20), in the rank-4 WR matchup; Did Not Participate `injuries.json:practice_status`. On the game-time list. |
+| WR Xavier Legette | **Sit** | Target share 0.0909 `usage.json:pooled.target_share` on 0.5149 `usage.json:pooled.snap_share` over 2 games, red-zone target share 0.05 `red-zone.json:rz_target_share` (1 of 20), no week 3 row; Did Not Participate `injuries.json:practice_status`. |
+| WR Brycen Tremayne | **Sit** | Snap share 0.8052 `usage.json:last_week.snap_share` with Legette out, but target share 0.0556 `usage.json:pooled.target_share` and no red-zone touches; 10.3 `usage.json:last_week.half_ppr_points` is all his output. Flex if Coker sits. |
+| TE Darren Waller | **Flex** | Detroit allows the most to TEs, 28.53, rank 1 `points-allowed.json:per_game,rank`; target share 0.1905 `usage.json:last_week.target_share` on snap share 0.436 `usage.json:pooled.snap_share` (snap share stands in for routes), red-zone target share 0.1 `red-zone.json:rz_target_share` (2 of 20). Did Not Participate `injuries.json:practice_status` - on the game-time list. |
 | D/ST Panthers | **Sit** | Detroit is implied for 27.5 `game-environment.json:away_implied_total`, the week's joint-highest team total, with Carolina a 3.5-point underdog `game-environment.json:spread_line`; Goff has 65.58 `usage.json:pooled.half_ppr_points` in three games. |
 
 ### 15. Falcons at Saints - Mon 20:15 ET [#119 game 8]
