@@ -50,6 +50,8 @@ const play = (o: Partial<PlayByPlayRow>): PlayByPlayRow => ({
   sack: null,
   touchdown: null,
   air_yards: null,
+  receiving_yards: null,
+  rushing_yards: null,
   pass_location: null,
   first_down: null,
   game_id: "2026_01_AAA",
