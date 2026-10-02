@@ -7,9 +7,33 @@ import { buildTables, provenance } from "./nflverse-tables.js";
 import { profileReport } from "./nflverse-profile.js";
 import { parseXfpArgs, xfpReport } from "./nflverse-xfp.js";
 import { runBacktest } from "./redzone-backtest.js";
+import { FIRST_FOLD, LAST_FOLD, OUTPUT_DIR, runXfpBacktest } from "./xfp-backtest.js";
 
 const USAGE =
-  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir> | nflverse-cli backtest --season <yyyy> --out <dir> [--through <n>] | nflverse-cli profile --season <yyyy> --week <n> --player <name> [--player <name> ...] | nflverse-cli xfp --season <yyyy> --week <n> [--position WR|TE|RB|QB] [--team XXX] [--top N] [--sort v1|v2|v3|v4]";
+  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir> | nflverse-cli backtest --season <yyyy> --out <dir> [--through <n>] | nflverse-cli profile --season <yyyy> --week <n> --player <name> [--player <name> ...] | nflverse-cli xfp --season <yyyy> --week <n> [--position WR|TE|RB|QB] [--team XXX] [--top N] [--sort v1|v2|v3|v4] | nflverse-cli xfp-backtest --season <yyyy> --through <2-17> [--out <dir>]";
+
+export interface XfpBacktestArgs {
+  season: number;
+  through: number;
+  out?: string;
+}
+
+/** Strict parse of the flags after `xfp-backtest`: season and through are required, `--out` defaults to the plan's directory. */
+export function parseXfpBacktestArgs(rest: string[]): XfpBacktestArgs | null {
+  if (rest.length % 2 !== 0) return null;
+  const f = new Map<string, string>();
+  for (let i = 0; i < rest.length; i += 2) {
+    if (f.has(rest[i]!) || !["--season", "--through", "--out"].includes(rest[i]!)) return null;
+    f.set(rest[i]!, rest[i + 1]!);
+  }
+  const season = f.get("--season");
+  const through = f.get("--through");
+  if (season === undefined || !/^\d{4}$/.test(season) || through === undefined || !/^\d{1,2}$/.test(through)) return null;
+  if (Number(through) < FIRST_FOLD || Number(through) > LAST_FOLD) return null;
+  const out = f.get("--out");
+  if (out !== undefined && out.trim() === "") return null;
+  return { season: Number(season), through: Number(through), ...(out === undefined ? {} : { out }) };
+}
 
 const pad = (week: number): string => String(week).padStart(2, "0");
 
@@ -120,6 +144,30 @@ export async function run(argv: string[], collect: Collect = (s) => collectInput
         const inputs = await collect(args.season);
         const prior = parseInputs(await collect(args.season - 1));
         console.log(xfpReport(parseInputs(inputs), args, prior));
+        return 0;
+      }
+    }
+    if (command === "xfp-backtest") {
+      const args = parseXfpBacktestArgs(rest);
+      if (args) {
+        let inputs: FetchedInput[];
+        let priorInputs: FetchedInput[];
+        try {
+          inputs = await collect(args.season);
+          priorInputs = await collect(args.season - 1);
+        } catch (err) {
+          console.error(`xfp-backtest needs the ${args.season} and ${args.season - 1} nflverse files and could not fetch them: ${err instanceof Error ? err.message : String(err)}`);
+          return 1;
+        }
+        const out = runXfpBacktest(parseInputs(inputs), parseInputs(priorInputs), args.season, args.through);
+        const dir = args.out ?? OUTPUT_DIR(args.season);
+        mkdirSync(dir, { recursive: true });
+        const prov = provenance(inputs);
+        for (const [name, value] of Object.entries(out.files)) {
+          const body = name === "summary.json" ? { ...prov, prior_season_inputs: provenance(priorInputs).inputs, ...(value as object) } : value;
+          writeFileSync(join(dir, name), JSON.stringify(body, null, 2) + "\n");
+        }
+        console.log(`xfp-backtest ${args.season} through week ${args.through}: ${Object.keys(out.files).length} files in ${dir}; ${out.wins} of ${out.verdicts_total} verdicts are wins`);
         return 0;
       }
     }

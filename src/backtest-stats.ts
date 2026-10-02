@@ -193,6 +193,102 @@ export function settlingWeek(byBlock: Verdict[]): number | "none" {
   return start === byBlock.length ? "none" : BLOCK_STARTS[start]!;
 }
 
+export function rmse(proj: number[], actual: number[]): number | null {
+  return proj.length === 0 ? null : Math.sqrt(proj.reduce((s, p, i) => s + (p - actual[i]!) ** 2, 0) / proj.length);
+}
+
+/** Mean of projection minus actual: positive means the method over-projects. */
+export function bias(proj: number[], actual: number[]): number | null {
+  return proj.length === 0 ? null : proj.reduce((s, p, i) => s + (p - actual[i]!), 0) / proj.length;
+}
+
+/**
+ * xfp backtest plan section 6, accuracy family: "beats" when the MAE-difference interval (model minus
+ * baseline) is entirely below 0, "loses" when entirely above. Spearman and top-N do not enter.
+ */
+export function accuracyVerdict(n: number, boot: PairedBootstrap): Verdict {
+  if (n < MIN_SCORED || boot.mae_diff === null) return "inconclusive";
+  if (boot.mae_diff.hi < 0) return "beats";
+  if (boot.mae_diff.lo > 0) return "loses";
+  return "inconclusive";
+}
+
+export const TREND_PERMUTATIONS = 10000;
+export const TREND_MIN_WEEKS = 12;
+export const TREND_ALPHA = 0.05;
+
+/** Kendall's tau-b between x and y (ties in either side are corrected for); null for fewer than 2 points or a constant side. */
+export function kendallTau(x: number[], y: number[]): number | null {
+  const n = x.length;
+  if (n < 2) return null;
+  let s = 0;
+  let tx = 0;
+  let ty = 0;
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      const dx = Math.sign(x[j]! - x[i]!);
+      const dy = Math.sign(y[j]! - y[i]!);
+      s += dx * dy;
+      if (dx !== 0) tx++;
+      if (dy !== 0) ty++;
+    }
+  }
+  return tx === 0 || ty === 0 ? null : s / Math.sqrt(tx * ty);
+}
+
+export type TrendLabel = "improves" | "worsens" | "no trend";
+
+export interface TrendResult {
+  tau: number | null;
+  p: number | null;
+  weeks: number;
+  trend: TrendLabel;
+}
+
+/**
+ * Plan section 5: Kendall tau between week and the weekly value, a two-sided permutation test of the
+ * values across weeks (p counts the observed ordering as one permutation), alpha 0.05. `better` says
+ * which sign of tau is an improvement: "up" for Spearman, "down" for MAE. Null values are skipped;
+ * fewer than 12 weeks is "no trend".
+ */
+export function trendTest(
+  weeks: number[],
+  values: (number | null)[],
+  better: "up" | "down",
+  permutations = TREND_PERMUTATIONS,
+  seed = BOOTSTRAP_SEED,
+): TrendResult {
+  const w: number[] = [];
+  const v: number[] = [];
+  weeks.forEach((wk, i) => {
+    const x = values[i];
+    if (x !== null && x !== undefined) {
+      w.push(wk);
+      v.push(x);
+    }
+  });
+  const tau = kendallTau(w, v);
+  if (tau === null) return { tau: null, p: null, weeks: w.length, trend: "no trend" };
+  const next = rng(seed);
+  const shuffled = [...v];
+  let extreme = 0;
+  for (let r = 0; r < permutations; r++) {
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(next() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j]!, shuffled[i]!];
+    }
+    const t = kendallTau(w, shuffled);
+    if (t !== null && Math.abs(t) >= Math.abs(tau) - 1e-12) extreme++;
+  }
+  const p = (extreme + 1) / (permutations + 1);
+  let trend: TrendLabel = "no trend";
+  if (w.length >= TREND_MIN_WEEKS && p < TREND_ALPHA) trend = tau > 0 === (better === "up") ? "improves" : "worsens";
+  return { tau, p, weeks: w.length, trend };
+}
+
+/** Combined trend: "improves" or "worsens" only when both readings say so. */
+export const combineTrend = (a: TrendLabel, b: TrendLabel): TrendLabel => (a === b ? a : "no trend");
+
 export const VOLUME_K = 3;
 
 /**

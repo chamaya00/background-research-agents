@@ -92,11 +92,15 @@ export interface Look {
   passer: string | null;
 }
 
-/** Targets and carries from regular-season plays before the week, minus two-point tries, kneels and spikes. */
-export function extractLooks(plays: PlayByPlayRow[], season: number, week: number): Look[] {
+/**
+ * Targets and carries from regular-season plays before the week, minus two-point tries, kneels and spikes.
+ * `onlyWeek` narrows that to one week, which is how the backtest scores an outcome with the same rules.
+ */
+export function extractLooks(plays: PlayByPlayRow[], season: number, week: number, onlyWeek?: number): Look[] {
   const out: Look[] = [];
   for (const p of plays) {
     if (p.season !== season || p.season_type !== "REG" || p.week >= week) continue;
+    if (onlyWeek !== undefined && p.week !== onlyWeek) continue;
     if (p.two_point_attempt === 1 || p.qb_kneel === 1 || p.qb_spike === 1) continue;
     const yl = p.yardline_100;
     const redZone = yl !== null && yl <= RZ_YARDLINE;
@@ -555,7 +559,7 @@ const QB_BUCKET_ORDER: BucketKey[] = [
 ];
 
 /** Player ids whose position is QB in stats rows of the season before the week. */
-function qbIdsOf(stats: ParsedRows["stats_player"], season: number, week: number): Set<string> {
+export function qbIdsOf(stats: ParsedRows["stats_player"], season: number, week: number): Set<string> {
   const out = new Set<string>();
   for (const s of stats) {
     if (s.season === season && s.week < week && s.player_id !== null && s.position === "QB") out.add(s.player_id);
@@ -568,10 +572,11 @@ function qbIdsOf(stats: ParsedRows["stats_player"], season: number, week: number
  * 0.04/pass yd, 4/pass TD, -2/INT, 0.1/rush yd, 6/rush TD, -2 per fumble lost when the fumbler is the QB.
  * A pick-six costs only the -2; a sack scores 0 apart from a lost fumble.
  */
-export function extractQbLooks(plays: PlayByPlayRow[], qbs: Set<string>, season: number, week: number): QbLook[] {
+export function extractQbLooks(plays: PlayByPlayRow[], qbs: Set<string>, season: number, week: number, onlyWeek?: number): QbLook[] {
   const out: QbLook[] = [];
   for (const p of plays) {
     if (p.season !== season || p.season_type !== "REG" || p.week >= week) continue;
+    if (onlyWeek !== undefined && p.week !== onlyWeek) continue;
     if (p.two_point_attempt === 1 || p.qb_kneel === 1 || p.qb_spike === 1) continue;
     const yl = p.yardline_100;
     const redZone = yl !== null && yl <= RZ_YARDLINE;
