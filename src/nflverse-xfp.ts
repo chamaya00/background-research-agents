@@ -1,7 +1,8 @@
 /**
- * `nflverse-cli xfp`: expected fantasy points (v1) from league-average bucket values (#163).
- * Only regular-season weeks before the target week feed any number (ADR 0008). Plays are joined to
- * players on player_id; v1 has no opponent or quarterback adjustment.
+ * `nflverse-cli xfp`: expected fantasy points from bucket values (#163, #165). v1 uses league-average
+ * values; v2 adjusts them for the defense and the passer; v3 takes the values from the previous season;
+ * v4 adjusts v3. Only regular-season weeks before the target week feed any number (ADR 0008), except
+ * the week-W schedule, which names the opponent. Plays are joined to players on player_id.
  */
 import type { ParsedRows, PlayByPlayRow } from "./nflverse.js";
 import { buildUsage } from "./nflverse-tables.js";
@@ -12,6 +13,12 @@ export type XfpPosition = (typeof XFP_POSITIONS)[number];
 export const XFP_MIN_GAMES = 2;
 /** The leader is a clear 1 when this many share points ahead of the next player. */
 export const CLEAR_LEAD_POINTS = 5;
+/** Plays of shrinkage in an adjustment factor: (actual + K*m) / (expected + K*m). Fixed, not tuned. */
+export const ADJUST_K = 100;
+/** The previous season feeds v3 through its regular-season week 18. */
+export const PREV_SEASON_LAST_WEEK = 18;
+export const XFP_SORTS = ["v1", "v2", "v3", "v4"] as const;
+export type XfpSort = (typeof XFP_SORTS)[number];
 const RZ_YARDLINE = 20;
 const I5_YARDLINE = 5;
 
@@ -21,6 +28,7 @@ export interface XfpArgs {
   position?: XfpPosition;
   team?: string;
   top?: number;
+  sort?: XfpSort;
 }
 
 /** Strict parse of the flags after `xfp`; null for anything unknown, repeated, missing or malformed. */
@@ -28,7 +36,7 @@ export function parseXfpArgs(rest: string[]): XfpArgs | null {
   if (rest.length % 2 !== 0) return null;
   const f = new Map<string, string>();
   for (let i = 0; i < rest.length; i += 2) {
-    if (f.has(rest[i]!) || !["--season", "--week", "--position", "--team", "--top"].includes(rest[i]!)) return null;
+    if (f.has(rest[i]!) || !["--season", "--week", "--position", "--team", "--top", "--sort"].includes(rest[i]!)) return null;
     f.set(rest[i]!, rest[i + 1]!);
   }
   const season = f.get("--season");
@@ -49,6 +57,11 @@ export function parseXfpArgs(rest: string[]): XfpArgs | null {
   if (top !== undefined) {
     if (!/^\d+$/.test(top) || Number(top) < 1) return null;
     out.top = Number(top);
+  }
+  const sort = f.get("--sort");
+  if (sort !== undefined) {
+    if (!(XFP_SORTS as readonly string[]).includes(sort)) return null;
+    out.sort = sort as XfpSort;
   }
   return out;
 }
@@ -72,6 +85,9 @@ export interface Look {
   bucket: BucketKey;
   points: number;
   redZone: boolean;
+  defteam: string | null;
+  /** The passer of a target; null for carries. */
+  passer: string | null;
 }
 
 /** Targets and carries from regular-season plays before the week, minus two-point tries, kneels and spikes. */
@@ -90,6 +106,8 @@ export function extractLooks(plays: PlayByPlayRow[], season: number, week: numbe
         bucket: `tgt ${bandOf(p.air_yards)} ${redZone ? "rz" : "of"}`,
         points: 0.5 * (p.complete_pass === 1 ? 1 : 0) + 0.1 * (p.receiving_yards ?? 0) + (p.td_player_id === id ? 6 : 0),
         redZone,
+        defteam: p.defteam ?? null,
+        passer: p.passer_player_id,
       });
     } else if (p.rush === 1 && p.rusher_player_id !== null && p.play_type === "run") {
       const id = p.rusher_player_id;
@@ -99,6 +117,8 @@ export function extractLooks(plays: PlayByPlayRow[], season: number, week: numbe
         bucket: `car ${yl !== null && yl <= I5_YARDLINE ? "i5" : redZone ? "6-20" : "of"}`,
         points: 0.1 * (p.rushing_yards ?? 0) + (p.td_player_id === id ? 6 : 0),
         redZone,
+        defteam: p.defteam ?? null,
+        passer: null,
       });
     }
   }
