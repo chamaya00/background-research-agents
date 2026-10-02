@@ -180,6 +180,9 @@ export const playByPlayRow = z.object({
   complete_pass: optNumCol,
   // Added for the profile command (#159); optional like the columns above.
   air_yards: optNumCol,
+  // Added for xfp (#163); optional like the columns above.
+  receiving_yards: optNumCol,
+  rushing_yards: optNumCol,
   pass_location: optCol,
   first_down: optNumCol,
   sack: optNumCol,

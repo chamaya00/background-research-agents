@@ -5,10 +5,11 @@ import { pathToFileURL } from "node:url";
 import { collectInputs, parseInputs, type FetchedInput } from "./nflverse.js";
 import { buildTables, provenance } from "./nflverse-tables.js";
 import { profileReport } from "./nflverse-profile.js";
+import { parseXfpArgs, xfpReport } from "./nflverse-xfp.js";
 import { runBacktest } from "./redzone-backtest.js";
 
 const USAGE =
-  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir> | nflverse-cli backtest --season <yyyy> --out <dir> [--through <n>] | nflverse-cli profile --season <yyyy> --week <n> --player <name> [--player <name> ...]";
+  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir> | nflverse-cli backtest --season <yyyy> --out <dir> [--through <n>] | nflverse-cli profile --season <yyyy> --week <n> --player <name> [--player <name> ...] | nflverse-cli xfp --season <yyyy> --week <n> [--position WR|TE|RB] [--team XXX] [--top N]";
 
 const pad = (week: number): string => String(week).padStart(2, "0");
 
@@ -25,6 +26,7 @@ function flags(args: string[]): Record<string, string> {
  * `tables` writes the six derived tables, each with attribution and the manifest, to --out.
  * `backtest` writes the red-zone folds, summary and forward ranking under --out (ADR 0008).
  * `profile` prints a receiver's role and floor/typical/ceiling to the terminal, writing nothing.
+ * `xfp` prints expected vs actual half-PPR points per game, pecking orders and rankings, writing nothing.
  * --through <n> names the last completed week; without it the weeks come from the play-by-play.
  * Returns the exit code.
  */
@@ -109,6 +111,14 @@ export async function run(argv: string[], collect: Collect = (s) => collectInput
       if (ok && validSeason && /^\d{1,2}$/.test(f["--week"] ?? "") && week >= 2 && weeks === 1 && seasons === 1 && names.length > 0) {
         const inputs = await collect(season);
         console.log(profileReport(parseInputs(inputs), season, week, names));
+        return 0;
+      }
+    }
+    if (command === "xfp") {
+      const args = parseXfpArgs(rest);
+      if (args) {
+        const inputs = await collect(args.season);
+        console.log(xfpReport(parseInputs(inputs), args));
         return 0;
       }
     }
