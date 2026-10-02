@@ -161,20 +161,189 @@ export interface XfpPlayer {
   diff: number;
 }
 
+/** One adjusted model's numbers for a player; next is null on a bye. */
+export interface Projection {
+  retro: number;
+  next: number | null;
+}
+
+export interface ModelPlayer extends XfpPlayer {
+  /** v2: v1's values adjusted for defense and passer. */
+  v2: Projection;
+  /** v3: current plays at previous-season values; null when no previous season was supplied. */
+  v3: number | null;
+  /** v4: v3's values adjusted for defense and passer. */
+  v4: Projection | null;
+  /** The week-W opponent; null on a bye. */
+  opponent: { team: string; away: boolean } | null;
+  /** Q*: the team's most recent starter; null when the team has no earlier game. */
+  starter: { id: string; name: string } | null;
+}
+
 export interface Tiered {
   tier: string;
   player: XfpPlayer;
 }
 
-export interface XfpResult {
-  buckets: BucketValue[];
-  players: XfpPlayer[];
+/** A bucket value table: v1's, or v3's. */
+export type ValueTable = Map<BucketKey, number>;
+
+export const toTable = (values: BucketValue[]): ValueTable => new Map(values.map((b) => [b.bucket, b.value]));
+
+export interface Adjustment {
+  /** Mean value per class-c play, m_c. */
+  mean: { target: number; carry: number };
+  /** Defense factors keyed by `${defteam} ${class}`. */
+  defense: Map<string, number>;
+  /** Passer factors, targets only. */
+  passer: Map<string, number>;
 }
 
-export function buildXfp(rows: ParsedRows, season: number, week: number): XfpResult {
+const shrink = (actual: number, expected: number, mean: number): number => {
+  const denom = expected + ADJUST_K * mean;
+  return denom === 0 ? 1 : (actual + ADJUST_K * mean) / denom;
+};
+
+const defKey = (team: string, kind: Look["kind"]): string => `${team} ${kind}`;
+
+/**
+ * Factors for any value table V: f = (A + K*m) / (E + K*m), where A is actual points, E the points V
+ * expects over the same plays, m the league mean V per play of the class, K = ADJUST_K. Defenses are
+ * keyed by class, passers cover targets only.
+ */
+export function buildAdjustment(looks: Look[], values: ValueTable): Adjustment {
+  const v = (l: Look): number => values.get(l.bucket) ?? 0;
+  const cls = { target: { e: 0, n: 0 }, carry: { e: 0, n: 0 } };
+  for (const l of looks) {
+    cls[l.kind].e += v(l);
+    cls[l.kind].n += 1;
+  }
+  const mean = {
+    target: cls.target.n === 0 ? 0 : cls.target.e / cls.target.n,
+    carry: cls.carry.n === 0 ? 0 : cls.carry.e / cls.carry.n,
+  };
+  const tally = (key: (l: Look) => string | null): Map<string, number> => {
+    const acc = new Map<string, { a: number; e: number; kind: Look["kind"] }>();
+    for (const l of looks) {
+      const k = key(l);
+      if (k === null) continue;
+      const t = acc.get(k) ?? { a: 0, e: 0, kind: l.kind };
+      t.a += l.points;
+      t.e += v(l);
+      acc.set(k, t);
+    }
+    return new Map([...acc].map(([k, t]) => [k, shrink(t.a, t.e, mean[t.kind])]));
+  };
+  return {
+    mean,
+    defense: tally((l) => (l.defteam === null ? null : defKey(l.defteam, l.kind))),
+    passer: tally((l) => (l.kind === "target" ? l.passer : null)),
+  };
+}
+
+/** Defense factor; exactly 1 for a defense with no plays of the class. */
+export const defenseFactor = (adj: Adjustment, team: string | null, kind: Look["kind"]): number =>
+  team === null ? 1 : (adj.defense.get(defKey(team, kind)) ?? 1);
+
+/** Passer factor; exactly 1 for a passer with no targets. */
+export const passerFactor = (adj: Adjustment, id: string | null): number => (id === null ? 1 : (adj.passer.get(id) ?? 1));
+
+interface Sums {
+  target: number;
+  carry: number;
+  /** Sum of V x the play's factors over the player's plays. */
+  adjusted: number;
+}
+
+/** Per player: V summed by class, and V x the play's own factors summed. */
+function sumsByPlayer(looks: Look[], values: ValueTable, adj: Adjustment): Map<string, Sums> {
+  const out = new Map<string, Sums>();
+  for (const l of looks) {
+    const s = out.get(l.player_id) ?? { target: 0, carry: 0, adjusted: 0 };
+    const v = values.get(l.bucket) ?? 0;
+    s[l.kind] += v;
+    s.adjusted += v * defenseFactor(adj, l.defteam, l.kind) * (l.kind === "target" ? passerFactor(adj, l.passer) : 1);
+    out.set(l.player_id, s);
+  }
+  return out;
+}
+
+export interface Matchup {
+  opponent: string;
+  away: boolean;
+}
+
+/** The team's week-W opponent from the schedule; null on a bye. The one place week W is read. */
+export function opponentOf(rows: ParsedRows, season: number, week: number, team: string): Matchup | null {
+  for (const g of rows.games) {
+    if (g.season !== season || g.week !== week) continue;
+    if (g.home_team === team) return { opponent: g.away_team, away: false };
+    if (g.away_team === team) return { opponent: g.home_team, away: true };
+  }
+  return null;
+}
+
+/**
+ * Q*: the passer with the most `qb_dropback = 1` plays in the team's latest regular-season game before
+ * W, ties broken by player_id; null when the team has no earlier game or no passer in it.
+ */
+export function latestStarter(plays: PlayByPlayRow[], season: number, week: number, team: string): string | null {
+  let latest: { week: number; game: string } | null = null;
+  for (const p of plays) {
+    if (p.season !== season || p.season_type !== "REG" || p.week >= week || p.posteam !== team) continue;
+    if (latest === null || p.week > latest.week) latest = { week: p.week, game: p.game_id };
+  }
+  if (latest === null) return null;
+  const counts = new Map<string, number>();
+  for (const p of plays) {
+    if (p.season !== season || p.game_id !== latest.game || p.posteam !== team || p.qb_dropback !== 1 || p.passer_player_id === null) continue;
+    counts.set(p.passer_player_id, (counts.get(p.passer_player_id) ?? 0) + 1);
+  }
+  const ranked = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  return ranked.length === 0 ? null : ranked[0]![0];
+}
+
+export interface ValueTables {
+  /** Previous season's table, n = previous-season plays; empty buckets are absent. */
+  previous: BucketValue[];
+  /** v3's table: previous-season values, with the current value where the previous season had n = 0. */
+  v3: ValueTable;
+  /** Buckets that fell back to the current season's value. */
+  fallbacks: BucketKey[];
+}
+
+/** v3's value table. A bucket the previous season never saw takes the current season's value. */
+export function previousSeasonTable(prior: ParsedRows, season: number, current: BucketValue[]): ValueTables {
+  const previous = bucketValues(extractLooks(prior.play_by_play, season - 1, PREV_SEASON_LAST_WEEK + 1));
+  const v3 = toTable(previous);
+  const fallbacks: BucketKey[] = [];
+  for (const b of current) {
+    if (!v3.has(b.bucket)) {
+      v3.set(b.bucket, b.value);
+      fallbacks.push(b.bucket);
+    }
+  }
+  return { previous, v3, fallbacks };
+}
+
+export interface XfpResult {
+  buckets: BucketValue[];
+  players: ModelPlayer[];
+  adjustment: Adjustment;
+  /** Null without a previous season. */
+  v3: ValueTables | null;
+  adjustmentV3: Adjustment | null;
+}
+
+export function buildXfp(rows: ParsedRows, season: number, week: number, prior: ParsedRows | null = null): XfpResult {
   const looks = extractLooks(rows.play_by_play, season, week);
   const buckets = bucketValues(looks);
-  const value = new Map(buckets.map((b) => [b.bucket, b.value]));
+  const value = toTable(buckets);
+  const v3 = prior === null ? null : previousSeasonTable(prior, season, buckets);
+  const adj = buildAdjustment(looks, value);
+  const adj3 = v3 === null ? null : buildAdjustment(looks, v3.v3);
+  const sums1 = sumsByPlayer(looks, value, adj);
+  const sums3 = v3 === null || adj3 === null ? null : sumsByPlayer(looks, v3.v3, adj3);
   const byPlayer = new Map<string, { t: number; c: number; rz: number; exp: number; act: number }>();
   for (const l of looks) {
     const a = byPlayer.get(l.player_id) ?? { t: 0, c: 0, rz: 0, exp: 0, act: 0 };
@@ -185,10 +354,31 @@ export function buildXfp(rows: ParsedRows, season: number, week: number): XfpRes
     a.act += l.points;
     byPlayer.set(l.player_id, a);
   }
-  const players: XfpPlayer[] = [];
+  const names = new Map<string, string>();
+  for (const s of rows.stats_player) {
+    if (s.season === season && s.week < week && s.player_id !== null && s.player_display_name !== null) names.set(s.player_id, s.player_display_name);
+  }
+  const starters = new Map<string, string | null>();
+  const starterOf = (team: string): string | null => {
+    if (!starters.has(team)) starters.set(team, latestStarter(rows.play_by_play, season, week, team));
+    return starters.get(team)!;
+  };
+  const project = (s: Sums, games: number, a: Adjustment, match: Matchup | null, q: string | null): Projection => ({
+    retro: s.adjusted / games,
+    next:
+      match === null
+        ? null
+        : (s.target / games) * defenseFactor(a, match.opponent, "target") * passerFactor(a, q) +
+          (s.carry / games) * defenseFactor(a, match.opponent, "carry"),
+  });
+  const zero: Sums = { target: 0, carry: 0, adjusted: 0 };
+  const players: ModelPlayer[] = [];
   for (const u of buildUsage(rows, season, week)) {
     if (!(XFP_POSITIONS as readonly string[]).includes(u.position) || u.games === 0) continue;
     const a = byPlayer.get(u.player_id) ?? { t: 0, c: 0, rz: 0, exp: 0, act: 0 };
+    const match = opponentOf(rows, season, week, u.team);
+    const q = starterOf(u.team);
+    const s3 = sums3?.get(u.player_id) ?? zero;
     players.push({
       player_id: u.player_id,
       player: u.player,
@@ -202,9 +392,14 @@ export function buildXfp(rows: ParsedRows, season: number, week: number): XfpRes
       xfp_per_game: a.exp / u.games,
       actual_per_game: a.act / u.games,
       diff: (a.act - a.exp) / u.games,
+      v2: project(sums1.get(u.player_id) ?? zero, u.games, adj, match, q),
+      v3: sums3 === null ? null : (s3.target + s3.carry) / u.games,
+      v4: adj3 === null ? null : project(s3, u.games, adj3, match, q),
+      opponent: match === null ? null : { team: match.opponent, away: match.away },
+      starter: q === null ? null : { id: q, name: names.get(q) ?? q },
     });
   }
-  return { buckets, players };
+  return { buckets, players, adjustment: adj, v3, adjustmentV3: adj3 };
 }
 
 const byId = (a: XfpPlayer, b: XfpPlayer): number => a.player_id.localeCompare(b.player_id);
@@ -223,39 +418,83 @@ export function peckingOrder(players: XfpPlayer[], team: string): Tiered[] {
   return top.map((player, i) => ({ tier: tiers[i]!, player }));
 }
 
-/** Players with 2+ games, highest xFP/g first. */
-export function rank(players: XfpPlayer[]): XfpPlayer[] {
-  return players.filter((p) => p.games >= XFP_MIN_GAMES).sort((a, b) => b.xfp_per_game - a.xfp_per_game || byId(a, b));
+/** The number a ranking sorts on; v2 and v4 sort on the next game, so a bye has no key. */
+export function sortKey(p: XfpPlayer | ModelPlayer, sort: XfpSort): number | null {
+  const m = p as Partial<ModelPlayer>;
+  if (sort === "v1") return p.xfp_per_game;
+  if (sort === "v2") return m.v2?.next ?? null;
+  if (sort === "v3") return m.v3 ?? null;
+  return m.v4?.next ?? null;
+}
+
+/** Players with 2+ games, highest key first (v1's xFP/g by default); players with no key go last. */
+export function rank<T extends XfpPlayer>(players: T[], sort: XfpSort = "v1"): T[] {
+  const key = (p: T): number => sortKey(p, sort) ?? -Infinity;
+  return players.filter((p) => p.games >= XFP_MIN_GAMES).sort((a, b) => key(b) - key(a) || byId(a, b));
 }
 
 const f1 = (n: number): string => n.toFixed(1);
+const f2 = (n: number): string => n.toFixed(2);
 const pct = (n: number | null): string => (n === null ? "n/a" : `${(n * 100).toFixed(1)}%`);
+const opt = (n: number | null | undefined): string => (n === null || n === undefined ? "-" : f1(n));
 
-function rankingLines(title: string, pool: XfpPlayer[], top: number | undefined): string[] {
-  const ranked = rank(pool);
+const SORT_TITLE: Record<XfpSort, string> = { v1: "xFP/g", v2: "v2 next game", v3: "v3 xFP/g", v4: "v4 next game" };
+export const RANKING_HEADER =
+  "  # player (team pos, games) v1 v2-retro v2-next v3 v4-retro v4-next actual/g diff tgt-share tgt/g car/g rz-looks next-game";
+
+function nextGame(p: ModelPlayer): string {
+  if (p.opponent === null) return "bye";
+  return `${p.opponent.away ? "@" : "vs"} ${p.opponent.team}, QB ${p.starter?.name ?? "n/a"}`;
+}
+
+function rankingLines(title: string, pool: ModelPlayer[], top: number | undefined, sort: XfpSort): string[] {
+  const ranked = rank(pool, sort);
   const left = pool.length - ranked.length;
   const shown = top === undefined ? ranked : ranked.slice(0, top);
   const out = [`${title} (${shown.length} of ${ranked.length} ranked; ${left} left out with fewer than ${XFP_MIN_GAMES} games)`];
-  out.push("  # player (team pos, games) xFP/g actual/g diff tgt-share tgt/g car/g rz-looks");
+  out.push(RANKING_HEADER);
   shown.forEach((p, i) =>
     out.push(
-      `  ${i + 1}. ${p.player} (${p.team} ${p.position}, ${p.games} g) ${f1(p.xfp_per_game)} ${f1(p.actual_per_game)} ${p.diff >= 0 ? "+" : ""}${f1(p.diff)} ${pct(p.target_share)} ${f1(p.targets_per_game)} ${f1(p.carries_per_game)} ${p.rz_looks}`,
+      `  ${i + 1}. ${p.player} (${p.team} ${p.position}, ${p.games} g) ${f1(p.xfp_per_game)} ${f1(p.v2.retro)} ${opt(p.v2.next)} ${opt(p.v3)} ${opt(p.v4?.retro)} ${opt(p.v4?.next)} ${f1(p.actual_per_game)} ${p.diff >= 0 ? "+" : ""}${f1(p.diff)} ${pct(p.target_share)} ${f1(p.targets_per_game)} ${f1(p.carries_per_game)} ${p.rz_looks} ${nextGame(p)}`,
     ),
   );
   return out;
 }
 
-export function xfpReport(rows: ParsedRows, args: XfpArgs): string {
-  const { season, week } = args;
-  const res = buildXfp(rows, season, week);
-  const out = [
-    `nflverse xfp v1, ${season} week ${week}, data through week ${week - 1}.`,
-    "Data © the nflverse project, https://github.com/nflverse/nflverse-data, used under CC-BY 4.0. Derived values.",
-    "Expected points use league-average bucket values; no opponent or quarterback adjustment. Half-PPR.",
-    "",
-    "Bucket values (mean half-PPR per play, n plays)",
-    ...res.buckets.map((b) => `  ${b.bucket}: ${b.value.toFixed(3)} (n=${b.n})`),
+function factorLines(label: string, adj: Adjustment): string[] {
+  const teams = [...new Set([...adj.defense.keys()].map((k) => k.split(" ")[0]!))].sort();
+  const dl = teams.map((t) => `${t} ${f2(defenseFactor(adj, t, "target"))}/${f2(defenseFactor(adj, t, "carry"))}`);
+  const ql = [...adj.passer].sort((a, b) => a[0].localeCompare(b[0])).map(([id, f]) => `${id} ${f2(f)}`);
+  return [
+    `${label} defense factors (target/carry): ${dl.join("; ") || "(none)"}`,
+    `${label} passer factors: ${ql.join("; ") || "(none)"}`,
   ];
+}
+
+export function xfpReport(rows: ParsedRows, args: XfpArgs, prior: ParsedRows | null = null): string {
+  const { season, week } = args;
+  const sort = args.sort ?? "v1";
+  const res = buildXfp(rows, season, week, prior);
+  const out = [
+    `nflverse xfp v1-v4, ${season} week ${week}, data through week ${week - 1}.`,
+    "Data © the nflverse project, https://github.com/nflverse/nflverse-data, used under CC-BY 4.0. Derived values.",
+    "v1: league-average bucket values; no opponent or quarterback adjustment. Half-PPR.",
+    "v2: adjusted, not validated against v1",
+    "v3: previous-season values, not validated against v1",
+    "v4: adjusted, not validated against v1",
+    `Adjustment factors use K = ${ADJUST_K} plays; v2 and v4 next-game numbers use the week-${week} opponent and each team's latest starter.`,
+    "",
+    "Bucket values (mean half-PPR per play, n plays)" + (res.v3 ? "; v1 | previous season v3" : ""),
+  ];
+  const prev = new Map((res.v3?.previous ?? []).map((b) => [b.bucket, b]));
+  for (const b of res.buckets) {
+    const p = prev.get(b.bucket);
+    out.push(`  ${b.bucket}: ${b.value.toFixed(3)} (n=${b.n})` + (res.v3 ? ` | ${p ? `${p.value.toFixed(3)} (n=${p.n})` : "n/a (n=0), fell back to v1"}` : ""));
+  }
+  if (res.v3) out.push(`  v3 buckets that fell back to the current season: ${res.v3.fallbacks.join(", ") || "none"}`);
+  else out.push("  v3 and v4: no previous-season data supplied, not computed");
+  out.push("", ...factorLines("v2", res.adjustment));
+  if (res.adjustmentV3) out.push(...factorLines("v4", res.adjustmentV3));
   const inTeam = res.players.filter((p) => args.team === undefined || p.team === args.team);
   const teams = [...new Set(inTeam.map((p) => p.team))].sort();
   out.push("", `Pecking orders (target share, ${XFP_MIN_GAMES}+ games; WR/TE/RB)`);
@@ -266,9 +505,10 @@ export function xfpReport(rows: ParsedRows, args: XfpArgs): string {
     out.push(`  ${t}: ${order.length === 0 ? "(no player with enough games)" : line}`);
   }
   const pool = inTeam.filter((p) => args.position === undefined || p.position === args.position);
-  out.push("", ...rankingLines("Rankings, overall, by xFP/g", pool, args.top));
+  const title = SORT_TITLE[sort];
+  out.push("", ...rankingLines(`Rankings, overall, by ${title}`, pool, args.top, sort));
   for (const pos of args.position === undefined ? XFP_POSITIONS : [args.position]) {
-    out.push("", ...rankingLines(`Rankings, ${pos}, by xFP/g`, pool.filter((p) => p.position === pos), args.top));
+    out.push("", ...rankingLines(`Rankings, ${pos}, by ${title}`, pool.filter((p) => p.position === pos), args.top, sort));
   }
   return out.join("\n");
 }
