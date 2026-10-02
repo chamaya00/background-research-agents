@@ -132,9 +132,12 @@ baseline) and reading, with `err = projection - actual`:
 4. **Spearman** rank correlation of projection vs actual over the week's
    player-weeks, average ranks for ties (`spearman`); null when either side is
    constant.
-5. **Top-N hit rate**, N by value: **QB 12, RB 24, WR 24, TE 12.** These are
-   the starter counts of a 12-team league (one QB, two RB, two WR, one TE per
-   team), fixed here with that reason, before outcomes. Per week and position,
+5. **Top-N hit rate**, N by value: **QB 15, RB 24, WR 40, TE 15.** The
+   original values (QB 12, RB 24, WR 24, TE 12) were the starter counts of a
+   12-team league. On 2026-10-02, after this plan merged and **before any 2025
+   outcome was computed**, the owner widened QB, WR and TE to 15, 40 and 15, so
+   the hit rate also covers the flex and streaming pool a 12-team manager
+   actually chooses from; RB stays 24. Per week and position,
    the N highest projections (ties broken by `player_id` ascending) are
    compared with the actual top N (ties at the Nth actual value all count as
    in): `topNHits`. A week with fewer than N scored players uses the count it
