@@ -4,10 +4,11 @@ import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { collectInputs, parseInputs, type FetchedInput } from "./nflverse.js";
 import { buildTables, provenance } from "./nflverse-tables.js";
+import { profileReport } from "./nflverse-profile.js";
 import { runBacktest } from "./redzone-backtest.js";
 
 const USAGE =
-  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir> | nflverse-cli backtest --season <yyyy> --out <dir> [--through <n>]";
+  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir> | nflverse-cli backtest --season <yyyy> --out <dir> [--through <n>] | nflverse-cli profile --season <yyyy> --week <n> --player <name> [--player <name> ...]";
 
 const pad = (week: number): string => String(week).padStart(2, "0");
 
@@ -23,6 +24,7 @@ function flags(args: string[]): Record<string, string> {
  * `fetch` prints the manifest (URL, fetch time, SHA-256 per input) and row counts as JSON.
  * `tables` writes the six derived tables, each with attribution and the manifest, to --out.
  * `backtest` writes the red-zone folds, summary and forward ranking under --out (ADR 0008).
+ * `profile` prints a receiver's role and floor/typical/ceiling to the terminal, writing nothing.
  * --through <n> names the last completed week; without it the weeks come from the play-by-play.
  * Returns the exit code.
  */
@@ -93,6 +95,22 @@ export async function run(argv: string[], collect: Collect = (s) => collectInput
         ...out.forward,
       });
       return 0;
+    }
+    if (command === "profile") {
+      // --player repeats, which the one-value-per-flag parser above cannot hold.
+      const names: string[] = [];
+      let ok = rest.length >= 6 && rest.length % 2 === 0;
+      for (let i = 0; ok && i < rest.length; i += 2) {
+        if (rest[i] === "--player" && rest[i + 1]!.trim() !== "") names.push(rest[i + 1]!);
+        else if (rest[i] !== "--season" && rest[i] !== "--week") ok = false;
+      }
+      const weeks = rest.filter((a, i) => i % 2 === 0 && a === "--week").length;
+      const seasons = rest.filter((a, i) => i % 2 === 0 && a === "--season").length;
+      if (ok && validSeason && /^\d{1,2}$/.test(f["--week"] ?? "") && week >= 2 && weeks === 1 && seasons === 1 && names.length > 0) {
+        const inputs = await collect(season);
+        console.log(profileReport(parseInputs(inputs), season, week, names));
+        return 0;
+      }
     }
     console.error(USAGE);
     return 1;

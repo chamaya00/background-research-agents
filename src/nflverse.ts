@@ -178,6 +178,10 @@ const seenIds = Object.fromEntries(SEEN_ID_COLUMNS.map((c) => [c, optCol])) as R
 export const playByPlayRow = z.object({
   ...seenIds,
   complete_pass: optNumCol,
+  // Added for the profile command (#159); optional like the columns above.
+  air_yards: optNumCol,
+  pass_location: optCol,
+  first_down: optNumCol,
   sack: optNumCol,
   touchdown: optNumCol,
   game_id: text,
