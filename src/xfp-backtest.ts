@@ -326,11 +326,16 @@ function scoresOf(rows: PlayerWeek[]): MethodScores {
   };
 }
 
-const diffCols = (b: PairedBootstrap, suffix: string): Record<string, number | null> => ({
-  [`spearman_diff_lo_${suffix}`]: r4(b.spearman_diff?.lo ?? null),
-  [`spearman_diff_hi_${suffix}`]: r4(b.spearman_diff?.hi ?? null),
-  [`mae_diff_lo_${suffix}`]: r4(b.mae_diff?.lo ?? null),
-  [`mae_diff_hi_${suffix}`]: r4(b.mae_diff?.hi ?? null),
+/** The interval columns of `verdicts.json`, in the plan's order. */
+const diffCols = (main: PairedBootstrap, sens: PairedBootstrap): Record<string, number | null> => ({
+  spearman_diff_lo_main: r4(main.spearman_diff?.lo ?? null),
+  spearman_diff_hi_main: r4(main.spearman_diff?.hi ?? null),
+  spearman_diff_lo_sens: r4(sens.spearman_diff?.lo ?? null),
+  spearman_diff_hi_sens: r4(sens.spearman_diff?.hi ?? null),
+  mae_diff_lo_main: r4(main.mae_diff?.lo ?? null),
+  mae_diff_hi_main: r4(main.mae_diff?.hi ?? null),
+  mae_diff_lo_sens: r4(sens.mae_diff?.lo ?? null),
+  mae_diff_hi_sens: r4(sens.mae_diff?.hi ?? null),
 });
 
 // ---------------------------------------------------------------- the whole run
@@ -356,7 +361,19 @@ export function runXfpBacktest(rows: ParsedRows, prior: ParsedRows, season: numb
   const files: Record<string, unknown> = {};
   for (const r of results) {
     files[`fold-${pad(r.week)}-player-weeks.json`] = r.rows.map((p) => ({
-      ...p,
+      season: p.season,
+      week: p.week,
+      player_id: p.player_id,
+      position: p.position,
+      team: p.team,
+      opponent: p.opponent,
+      prior_games: p.prior_games,
+      thin: p.thin,
+      seen: p.seen,
+      week_starter: p.week_starter,
+      latest_starter: p.latest_starter,
+      in_main: p.in_main,
+      in_sensitivity: p.in_sensitivity,
       actual: round(p.actual),
       baseline: round(p.baseline),
       v1: round(p.v1),
@@ -443,8 +460,7 @@ export function runXfpBacktest(rows: ParsedRows, prior: ParsedRows, season: numb
             verdict_main: main,
             verdict_sensitivity: sens,
             verdict_combined: both,
-            ...diffCols(bm, "main"),
-            ...diffCols(bs, "sens"),
+            ...diffCols(bm, bs),
           });
         }
   files["verdicts.json"] = verdicts;
