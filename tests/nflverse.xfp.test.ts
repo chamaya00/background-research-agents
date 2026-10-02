@@ -260,7 +260,7 @@ describe("arguments and command", () => {
       ["--season", "2026"],
       ["--season", "26", "--week", "4"],
       ["--season", "2026", "--week", "1"],
-      ["--season", "2026", "--week", "4", "--position", "QB"],
+      ["--season", "2026", "--week", "4", "--position", "K"],
       ["--season", "2026", "--week", "4", "--team", "aaa"],
       ["--season", "2026", "--week", "4", "--top", "0"],
       ["--season", "2026", "--week", "4", "--week", "5"],
@@ -274,7 +274,7 @@ describe("arguments and command", () => {
   it("exits non-zero for invalid arguments without fetching", async () => {
     const err = vi.spyOn(console, "error").mockImplementation(() => undefined);
     const collect = vi.fn();
-    expect(await run(["xfp", "--season", "2026", "--week", "4", "--position", "QB"], collect)).toBe(1);
+    expect(await run(["xfp", "--season", "2026", "--week", "4", "--position", "K"], collect)).toBe(1);
     expect(collect).not.toHaveBeenCalled();
     err.mockRestore();
   });

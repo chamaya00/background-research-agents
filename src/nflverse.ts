@@ -190,6 +190,13 @@ export const playByPlayRow = z.object({
   // Added for xfp v2 (#165); optional like the columns above, so a fixture without them still parses.
   defteam: optCol.optional(),
   qb_dropback: optNumCol.optional(),
+  // Added for xfp quarterbacks (#167); optional like the columns above.
+  pass_attempt: optNumCol.optional(),
+  qb_scramble: optNumCol.optional(),
+  interception: optNumCol.optional(),
+  fumble_lost: optNumCol.optional(),
+  pass_touchdown: optNumCol.optional(),
+  passing_yards: optNumCol.optional(),
   game_id: text,
   season: num,
   week: num,

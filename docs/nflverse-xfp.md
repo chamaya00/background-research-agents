@@ -93,3 +93,41 @@ Every v1-v4 number uses regular-season weeks `< W` of the current season and the
 - **The starter is assumed.** A quarterback change, injury or bye makes Q* wrong, and nothing here knows.
 - **Three weeks is a small sample.** Bucket values with a small n, and per-game numbers over 2-3 games, move a lot week to week.
 - Weekly stats can differ from play-by-play totals by a play or two (lateral plays, nullified plays); both are printed from their own source.
+
+## Quarterbacks (#167)
+
+`xfp --season <yyyy> --week <W> --position QB` prints the QB section alone: value table, rankings, factors. With no `--position` it is appended after the WR/TE/RB output, which is unchanged; `--position WR|TE|RB` omits it. `--sort`, `--team` and `--top` apply. The code is the same file: `extractQbLooks`, `buildQb`, `qbReport` in `src/nflverse-xfp.ts`, reusing the value-table, `buildAdjustment`, `ADJUST_K`, `opponentOf` and `previousSeasonTable` machinery.
+
+### Scoring (not half-PPR)
+
+0.04 per passing yard, 4 per passing TD, -2 per interception, 0.1 per rushing yard, 6 per rushing TD, -2 per fumble lost, charged only when the fumbler (`fumbled_1_player_id`) is the QB. A pick-six costs the QB only the -2. A sack scores 0 apart from a lost fumble; sack yards are not rushing yards. A receiver's lost fumble on a completion is not the QB's. Two-point tries, kneels and spikes are excluded, as is everything outside regular-season weeks `< W`.
+
+### Plays and attribution
+
+| Play | Rule | Attributed to | Bucket |
+| --- | --- | --- | --- |
+| pass attempt | `pass_attempt = 1`, `sack = 0` | `passer_player_id` | air-yard band (`<=0`, `1-9`, `10-19`, `20+`, `na`) x `rz`/`of` |
+| sack | `sack = 1` | passer | one bucket |
+| scramble | `qb_scramble = 1` | `rusher_player_id` | `rz`/`of` |
+| designed run | `rush = 1`, `play_type = run`, `qb_scramble = 0`, rusher's position is QB in player stats | rusher | `i5`, `6-20`, `of` |
+
+A bucket's value is the league mean QB points per play, printed with its n. Only players whose position is QB in the season's stats rows before W are ranked.
+
+### Starts and games
+
+A start is a game where the QB has the most `qb_dropback = 1` plays (by `passer_player_id`) for his team, ties broken by player_id - `latestStarter`'s rule. Games played is every game he has a QB play in. Every per-game number is **per start, over started games only**: relief plays are left out of v1, actual, dropbacks, rushes and rz plays per start (but feed league values and factors). Both counts print. QBs with 2+ starts are ranked; the rest are listed after the ranking as "fewer than 2 starts".
+
+### v1 and the gap
+
+v1 = the sum of bucket values over his plays in started games / starts. Actual = the same plays' points / starts. **gap = actual - v1.** For a quarterback the gap measures his own efficiency: the value of a bucket is what an average QB scores on that kind of play, so what is left is what he did with it. Dropbacks/start counts attempts, sacks and scrambles; rushes/start counts scrambles and designed runs; rz-plays/start counts those inside the 20.
+
+### v2 is defense only
+
+`f_def(D, c) = (A + K*m_c) / (E + K*m_c)`, K = `ADJUST_K`, over QB plays with two classes: **pass** (attempts, sacks, scrambles) and **run** (designed runs). There is no passer or QB-quality factor; the output says v2 adjusts for defense only. A defense with no plays gets exactly 1.0.
+
+- **Retro:** each play x f_def(defteam, class), summed per start.
+- **Next:** v1 pass part x f_def(opp, pass) + v1 run part x f_def(opp, run). A bye prints `bye` and no projection.
+
+### v3 and v4
+
+v3 values the same buckets from the whole previous regular season (season - 1, weeks 1-18); a bucket with n = 0 there takes the current season's value and the fallbacks are listed. v4 is v2's formulas applied to v3's values, retro and next. All of v2-v4 are labelled "not validated against v1"; the backtest is a later issue. Leakage rules are as above: only weeks `< W` of the current and previous season, and the week-W schedule for the opponent.
