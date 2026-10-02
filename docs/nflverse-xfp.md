@@ -115,7 +115,7 @@ A bucket's value is the league mean QB points per play, printed with its n. Only
 
 ### Starts and games
 
-A start is a game where the QB has the most `qb_dropback = 1` plays (by `passer_player_id`) for his team, ties broken by player_id - `latestStarter`'s rule. Games played is every game he has a QB play in. Every per-game number is **per start, over started games only**: relief plays are left out of v1, actual, dropbacks, rushes and rz plays per start (but feed league values and factors). Both counts print. QBs with 2+ starts are ranked; the rest are listed after the ranking as "fewer than 2 starts".
+A start is a game where the QB has the most `qb_dropback = 1` plays (by `passer_player_id`) for his team, ties broken by player_id - `latestStarter`'s rule. Games played is every game he has a QB play in. Every per-game number is **per start, over started games only**: relief plays are left out of v1, actual, dropbacks, rushes and rz plays per start (but feed league values and factors). Both counts print. QBs with 2+ starts are ranked; the rest are listed after the ranking as "fewer than 2 starts". A QB with no starts prints "-" for every per-start number. A QB who did not start his team's latest game (`latestStarter`) - benched, injured, or a backup - has ", not latest starter" after his next game, since his projection assumes he plays.
 
 ### v1 and the gap
 

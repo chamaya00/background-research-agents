@@ -266,7 +266,9 @@ describe("buckets, starts, actual and gap", () => {
     expect(ranked).toContain("Quin Alpha");
     expect(ranked).toContain("Quin Gamma");
     expect(ranked).not.toContain("Quin Beta");
-    expect(rest).toContain("Quin Beta (AAA, 0 starts, 2 games)");
+    expect(rest).toContain("Quin Beta (AAA, 0 starts, 2 games) - - - - - - - - - - -");
+    expect(rest).toMatch(/Quin Beta .*, not latest starter$/m);
+    expect(ranked).not.toContain("not latest starter");
     expect(text).toContain("for a quarterback it measures his own efficiency");
     expect(text).toContain("no passer or quarterback-quality factor");
   });

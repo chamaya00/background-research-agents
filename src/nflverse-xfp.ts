@@ -643,6 +643,8 @@ export interface QbPlayer {
   rushes_per_start: number;
   rz_per_start: number;
   opponent: { team: string; away: boolean } | null;
+  /** Whether he started his team's latest game (`latestStarter`); a benched or injured QB's next game is marked. */
+  latest_starter: boolean;
 }
 
 export interface QbResult {
@@ -718,6 +720,7 @@ export function buildQb(rows: ParsedRows, season: number, week: number, prior: P
       rushes_per_start: per(mine.filter((l) => l.play === "scr" || l.play === "run").length),
       rz_per_start: per(mine.filter((l) => l.redZone).length),
       opponent: match === null ? null : { team: match.opponent, away: match.away },
+      latest_starter: latestStarter(rows.play_by_play, season, week, latest.team) === id,
     });
   }
   return { buckets, players, adjustment: adj, v3, adjustmentV3: adj3 };
@@ -751,8 +754,12 @@ function qbFactorLines(label: string, adj: Adjustment): string[] {
   return [`${label} defense factors (pass/run): ${dl.join("; ") || "(none)"}`];
 }
 
-const qbRow = (p: QbPlayer, prefix: string): string =>
-  `  ${prefix} ${p.player} (${p.team}, ${p.starts} starts, ${p.games} games) ${f1(p.v1)} ${f1(p.v2.retro)} ${opt(p.v2.next)} ${opt(p.v3)} ${opt(p.v4?.retro)} ${opt(p.v4?.next)} ${f1(p.actual_per_start)} ${p.gap >= 0 ? "+" : ""}${f1(p.gap)} ${f1(p.dropbacks_per_start)} ${f1(p.rushes_per_start)} ${f1(p.rz_per_start)} ${p.opponent === null ? "bye" : `${p.opponent.away ? "@" : "vs"} ${p.opponent.team}`}`;
+const qbRow = (p: QbPlayer, prefix: string): string => {
+  // With no starts there is nothing to divide by: per-start numbers print as "-", not 0.0.
+  const ps = (x: number | null | undefined): string => (p.starts === 0 ? "-" : opt(x));
+  const next = p.opponent === null ? "bye" : `${p.opponent.away ? "@" : "vs"} ${p.opponent.team}${p.latest_starter ? "" : ", not latest starter"}`;
+  return `  ${prefix} ${p.player} (${p.team}, ${p.starts} starts, ${p.games} games) ${ps(p.v1)} ${ps(p.v2.retro)} ${ps(p.v2.next)} ${ps(p.v3)} ${ps(p.v4?.retro)} ${ps(p.v4?.next)} ${ps(p.actual_per_start)} ${p.starts === 0 ? "-" : `${p.gap >= 0 ? "+" : ""}${f1(p.gap)}`} ${ps(p.dropbacks_per_start)} ${ps(p.rushes_per_start)} ${ps(p.rz_per_start)} ${next}`;
+};
 
 /** The QB section: labels, bucket values, factors and rankings. */
 export function qbReport(rows: ParsedRows, args: XfpArgs, prior: ParsedRows | null = null): string[] {
