@@ -24,6 +24,12 @@ export const TYPICAL_TD_ALLOWANCE = 0.27;
 export const CEILING_FACTOR = 1.2;
 export const CEILING_BONUS = 6;
 export const FUMBLE_LOST_POINTS = -2;
+/** Fewer weeks than this behind the heuristic prints a small-sample warning. */
+export const SMALL_SAMPLE_WEEKS = 3;
+/** Players need this many games before the week to be ranked by target share. */
+export const RANK_MIN_GAMES = 2;
+/** Positions a profile covers; any other position gets a one-line note. */
+export const PROFILE_POSITIONS: readonly string[] = ["WR", "TE", "RB"];
 
 const BANDS = ["<=0", "1-9", "10-19", "20+"] as const;
 type Band = (typeof BANDS)[number];
@@ -157,11 +163,13 @@ function formatProfile(i: FormatInput): string[] {
   const u = usage.pooled;
 
   // Role.
-  const wrs = i.allUsage.filter((o) => o.team === team && o.position === "WR");
-  const better = wrs.filter((o) => (o.pooled.target_share ?? -1) > (u.target_share ?? -1)).length;
+  // League-wide rank among players at the same position with RANK_MIN_GAMES or more games before the week.
+  const peers = i.allUsage.filter((o) => o.position === usage.position && o.games >= RANK_MIN_GAMES && o.pooled.target_share !== null);
+  const better = peers.filter((o) => o.pooled.target_share! > (u.target_share ?? -1)).length;
+  const ranked = u.target_share !== null && usage.games >= RANK_MIN_GAMES;
   out.push("", "Role");
   out.push(
-    `  Target share: ${pct(u.target_share)}; rank among team WRs: ${u.target_share === null || usage.position !== "WR" ? `n/a (${usage.position || "?"}, not a WR)` : `${better + 1} of ${wrs.length}`}`,
+    `  Target share: ${pct(u.target_share)}; rank among ${usage.position}s league-wide: ${ranked ? `${better + 1} of ${peers.length}` : "n/a"} (${RANK_MIN_GAMES}+ games before week ${week})`,
   );
   out.push(`  Targets over team targets: ${ratio(u.targets, u.team_targets)}`);
   out.push(`  Air-yard share: ${pct(u.air_yards_share)} (${num(u.air_yards, 0)} of ${num(u.team_air_yards, 0)})`);
@@ -193,9 +201,11 @@ function formatProfile(i: FormatInput): string[] {
   out.push(`  Yards per target: ${u.targets > 0 ? num(recYds / u.targets, 2) : "n/a"}`);
 
   // Red zone.
+  // Team totals come from any of the team's rows, so a player with no red-zone look still sees the team's.
   const rz = i.redZone.find((r) => r.player_id === id);
+  const teamRz = rz ?? i.redZone.find((r) => r.team === team);
   out.push(
-    `  Red-zone targets: ${rz?.rz_targets ?? 0} against the team's ${rz?.team_rz_targets ?? "n/a"}; red-zone carries: ${rz?.rz_carries ?? 0} against the team's ${rz?.team_rz_carries ?? "n/a"}`,
+    `  Red-zone targets: ${rz?.rz_targets ?? 0} against the team's ${teamRz?.team_rz_targets ?? 0}; red-zone carries: ${rz?.rz_carries ?? 0} against the team's ${teamRz?.team_rz_carries ?? 0}`,
   );
 
   // Team.
@@ -232,14 +242,21 @@ function formatProfile(i: FormatInput): string[] {
   );
 
   // Heuristic.
-  const h = heuristic(mine.map((r) => r.targets), mine.reduce((a, r) => a + pointsBeforeTds(r), 0));
+  // A running back's points come mostly from carries, so his heuristic counts targets + carries as opportunities;
+  // a WR or TE counts targets only (his carries still add their yards to the points).
+  const rb = usage.position === "RB";
+  const unit = rb ? "opportunity (target or carry)" : "target";
+  const h = heuristic(mine.map((r) => r.targets + (rb ? r.carries : 0)), mine.reduce((a, r) => a + pointsBeforeTds(r), 0));
   out.push("", "Floor / typical / ceiling, half-PPR (heuristic, not a model)");
   out.push(`  Weeks used: ${h.weeks_used}`);
   if (h.points_per_target === null) {
-    out.push("  No targets in the weeks used: points per target cannot be worked out, so floor, typical and ceiling are n/a.");
+    out.push(`  No ${rb ? "targets or carries" : "targets"} in the weeks used: points per ${unit} cannot be worked out, so floor, typical and ceiling are n/a.`);
   } else {
-    out.push(`  Points per target before TDs (receiving and rushing, fumbles lost -2): ${num(h.points_per_target, 3)}`);
+    out.push(`  Points per ${unit} before TDs (receiving and rushing, fumbles lost -2): ${num(h.points_per_target, 3)}`);
     out.push(`  Floor ${num(h.floor)}  Typical ${num(h.typical)}  Ceiling ${num(h.ceiling)}`);
+    if (h.weeks_used < SMALL_SAMPLE_WEEKS) {
+      out.push(`  Small sample: ${h.weeks_used} week${h.weeks_used === 1 ? "" : "s"}. Treat floor and ceiling as rough.`);
+    }
   }
   return out;
 }
@@ -264,6 +281,10 @@ export function profileReport(rows: ParsedRows, season: number, week: number, na
       );
     } else {
       const usage = allUsage.find((u) => u.player_id === res.player_id)!;
+      if (!PROFILE_POSITIONS.includes(usage.position)) {
+        blocks.push(`"${name}" is a ${usage.position || "player with no listed position"}; profiles cover WR, TE and RB.`);
+        continue;
+      }
       blocks.push(formatProfile({ usage, rows, season, week, playsBefore, allUsage, redZone, pace, environment }).join("\n"));
     }
   }

@@ -279,3 +279,38 @@ describe("command line", () => {
     err.mockRestore();
   });
 });
+
+describe("driver review round 1", () => {
+  it("ranks a WR among all WRs league-wide with 2+ games, and a TE among TEs", () => {
+    // WR shares: Fay Bye 1.0, Dee Away 0.875, Alex Fixture 0.5, Bo Sample 0.417, Cy Dup 0.125 and 0.083.
+    expect(report(baseRows(), ["Alex Fixture"])).toContain("rank among WRs league-wide: 3 of 6 (2+ games before week 4)");
+    expect(report(baseRows(), ["Eve Zero"])).toContain("rank among TEs league-wide: 1 of 1 (2+ games before week 4)");
+  });
+
+  it("prints the team's red-zone totals for a player with no red-zone look", () => {
+    expect(report(baseRows(), ["Bo Sample"])).toContain("Red-zone targets: 0 against the team's 1; red-zone carries: 0 against the team's 0");
+  });
+
+  it("gives a one-line note for a position outside WR, TE and RB, and still prints the others", () => {
+    const rows = baseRows();
+    rows.stats_player.push(...[1, 2, 3].map((week) => stat({ player_id: "QBX00001", player_display_name: "Quin Passer", week, team: "AAA", position: "QB" })));
+    const text = report(rows, ["Quin Passer", "Alex Fixture"]);
+    expect(text).toContain('"Quin Passer" is a QB; profiles cover WR, TE and RB.');
+    expect(text).not.toContain("== Quin Passer");
+    expect(text).toContain("== Alex Fixture");
+  });
+
+  it("warns when fewer than three weeks feed the heuristic, and not otherwise", () => {
+    expect(report(baseRows(), ["Fay Bye"])).toContain("Small sample: 2 weeks. Treat floor and ceiling as rough.");
+    expect(report(baseRows(), ["Alex Fixture"])).not.toContain("Small sample");
+  });
+
+  it("counts a running back's carries as opportunities in the heuristic", () => {
+    const rows = baseRows();
+    // 2 targets + 10 carries a week; 1 reception, 10 receiving and 40 rushing yards a week: 5.5 points over 12 opportunities.
+    rows.stats_player.push(...[1, 2, 3].map((week) => stat({ player_id: "RBX00001", player_display_name: "Ray Back", week, team: "BBB", position: "RB", targets: 2, receptions: 1, receiving_yards: 10, carries: 10, rushing_yards: 40, opponent_team: "AAA" })));
+    const text = report(rows, ["Ray Back"]);
+    expect(text).toContain("Points per opportunity (target or carry) before TDs (receiving and rushing, fumbles lost -2): 0.458");
+    expect(text).toContain("Floor 4.4  Typical 8.7  Ceiling 12.6"); // 12 x 0.4583 x 0.8; 12 x (0.4583 + 0.27); 12 x 0.4583 x 1.2 + 6
+  });
+});

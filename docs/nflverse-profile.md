@@ -17,7 +17,7 @@ A name that matches no player, or more than one, is reported (with each candidat
 
 ## What it prints
 
-Role: target share and rank among team WRs, targets over team targets, air-yard share, snap share overall and by week. Weekly: targets, share, line and half-PPR points. Play-by-play: aDOT, targets by depth band (<=0, 1-9, 10-19, 20+), pass location, third-down targets against the team's, catch rate, first downs, yards per target, red-zone targets and carries against the team's. Team: top four pass-catchers by target share with games played, plays per game, pass rate, pass rate over expected. Next game and injury status. Then the heuristic.
+Role: target share and rank league-wide among players at the same position (WR, TE or RB) with 2+ games before the week, targets over team targets, air-yard share, snap share overall and by week. Weekly: targets, share, line and half-PPR points. Play-by-play: aDOT, targets by depth band (<=0, 1-9, 10-19, 20+), pass location, third-down targets against the team's, catch rate, first downs, yards per target, red-zone targets and carries against the team's. Team: top four pass-catchers by target share with games played, plays per game, pass rate, pass rate over expected. Next game and injury status. Then the heuristic.
 
 Spread: nflverse `spread_line` is positive when the home team is favored. The profile prints it from the player's team's side (home: as is; away: sign flipped, so positive means the player's team is favored) and also prints the raw value.
 
@@ -29,6 +29,9 @@ Half-PPR, from the weeks used (every game the player has a row for before week `
 - **floor** = min weekly targets x points per target x 0.8
 - **typical** = mean weekly targets x (points per target + 0.27)
 - **ceiling** = max weekly targets x points per target x 1.2 + 6
+- **Running backs** count opportunities (targets + carries) wherever the lines above say targets, since most of their points come from carries. The +0.27 touchdown allowance is a receiver's per-target rate, so an RB's typical runs high; read it as an upper middle, not a median.
+- Fewer than 3 weeks behind the numbers prints a small-sample warning.
+- Positions other than WR, TE and RB get a one-line note instead of a profile.
 
 The constants (0.8, 0.27, 1.2, 6) are fixed and tuned to no player. With no targets the three numbers print as n/a.
 
