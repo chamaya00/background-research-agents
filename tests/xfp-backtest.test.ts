@@ -303,16 +303,16 @@ describe("metrics", () => {
     expect(s.rmse).toBeCloseTo(Math.sqrt(6.75)); // (1 + 9 + 1 + 16) / 4
     expect(s.bias).toBeCloseTo(0.75); // 3 / 4
     expect(s.spearman).toBeCloseTo(0.8); // ranks 4,3,2,1 against 3,4,2,1: 1 - 6*2 / (4*15)
-    // Fewer than N = 24 players: every player is a slot, and every one is in the actual top.
-    expect([s.top_n, s.hits, s.slots]).toEqual([24, 4, 4]);
+    // Fewer than N = 40 players: every player is a slot, and every one is in the actual top.
+    expect([s.top_n, s.hits, s.slots]).toEqual([40, 4, 4]);
   });
 
   it("top-N hit rate equals the hand value", () => {
-    // 13 tight ends, N = 12. Projections 13..1 for P1..P13, actuals 1..13: the actual top 12 is P2..P13,
-    // the projected top 12 is P1..P12, so P1 misses and 11 of 12 hit.
-    const rows = Array.from({ length: 13 }, (_, i) => wr({ player_id: `P${String(i + 1).padStart(2, "0")}`, position: "TE", v1: 13 - i, actual: i + 1 }));
+    // 16 tight ends, N = 15. Projections 16..1 for P1..P16, actuals 1..16: the actual top 15 is P2..P16,
+    // the projected top 15 is P1..P15, so P1 misses and 14 of 15 hit.
+    const rows = Array.from({ length: 16 }, (_, i) => wr({ player_id: `P${String(i + 1).padStart(2, "0")}`, position: "TE", v1: 16 - i, actual: i + 1 }));
     const s = statsFor(rows, "TE", "v1");
-    expect([s.top_n, s.hits, s.slots]).toEqual([12, 11, 12]);
+    expect([s.top_n, s.hits, s.slots]).toEqual([15, 14, 15]);
   });
 
   it("sums hits and slots over weeks", () => {

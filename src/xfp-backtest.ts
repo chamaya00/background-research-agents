@@ -55,8 +55,8 @@ export type Scope = (typeof SCOPES)[number];
 export const REASONS = ["bye", "not_seen", "not_starter", "min_games", "no_history"] as const;
 export type Reason = (typeof REASONS)[number];
 
-/** Top-N per position: the starter counts of a 12-team league (plan section 4). */
-export const TOP_N: Record<BtPosition, number> = { QB: 12, RB: 24, WR: 24, TE: 12 };
+/** Top-N per position (plan section 4.5, as amended by the owner in #175 before any outcome was computed). */
+export const TOP_N: Record<BtPosition, number> = { QB: 15, RB: 30, WR: 40, TE: 15 };
 export const FIRST_FOLD = 2;
 export const LAST_FOLD = 17;
 /** A starting QB with fewer dropbacks than this is counted, not treated differently (plan section 3.5). */
