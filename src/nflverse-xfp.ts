@@ -9,6 +9,8 @@ import { buildUsage } from "./nflverse-tables.js";
 
 export const XFP_POSITIONS = ["WR", "TE", "RB"] as const;
 export type XfpPosition = (typeof XFP_POSITIONS)[number];
+/** `--position` also takes QB, which has its own section (#167). */
+export const XFP_ARG_POSITIONS = [...XFP_POSITIONS, "QB"] as const;
 /** Games before the week a player needs to be ranked or placed in a pecking order. */
 export const XFP_MIN_GAMES = 2;
 /** The leader is a clear 1 when this many share points ahead of the next player. */
@@ -25,7 +27,7 @@ const I5_YARDLINE = 5;
 export interface XfpArgs {
   season: number;
   week: number;
-  position?: XfpPosition;
+  position?: XfpPosition | "QB";
   team?: string;
   top?: number;
   sort?: XfpSort;
@@ -45,8 +47,8 @@ export function parseXfpArgs(rest: string[]): XfpArgs | null {
   const out: XfpArgs = { season: Number(season), week: Number(week) };
   const position = f.get("--position");
   if (position !== undefined) {
-    if (!(XFP_POSITIONS as readonly string[]).includes(position)) return null;
-    out.position = position as XfpPosition;
+    if (!(XFP_ARG_POSITIONS as readonly string[]).includes(position)) return null;
+    out.position = position as XfpPosition | "QB";
   }
   const team = f.get("--team");
   if (team !== undefined) {
@@ -132,7 +134,7 @@ export interface BucketValue {
 }
 
 /** A bucket's league value is the mean half-PPR of every play in it; empty buckets are left out. */
-export function bucketValues(looks: Look[]): BucketValue[] {
+export function bucketValues(looks: Look[], order: BucketKey[] = BUCKET_ORDER): BucketValue[] {
   const acc = new Map<BucketKey, { sum: number; n: number }>();
   for (const l of looks) {
     const a = acc.get(l.bucket) ?? { sum: 0, n: 0 };
@@ -140,7 +142,7 @@ export function bucketValues(looks: Look[]): BucketValue[] {
     a.n += 1;
     acc.set(l.bucket, a);
   }
-  return BUCKET_ORDER.filter((b) => acc.has(b)).map((bucket) => {
+  return order.filter((b) => acc.has(b)).map((bucket) => {
     const a = acc.get(bucket)!;
     return { bucket, value: a.sum / a.n, n: a.n };
   });
@@ -314,7 +316,11 @@ export interface ValueTables {
 
 /** v3's value table. A bucket the previous season never saw takes the current season's value. */
 export function previousSeasonTable(prior: ParsedRows, season: number, current: BucketValue[]): ValueTables {
-  const previous = bucketValues(extractLooks(prior.play_by_play, season - 1, PREV_SEASON_LAST_WEEK + 1));
+  return withFallbacks(bucketValues(extractLooks(prior.play_by_play, season - 1, PREV_SEASON_LAST_WEEK + 1)), current);
+}
+
+/** Previous-season values, with the current season's value where the previous season had n = 0. */
+function withFallbacks(previous: BucketValue[], current: BucketValue[]): ValueTables {
   const v3 = toTable(previous);
   const fallbacks: BucketKey[] = [];
   for (const b of current) {
@@ -402,7 +408,7 @@ export function buildXfp(rows: ParsedRows, season: number, week: number, prior: 
   return { buckets, players, adjustment: adj, v3, adjustmentV3: adj3 };
 }
 
-const byId = (a: XfpPlayer, b: XfpPlayer): number => a.player_id.localeCompare(b.player_id);
+const byId = (a: { player_id: string }, b: { player_id: string }): number => a.player_id.localeCompare(b.player_id);
 
 /**
  * Top four WR/TE/RB with 2+ games by target share. The leader is 1 when 5+ share points clear of #2
@@ -478,6 +484,7 @@ function factorLines(label: string, adj: Adjustment, names: Map<string, string> 
 export function xfpReport(rows: ParsedRows, args: XfpArgs, prior: ParsedRows | null = null): string {
   const { season, week } = args;
   const sort = args.sort ?? "v1";
+  if (args.position === "QB") return [...XFP_NOTICE(season, week), "", ...qbReport(rows, args, prior)].join("\n");
   const res = buildXfp(rows, season, week, prior);
   const out = [
     `nflverse xfp v1-v4, ${season} week ${week}, data through week ${week - 1}.`,
@@ -518,5 +525,276 @@ export function xfpReport(rows: ParsedRows, args: XfpArgs, prior: ParsedRows | n
   for (const pos of args.position === undefined ? XFP_POSITIONS : [args.position]) {
     out.push("", ...rankingLines(`Rankings, ${pos}, by ${title}`, pool.filter((p) => p.position === pos), args.top, sort));
   }
+  if (args.position === undefined) out.push("", ...qbReport(rows, args, prior));
   return out.join("\n");
+}
+
+// ---- Quarterbacks (#167): the same machinery over QB plays, scored in the #162 set. ----
+
+/** Quarterbacks need this many starts to be ranked. */
+export const QB_MIN_STARTS = 2;
+type QbPlay = "att" | "sack" | "scr" | "run";
+
+/** A QB play. `kind` is the adjustment class in `buildAdjustment`: "target" = the pass class (attempts, sacks, scrambles), "carry" = designed runs. */
+export interface QbLook extends Look {
+  play: QbPlay;
+  game_id: string;
+  week: number;
+  /** The QB's team (posteam). */
+  team: string;
+}
+
+const QB_BUCKET_ORDER: BucketKey[] = [
+  ...BANDS.flatMap((b) => [`att ${b} rz`, `att ${b} of`]),
+  "sack",
+  "scr rz",
+  "scr of",
+  "run i5",
+  "run 6-20",
+  "run of",
+];
+
+/** Player ids whose position is QB in stats rows of the season before the week. */
+function qbIdsOf(stats: ParsedRows["stats_player"], season: number, week: number): Set<string> {
+  const out = new Set<string>();
+  for (const s of stats) {
+    if (s.season === season && s.week < week && s.player_id !== null && s.position === "QB") out.add(s.player_id);
+  }
+  return out;
+}
+
+/**
+ * QB plays from regular-season plays before the week, minus two-point tries, kneels and spikes. Points are
+ * 0.04/pass yd, 4/pass TD, -2/INT, 0.1/rush yd, 6/rush TD, -2 per fumble lost when the fumbler is the QB.
+ * A pick-six costs only the -2; a sack scores 0 apart from a lost fumble.
+ */
+export function extractQbLooks(plays: PlayByPlayRow[], qbs: Set<string>, season: number, week: number): QbLook[] {
+  const out: QbLook[] = [];
+  for (const p of plays) {
+    if (p.season !== season || p.season_type !== "REG" || p.week >= week) continue;
+    if (p.two_point_attempt === 1 || p.qb_kneel === 1 || p.qb_spike === 1) continue;
+    const yl = p.yardline_100;
+    const redZone = yl !== null && yl <= RZ_YARDLINE;
+    const zone = redZone ? "rz" : "of";
+    const make = (play: QbPlay, id: string, bucket: BucketKey, points: number): void => {
+      const fumble = p.fumble_lost === 1 && p.fumbled_1_player_id === id ? -2 : 0;
+      out.push({
+        kind: play === "run" ? "carry" : "target",
+        play,
+        player_id: id,
+        bucket,
+        points: points + fumble,
+        redZone,
+        defteam: p.defteam ?? null,
+        passer: null,
+        game_id: p.game_id,
+        week: p.week,
+        team: p.posteam ?? "",
+      });
+    };
+    const passer = p.passer_player_id;
+    const rusher = p.rusher_player_id;
+    if (p.sack === 1 && passer !== null) {
+      make("sack", passer, "sack", 0);
+    } else if (p.qb_scramble === 1 && rusher !== null) {
+      make("scr", rusher, `scr ${zone}`, 0.1 * (p.rushing_yards ?? 0) + (p.td_player_id === rusher ? 6 : 0));
+    } else if (p.pass_attempt === 1 && p.sack !== 1 && passer !== null) {
+      const pick = p.interception === 1;
+      const points = 0.04 * (p.passing_yards ?? 0) + (p.pass_touchdown === 1 && !pick ? 4 : 0) - (pick ? 2 : 0);
+      make("att", passer, `att ${bandOf(p.air_yards)} ${zone}`, points);
+    } else if (p.rush === 1 && p.play_type === "run" && p.qb_scramble !== 1 && rusher !== null && qbs.has(rusher)) {
+      make("run", rusher, `run ${yl !== null && yl <= I5_YARDLINE ? "i5" : redZone ? "6-20" : "of"}`, 0.1 * (p.rushing_yards ?? 0) + (p.td_player_id === rusher ? 6 : 0));
+    }
+  }
+  return out;
+}
+
+/** Per game and team, the passer with the most `qb_dropback = 1` plays, ties broken by player_id (`latestStarter`'s rule). */
+export function gameStarters(plays: PlayByPlayRow[], season: number, week: number): Map<string, { team: string; week: number; starter: string }> {
+  const counts = new Map<string, { team: string; week: number; by: Map<string, number> }>();
+  for (const p of plays) {
+    if (p.season !== season || p.season_type !== "REG" || p.week >= week || p.qb_dropback !== 1 || p.passer_player_id === null || p.posteam === null) continue;
+    const key = `${p.game_id} ${p.posteam}`;
+    const g = counts.get(key) ?? { team: p.posteam, week: p.week, by: new Map() };
+    g.by.set(p.passer_player_id, (g.by.get(p.passer_player_id) ?? 0) + 1);
+    counts.set(key, g);
+  }
+  return new Map(
+    [...counts].map(([key, g]) => {
+      const top = [...g.by].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0]![0];
+      return [key, { team: g.team, week: g.week, starter: top }] as const;
+    }),
+  );
+}
+
+export interface QbPlayer {
+  player_id: string;
+  player: string;
+  team: string;
+  starts: number;
+  games: number;
+  v1: number;
+  v2: Projection;
+  v3: number | null;
+  v4: Projection | null;
+  actual_per_start: number;
+  gap: number;
+  dropbacks_per_start: number;
+  rushes_per_start: number;
+  rz_per_start: number;
+  opponent: { team: string; away: boolean } | null;
+  /** Whether he started his team's latest game (`latestStarter`); a benched or injured QB's next game is marked. */
+  latest_starter: boolean;
+}
+
+export interface QbResult {
+  buckets: BucketValue[];
+  players: QbPlayer[];
+  adjustment: Adjustment;
+  v3: ValueTables | null;
+  adjustmentV3: Adjustment | null;
+}
+
+export function buildQb(rows: ParsedRows, season: number, week: number, prior: ParsedRows | null = null): QbResult {
+  const qbs = qbIdsOf(rows.stats_player, season, week);
+  const looks = extractQbLooks(rows.play_by_play, qbs, season, week);
+  const buckets = bucketValues(looks, QB_BUCKET_ORDER);
+  const value = toTable(buckets);
+  let v3: ValueTables | null = null;
+  if (prior !== null) {
+    const end = PREV_SEASON_LAST_WEEK + 1;
+    const priorLooks = extractQbLooks(prior.play_by_play, qbIdsOf(prior.stats_player, season - 1, end), season - 1, end);
+    v3 = withFallbacks(bucketValues(priorLooks, QB_BUCKET_ORDER), buckets);
+  }
+  const adj = buildAdjustment(looks, value);
+  const adj3 = v3 === null ? null : buildAdjustment(looks, v3.v3);
+  const startedBy = new Map<string, Set<string>>();
+  for (const [key, g] of gameStarters(rows.play_by_play, season, week)) {
+    const set = startedBy.get(g.starter) ?? new Set<string>();
+    set.add(key.split(" ")[0]!);
+    startedBy.set(g.starter, set);
+  }
+  const names = new Map<string, string>();
+  for (const s of rows.stats_player) {
+    if (s.season === season && s.week < week && s.player_id !== null && s.player_display_name !== null) names.set(s.player_id, s.player_display_name);
+  }
+  const byQb = new Map<string, QbLook[]>();
+  for (const l of looks) byQb.set(l.player_id, [...(byQb.get(l.player_id) ?? []), l]);
+  const players: QbPlayer[] = [];
+  for (const [id, all] of byQb) {
+    if (!qbs.has(id)) continue;
+    const started = startedBy.get(id) ?? new Set<string>();
+    const mine = all.filter((l) => started.has(l.game_id));
+    const starts = started.size;
+    const games = new Set(all.map((l) => l.game_id)).size;
+    const per = (n: number): number => (starts === 0 ? 0 : n / starts);
+    const sum = (table: ValueTable, a: Adjustment | null, kind?: Look["kind"]): number =>
+      mine.reduce(
+        (acc, l) => (kind !== undefined && l.kind !== kind ? acc : acc + (table.get(l.bucket) ?? 0) * (a === null ? 1 : defenseFactor(a, l.defteam, l.kind))),
+        0,
+      );
+    const latest = all.reduce((a, b) => (b.week > a.week ? b : a));
+    const match = opponentOf(rows, season, week, latest.team);
+    const project = (table: ValueTable, a: Adjustment): Projection => ({
+      retro: per(sum(table, a)),
+      next:
+        match === null
+          ? null
+          : per(sum(table, null, "target")) * defenseFactor(a, match.opponent, "target") + per(sum(table, null, "carry")) * defenseFactor(a, match.opponent, "carry"),
+    });
+    const v1 = per(sum(value, null));
+    const actual = per(mine.reduce((acc, l) => acc + l.points, 0));
+    players.push({
+      player_id: id,
+      player: names.get(id) ?? id,
+      team: latest.team,
+      starts,
+      games,
+      v1,
+      v2: project(value, adj),
+      v3: v3 === null ? null : per(sum(v3.v3, null)),
+      v4: v3 === null || adj3 === null ? null : project(v3.v3, adj3),
+      actual_per_start: actual,
+      gap: actual - v1,
+      dropbacks_per_start: per(mine.filter((l) => l.kind === "target").length),
+      rushes_per_start: per(mine.filter((l) => l.play === "scr" || l.play === "run").length),
+      rz_per_start: per(mine.filter((l) => l.redZone).length),
+      opponent: match === null ? null : { team: match.opponent, away: match.away },
+      latest_starter: latestStarter(rows.play_by_play, season, week, latest.team) === id,
+    });
+  }
+  return { buckets, players, adjustment: adj, v3, adjustmentV3: adj3 };
+}
+
+/** The number a QB ranking sorts on; v2 and v4 sort on the next game, so a bye has no key. */
+export function qbSortKey(p: QbPlayer, sort: XfpSort): number | null {
+  if (sort === "v1") return p.v1;
+  if (sort === "v2") return p.v2.next;
+  if (sort === "v3") return p.v3;
+  return p.v4?.next ?? null;
+}
+
+/** QBs with 2+ starts, highest key first; a QB with no key goes last. */
+export function rankQbs(players: QbPlayer[], sort: XfpSort = "v1"): QbPlayer[] {
+  const key = (p: QbPlayer): number => qbSortKey(p, sort) ?? -Infinity;
+  return players.filter((p) => p.starts >= QB_MIN_STARTS).sort((a, b) => key(b) - key(a) || byId(a, b));
+}
+
+const XFP_NOTICE = (season: number, week: number): string[] => [
+  `nflverse xfp quarterbacks, ${season} week ${week}, data through week ${week - 1}.`,
+  "Data © the nflverse project, https://github.com/nflverse/nflverse-data, used under CC-BY 4.0. Derived values.",
+];
+
+export const QB_RANKING_HEADER =
+  "  # player (team, starts, games) v1 v2-retro v2-next v3 v4-retro v4-next actual/start gap dropbacks/start rushes/start rz-plays/start next-game";
+
+function qbFactorLines(label: string, adj: Adjustment): string[] {
+  const teams = [...new Set([...adj.defense.keys()].map((k) => k.split(" ")[0]!))].sort();
+  const dl = teams.map((t) => `${t} ${f2(defenseFactor(adj, t, "target"))}/${f2(defenseFactor(adj, t, "carry"))}`);
+  return [`${label} defense factors (pass/run): ${dl.join("; ") || "(none)"}`];
+}
+
+const qbRow = (p: QbPlayer, prefix: string): string => {
+  // With no starts there is nothing to divide by: per-start numbers print as "-", not 0.0.
+  const ps = (x: number | null | undefined): string => (p.starts === 0 ? "-" : opt(x));
+  const next = p.opponent === null ? "bye" : `${p.opponent.away ? "@" : "vs"} ${p.opponent.team}${p.latest_starter ? "" : ", not latest starter"}`;
+  return `  ${prefix} ${p.player} (${p.team}, ${p.starts} starts, ${p.games} games) ${ps(p.v1)} ${ps(p.v2.retro)} ${ps(p.v2.next)} ${ps(p.v3)} ${ps(p.v4?.retro)} ${ps(p.v4?.next)} ${ps(p.actual_per_start)} ${p.starts === 0 ? "-" : `${p.gap >= 0 ? "+" : ""}${f1(p.gap)}`} ${ps(p.dropbacks_per_start)} ${ps(p.rushes_per_start)} ${ps(p.rz_per_start)} ${next}`;
+};
+
+/** The QB section: labels, bucket values, factors and rankings. */
+export function qbReport(rows: ParsedRows, args: XfpArgs, prior: ParsedRows | null = null): string[] {
+  const { season, week } = args;
+  const sort = args.sort ?? "v1";
+  const res = buildQb(rows, season, week, prior);
+  const out = [
+    "Quarterbacks. Scoring: 0.04/pass yd, 4/pass TD, -2/INT, 0.1/rush yd, 6/rush TD, -2/fumble lost by the QB. Two-point tries are excluded.",
+    "v1: league-average bucket values; per start, over started games only (relief plays are left out).",
+    "v2: adjusted for the defense only, no passer or quarterback-quality factor; not validated against v1",
+    "v3: previous-season values, not validated against v1",
+    "v4: v3's values adjusted for the defense only, not validated against v1",
+    "gap = actual - v1; for a quarterback it measures his own efficiency, since v1 prices only the play, not who played it.",
+    `Adjustment factors use K = ${ADJUST_K} plays; next-game numbers use the week-${week} opponent from the schedule.`,
+    "",
+    "QB bucket values (mean points per play, n plays)" + (res.v3 ? "; v1 | previous season v3" : ""),
+  ];
+  const prev = new Map((res.v3?.previous ?? []).map((b) => [b.bucket, b]));
+  for (const b of res.buckets) {
+    const p = prev.get(b.bucket);
+    out.push(`  ${b.bucket}: ${b.value.toFixed(3)} (n=${b.n})` + (res.v3 ? ` | ${p ? `${p.value.toFixed(3)} (n=${p.n})` : "n/a (n=0), fell back to v1"}` : ""));
+  }
+  if (res.v3) out.push(`  v3 buckets that fell back to the current season: ${res.v3.fallbacks.join(", ") || "none"}`);
+  else out.push("  v3 and v4: no previous-season data supplied, not computed");
+  out.push("", ...qbFactorLines("v2", res.adjustment));
+  if (res.adjustmentV3) out.push(...qbFactorLines("v4", res.adjustmentV3));
+  const pool = res.players.filter((p) => args.team === undefined || p.team === args.team);
+  const ranked = rankQbs(pool, sort);
+  const shown = args.top === undefined ? ranked : ranked.slice(0, args.top);
+  out.push("", `QB rankings, by ${SORT_TITLE[sort]} (${shown.length} of ${ranked.length} ranked; a start = the most dropbacks for his team in a game)`, QB_RANKING_HEADER);
+  shown.forEach((p, i) => out.push(qbRow(p, `${i + 1}.`)));
+  const rest = pool.filter((p) => p.starts < QB_MIN_STARTS).sort(byId);
+  if (rest.length > 0) {
+    out.push("", `Not ranked: fewer than ${QB_MIN_STARTS} starts`);
+    for (const p of rest) out.push(qbRow(p, "-"));
+  }
+  return out;
 }

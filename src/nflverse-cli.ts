@@ -9,7 +9,7 @@ import { parseXfpArgs, xfpReport } from "./nflverse-xfp.js";
 import { runBacktest } from "./redzone-backtest.js";
 
 const USAGE =
-  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir> | nflverse-cli backtest --season <yyyy> --out <dir> [--through <n>] | nflverse-cli profile --season <yyyy> --week <n> --player <name> [--player <name> ...] | nflverse-cli xfp --season <yyyy> --week <n> [--position WR|TE|RB] [--team XXX] [--top N] [--sort v1|v2|v3|v4]";
+  "usage: nflverse-cli fetch --season <yyyy> | nflverse-cli tables --season <yyyy> --week <n> --out <dir> | nflverse-cli backtest --season <yyyy> --out <dir> [--through <n>] | nflverse-cli profile --season <yyyy> --week <n> --player <name> [--player <name> ...] | nflverse-cli xfp --season <yyyy> --week <n> [--position WR|TE|RB|QB] [--team XXX] [--top N] [--sort v1|v2|v3|v4]";
 
 const pad = (week: number): string => String(week).padStart(2, "0");
 
