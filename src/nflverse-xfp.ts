@@ -461,10 +461,14 @@ function rankingLines(title: string, pool: ModelPlayer[], top: number | undefine
   return out;
 }
 
-function factorLines(label: string, adj: Adjustment): string[] {
+/** A passer prints by display name when a stats row before the week has one, else by player_id. */
+function factorLines(label: string, adj: Adjustment, names: Map<string, string> = new Map()): string[] {
   const teams = [...new Set([...adj.defense.keys()].map((k) => k.split(" ")[0]!))].sort();
   const dl = teams.map((t) => `${t} ${f2(defenseFactor(adj, t, "target"))}/${f2(defenseFactor(adj, t, "carry"))}`);
-  const ql = [...adj.passer].sort((a, b) => a[0].localeCompare(b[0])).map(([id, f]) => `${id} ${f2(f)}`);
+  const ql = [...adj.passer]
+    .map(([id, f]) => [names.get(id) ?? id, f] as const)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([name, f]) => `${name} ${f2(f)}`);
   return [
     `${label} defense factors (target/carry): ${dl.join("; ") || "(none)"}`,
     `${label} passer factors: ${ql.join("; ") || "(none)"}`,
@@ -493,8 +497,12 @@ export function xfpReport(rows: ParsedRows, args: XfpArgs, prior: ParsedRows | n
   }
   if (res.v3) out.push(`  v3 buckets that fell back to the current season: ${res.v3.fallbacks.join(", ") || "none"}`);
   else out.push("  v3 and v4: no previous-season data supplied, not computed");
-  out.push("", ...factorLines("v2", res.adjustment));
-  if (res.adjustmentV3) out.push(...factorLines("v4", res.adjustmentV3));
+  const passerNames = new Map<string, string>();
+  for (const st of rows.stats_player) {
+    if (st.season === season && st.week < week && st.player_id !== null && st.player_display_name !== null) passerNames.set(st.player_id, st.player_display_name);
+  }
+  out.push("", ...factorLines("v2", res.adjustment, passerNames));
+  if (res.adjustmentV3) out.push(...factorLines("v4", res.adjustmentV3, passerNames));
   const inTeam = res.players.filter((p) => args.team === undefined || p.team === args.team);
   const teams = [...new Set(inTeam.map((p) => p.team))].sort();
   out.push("", `Pecking orders (target share, ${XFP_MIN_GAMES}+ games; WR/TE/RB)`);

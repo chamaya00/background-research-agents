@@ -237,6 +237,9 @@ describe("v2 next game", () => {
     const text = xfpReport(rowsWith(plays(), stats()), { season: 2026, week: 3 }, prior());
     expect(text).toMatch(/Dee Bye \(CCC WR, 2 g\).* bye$/m);
     expect(text).toMatch(/Alex Fixture \(AAA WR, 2 g\).* vs BBB, QB Quin Beta$/m);
+    // Passer factors print by display name, not player_id.
+    expect(text).toMatch(/^v2 passer factors: .*Quin Alpha \d\.\d\d.*Quin Gamma \d\.\d\d/m);
+    expect(text).not.toMatch(/^v2 passer factors: .*AAAQB001/m);
     expect(text).toMatch(/Cass Sample \(BBB WR, 2 g\).* @ AAA, QB Quin Gamma$/m);
   });
 
