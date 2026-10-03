@@ -158,56 +158,37 @@ bye. Each call is a judgement over the cited numbers, not a formula.
 
 ## Game-time decisions
 
-Every player in `injuries.json` with a non-empty `report_status`, then every
-listed player (or the player a listed call rests on) whose
-`practice_status` was not Full when the tables were built. Each status is the
-table's one value for the week, read at 2026-10-01T08:16Z; final statuses
-come Friday for Sunday games and Saturday for Monday's.
+Rebuilt in round 2 from Friday's final designations: every player on this
+document's list whose `report_status` in `injuries.json` is Questionable or
+Doubtful, and the call that rests on them. The tables were rebuilt at
+2026-10-03T06:38Z from nflverse's 06:01 UTC injuries file. No listed player
+is Doubtful.
 
 | Player | Game | Status `injuries.json` | Call here | Pivot |
 |---|---|---|---|---|
-| G Sam Cosmi (WAS) | 1 | `report_status` Out, Concussion | none (not a fantasy player) | Already final. Washington's line is thinner, which is part of the Commanders' Sit calls. |
-| S Nick Cross (WAS) | 1 | `report_status` Out, Illness | none (not a fantasy player) | Already final. Part of the Commanders D/ST Sit. |
-| QB Jayden Daniels (WAS) | 1 | Limited | Flex | If out, Mariota starts; in one-QB play Daniel Jones (same game) instead. |
-| RB Rachaad White (WAS) | 1 | Did Not Participate | Sit | If out, Jacory Croskey-Merritt moves from Flex to Start. |
-| RB Jonathan Taylor (IND) | 1 | Limited | Start | If out, no Colts back is a pivot (McGowan 0.0723 rush share); use Aaron Jones (game 10). |
-| WR Keenan Allen (IND) | 1 | Limited | Flex | If out, Mack Hollins (game 2) or Wan'Dale Robinson (game 9). |
-| WR DJ Moore (BUF) | 2 | Limited | Start | If out, no Bills WR moves up; Hollins (game 2). |
-| WR Keon Coleman (BUF) | 2 | Did Not Participate | Sit | None needed. |
-| RB Breece Hall (NYJ), for Braelon Allen | 3 | Did Not Participate | Allen Flex | If Hall is out, Allen moves to Start; if Hall plays, Allen drops to Sit. |
-| WR Adonai Mitchell (NYJ) | 3 | Did Not Participate | Sit | None needed; Garrett Wilson stays Start either way. |
-| TE Kenyon Sadiq (NYJ), and TE Mason Taylor | 3 | Sadiq Limited; Taylor Did Not Participate | Flex | If Taylor plays, Sadiq drops to Sit; use Juwan Johnson (game 15, Monday) only if you can wait, otherwise Tyler Warren (game 1). |
-| QB Case Keenum (CHI) | 3 | no Chicago rows | Sit | The starter is not in the tables. Burden and Raymond calls hold either way. |
-| WR Jakobi Meyers (JAX) | 4 | Limited | Flex | If out, Parker Washington's Start firms; Brian Thomas Jr. stays Sit. |
-| WR Colbie Young (CIN), for Dohnte Meyers | 4 | Did Not Participate | D. Meyers Sit | If Young plays, Meyers stays Sit with less upside. |
-| WR Nico Collins (HOU) | 5 | Limited | Flex | If out, Xavier Hutchinson moves to Flex. |
-| TE Dalton Schultz (HOU) | 5 | Limited | Start | If out, Isaiah Likely (game 6). |
-| WR Davante Adams (LA) | 7 | Did Not Participate | Start | If out, Konata Mumpfield moves to Flex. |
-| WR Puka Nacua (LA) | 7 | Limited | Flex | If out, Mumpfield moves to Flex. |
-| TE Colby Parkinson and TE Terrance Ferguson (LA), for Tyler Higbee | 7 | both Did Not Participate | Higbee Flex | If Parkinson plays, Higbee drops to Sit; use Isaiah Likely (game 6). |
-| QB Baker Mayfield (TB), for Jalon Daniels | 8 | Did Not Participate | Daniels Sit | If Mayfield plays, Packers D/ST drops from Start to Flex and Egbuka firms at Flex. |
-| RB Bucky Irving (TB) | 8 | Limited | Start | If out, Kenny Gainwell moves to Flex. |
-| WR Chris Godwin Jr. (TB) | 8 | Did Not Participate | Sit | None needed. |
-| RB Tony Pollard (TEN), and RB Tyjae Spears | 9 | both Did Not Participate | Pollard Flex, Spears Sit | If Pollard is out, no Titans back is a pivot (Spears also DNP); use Ollie Gordon II (game 10). |
-| QB Lamar Jackson (BAL) | 9 | Limited | Start | If out, no same-team pivot; Trevor Lawrence (game 4). Ravens D/ST holds. |
-| WR Zay Flowers (BAL) | 9 | Limited | Start | If out, Rashod Bateman moves to Flex. |
-| WR Chris Moore (BAL) | 9 | Limited | Sit | None needed. |
-| RB Jaylen Wright (MIA) | 10 | Limited | Sit | If he plays, Ollie Gordon II stays Flex. |
-| WR Caleb Douglas (MIA) | 10 | Did Not Participate | Sit | If out, Malik Washington's Flex firms. |
-| WR Chris Bell (MIA) | 10 | Limited | Sit | None needed. |
-| RB Aaron Jones (MIN) | 10 | Limited | Start | If out, Jordan Mason (0.4412 rush share in one game) is the Vikings' back; DeeJay Dallas is not. |
-| WR Justin Jefferson (MIN) | 10 | Did Not Participate | Flex | If he practises fully, Start; if out, Jordan Addison stays Start with more volume. |
-| RB Christian McCaffrey (SF) | 13 | Did Not Participate | Start | If out, Kaelon Black moves to Flex. |
-| WR Mike Evans (SF) | 13 | Did Not Participate | Flex | If out, Deebo Samuel Sr. and George Kittle gain; Deebo stays Flex. |
-| WR KhaDarel Hodge (SF) | 13 | Did Not Participate | Sit | None needed. |
-| RB Chuba Hubbard (CAR) | 14 | Did Not Participate | Start | If out, AJ Dillon moves to Flex. Sunday night: set an earlier pivot (Croskey-Merritt, game 1) if Hubbard is questionable. |
-| WR Jalen Coker (CAR) | 14 | Did Not Participate | Flex | If out, Brycen Tremayne moves to Flex. |
-| WR Xavier Legette (CAR) | 14 | Did Not Participate | Sit | None needed. |
-| TE Darren Waller (CAR) | 14 | Did Not Participate | Flex | If out, a TE from an earlier game: Mike Gesicki (game 4). |
-| RB Alvin Kamara (NO) | 15 | no New Orleans rows | Sit | Monday. The tables hold no New Orleans status for any back; set a Sunday flex rather than wait for Saturday's report. |
+| WR Keenan Allen (IND) | 1, Sun 09:30 | Questionable; Did Not Participate; "Not injury related - resting player" | Flex | A rest day, not an injury. If inactive, a later WR: Wan'Dale Robinson (game 9) or Malik Washington (game 10). |
+| WR Terry McLaurin (WAS) | 1, Sun 09:30 | Questionable; Limited; Hamstring | Start | If inactive, Stefon Diggs's Flex firms; for a Start-grade pivot, Wan'Dale Robinson (game 9). |
+| TE Kenyon Sadiq (NYJ) | 3, Sun 13:00 | Questionable; Limited; Back | Flex | Mason Taylor is Out, so Sadiq is the Jets' TE if active. If inactive, T.J. Hockenson (game 10, 16:05). |
+| TE Colby Parkinson (LA), for Tyler Higbee | 7, Sun 13:00 | Questionable; Did Not Participate; Knee | Higbee Flex | Ferguson is Out. If Parkinson plays, Higbee drops to Sit; use Hockenson (game 10). Higbee himself Did Not Participate but has no `report_status`. |
+| WR Zay Flowers (BAL) | 9, Sun 13:00 | Questionable; Limited; Hamstring | Start | If inactive, Rashod Bateman moves to Flex; for a Start, Jordan Addison (game 10) is already one. |
+| WR Chris Moore (BAL) | 9, Sun 13:00 | Questionable; Limited; Ankle | Sit | None needed. |
+| RB Tyjae Spears (TEN) | 9, Sun 13:00 | Questionable; Full; Ankle | Sit | None needed. If inactive, Pollard's Flex firms. |
+| WR Ladd McConkey (LAC) | 12, Sun 16:25 | Questionable; Limited; Foot | Flex | If inactive, no Chargers WR moves up; Deebo Samuel Sr. (game 13, same window). |
+| WR Mike Evans (SF) | 13, Sun 16:25 | Questionable; Limited; Ribs | Flex | If inactive, Deebo Samuel Sr. stays Flex and George Kittle gains. |
+| WR Jalen Coker (CAR) | 14, Sun 20:20 | Questionable; Limited; Quadricep | Flex | If inactive, Brycen Tremayne moves to Flex. Sunday night: set an earlier flex if you cannot wait for inactives. |
 
-Five teams had no rows when fetched - ATL, CHI, NO, PHI and SEA - so any
-player on those teams can still appear on Friday's report.
+**Out, so already decided** (each a Sit, handled in its game section):
+Jayden Daniels and Rachaad White (game 1), Breece Hall, Adonai Mitchell,
+Mason Taylor and Caleb Williams (game 3), Colbie Young (game 4), Terrance
+Ferguson and DeVonta Smith (game 7), Baker Mayfield (game 8), Caleb Douglas
+and Justin Jefferson (game 10), Jadarian Price (game 12) and Xavier Legette
+(game 14).
+
+**Atlanta, New Orleans and New York (Giants) had posted no `report_status`
+when the tables were built.** Their rows in `injuries.json` are practice
+status only, and none names a player on this document's list, so the calls
+in games 6 and 15 rest on practice status only. Game 15 is Monday: check
+those teams' reports before setting a lineup.
 
 ## Games
 
