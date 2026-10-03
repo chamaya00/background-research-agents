@@ -9,32 +9,32 @@
     {
       "file": "stats_player",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
-      "fetchedAt": "2026-10-01T08:46:11.059Z",
-      "sha256": "e293e213908f746db982cd9112f5016125a42eeeec16c4773b35c6cc5edf6327"
+      "fetchedAt": "2026-10-03T06:38:17.866Z",
+      "sha256": "88ec064c1b611ab91b494a5b81d37b980d832ec1f3009a39021e025e71b6f025"
     },
     {
       "file": "snap_counts",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
-      "fetchedAt": "2026-10-01T08:46:11.201Z",
-      "sha256": "c5868527b1052ae572b2d8f34a7bb777675a5e762ceaeb25f72f10d1c59846d5"
+      "fetchedAt": "2026-10-03T06:38:17.984Z",
+      "sha256": "67905be7dc1981c6630e3e977996137e36b6566a93ce8ce78e69c40cfd13c7ff"
     },
     {
       "file": "injuries",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
-      "fetchedAt": "2026-10-01T08:46:11.351Z",
-      "sha256": "408a873e9a80993f46e073697e7fd3f04894778b28ae23250090440e71106a07"
+      "fetchedAt": "2026-10-03T06:38:18.036Z",
+      "sha256": "2b82f357a75b447fd366118dc64d6944b4deae93b223b86ed22342ad1aeb9988"
     },
     {
       "file": "games",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
-      "fetchedAt": "2026-10-01T08:46:11.440Z",
-      "sha256": "0a4b3a2d425bd3fa5b18302c27c3f380307d21c3779d759498654c799f439a49"
+      "fetchedAt": "2026-10-03T06:38:18.185Z",
+      "sha256": "7186a4340934cc03649aef69e5a1238927f8c3133d5eba4338e1bec00a9f32a4"
     },
     {
       "file": "play_by_play",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz",
-      "fetchedAt": "2026-10-01T08:46:11.630Z",
-      "sha256": "321433f8c3cab61e7577f49dc2f22f8216de8a5eb84baa432f1cf3d60d0b705a"
+      "fetchedAt": "2026-10-03T06:38:18.276Z",
+      "sha256": "a32a95c6b79b047ea8736ba4d32de9629324308471fe5b85cffee251b47a0de9"
     }
   ],
   "season": 2026,
@@ -50,19 +50,19 @@
       "home_implied_total": 18,
       "away_implied_total": 20.5,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_IND_WAS",
       "week": 4,
       "home_team": "WAS",
       "away_team": "IND",
-      "spread_line": -3.5,
+      "spread_line": -4.5,
       "total_line": 47.5,
-      "home_implied_total": 22,
-      "away_implied_total": 25.5,
+      "home_implied_total": 21.5,
+      "away_implied_total": 26,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_TEN_BAL",
@@ -74,19 +74,19 @@
       "home_implied_total": 27,
       "away_implied_total": 15.5,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_NE_BUF",
       "week": 4,
       "home_team": "BUF",
       "away_team": "NE",
-      "spread_line": 6.5,
-      "total_line": 48.5,
-      "home_implied_total": 27.5,
-      "away_implied_total": 21,
+      "spread_line": 7,
+      "total_line": 49.5,
+      "home_implied_total": 28.25,
+      "away_implied_total": 21.25,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_NYJ_CHI",
@@ -98,7 +98,7 @@
       "home_implied_total": 23.5,
       "away_implied_total": 20,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_JAX_CIN",
@@ -110,7 +110,7 @@
       "home_implied_total": 27,
       "away_implied_total": 24.5,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_DAL_HOU",
@@ -122,7 +122,7 @@
       "home_implied_total": 25.75,
       "away_implied_total": 22.75,
       "roof": null,
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_ARI_NYG",
@@ -134,43 +134,43 @@
       "home_implied_total": 21,
       "away_implied_total": 23.5,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_LA_PHI",
       "week": 4,
       "home_team": "PHI",
       "away_team": "LA",
-      "spread_line": -3,
-      "total_line": 43.5,
-      "home_implied_total": 20.25,
-      "away_implied_total": 23.25,
+      "spread_line": -3.5,
+      "total_line": 42.5,
+      "home_implied_total": 19.5,
+      "away_implied_total": 23,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_GB_TB",
       "week": 4,
       "home_team": "TB",
       "away_team": "GB",
-      "spread_line": -3.5,
-      "total_line": 38.5,
-      "home_implied_total": 17.5,
-      "away_implied_total": 21,
+      "spread_line": -3,
+      "total_line": 39.5,
+      "home_implied_total": 18.25,
+      "away_implied_total": 21.25,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_MIA_MIN",
       "week": 4,
       "home_team": "MIN",
       "away_team": "MIA",
-      "spread_line": 10.5,
+      "spread_line": 10,
       "total_line": 38.5,
-      "home_implied_total": 24.5,
-      "away_implied_total": 14,
+      "home_implied_total": 24.25,
+      "away_implied_total": 14.25,
       "roof": "dome",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_KC_LV",
@@ -182,7 +182,7 @@
       "home_implied_total": 21.5,
       "away_implied_total": 26,
       "roof": "dome",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_LAC_SEA",
@@ -194,7 +194,7 @@
       "home_implied_total": 24.75,
       "away_implied_total": 17.75,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_DEN_SF",
@@ -206,7 +206,7 @@
       "home_implied_total": 25.25,
       "away_implied_total": 22.25,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_DET_CAR",
@@ -214,11 +214,11 @@
       "home_team": "CAR",
       "away_team": "DET",
       "spread_line": -3.5,
-      "total_line": 51.5,
-      "home_implied_total": 24,
-      "away_implied_total": 27.5,
+      "total_line": 50.5,
+      "home_implied_total": 23.5,
+      "away_implied_total": 27,
       "roof": "outdoors",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     },
     {
       "game_id": "2026_04_ATL_NO",
@@ -230,7 +230,7 @@
       "home_implied_total": 25,
       "away_implied_total": 22.5,
       "roof": "dome",
-      "games_read_at": "2026-10-01T08:46:11.440Z"
+      "games_read_at": "2026-10-03T06:38:18.185Z"
     }
   ]
 }
