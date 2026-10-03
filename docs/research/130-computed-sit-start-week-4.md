@@ -1,4 +1,4 @@
-# NFL 2026 week 4 sit/start from this repository's computed tables - Sunday and Monday games (v2)
+# NFL 2026 week 4 sit/start from this repository's computed tables - Sunday and Monday games (v2, round 2: Friday final designations)
 
 **Week: 4, not 5.** The derived tables landed on `main` in #135 on
 2026-10-01, before Sunday's 09:30 ET kickoff, so this covers week 4's Sunday
@@ -17,21 +17,28 @@ corrects how `spread_line` is cited, and removes two claims the tables did not
 support. Four calls changed; see "What changed in v2". Nothing the issue
 lists is missing.
 
+**Round 2** (2026-10-03) re-reads `injuries.json` and `game-environment.json`
+as rebuilt at 2026-10-03T06:38Z from nflverse's Friday injuries file (#178).
+The other four tables' rows are unchanged. Ten calls changed; see "What
+changed in round 2".
+
 ## Week synthesis
 
 The tables say what the quoted pages could not: who actually gets the ball,
 pooled over three weeks. Where that disagrees with a name or a matchup quote,
-the share wins. 39 of 242 calls differ from #118 and #119, mostly cooling
-tight ends and D/STs. Red-zone share, new in v2, moved four calls.
+the share wins. 42 of 242 calls differ from #118 and #119, mostly cooling
+tight ends and D/STs. Red-zone share moved four calls in v2; Friday's
+designations moved ten.
 
 **Strongest starts.** Volume in a good setting:
 
-- Jahmyr Gibbs (game 14): 0.7831 rush share and 18 of 19 red-zone carries, against the defense allowing the second-most to RBs, in a 51.5 total.
+- Jahmyr Gibbs (game 14): 0.7831 rush share and 18 of 19 red-zone carries, against the defense allowing the second-most to RBs, in a 50.5 total.
 - Bijan Robinson (game 15): 0.6346 rush share, 0.2192 target share, 11 of 12 red-zone carries.
-- Josh Allen (game 2): 93.44 half-PPR points in three games and a 27.5 team total.
+- Josh Allen (game 2): 93.44 half-PPR points in three games and the week's top team total, 28.25.
 - Jaxon Smith-Njigba (game 12): 0.3789 target share, 0.5186 air-yards share, half of Seattle's red-zone targets.
 - Josh Downs (game 1): 0.2553 target share against the defense allowing the most to WRs.
 - Trey McBride (game 6): 0.3009 target share and 0.4 red-zone target share at tight end.
+- Dontayvion Wicks (game 7): DeVonta Smith is Out; Wicks has 4 of 10 red-zone targets.
 
 **Riskiest sits.** Good numbers in a bad spot:
 
@@ -44,7 +51,7 @@ tight ends and D/STs. Red-zone share, new in v2, moved four calls.
 
 - Luther Burden III (game 3): 0.3333 red-zone target share on the second-fastest offense.
 - Kalif Raymond (game 3): 0.2333 target share.
-- Dontayvion Wicks (game 7): 0.1852 target share on 0.88 week 3 snaps, and 4 of 10 red-zone targets.
+- Braelon Allen (game 3) and Jacory Croskey-Merritt (game 1): the starter is Out.
 - Bucky Irving (game 8): 0.6061 rush share against the defense allowing the most to RBs.
 - Cardinals D/ST (game 6): Jameis Winston has 8.66 points in two games.
 
@@ -56,10 +63,50 @@ tight ends and D/STs. Red-zone share, new in v2, moved four calls.
 - Xavier Worthy (game 11): week 3 target share fell to 0.087.
 - Jameson Williams (game 14): 0.1574 target share against the rank-31 WR defense.
 
-**What moves before kickoff.** The injury table holds Wednesday's practice
-only. Adams, Jefferson, McCaffrey, Hubbard and Evans did not practise; each
-has a pivot below. Atlanta, Chicago, New Orleans, Philadelphia and Seattle
-had no rows at all.
+**What moves before kickoff.** Friday's designations are final for Sunday.
+Jefferson, DeVonta Smith, Jayden Daniels and Mayfield are Out. McLaurin,
+Flowers, McConkey, Evans and Coker are Questionable, each with a pivot
+below. Atlanta, New Orleans and the Giants had posted no designations.
+
+## What changed in round 2
+
+A call changed only where a Friday `report_status`, or a status cleared
+since Wednesday, moved it. Each row is also marked "Round 2" in its game
+section.
+
+| Player | Game | v2 call | Round 2 call | Numbers that moved it |
+|---|---|---|---|---|
+| QB Jayden Daniels | 1 | Flex | **Sit** | Out `injuries.json:report_status` (elbow). |
+| QB Marcus Mariota | 1 | Sit | **Flex** | Starts with Daniels Out `injuries.json:report_status`; 20.42 `usage.json:last_week.half_ppr_points` as the week 3 starter, against the Colts' 21.87 to QBs, rank 5 `points-allowed.json:per_game,rank`. |
+| RB Jacory Croskey-Merritt | 1 | Flex | **Start** | Rachaad White Out `injuries.json:report_status`; rush share 0.5938 `usage.json:last_week.rush_share`, red-zone carry share 0.3333 `red-zone.json:rz_carry_share` (5 of 15). |
+| RB Braelon Allen | 3 | Flex | **Start** | Breece Hall Out `injuries.json:report_status`, freeing Hall's 0.6 `usage.json:pooled.rush_share`; Allen's red-zone carry share 0.25 `red-zone.json:rz_carry_share` (3 of 12). |
+| QB Case Keenum | 3 | Sit | **Flex** | Caleb Williams Out `injuries.json:report_status` settles the starter; 24.48 `usage.json:last_week.half_ppr_points` against the Jets' rank 23 `points-allowed.json:rank` to QBs. |
+| WR Nico Collins | 5 | Flex | **Start** | Full `injuries.json:practice_status`, no `report_status`; target share 0.2703 `usage.json:pooled.target_share` in his one game. |
+| WR Puka Nacua | 7 | Flex | **Start** | Full `injuries.json:practice_status`, no `report_status`; target share 0.3333 `usage.json:pooled.target_share` in his one game; Philadelphia rank 8 `points-allowed.json:rank` to WRs. |
+| WR DeVonta Smith | 7 | Start | **Sit** | Out `injuries.json:report_status` (hamstring). |
+| WR Dontayvion Wicks | 7 | Flex | **Start** | Smith Out `injuries.json:report_status`; Wicks's red-zone target share 0.4 `red-zone.json:rz_target_share` (4 of 10) is the team's highest, on 0.88 `usage.json:last_week.snap_share`. |
+| WR Justin Jefferson | 10 | Flex | **Sit** | Out `injuries.json:report_status` (ankle). |
+
+Not calls, but also changed:
+
+- **Status citations.** Every rationale that cited a Wednesday
+  `practice_status` now cites Friday's `report_status`, or says the player
+  practised and carries no designation. Cleared since Wednesday:
+  McCaffrey, Swift, Lamar Jackson, Jonathan Taylor, Adams, Nacua, Collins,
+  Hubbard, Waller, Pollard, Irving, Godwin, Jakobi Meyers, Jaylen Wright and
+  Chris Bell. Calls that held: Taylor, Adams, Irving, McCaffrey and Hubbard
+  stay Start; Pollard and Waller stay Flex; Godwin stays Sit on his usage.
+- **Lines** for six games, from `game-environment.json`: IND@WAS -4.5 (Colts
+  by 4.5), NE@BUF 7 and 49.5, LA@PHI -3.5 and 42.5, GB@TB -3 and 39.5,
+  MIA@MIN 10, DET@CAR total 50.5, with the implied totals that follow. No call
+  moved on a line alone.
+- **Game 6.** The Giants' 0.4286 `team-pace.json:neutral_pass_rate` is the
+  league's second-lowest, not its lowest: Atlanta's is 0.4176. The header,
+  Skattebo's reason and Nabers's reason are corrected.
+- **Game-time list.** Rebuilt from `report_status`: the ten Questionable
+  players on this list, with pivots, and a line naming the Out players.
+- **The v2 table below** cites lines as they stood at v2's build (Kraft's
+  38.5 total is now 39.5); the game sections carry the round 2 values.
 
 ## What changed in v2
 
@@ -98,7 +145,8 @@ the player's row, read `pooled.target_share`. All six tables are
 in [`data/nflverse/2026/week-04/`](../../data/nflverse/2026/week-04/). The
 first four were built from nflverse files fetched at 2026-10-01T08:16Z, and
 `red-zone.json` and `team-pace.json` from play-by-play fetched at 08:46Z
-(#139). Their schema is
+(#139). In round 2, `injuries.json` and `game-environment.json` were rebuilt
+at 2026-10-03T06:38Z (#178); every status and line cited is from that build. Their schema is
 [ADR 0008](../decisions/0008-derived-weekly-tables-schema.md) and its
 amendment.
 
@@ -124,11 +172,13 @@ amendment.
 - `team-pace.json`: one row per offense, weeks 1-3. Each game header gives
   both teams' `plays_per_game` and `neutral_pass_rate` (pass rate on first and
   second down with win probability 0.2-0.8).
-- `injuries.json`: `report_status` and `practice_status`. Absent means the
-  player is not on the week 4 report as fetched. When fetched, only two rows
-  league-wide had a `report_status` (both Washington, both `Out`), and five
-  teams in these games had no rows at all: ATL, CHI, NO, PHI and SEA. "Not on
-  the report" for those five means "not posted yet", not "healthy".
+- `injuries.json`: `report_status` (the final game designation: Out,
+  Doubtful, Questionable, or empty) and `practice_status`. A player with a
+  Full or Limited practice and no `report_status` is cleared to play. Absent
+  means the player is not on the week 4 report. ATL, NO and NYG had posted
+  no `report_status` when the tables were built; their rows are practice
+  status only, so "no designation" for those three means "not posted yet",
+  not "cleared".
 - `pooled.half_ppr_points` is a three-week total over `games`; where a reason
   gives a per-game figure, it is that total divided by `games`, and both
   inputs are named.
@@ -153,8 +203,8 @@ bye. Each call is a judgement over the cited numbers, not a formula.
 - **D/ST.** The tables have no defense scoring. A D/ST call rests on the
   opponent's implied total, the spread, and the opposing quarterback's
   production and the defense's own QB points allowed from the tables.
-- **Depth-chart news after 08:16Z on 2026-10-01**, including Friday's final
-  statuses.
+- **Depth-chart news after 06:38Z on 2026-10-03**, including Saturday
+  activations, inactives and New Orleans's and Atlanta's Monday-game report.
 
 ## Game-time decisions
 
@@ -769,17 +819,22 @@ Two halves: calls that changed, and quoted numbers the tables contradict.
 
 ### Calls that differ
 
-39 of the 242 calls differ: 22 against #118, 17 against #119. Every other
+42 of the 242 calls differ: 24 against #118, 18 against #119. Every other
 player keeps the same call. v2 added Burden, now a Start against #118's Flex,
 and dropped Carnell Tate, whose v2 Sit matches #119. Kraft and Andrews were
-already on the list and now differ by more.
+already on the list and now differ by more. Round 2 added Mariota,
+Croskey-Merritt, Keenum, Collins and Nacua; dropped Jayden Daniels and
+Braelon Allen, whose round 2 calls now match #119's Sit and #118's Start; and
+changed the calls on the DeVonta Smith, Wicks and Jefferson rows, which still
+differ.
 
 | Player | Game here | Baseline call | Call here | Computed numbers that moved it |
 |---|---|---|---|---|
 | QB Daniel Jones | 1 | #119 Start | Flex | 28.34 `usage.json:pooled.half_ppr_points` over 3 games; 7.9 `usage.json:last_week.half_ppr_points`. #119 leaned on a quoted matchup stat; the table agrees on the matchup (rank 2) but his own output is a streamer's. |
-| QB Jayden Daniels | 1 | #119 Sit | Flex | Limited `injuries.json:practice_status` - practising; 32.4 `usage.json:pooled.half_ppr_points` over 2 games. A start if active, so not a flat Sit. |
+| QB Marcus Mariota | 1 | #119 Sit | Flex | Round 2: Daniels Out `injuries.json:report_status`, so Mariota starts; 20.42 `usage.json:last_week.half_ppr_points`. #119 sat him because Daniels might play. |
+| RB Jacory Croskey-Merritt | 1 | #119 Flex | Start | Round 2: White Out `injuries.json:report_status`; red-zone carry share 0.3333 `red-zone.json:rz_carry_share` (5 of 15). |
 | QB Geno Smith | 3 | #118 Sit | Flex | 50.92 `usage.json:pooled.half_ppr_points` over 3 games; Chicago's rank 17 to QBs `points-allowed.json:rank`. |
-| RB Braelon Allen | 3 | #118 Start | Flex | Rush share 0.2235 `usage.json:pooled.rush_share`; Hall's status is DNP, not Out `injuries.json:practice_status`. |
+| QB Case Keenum | 3 | #118 Sit | Flex | Round 2: Caleb Williams Out `injuries.json:report_status`; 24.48 `usage.json:last_week.half_ppr_points`. #118 sat him because no starter was named. |
 | TE Kenyon Sadiq | 3 | #118 Start | Flex | Snap share 0.4493 `usage.json:pooled.snap_share`; Limited himself `injuries.json:practice_status`; Chicago rank 27 to TEs `points-allowed.json:rank`. |
 | RB D'Andre Swift | 3 | #118 Flex | Start | 52.1 `usage.json:pooled.half_ppr_points`; the Jets rank 9 to RBs `points-allowed.json:rank` - #118 quoted "2nd in yards allowed", which is not what fantasy points show. |
 | WR Luther Burden III | 3 | #118 Flex | Start | Red-zone target share 0.3333 `red-zone.json:rz_target_share` (6 of 18); 68.67 `team-pace.json:plays_per_game`. New in v2. |
@@ -788,20 +843,22 @@ already on the list and now differ by more.
 | RB Bhayshul Tuten | 4 | #118 Start | Flex | Snap share 0.4944 `usage.json:pooled.snap_share`, target share 0.0658 `usage.json:pooled.target_share`; Cincinnati rank 20 to RBs `points-allowed.json:rank`. |
 | D/ST Jaguars | 4 | #118 Start | Sit | Cincinnati implied 27 `game-environment.json:home_implied_total`; Burrow 52.92 `usage.json:pooled.half_ppr_points`. |
 | TE Mike Gesicki | 4 | #118 Sit | Flex | 27.5 `usage.json:pooled.half_ppr_points` over 2 games; Jacksonville rank 26 to TEs `points-allowed.json:rank`. |
+| WR Nico Collins | 5 | #118 Flex | Start | Round 2: Full `injuries.json:practice_status`, no `report_status`; target share 0.2703 `usage.json:pooled.target_share`. #118 held him at Flex on a hamstring that has since cleared. |
 | TE Jake Ferguson | 5 | #118 Start | Flex | Target share 0.1089 `usage.json:pooled.target_share`; Houston rank 16 to TEs `points-allowed.json:rank`. |
 | QB Jacoby Brissett | 6 | #118 Sit | Flex | 48.58 `usage.json:pooled.half_ppr_points`, 25.6 `usage.json:last_week.half_ppr_points`. |
 | WR Marvin Harrison Jr. | 6 | #118 Flex | Sit | Target share 0.0796 `usage.json:pooled.target_share`, 9.3 `usage.json:pooled.half_ppr_points`. |
 | D/ST Cardinals | 6 | #118 Sit | Flex | Winston 8.66 `usage.json:pooled.half_ppr_points` over 2 games; Giants implied 21 `game-environment.json:home_implied_total`. |
 | TE Tyler Higbee | 7 | #118 Start | Flex | Philadelphia rank 31 to TEs `points-allowed.json:rank`; target share 0.1711 `usage.json:pooled.target_share` over 2 games. |
 | RB Saquon Barkley | 7 | #118 Start | Flex | 19.5 `usage.json:pooled.half_ppr_points` over 3 games, rush share 0.4474 `usage.json:pooled.rush_share`; the Rams rank 26 to RBs `points-allowed.json:rank`. |
-| WR DeVonta Smith | 7 | #118 Flex | Start | Target share 0.3333 `usage.json:pooled.target_share`, air-yards share 0.4771 `usage.json:pooled.air_yards_share`. #118 quoted a defense stat over his usage. |
-| WR Dontayvion Wicks | 7 | #118 Sit | Flex | Target share 0.1852 `usage.json:pooled.target_share`, 28.4 `usage.json:pooled.half_ppr_points`. |
+| WR Puka Nacua | 7 | #118 Flex | Start | Round 2: Full `injuries.json:practice_status`, no `report_status`; target share 0.3333 `usage.json:pooled.target_share`. #118 held him at Flex as Questionable. |
+| WR DeVonta Smith | 7 | #118 Flex | Sit | Round 2: Out `injuries.json:report_status`. (v2 had him Start on target share 0.3333 `usage.json:pooled.target_share`.) |
+| WR Dontayvion Wicks | 7 | #118 Sit | Start | Target share 0.1852 `usage.json:pooled.target_share`, 28.4 `usage.json:pooled.half_ppr_points`; round 2: Smith Out `injuries.json:report_status`, and Wicks holds 0.4 `red-zone.json:rz_target_share` (4 of 10). |
 | QB Jordan Love | 8 | #118 Start | Flex | Tampa Bay rank 24 to QBs `points-allowed.json:rank`; 38.5 `game-environment.json:total_line`. |
 | TE Tucker Kraft | 8 | #118 Start | Sit | 15.1 `usage.json:pooled.half_ppr_points` over 3 games; v2: red-zone target share 0.0556 `red-zone.json:rz_target_share` (1 of 18). |
 | RB Bucky Irving | 8 | #118 Flex | Start | Rush share 0.6061 `usage.json:pooled.rush_share`; Green Bay rank 1 to RBs `points-allowed.json:rank`. |
 | D/ST Buccaneers | 8 | #118 Start | Flex | Green Bay implied 21 `game-environment.json:away_implied_total`; Tampa Bay rank 24 to QBs `points-allowed.json:rank`. |
 | TE Mark Andrews | 9 | #119 Start | Sit | 18.7 `usage.json:pooled.half_ppr_points` over 3 games; Tennessee rank 29 to TEs `points-allowed.json:rank`; v2: red-zone target share 0.1 `red-zone.json:rz_target_share` (1 of 10). |
-| WR Justin Jefferson | 10 | #119 Start | Flex | Did Not Participate `injuries.json:practice_status`; 0.1186 `usage.json:last_week.snap_share`. |
+| WR Justin Jefferson | 10 | #119 Start | Sit | Round 2: Out `injuries.json:report_status`; he played 0.1186 `usage.json:last_week.snap_share` in week 3. |
 | WR Xavier Worthy | 11 | #119 Flex | Sit | Target share 0.087 `usage.json:last_week.target_share`; Las Vegas rank 30 to WRs `points-allowed.json:rank`. |
 | D/ST Chiefs | 11 | #119 Start | Flex | Cousins 56.24 `usage.json:pooled.half_ppr_points`; Raiders implied 21.5 `game-environment.json:home_implied_total`. |
 | TE Oronde Gadsden II | 12 | #119 Start | Sit | Target share 0.0814 `usage.json:pooled.target_share`, 0 `usage.json:last_week.half_ppr_points`. |
@@ -820,8 +877,10 @@ already on the list and now differ by more.
 tight ends and D/STs that #118 and #119 started on a name or a matchup
 quote (Higbee, Kraft, Andrews, Gadsden, Barner; six D/STs), and they warmed
 players whose pooled shares the quoted pages had not printed (Swift,
-DeVonta Smith, Irving, Raymond, Burden). v2's red-zone shares pushed the same
-way: both tight ends it moved went down.
+Irving, Raymond, Burden, Wicks). v2's red-zone shares pushed the same
+way: both tight ends it moved went down. Round 2's differences are of
+another kind: #118 and #119 were written before Friday's report, so where a
+status became final, the call followed it.
 
 ### Quoted numbers the tables contradict
 
@@ -833,7 +892,7 @@ listed once at the end so the check is visible.
 | #119 game 1 | Washington pass defense | "league-high 24.8 passing fantasy points per game" (Sharp) | 27.38 to QBs, rank 2 `points-allowed.json:per_game,rank` (WAS, QB); Detroit is rank 1 at 30.02 | Different scoring, but not league-high on these tables. |
 | #119 game 1 | Jacory Croskey-Merritt | 58.5% of snaps in week 3 (Sharp) | 0.5652 `usage.json:last_week.snap_share` | Footballguys' 57% in the same document is closer. |
 | #119 game 6 | RJ Harvey | 13% target share (RotoWire) | 0.1897 `usage.json:pooled.target_share`; 0.2258 `usage.json:last_week.target_share` | Contradicted. |
-| #119 game 6 | Christian McCaffrey | "no week 4 injury item found" | Did Not Participate `injuries.json:practice_status` | The table post-dates #119's read. |
+| #119 game 6 | Christian McCaffrey | "no week 4 injury item found" | Full `injuries.json:practice_status`, no `report_status` | v2 cited a Wednesday DNP against this; by Friday he practised in full, so #119's read holds for the game. |
 | #118 game 2 | Bills defense vs QBs | "seventh-most points to QBs" (SI) | 19.66, rank 8 `points-allowed.json:per_game,rank` (BUF, QB) | Off by one rank. |
 | #118 game 4 | Chase Brown | 68% of snaps (full page) | 0.7018 `usage.json:last_week.snap_share` | Contradicted by two points. |
 | #118 game 6 | Malik Nabers | "team-high 27% target share" (NBC) | 0.2317 `usage.json:pooled.target_share`; Isaiah Likely 0.2805 `usage.json:pooled.target_share` | Not team-high pooled; week 3 was 0.2857 `usage.json:last_week.target_share`. |
@@ -842,9 +901,9 @@ listed once at the end so the check is visible.
 | #118 game 3 | Jets at Bears line | Bears -3, total 43, Bears 23.0 / Jets 20.0 (CBS) | 3.5 (positive = home favored: Bears by 3.5) / 43.5, 23.5 / 20 `game-environment.json` | Line moved a day later; not an error. |
 | #118 game 5 | Cowboys at Texans line | Texans -2.5, total 47.5, 25.0 / 22.5 | 3 (positive = home favored: Texans by 3) / 48.5, 25.75 / 22.75 `game-environment.json` | Moved. |
 | #118 game 6 | Cardinals at Giants line | Cardinals -1, total 44.5, 22.75 / 21.75 | -2.5 (negative = away favored: Cardinals by 2.5) / 44.5, 23.5 / 21 `game-environment.json` | Moved. |
-| #118 game 7 | Rams at Eagles line | Rams -3, total 44 (CBS); 43.5 (4for4) | -3 (negative = away favored: Rams by 3) / 43.5 `game-environment.json` | 4for4's matches. |
-| #118 game 8 | Packers at Buccaneers line | Packers -4, total 39.5 (CBS); -3.5 (4for4) | -3.5 (negative = away favored: Packers by 3.5) / 38.5 `game-environment.json` | Moved. |
-| #119 games 2-8 | Lines | TEN-BAL 43.5; MIA-MIN -10, MIA 14.25; KC-LV 48.5; LAC-SEA -6.5/43.5; DEN-SF -2.5/46.5; DET-CAR 50.5; ATL-NO 48.5 (bet365, 2026-09-28; betting-style, favorite negative) | 42.5; 10.5 (positive = home favored: Vikings by 10.5), 14; 47.5; 7 (Seahawks by 7)/42.5; 3 (49ers by 3)/47.5; 51.5; 47.5 `game-environment.json:spread_line,total_line` | bet365 two days earlier vs the games file at 08:16Z on 2026-10-01; movement, not error. |
+| #118 game 7 | Rams at Eagles line | Rams -3, total 44 (CBS); 43.5 (4for4) | -3.5 (negative = away favored: Rams by 3.5) / 42.5 `game-environment.json` | Moved by Saturday; v2's -3 / 43.5 matched 4for4. |
+| #118 game 8 | Packers at Buccaneers line | Packers -4, total 39.5 (CBS); -3.5 (4for4) | -3 (negative = away favored: Packers by 3) / 39.5 `game-environment.json` | Moved; the total now matches CBS. |
+| #119 games 2-8 | Lines | TEN-BAL 43.5; MIA-MIN -10, MIA 14.25; KC-LV 48.5; LAC-SEA -6.5/43.5; DEN-SF -2.5/46.5; DET-CAR 50.5; ATL-NO 48.5 (bet365, 2026-09-28; betting-style, favorite negative) | 42.5; 10 (positive = home favored: Vikings by 10), 14.25; 47.5; 7 (Seahawks by 7)/42.5; 3 (49ers by 3)/47.5; 50.5; 47.5 `game-environment.json:spread_line,total_line` | As of the 2026-10-03T06:38Z build. MIA-MIN and DET-CAR have moved back to bet365's values; the rest is movement, not error. |
 
 **Quotes the tables confirm** (week 3 snaps unless noted): #118's Hollins
 76%, Henry 70%, Stevenson 52%, Henderson 37%, Cook 67%, DJ Moore 10 of 26
