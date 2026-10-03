@@ -161,7 +161,7 @@ amendment.
   **`spread_line` is signed from the home team's side: positive means the home
   team is favored, negative means the away team is.** It is not a betting
   line, where the favorite carries the minus sign. A cited spread gives the
-  table's value and then its meaning, e.g. ``6.5 `game-environment.json:spread_line` (positive = home favored: Bills by 6.5)``.
+  table's value and then its meaning, e.g. ``7 `game-environment.json:spread_line` (positive = home favored: Bills by 7)``.
 - `red-zone.json`: weeks 1-3, snaps inside the opponent's 20, two-point tries
   excluded, joined to `usage.json` on `player_id` (its `player` names are
   play-by-play abbreviations). Cited as `rz_target_share` for a pass-catcher
