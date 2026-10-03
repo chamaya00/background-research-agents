@@ -216,10 +216,11 @@ Kickoff order. The number in brackets is the game's number in #118
 
 ### 1. Colts at Commanders (London) - Sun 09:30 ET [#119 game 1]
 
-Row `2026_04_IND_WAS`: spread -3.5 `game-environment.json:spread_line` (Colts
-favored), total 47.5 `game-environment.json:total_line`; Colts 25.5
-`game-environment.json:away_implied_total`, Commanders 22
-`game-environment.json:home_implied_total`.
+Row `2026_04_IND_WAS`: -4.5 `game-environment.json:spread_line` (negative =
+away favored: Colts by 4.5), total 47.5 `game-environment.json:total_line`;
+Colts 26 `game-environment.json:away_implied_total`, Commanders 21.5
+`game-environment.json:home_implied_total`. Jayden Daniels and Rachaad White
+are Out `injuries.json:report_status`; Mariota starts.
 
 Pace: Colts 62.33 `team-pace.json:plays_per_game` and 0.5455
 `team-pace.json:neutral_pass_rate`; Commanders 66 and 0.5109.
@@ -228,34 +229,34 @@ Pace: Colts 62.33 `team-pace.json:plays_per_game` and 0.5455
 
 | Player | Call | Reason |
 |---|---|---|
-| QB Daniel Jones | **Flex** | Washington allows 27.38 to QBs, rank 2 `points-allowed.json:per_game,rank`, and the Colts' 25.5 `game-environment.json:away_implied_total` is the game's higher total, but his own output is 28.34 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (9.4 a game) and 7.9 `usage.json:last_week.half_ppr_points`. A streamer, not a weekly start. |
-| RB Jonathan Taylor | **Start** | Rush share 0.7952 `usage.json:pooled.rush_share` on 0.8895 `usage.json:pooled.snap_share` and 59 `usage.json:pooled.half_ppr_points` over 3 games; volume outweighs a Washington defense allowing 10.27 to RBs, rank 32 `points-allowed.json:per_game,rank`. Red-zone carry share 0.9231 `red-zone.json:rz_carry_share` (12 of 13). Limited `injuries.json:practice_status` - on the game-time list. |
+| QB Daniel Jones | **Flex** | Washington allows 27.38 to QBs, rank 2 `points-allowed.json:per_game,rank`, and the Colts' 26 `game-environment.json:away_implied_total` is the game's higher total, but his own output is 28.34 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (9.4 a game) and 7.9 `usage.json:last_week.half_ppr_points`. A streamer, not a weekly start. |
+| RB Jonathan Taylor | **Start** | Rush share 0.7952 `usage.json:pooled.rush_share` on 0.8895 `usage.json:pooled.snap_share` and 59 `usage.json:pooled.half_ppr_points` over 3 games; volume outweighs a Washington defense allowing 10.27 to RBs, rank 32 `points-allowed.json:per_game,rank`. Red-zone carry share 0.9231 `red-zone.json:rz_carry_share` (12 of 13). Full `injuries.json:practice_status`, no `report_status`. |
 | RB Seth McGowan | **Sit** | Rush share 0.0723 `usage.json:pooled.rush_share`, snap share 0.1105 `usage.json:pooled.snap_share`, 1.9 `usage.json:pooled.half_ppr_points` in three games, red-zone carry share 0.0769 `red-zone.json:rz_carry_share` (1 of 13). |
 | WR Josh Downs | **Start** | Target share 0.2553 `usage.json:pooled.target_share` and air-yards share 0.451 `usage.json:pooled.air_yards_share`, up to 0.3143 `usage.json:last_week.target_share`, red-zone target share 0.3333 `red-zone.json:rz_target_share` (4 of 12), against the defense allowing the most to WRs, 38.99, rank 1 `points-allowed.json:per_game,rank`. |
-| WR Keenan Allen | **Flex** | Target share 0.2128 `usage.json:pooled.target_share`, 0.2571 `usage.json:last_week.target_share`, on 0.6368 `usage.json:pooled.snap_share`, in the rank-1 WR matchup above; red-zone target share 0.25 `red-zone.json:rz_target_share` (3 of 12); 22.5 `usage.json:pooled.half_ppr_points` over 3 games caps him at WR3. Limited `injuries.json:practice_status` - on the game-time list. |
+| WR Keenan Allen | **Flex** | Target share 0.2128 `usage.json:pooled.target_share`, 0.2571 `usage.json:last_week.target_share`, on 0.6368 `usage.json:pooled.snap_share`, in the rank-1 WR matchup above; red-zone target share 0.25 `red-zone.json:rz_target_share` (3 of 12); 22.5 `usage.json:pooled.half_ppr_points` over 3 games caps him at WR3. Questionable `injuries.json:report_status`, a rest day (Did Not Participate `injuries.json:practice_status`, "Not injury related - resting player" `injuries.json:report_primary_injury`) - on the game-time list. |
 | WR Laquon Treadwell | **Sit** | Snap share 0.6474 `usage.json:pooled.snap_share` but target share 0.0532 `usage.json:pooled.target_share` and 0.0286 `usage.json:last_week.target_share`; no red-zone touches. |
 | TE Tyler Warren | **Start** | Target share 0.234 `usage.json:pooled.target_share` on snap share 0.9211 `usage.json:pooled.snap_share` (snap share stands in for routes), red-zone target share 0.25 `red-zone.json:rz_target_share` (3 of 12), against a defense allowing 19.07 to TEs, rank 2 `points-allowed.json:per_game,rank`. |
-| D/ST Colts | **Sit** | Washington's 22 `game-environment.json:home_implied_total` is not low; Mariota scored 20.42 `usage.json:last_week.half_ppr_points` as the starter; the Colts allow 21.87 to QBs, rank 5 `points-allowed.json:per_game,rank`. |
+| D/ST Colts | **Sit** | Washington's 21.5 `game-environment.json:home_implied_total` is not low; Mariota, the starter with Daniels Out `injuries.json:report_status`, scored 20.42 `usage.json:last_week.half_ppr_points`; the Colts allow 21.87 to QBs, rank 5 `points-allowed.json:per_game,rank`. |
 
 **Commanders**
 
 | Player | Call | Reason |
 |---|---|---|
-| QB Jayden Daniels | **Flex** | 32.4 `usage.json:pooled.half_ppr_points` over 2 `usage.json:games` with rush share 0.1875 `usage.json:pooled.rush_share`, against the Colts' 21.87 to QBs, rank 5 `points-allowed.json:per_game,rank`; Limited `injuries.json:practice_status`. A start if he is active - on the game-time list. |
-| QB Marcus Mariota | **Sit** | 20.42 `usage.json:last_week.half_ppr_points` as the week 3 starter, 29.16 `usage.json:pooled.half_ppr_points` over 2 games, and a 22 `game-environment.json:home_implied_total`; a one-QB start only if Daniels sits. Both QBs get a call because the starter is not known. |
-| RB Jacory Croskey-Merritt | **Flex** | Rush share 0.4896 `usage.json:pooled.rush_share`, up to 0.5938 `usage.json:last_week.rush_share` on 0.5652 `usage.json:last_week.snap_share`, against the Colts' 25.93 to RBs, rank 5 `points-allowed.json:per_game,rank`, with White DNP `injuries.json:practice_status`. Red-zone carry share 0.3333 `red-zone.json:rz_carry_share` (5 of 15), the team's highest. Target share 0.0323 `usage.json:pooled.target_share` keeps the floor low. |
-| RB Rachaad White | **Sit** | Did Not Participate `injuries.json:practice_status`; rush share 0.2292 `usage.json:pooled.rush_share` and target share 0.0968 `usage.json:pooled.target_share` in a split; red-zone carry share 0.2667 `red-zone.json:rz_carry_share` (4 of 15). On the game-time list. |
-| WR Terry McLaurin | **Start** | Target share 0.2366 `usage.json:pooled.target_share`, 0.3 `usage.json:last_week.target_share`, air-yards share 0.4564 `usage.json:last_week.air_yards_share`, against the Colts' 29.67 to WRs, rank 11 `points-allowed.json:per_game,rank`. Red-zone target share 0.1538 `red-zone.json:rz_target_share` (2 of 13) is modest. |
+| QB Jayden Daniels | **Sit** | Out `injuries.json:report_status` (elbow `injuries.json:report_primary_injury`). His 32.4 `usage.json:pooled.half_ppr_points` over 2 `usage.json:games` and rush share 0.1875 `usage.json:pooled.rush_share` do not play this week. Round 2: was Flex. |
+| QB Marcus Mariota | **Flex** | The starter, with Daniels Out `injuries.json:report_status`: 20.42 `usage.json:last_week.half_ppr_points` as the week 3 starter, 29.16 `usage.json:pooled.half_ppr_points` over 2 games, against the Colts' 21.87 to QBs, rank 5 `points-allowed.json:per_game,rank`, but on a 21.5 `game-environment.json:home_implied_total`. A streamer. Round 2: was Sit. |
+| RB Jacory Croskey-Merritt | **Start** | Rush share 0.4896 `usage.json:pooled.rush_share`, up to 0.5938 `usage.json:last_week.rush_share` on 0.5652 `usage.json:last_week.snap_share`, against the Colts' 25.93 to RBs, rank 5 `points-allowed.json:per_game,rank`, with White Out `injuries.json:report_status`. Red-zone carry share 0.3333 `red-zone.json:rz_carry_share` (5 of 15), the team's highest, and White's 4 of 15 are now free. Target share 0.0323 `usage.json:pooled.target_share` keeps the floor low. Round 2: was Flex. |
+| RB Rachaad White | **Sit** | Out `injuries.json:report_status` (shoulder `injuries.json:report_primary_injury`); rush share 0.2292 `usage.json:pooled.rush_share` and target share 0.0968 `usage.json:pooled.target_share`; red-zone carry share 0.2667 `red-zone.json:rz_carry_share` (4 of 15). |
+| WR Terry McLaurin | **Start** | Target share 0.2366 `usage.json:pooled.target_share`, 0.3 `usage.json:last_week.target_share`, air-yards share 0.4564 `usage.json:last_week.air_yards_share`, against the Colts' 29.67 to WRs, rank 11 `points-allowed.json:per_game,rank`. Red-zone target share 0.1538 `red-zone.json:rz_target_share` (2 of 13) is modest. Questionable `injuries.json:report_status` (hamstring, Limited `injuries.json:practice_status`) - on the game-time list. |
 | WR Stefon Diggs | **Flex** | Target share 0.2366 `usage.json:pooled.target_share` on snap share 0.5762 `usage.json:pooled.snap_share`; red-zone target share 0.3077 `red-zone.json:rz_target_share` (4 of 13), the team's highest; 38 `usage.json:pooled.half_ppr_points` over 3 games but 5.3 `usage.json:last_week.half_ppr_points` with Mariota. |
 | WR Dyami Brown | **Sit** | Target share 0.0968 `usage.json:pooled.target_share`, snap share down to 0.3043 `usage.json:last_week.snap_share`, 2.1 `usage.json:pooled.half_ppr_points`, red-zone target share 0.0769 `red-zone.json:rz_target_share` (1 of 13). |
 | TE Ben Sinnott | **Sit** | Target share 0.0313 `usage.json:pooled.target_share` on 0.5857 `usage.json:pooled.snap_share` (snap share stands in for routes), 1.1 `usage.json:pooled.half_ppr_points`, no red-zone touches; the Colts' 14.13 to TEs, rank 8 `points-allowed.json:per_game,rank`, does not rescue it. |
-| D/ST Commanders | **Sit** | The Colts are implied for 25.5 `game-environment.json:away_implied_total`; Washington allows 27.38 to QBs, rank 2 `points-allowed.json:per_game,rank`; S Nick Cross and G Sam Cosmi are Out `injuries.json:report_status`. |
+| D/ST Commanders | **Sit** | The Colts are implied for 26 `game-environment.json:away_implied_total`; Washington allows 27.38 to QBs, rank 2 `points-allowed.json:per_game,rank`; S Nick Cross and G Sam Cosmi are Out `injuries.json:report_status`. |
 
 ### 2. Patriots at Bills - Sun 13:00 ET [#118 game 2]
 
-Row `2026_04_NE_BUF`: 6.5 `game-environment.json:spread_line` (positive =
-home favored: Bills by 6.5), total 48.5 `game-environment.json:total_line`;
-Bills 27.5 `game-environment.json:home_implied_total`, Patriots 21
+Row `2026_04_NE_BUF`: 7 `game-environment.json:spread_line` (positive =
+home favored: Bills by 7), total 49.5 `game-environment.json:total_line`;
+Bills 28.25 `game-environment.json:home_implied_total`, Patriots 21.25
 `game-environment.json:away_implied_total`.
 
 Pace: Patriots 59.33 `team-pace.json:plays_per_game` and 0.5513
@@ -265,35 +266,37 @@ Pace: Patriots 59.33 `team-pace.json:plays_per_game` and 0.5513
 
 | Player | Call | Reason |
 |---|---|---|
-| QB Drake Maye | **Sit** | 21.6 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (7.2 a game), 3.76 `usage.json:last_week.half_ppr_points`, and a 21 `game-environment.json:away_implied_total`; Buffalo's 19.66 to QBs, rank 8 `points-allowed.json:per_game,rank`, is not enough. |
+| QB Drake Maye | **Sit** | 21.6 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (7.2 a game), 3.76 `usage.json:last_week.half_ppr_points`, and a 21.25 `game-environment.json:away_implied_total`; Buffalo's 19.66 to QBs, rank 8 `points-allowed.json:per_game,rank`, is not enough. |
 | RB Rhamondre Stevenson | **Sit** | Rush share 0.3647 `usage.json:pooled.rush_share`, falling to 0.2692 `usage.json:last_week.rush_share`, on snap share 0.5979 `usage.json:pooled.snap_share`; 20.4 `usage.json:pooled.half_ppr_points` in three games. Buffalo's 25 to RBs, rank 6 `points-allowed.json:per_game,rank`, is split two ways, and New England has run 3 red-zone carries in three games, 0.3333 `red-zone.json:rz_carry_share` (1 of 3). |
 | RB TreVeyon Henderson | **Sit** | Rush share 0.4444 `usage.json:pooled.rush_share` over 2 `usage.json:games` but 0.3077 `usage.json:last_week.rush_share` and target share 0.0196 `usage.json:pooled.target_share`; red-zone carry share 0.3333 `red-zone.json:rz_carry_share` (1 of 3). |
 | WR Mack Hollins | **Flex** | Target share 0.1951 `usage.json:pooled.target_share`, 0.3 `usage.json:last_week.target_share`, air-yards share 0.2604 `usage.json:pooled.air_yards_share`, against Buffalo's 32.1 to WRs, rank 5 `points-allowed.json:per_game,rank`. Red-zone target share 0.4444 `red-zone.json:rz_target_share` is the team's highest, but on 4 of 9 targets. |
 | WR Romeo Doubs | **Sit** | Target share 0.1341 `usage.json:pooled.target_share` and 0.1333 `usage.json:last_week.target_share`; 17.5 `usage.json:pooled.half_ppr_points` over three games; red-zone target share 0.1111 `red-zone.json:rz_target_share` (1 of 9). |
 | WR DeMario Douglas | **Sit** | Target share 0.1707 `usage.json:pooled.target_share` on 0.5661 `usage.json:pooled.snap_share`; 10.2 `usage.json:pooled.half_ppr_points` over three games; red-zone target share 0.1111 `red-zone.json:rz_target_share` (1 of 9). |
 | TE Hunter Henry | **Sit** | Target share 0.122 `usage.json:pooled.target_share`, 0.0667 `usage.json:last_week.target_share`, on 0.7831 `usage.json:pooled.snap_share` (snap share stands in for routes), red-zone target share 0.1111 `red-zone.json:rz_target_share` (1 of 9); Buffalo allows 8.2 to TEs, rank 22 `points-allowed.json:per_game,rank`. |
-| D/ST Patriots | **Sit** | Buffalo's 27.5 `game-environment.json:home_implied_total` is the game's high, with New England a 6.5-point underdog `game-environment.json:spread_line`; Josh Allen has 93.44 `usage.json:pooled.half_ppr_points` in three games. |
+| D/ST Patriots | **Sit** | Buffalo's 28.25 `game-environment.json:home_implied_total` is the game's high, with New England a 7-point underdog `game-environment.json:spread_line`; Josh Allen has 93.44 `usage.json:pooled.half_ppr_points` in three games. |
 
 **Bills**
 
 | Player | Call | Reason |
 |---|---|---|
-| QB Josh Allen | **Start** | 93.44 `usage.json:pooled.half_ppr_points` over 3 games (31.1 a game) with rush share 0.3111 `usage.json:pooled.rush_share`, and a 27.5 `game-environment.json:home_implied_total`, which outweighs New England's 12.45 to QBs, rank 27 `points-allowed.json:per_game,rank`. |
-| RB James Cook | **Start** | Rush share 0.6444 `usage.json:pooled.rush_share`, 0.7273 `usage.json:last_week.rush_share`, on 0.7121 `usage.json:pooled.snap_share`, as a 6.5-point favorite `game-environment.json:spread_line`; New England allows 18.83 to RBs, rank 14 `points-allowed.json:per_game,rank`. Red-zone carry share 0.6429 `red-zone.json:rz_carry_share` (9 of 14). |
+| QB Josh Allen | **Start** | 93.44 `usage.json:pooled.half_ppr_points` over 3 games (31.1 a game) with rush share 0.3111 `usage.json:pooled.rush_share`, and a 28.25 `game-environment.json:home_implied_total`, which outweighs New England's 12.45 to QBs, rank 27 `points-allowed.json:per_game,rank`. |
+| RB James Cook | **Start** | Rush share 0.6444 `usage.json:pooled.rush_share`, 0.7273 `usage.json:last_week.rush_share`, on 0.7121 `usage.json:pooled.snap_share`, as a 7-point favorite `game-environment.json:spread_line`; New England allows 18.83 to RBs, rank 14 `points-allowed.json:per_game,rank`. Red-zone carry share 0.6429 `red-zone.json:rz_carry_share` (9 of 14). |
 | RB Ty Johnson | **Sit** | One game: snap share 0.2273 `usage.json:pooled.snap_share`, rush share 0 `usage.json:pooled.rush_share`, target share 0.1538 `usage.json:pooled.target_share`; no red-zone touches. |
-| WR DJ Moore | **Start** | Target share 0.2195 `usage.json:pooled.target_share`, 0.3846 `usage.json:last_week.target_share`, air-yards share 0.3265 `usage.json:pooled.air_yards_share`, red-zone target share 0.1818 `red-zone.json:rz_target_share` (2 of 11); New England allows 26.73 to WRs, rank 15 `points-allowed.json:per_game,rank`. Limited `injuries.json:practice_status` - on the game-time list. |
+| WR DJ Moore | **Start** | Target share 0.2195 `usage.json:pooled.target_share`, 0.3846 `usage.json:last_week.target_share`, air-yards share 0.3265 `usage.json:pooled.air_yards_share`, red-zone target share 0.1818 `red-zone.json:rz_target_share` (2 of 11); New England allows 26.73 to WRs, rank 15 `points-allowed.json:per_game,rank`. Limited `injuries.json:practice_status` but no `report_status`, so no game-day risk. |
 | WR Khalil Shakir | **Sit** | Snap share 0.7273 `usage.json:last_week.snap_share` but target share 0.1154 `usage.json:last_week.target_share` and 1.1 `usage.json:last_week.half_ppr_points`. Red-zone target share 0.3636 `red-zone.json:rz_target_share` is the team's highest, but 4 of 11 targets is too few to start him on. |
-| WR Keon Coleman | **Sit** | Target share 0.1098 `usage.json:pooled.target_share`, snap share 0.4848 `usage.json:last_week.snap_share`, red-zone target share 0.0909 `red-zone.json:rz_target_share` (1 of 11), and Did Not Participate `injuries.json:practice_status`. |
+| WR Keon Coleman | **Sit** | Target share 0.1098 `usage.json:pooled.target_share`, snap share 0.4848 `usage.json:last_week.snap_share`, red-zone target share 0.0909 `red-zone.json:rz_target_share` (1 of 11); Limited `injuries.json:practice_status`, no `report_status`. |
 | TE Dalton Kincaid | **Start** | Target share 0.2073 `usage.json:pooled.target_share` and air-yards share 0.2497 `usage.json:pooled.air_yards_share` on 0.6818 `usage.json:pooled.snap_share` (snap share stands in for routes), 37.3 `usage.json:pooled.half_ppr_points` in three games; red-zone target share only 0.0909 `red-zone.json:rz_target_share` (1 of 11). New England allows the fewest to TEs, 4.53, rank 32 `points-allowed.json:per_game,rank` - his share outweighs it at a thin position. |
-| D/ST Bills | **Start** | New England is implied for 21 `game-environment.json:away_implied_total` as a 6.5-point underdog `game-environment.json:spread_line`, and Maye has 21.6 `usage.json:pooled.half_ppr_points` in three games. |
+| D/ST Bills | **Start** | New England is implied for 21.25 `game-environment.json:away_implied_total` as a 7-point underdog `game-environment.json:spread_line`, and Maye has 21.6 `usage.json:pooled.half_ppr_points` in three games. |
 
 ### 3. Jets at Bears - Sun 13:00 ET [#118 game 3]
 
 Row `2026_04_NYJ_CHI`: 3.5 `game-environment.json:spread_line` (positive =
 home favored: Bears by 3.5), total 43.5 `game-environment.json:total_line`;
 Bears 23.5 `game-environment.json:home_implied_total`, Jets 20
-`game-environment.json:away_implied_total`. Chicago had no rows in
-`injuries.json` when fetched.
+`game-environment.json:away_implied_total`. Caleb Williams is Out
+`injuries.json:report_status` (hamstring), so Keenum starts. The Jets are
+without Breece Hall, Adonai Mitchell and Mason Taylor, all Out
+`injuries.json:report_status`.
 
 Pace: Jets 64.67 `team-pace.json:plays_per_game` and 0.5728
 `team-pace.json:neutral_pass_rate`; Bears 68.67 and 0.5398, the second-most
@@ -304,26 +307,26 @@ plays a game in the league.
 | Player | Call | Reason |
 |---|---|---|
 | QB Geno Smith | **Flex** | 50.92 `usage.json:pooled.half_ppr_points` over 3 `usage.json:games` (17.0 a game) and 26.04 `usage.json:last_week.half_ppr_points`, against Chicago's 16.93 to QBs, rank 17 `points-allowed.json:per_game,rank`, on a 20 `game-environment.json:away_implied_total`. |
-| RB Braelon Allen | **Flex** | Rush share 0.2235 `usage.json:pooled.rush_share` and snap share 0.5152 `usage.json:last_week.snap_share` behind Breece Hall's 0.6 `usage.json:pooled.rush_share`; Hall Did Not Participate `injuries.json:practice_status`. Chicago allows 18.17 to RBs, rank 17 `points-allowed.json:per_game,rank`. Red-zone carry share 0.25 `red-zone.json:rz_carry_share` (3 of 12) and target share 0.375 `red-zone.json:rz_target_share` (3 of 8) keep him involved near the goal line. A start if Hall is out - on the game-time list. |
+| RB Braelon Allen | **Start** | Breece Hall is Out `injuries.json:report_status`, which frees Hall's 0.6 `usage.json:pooled.rush_share` beside Allen's own 0.2235 `usage.json:pooled.rush_share`, with snap share 0.5152 `usage.json:last_week.snap_share`. Chicago allows 18.17 to RBs, rank 17 `points-allowed.json:per_game,rank`. Red-zone carry share 0.25 `red-zone.json:rz_carry_share` (3 of 12) and target share 0.375 `red-zone.json:rz_target_share` (3 of 8) already make him the goal-line back's partner. Round 2: was Flex. |
 | RB Isaiah Davis | **Sit** | Rush share 0 `usage.json:pooled.rush_share`, target share 0 `usage.json:pooled.target_share`, 0 `usage.json:pooled.half_ppr_points` in two games; no red-zone touches. |
 | WR Garrett Wilson | **Start** | Target share 0.2842 `usage.json:pooled.target_share`, 0.3611 `usage.json:last_week.target_share`, air-yards share 0.4189 `usage.json:pooled.air_yards_share`; volume outweighs Chicago's 22 to WRs, rank 27 `points-allowed.json:per_game,rank`. Red-zone target share is only 0.125 `red-zone.json:rz_target_share` (1 of 8). |
-| WR Adonai Mitchell | **Sit** | Target share 0.2542 `usage.json:pooled.target_share` and air-yards share 0.5766 `usage.json:pooled.air_yards_share` over 2 `usage.json:games`, red-zone target share 0.125 `red-zone.json:rz_target_share` (1 of 8), but no week 3 row and Did Not Participate `injuries.json:practice_status`. On the game-time list. |
+| WR Adonai Mitchell | **Sit** | Target share 0.2542 `usage.json:pooled.target_share` and air-yards share 0.5766 `usage.json:pooled.air_yards_share` over 2 `usage.json:games`, red-zone target share 0.125 `red-zone.json:rz_target_share` (1 of 8), but Out `injuries.json:report_status` (finger). |
 | WR Isaiah Williams | **Sit** | Snap share 0.7729 `usage.json:pooled.snap_share` but target share 0.0947 `usage.json:pooled.target_share` and 2.6 `usage.json:last_week.half_ppr_points`; red-zone target share 0.125 `red-zone.json:rz_target_share` (1 of 8). |
-| TE Kenyon Sadiq | **Flex** | Target share 0.2222 `usage.json:last_week.target_share` on 0.5758 `usage.json:last_week.snap_share` (snap share stands in for routes) with Mason Taylor Did Not Participate `injuries.json:practice_status`; Chicago allows 6.27 to TEs, rank 27 `points-allowed.json:per_game,rank`. Red-zone target share 0 `red-zone.json:rz_target_share` (0 of 8), so this is yardage only. Sadiq himself is Limited `injuries.json:practice_status` - on the game-time list. |
+| TE Kenyon Sadiq | **Flex** | Target share 0.2222 `usage.json:last_week.target_share` on 0.5758 `usage.json:last_week.snap_share` (snap share stands in for routes) with Mason Taylor Out `injuries.json:report_status`; Chicago allows 6.27 to TEs, rank 27 `points-allowed.json:per_game,rank`. Red-zone target share 0 `red-zone.json:rz_target_share` (0 of 8), so this is yardage only. Sadiq himself is Questionable `injuries.json:report_status` (back, Limited `injuries.json:practice_status`) - on the game-time list. |
 | D/ST Jets | **Sit** | Chicago's 23.5 `game-environment.json:home_implied_total`; Keenum scored 24.48 `usage.json:last_week.half_ppr_points` in his start; the Jets are 3.5-point underdogs `game-environment.json:spread_line`. |
 
 **Bears**
 
 | Player | Call | Reason |
 |---|---|---|
-| QB Case Keenum | **Sit** | 24.48 `usage.json:last_week.half_ppr_points` in one start, against the Jets' 14.95 to QBs, rank 23 `points-allowed.json:per_game,rank`, on a 23.5 `game-environment.json:home_implied_total`. The starter is not settled and Chicago had no injury rows; on the game-time list. |
+| QB Case Keenum | **Flex** | The starter, with Caleb Williams Out `injuries.json:report_status`: 24.48 `usage.json:last_week.half_ppr_points` in one start, against the Jets' 14.95 to QBs, rank 23 `points-allowed.json:per_game,rank`, on a 23.5 `game-environment.json:home_implied_total` and Chicago's 68.67 `team-pace.json:plays_per_game`. One start is a streamer's sample. Round 2: was Sit, held down by an unsettled starter. |
 | RB D'Andre Swift | **Start** | Rush share 0.5143 `usage.json:pooled.rush_share` on snap share 0.6471 `usage.json:pooled.snap_share`, 52.1 `usage.json:pooled.half_ppr_points` over 3 games (17.4 a game), against the Jets' 21.1 to RBs, rank 9 `points-allowed.json:per_game,rank`. Red-zone carry share 0.56 `red-zone.json:rz_carry_share` (14 of 25) on the offense with the second-most plays a game, 68.67 `team-pace.json:plays_per_game`. |
 | RB Kyle Monangai | **Sit** | Rush share 0.2857 `usage.json:pooled.rush_share` on 0.3575 `usage.json:pooled.snap_share`; 3.1 `usage.json:last_week.half_ppr_points`; red-zone carry share 0.24 `red-zone.json:rz_carry_share` (6 of 25). |
 | WR Luther Burden III | **Start** | Target share 0.2556 `usage.json:pooled.target_share`, 0.3235 `usage.json:last_week.target_share`, air-yards share 0.2729 `usage.json:pooled.air_yards_share`, and red-zone target share 0.3333 `red-zone.json:rz_target_share` (6 of 18), double any other Bear's; Chicago runs 68.67 `team-pace.json:plays_per_game`, second in the league. The Jets allow 23.17 to WRs, rank 22 `points-allowed.json:per_game,rank`. Moved up from Flex in v2. |
 | WR Kalif Raymond | **Flex** | Target share 0.2333 `usage.json:pooled.target_share` on 0.6561 `usage.json:pooled.snap_share`, 36.9 `usage.json:pooled.half_ppr_points` over 3 games, the team's best WR output; red-zone target share 0.1667 `red-zone.json:rz_target_share` (3 of 18). |
 | WR Rome Odunze | **Sit** | Air-yards share 0.3415 `usage.json:pooled.air_yards_share` but target share 0.1444 `usage.json:pooled.target_share`, 17.9 `usage.json:pooled.half_ppr_points` over 3 games, red-zone target share 0.1111 `red-zone.json:rz_target_share` (2 of 18). |
 | TE Colston Loveland | **Sit** | Snap share 0.8416 `usage.json:pooled.snap_share` (snap share stands in for routes) but target share 0.1 `usage.json:pooled.target_share` and 5.9 `usage.json:pooled.half_ppr_points` in three games; red-zone target share 0.1667 `red-zone.json:rz_target_share` (3 of 18) has not turned into points; the Jets allow 5.37 to TEs, rank 30 `points-allowed.json:per_game,rank`. |
-| D/ST Bears | **Flex** | The Jets are implied for 20 `game-environment.json:away_implied_total` as 3.5-point underdogs `game-environment.json:spread_line`, but Geno Smith has 50.92 `usage.json:pooled.half_ppr_points` in three games. |
+| D/ST Bears | **Flex** | The Jets are implied for 20 `game-environment.json:away_implied_total` as 3.5-point underdogs `game-environment.json:spread_line`, without Hall, Mitchell and Taylor, all Out `injuries.json:report_status`, but Geno Smith has 50.92 `usage.json:pooled.half_ppr_points` in three games. |
 
 ### 4. Jaguars at Bengals - Sun 13:00 ET [#118 game 4]
 
