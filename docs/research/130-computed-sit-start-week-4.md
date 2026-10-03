@@ -856,7 +856,7 @@ differ.
 | QB Jordan Love | 8 | #118 Start | Flex | Tampa Bay rank 24 to QBs `points-allowed.json:rank`; 38.5 `game-environment.json:total_line`. |
 | TE Tucker Kraft | 8 | #118 Start | Sit | 15.1 `usage.json:pooled.half_ppr_points` over 3 games; v2: red-zone target share 0.0556 `red-zone.json:rz_target_share` (1 of 18). |
 | RB Bucky Irving | 8 | #118 Flex | Start | Rush share 0.6061 `usage.json:pooled.rush_share`; Green Bay rank 1 to RBs `points-allowed.json:rank`. |
-| D/ST Buccaneers | 8 | #118 Start | Flex | Green Bay implied 21 `game-environment.json:away_implied_total`; Tampa Bay rank 24 to QBs `points-allowed.json:rank`. |
+| D/ST Buccaneers | 8 | #118 Start | Flex | Green Bay implied 21.25 `game-environment.json:away_implied_total`; Tampa Bay rank 24 to QBs `points-allowed.json:rank`. |
 | TE Mark Andrews | 9 | #119 Start | Sit | 18.7 `usage.json:pooled.half_ppr_points` over 3 games; Tennessee rank 29 to TEs `points-allowed.json:rank`; v2: red-zone target share 0.1 `red-zone.json:rz_target_share` (1 of 10). |
 | WR Justin Jefferson | 10 | #119 Start | Sit | Round 2: Out `injuries.json:report_status`; he played 0.1186 `usage.json:last_week.snap_share` in week 3. |
 | WR Xavier Worthy | 11 | #119 Flex | Sit | Target share 0.087 `usage.json:last_week.target_share`; Las Vegas rank 30 to WRs `points-allowed.json:rank`. |
@@ -869,7 +869,7 @@ differ.
 | WR Courtland Sutton | 13 | #119 Flex | Sit | 12.2 `usage.json:pooled.half_ppr_points` over 3 games. |
 | D/ST 49ers | 13 | #119 Start | Flex | Denver implied 22.25 `game-environment.json:away_implied_total`. |
 | WR Jameson Williams | 14 | #119 Flex | Sit | Target share 0.1574 `usage.json:pooled.target_share`; Carolina rank 31 to WRs `points-allowed.json:rank`. |
-| D/ST Lions | 14 | #119 Start | Sit | Carolina implied 24 `game-environment.json:home_implied_total`; Bryce Young 69.16 `usage.json:pooled.half_ppr_points`. |
+| D/ST Lions | 14 | #119 Start | Sit | Carolina implied 23.5 `game-environment.json:home_implied_total`; Bryce Young 69.16 `usage.json:pooled.half_ppr_points`. |
 | QB Michael Penix Jr. | 15 | #119 Start | Flex | One game, 14.04 `usage.json:pooled.half_ppr_points`. |
 | RB Alvin Kamara | 15 | #119 Flex | Sit | Snap share 0.3099 `usage.json:pooled.snap_share`; Atlanta rank 30 to RBs `points-allowed.json:rank`. |
 
