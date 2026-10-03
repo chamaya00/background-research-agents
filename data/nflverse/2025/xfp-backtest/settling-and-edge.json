@@ -1,0 +1,482 @@
+[
+  {
+    "position": "QB",
+    "family": "ranking",
+    "comparison": "v1_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "QB",
+    "family": "ranking",
+    "comparison": "v2_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "QB",
+    "family": "ranking",
+    "comparison": "v3_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "QB",
+    "family": "ranking",
+    "comparison": "v4_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "QB",
+    "family": "ranking",
+    "pair": "v3_vs_v1",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "QB",
+    "family": "ranking",
+    "pair": "v4_vs_v2",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "QB",
+    "family": "accuracy",
+    "comparison": "v1_vs_baseline",
+    "block1": "beats",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "QB",
+    "family": "accuracy",
+    "comparison": "v2_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "beats",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "QB",
+    "family": "accuracy",
+    "comparison": "v3_vs_baseline",
+    "block1": "beats",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "QB",
+    "family": "accuracy",
+    "comparison": "v4_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "beats",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "QB",
+    "family": "accuracy",
+    "pair": "v3_vs_v1",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "QB",
+    "family": "accuracy",
+    "pair": "v4_vs_v2",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "RB",
+    "family": "ranking",
+    "comparison": "v1_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "RB",
+    "family": "ranking",
+    "comparison": "v2_vs_baseline",
+    "block1": "beats",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "RB",
+    "family": "ranking",
+    "comparison": "v3_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "RB",
+    "family": "ranking",
+    "comparison": "v4_vs_baseline",
+    "block1": "beats",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "RB",
+    "family": "ranking",
+    "pair": "v3_vs_v1",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "RB",
+    "family": "ranking",
+    "pair": "v4_vs_v2",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "RB",
+    "family": "accuracy",
+    "comparison": "v1_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "RB",
+    "family": "accuracy",
+    "comparison": "v2_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "RB",
+    "family": "accuracy",
+    "comparison": "v3_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "RB",
+    "family": "accuracy",
+    "comparison": "v4_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "RB",
+    "family": "accuracy",
+    "pair": "v3_vs_v1",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "RB",
+    "family": "accuracy",
+    "pair": "v4_vs_v2",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "WR",
+    "family": "ranking",
+    "comparison": "v1_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "WR",
+    "family": "ranking",
+    "comparison": "v2_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "WR",
+    "family": "ranking",
+    "comparison": "v3_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "WR",
+    "family": "ranking",
+    "comparison": "v4_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "WR",
+    "family": "ranking",
+    "pair": "v3_vs_v1",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "WR",
+    "family": "ranking",
+    "pair": "v4_vs_v2",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "WR",
+    "family": "accuracy",
+    "comparison": "v1_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "WR",
+    "family": "accuracy",
+    "comparison": "v2_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "WR",
+    "family": "accuracy",
+    "comparison": "v3_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "WR",
+    "family": "accuracy",
+    "comparison": "v4_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "WR",
+    "family": "accuracy",
+    "pair": "v3_vs_v1",
+    "block1": "loses",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "loses",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "WR",
+    "family": "accuracy",
+    "pair": "v4_vs_v2",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "beats",
+    "block4": "beats",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "TE",
+    "family": "ranking",
+    "comparison": "v1_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "beats",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "TE",
+    "family": "ranking",
+    "comparison": "v2_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "beats",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "TE",
+    "family": "ranking",
+    "comparison": "v3_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "beats",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "TE",
+    "family": "ranking",
+    "comparison": "v4_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "beats",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "TE",
+    "family": "ranking",
+    "pair": "v3_vs_v1",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "TE",
+    "family": "ranking",
+    "pair": "v4_vs_v2",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "TE",
+    "family": "accuracy",
+    "comparison": "v1_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "beats",
+    "block3": "beats",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "TE",
+    "family": "accuracy",
+    "comparison": "v2_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "beats",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "TE",
+    "family": "accuracy",
+    "comparison": "v3_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "beats",
+    "block3": "beats",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "TE",
+    "family": "accuracy",
+    "comparison": "v4_vs_baseline",
+    "block1": "inconclusive",
+    "block2": "beats",
+    "block3": "beats",
+    "block4": "inconclusive",
+    "settling_week": "none"
+  },
+  {
+    "position": "TE",
+    "family": "accuracy",
+    "pair": "v3_vs_v1",
+    "block1": "loses",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  },
+  {
+    "position": "TE",
+    "family": "accuracy",
+    "pair": "v4_vs_v2",
+    "block1": "inconclusive",
+    "block2": "inconclusive",
+    "block3": "inconclusive",
+    "block4": "inconclusive",
+    "edge": "no_early_edge"
+  }
+]

@@ -1,0 +1,734 @@
+[
+  {
+    "week": 2,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 3
+  },
+  {
+    "week": 2,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 2
+  },
+  {
+    "week": 2,
+    "position": "QB",
+    "reason": "no_history",
+    "count": 3
+  },
+  {
+    "week": 2,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 11
+  },
+  {
+    "week": 2,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 19
+  },
+  {
+    "week": 2,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 18
+  },
+  {
+    "week": 3,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 5
+  },
+  {
+    "week": 3,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 8
+  },
+  {
+    "week": 3,
+    "position": "QB",
+    "reason": "no_history",
+    "count": 2
+  },
+  {
+    "week": 3,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 18
+  },
+  {
+    "week": 3,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 24
+  },
+  {
+    "week": 3,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 24
+  },
+  {
+    "week": 4,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 6
+  },
+  {
+    "week": 4,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 15
+  },
+  {
+    "week": 4,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 25
+  },
+  {
+    "week": 4,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 34
+  },
+  {
+    "week": 4,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 23
+  },
+  {
+    "week": 5,
+    "position": "QB",
+    "reason": "bye",
+    "count": 7
+  },
+  {
+    "week": 5,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 8
+  },
+  {
+    "week": 5,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 14
+  },
+  {
+    "week": 5,
+    "position": "RB",
+    "reason": "bye",
+    "count": 13
+  },
+  {
+    "week": 5,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 24
+  },
+  {
+    "week": 5,
+    "position": "WR",
+    "reason": "bye",
+    "count": 25
+  },
+  {
+    "week": 5,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 36
+  },
+  {
+    "week": 5,
+    "position": "TE",
+    "reason": "bye",
+    "count": 11
+  },
+  {
+    "week": 5,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 28
+  },
+  {
+    "week": 6,
+    "position": "QB",
+    "reason": "bye",
+    "count": 5
+  },
+  {
+    "week": 6,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 9
+  },
+  {
+    "week": 6,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 15
+  },
+  {
+    "week": 6,
+    "position": "RB",
+    "reason": "bye",
+    "count": 11
+  },
+  {
+    "week": 6,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 31
+  },
+  {
+    "week": 6,
+    "position": "WR",
+    "reason": "bye",
+    "count": 12
+  },
+  {
+    "week": 6,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 51
+  },
+  {
+    "week": 6,
+    "position": "TE",
+    "reason": "bye",
+    "count": 7
+  },
+  {
+    "week": 6,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 34
+  },
+  {
+    "week": 7,
+    "position": "QB",
+    "reason": "bye",
+    "count": 5
+  },
+  {
+    "week": 7,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 8
+  },
+  {
+    "week": 7,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 15
+  },
+  {
+    "week": 7,
+    "position": "RB",
+    "reason": "bye",
+    "count": 8
+  },
+  {
+    "week": 7,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 35
+  },
+  {
+    "week": 7,
+    "position": "WR",
+    "reason": "bye",
+    "count": 12
+  },
+  {
+    "week": 7,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 48
+  },
+  {
+    "week": 7,
+    "position": "TE",
+    "reason": "bye",
+    "count": 7
+  },
+  {
+    "week": 7,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 38
+  },
+  {
+    "week": 8,
+    "position": "QB",
+    "reason": "bye",
+    "count": 10
+  },
+  {
+    "week": 8,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 12
+  },
+  {
+    "week": 8,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 16
+  },
+  {
+    "week": 8,
+    "position": "RB",
+    "reason": "bye",
+    "count": 26
+  },
+  {
+    "week": 8,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 26
+  },
+  {
+    "week": 8,
+    "position": "WR",
+    "reason": "bye",
+    "count": 32
+  },
+  {
+    "week": 8,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 57
+  },
+  {
+    "week": 8,
+    "position": "TE",
+    "reason": "bye",
+    "count": 24
+  },
+  {
+    "week": 8,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 32
+  },
+  {
+    "week": 9,
+    "position": "QB",
+    "reason": "bye",
+    "count": 5
+  },
+  {
+    "week": 9,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 13
+  },
+  {
+    "week": 9,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 16
+  },
+  {
+    "week": 9,
+    "position": "RB",
+    "reason": "bye",
+    "count": 18
+  },
+  {
+    "week": 9,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 33
+  },
+  {
+    "week": 9,
+    "position": "WR",
+    "reason": "bye",
+    "count": 26
+  },
+  {
+    "week": 9,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 55
+  },
+  {
+    "week": 9,
+    "position": "TE",
+    "reason": "bye",
+    "count": 15
+  },
+  {
+    "week": 9,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 37
+  },
+  {
+    "week": 10,
+    "position": "QB",
+    "reason": "bye",
+    "count": 8
+  },
+  {
+    "week": 10,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 12
+  },
+  {
+    "week": 10,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 13
+  },
+  {
+    "week": 10,
+    "position": "RB",
+    "reason": "bye",
+    "count": 16
+  },
+  {
+    "week": 10,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 40
+  },
+  {
+    "week": 10,
+    "position": "WR",
+    "reason": "bye",
+    "count": 27
+  },
+  {
+    "week": 10,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 59
+  },
+  {
+    "week": 10,
+    "position": "TE",
+    "reason": "bye",
+    "count": 15
+  },
+  {
+    "week": 10,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 37
+  },
+  {
+    "week": 11,
+    "position": "QB",
+    "reason": "bye",
+    "count": 5
+  },
+  {
+    "week": 11,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 15
+  },
+  {
+    "week": 11,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 15
+  },
+  {
+    "week": 11,
+    "position": "QB",
+    "reason": "no_history",
+    "count": 2
+  },
+  {
+    "week": 11,
+    "position": "RB",
+    "reason": "bye",
+    "count": 8
+  },
+  {
+    "week": 11,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 45
+  },
+  {
+    "week": 11,
+    "position": "WR",
+    "reason": "bye",
+    "count": 14
+  },
+  {
+    "week": 11,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 71
+  },
+  {
+    "week": 11,
+    "position": "TE",
+    "reason": "bye",
+    "count": 8
+  },
+  {
+    "week": 11,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 47
+  },
+  {
+    "week": 12,
+    "position": "QB",
+    "reason": "bye",
+    "count": 8
+  },
+  {
+    "week": 12,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 16
+  },
+  {
+    "week": 12,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 15
+  },
+  {
+    "week": 12,
+    "position": "RB",
+    "reason": "bye",
+    "count": 20
+  },
+  {
+    "week": 12,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 46
+  },
+  {
+    "week": 12,
+    "position": "WR",
+    "reason": "bye",
+    "count": 29
+  },
+  {
+    "week": 12,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 66
+  },
+  {
+    "week": 12,
+    "position": "TE",
+    "reason": "bye",
+    "count": 18
+  },
+  {
+    "week": 12,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 37
+  },
+  {
+    "week": 13,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 18
+  },
+  {
+    "week": 13,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 18
+  },
+  {
+    "week": 13,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 58
+  },
+  {
+    "week": 13,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 76
+  },
+  {
+    "week": 13,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 56
+  },
+  {
+    "week": 14,
+    "position": "QB",
+    "reason": "bye",
+    "count": 9
+  },
+  {
+    "week": 14,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 16
+  },
+  {
+    "week": 14,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 16
+  },
+  {
+    "week": 14,
+    "position": "QB",
+    "reason": "no_history",
+    "count": 1
+  },
+  {
+    "week": 14,
+    "position": "RB",
+    "reason": "bye",
+    "count": 16
+  },
+  {
+    "week": 14,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 47
+  },
+  {
+    "week": 14,
+    "position": "WR",
+    "reason": "bye",
+    "count": 31
+  },
+  {
+    "week": 14,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 70
+  },
+  {
+    "week": 14,
+    "position": "TE",
+    "reason": "bye",
+    "count": 15
+  },
+  {
+    "week": 14,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 40
+  },
+  {
+    "week": 15,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 22
+  },
+  {
+    "week": 15,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 17
+  },
+  {
+    "week": 15,
+    "position": "QB",
+    "reason": "no_history",
+    "count": 1
+  },
+  {
+    "week": 15,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 57
+  },
+  {
+    "week": 15,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 89
+  },
+  {
+    "week": 15,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 61
+  },
+  {
+    "week": 16,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 24
+  },
+  {
+    "week": 16,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 18
+  },
+  {
+    "week": 16,
+    "position": "QB",
+    "reason": "no_history",
+    "count": 1
+  },
+  {
+    "week": 16,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 59
+  },
+  {
+    "week": 16,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 84
+  },
+  {
+    "week": 16,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 54
+  },
+  {
+    "week": 17,
+    "position": "QB",
+    "reason": "not_starter",
+    "count": 26
+  },
+  {
+    "week": 17,
+    "position": "QB",
+    "reason": "min_games",
+    "count": 18
+  },
+  {
+    "week": 17,
+    "position": "RB",
+    "reason": "not_seen",
+    "count": 56
+  },
+  {
+    "week": 17,
+    "position": "WR",
+    "reason": "not_seen",
+    "count": 88
+  },
+  {
+    "week": 17,
+    "position": "TE",
+    "reason": "not_seen",
+    "count": 61
+  }
+]
