@@ -9,32 +9,32 @@
     {
       "file": "stats_player",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
-      "fetchedAt": "2026-10-01T14:17:23.080Z",
-      "sha256": "e293e213908f746db982cd9112f5016125a42eeeec16c4773b35c6cc5edf6327"
+      "fetchedAt": "2026-10-06T06:38:39.568Z",
+      "sha256": "74dce52a31ffad854e516886bb16b39f88e02f77f292bca53e134ba5ec041cb4"
     },
     {
       "file": "snap_counts",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
-      "fetchedAt": "2026-10-01T14:17:23.219Z",
-      "sha256": "c5868527b1052ae572b2d8f34a7bb777675a5e762ceaeb25f72f10d1c59846d5"
+      "fetchedAt": "2026-10-06T06:38:39.678Z",
+      "sha256": "53720f396f9c2bfaf869c8a7af644f043caae278c6a3c1d6b4ed52ec597c8061"
     },
     {
       "file": "injuries",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
-      "fetchedAt": "2026-10-01T14:17:23.354Z",
-      "sha256": "408a873e9a80993f46e073697e7fd3f04894778b28ae23250090440e71106a07"
+      "fetchedAt": "2026-10-06T06:38:39.806Z",
+      "sha256": "5af782489dd0f9a7009663248ffa9be814a670eb194580ed5e7c10a63453466b"
     },
     {
       "file": "games",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
-      "fetchedAt": "2026-10-01T14:17:23.470Z",
-      "sha256": "b8b2ce5f596d5a423dc2b59c2896740eaf22126836eed0c3940cce50f410a549"
+      "fetchedAt": "2026-10-06T06:38:39.882Z",
+      "sha256": "f726aba00a87c82c3e98440c01414be9f36e7ef862776e1c01d31d9e715b0157"
     },
     {
       "file": "play_by_play",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz",
-      "fetchedAt": "2026-10-01T14:17:23.734Z",
-      "sha256": "321433f8c3cab61e7577f49dc2f22f8216de8a5eb84baa432f1cf3d60d0b705a"
+      "fetchedAt": "2026-10-06T06:38:40.031Z",
+      "sha256": "5a28074168a1ac55f3fc74d2f2bc8340d5e75ebf4f2086b0332095ce01d26543"
     }
   ],
   "season": 2026,
